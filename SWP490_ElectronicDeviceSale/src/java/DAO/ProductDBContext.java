@@ -20,6 +20,35 @@ import model.Product;
  */
 public class ProductDBContext extends BaseDAO {
 
+    public ArrayList<Product> searchProducts(String keyword) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created from Product p\n";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            if (keyword != null) {
+                sql += "where p.Name like '%'+ ? + '%'";
+                stm = connection.prepareStatement(sql);
+                stm.setString(1, keyword);
+            }
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("ID"));
+                p.setName(rs.getString("Name"));
+                p.setImage(rs.getString("Image"));
+                p.setVote(rs.getInt("Vote"));
+                p.setPrice(rs.getFloat("Price"));
+                p.setDiscount(rs.getFloat("Discount"));
+                p.setStatus(rs.getString("Status"));
+                p.setCreated(rs.getDate("Created"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
+
     public ArrayList<Product> getProductsByCategory(int cid) {
         ArrayList<Product> products = new ArrayList<>();
         try {
