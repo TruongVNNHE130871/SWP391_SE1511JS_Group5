@@ -26,7 +26,10 @@
                 <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Password" name="password">
             </div>
-            <div><p style="display: block"><input type="checkbox" id="rememberme">Remember me</p> </div>
+            <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
+            <p style="color:red; display:block">
+                ${errorMsg}
+            </p>
             <input type="submit" class="btn" value="Login">
             <di> <a href="">Forgot Password</a></di>
         </div>

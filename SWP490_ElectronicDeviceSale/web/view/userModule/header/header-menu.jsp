@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
         <link rel="stylesheet" href="../userModule/assets/css/stylemenu.css" />
-       
+
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -44,7 +44,7 @@
                 <div class="col-2 mt-3 text-white"> Giỏ hàng</div>
 
                 <a href="" class="col-1 mt-3 text-white">Đăng kí</a>                         
-                <a href="" class="col-1 mt-3 text-white">Đăng nhập</a>
+                <a href="${pageContext.request.contextPath}/LoginController" class="col-1 mt-3 text-white">Đăng nhập</a>
 
             </div>
             <div class="row text-center bg-dark text-white mt-1">

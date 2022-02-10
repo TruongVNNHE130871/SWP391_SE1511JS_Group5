@@ -20,15 +20,23 @@ public class BaseDAO {
 
     public BaseDAO() {
         try {
-            String user = "se1514";
-            String pass = "12345678";
-            String url = "jdbc:sqlserver://ADMIN\\TRANCUONG:1433;databaseName=SWP391";
+            /**
+             * Cuong
+             */
+//            String url = "jdbc:sqlserver://ADMIN\\TRANCUONG:1433;databaseName=SWP391";
+//            String user = "se1514";
+//            String pass = "12345678";
+            /**
+             * Vinh
+             */
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
+            String user = "sa";
+            String pass = "v1";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
 }
