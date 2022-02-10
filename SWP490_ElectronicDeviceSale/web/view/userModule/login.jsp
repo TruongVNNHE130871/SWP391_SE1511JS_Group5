@@ -15,25 +15,22 @@
         <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
 
-
-    <form action="login" method="Post">
-        <div class="login-box">
-            <h1>Login</h1>
-            <div class="textbox">
-                <i class="fas fa-user"></i>
-                <input type="text" placeholder="Username" name="username">
+    <body>
+        <form action="login" method="Post">
+            <div class="login-box">
+                <h1>Login</h1>
+                <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name="username">
+                </div>
+                <div class="textbox">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name="password">
+                </div>
+                <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
+                <input type="submit" class="btn" value="Login">
+                <di> <a href="">Forgot Password</a></di>
             </div>
-            <div class="textbox">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" name="password">
-            </div>
-            <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
-            <p style="color:red; display:block">
-                ${errorMsg}
-            </p>
-            <input type="submit" class="btn" value="Login">
-            <di> <a href="">Forgot Password</a></di>
-        </div>
-    </form>
-</body>
+        </form>
+    </body>
 </html>

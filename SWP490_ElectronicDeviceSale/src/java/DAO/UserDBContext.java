@@ -11,17 +11,14 @@ public class UserDBContext extends BaseDAO {
 
     public User getUserByUserPass(String username, String password) {
         try {
-            String sql = "select*from User where UserName = ? AND PassWord = ?";
+            String sql = "select UserName, PassWord from User where UserName = ? AND PassWord = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                User user = new User();
-                user.setUserName(rs.getString("UserName"));
-                user.setPassWord(rs.getString("PassWord"));
-                user.setName(rs.getString("Name"));
-                return user;
+                User u = new User(rs.getString(1), rs.getString(2));
+                return u;
             }
 
         } catch (SQLException e) {
@@ -30,5 +27,4 @@ public class UserDBContext extends BaseDAO {
         return null;
     }
 
-    
 }

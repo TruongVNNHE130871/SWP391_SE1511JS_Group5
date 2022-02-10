@@ -23,6 +23,13 @@ public class User {
     private Date created;
 
     public User() {
+
+    }
+
+    public User(String username, String password) {
+        super();
+        this.userName = username;
+        this.passWord = password;
     }
 
     public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created) {
