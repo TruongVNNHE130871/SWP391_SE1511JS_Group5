@@ -2,14 +2,12 @@ package controller.user;
 
 import DAO.UserDBContext;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.User;
 
 public class LoginController extends HttpServlet {
@@ -24,7 +22,31 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+
+        Cookie[] cookies = request.getCookies();
+        String username = "";
+        String password = "";
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("username")) {
+                    username = cookies[i].getValue();
+                }
+                if (cookies[i].getName().equals("password")) {
+                    password = cookies[i].getValue();
+                }
+            }
+            User u = userDB.getUserByUserPass(username, password);
+
+            if (u != null) {
+
+                response.sendRedirect("HomePageController");
+            } else {
+                request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+            }
+
+        } else {
+            request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+        }
 
     }
 //response.sendRedirect(request.getContextPath() + "/");
@@ -37,15 +59,22 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        UserDBContext usserDB = new UserDBContext();
+        String remember = request.getParameter("remember");
+        User u = userDB.getUserByUserPass(username, password);
         try {
-            User u = usserDB.getUserByUserPass(username, password);
             if (u != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                response.sendRedirect("home");
+                if (remember != null) {
+                    Cookie c_user = new Cookie("username", username);
+                    Cookie c_pass = new Cookie("password", password);
+                    c_user.setMaxAge(3600 * 24);
+                    c_pass.setMaxAge(3600 * 24);
+                    response.addCookie(c_user);
+                    response.addCookie(c_pass);
+                }
+                request.getSession().setAttribute("username", username);
+                response.sendRedirect("HomePageController");
             } else {
-//                request.setAttribute("errorMsg", "Tài khoản đăng nhập hoặc mật khẩu sai !!!");
+                request.setAttribute("errorMsg", "Wrong username or password!");
                 request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
             }
         } catch (Exception e) {

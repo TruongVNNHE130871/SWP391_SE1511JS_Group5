@@ -11,12 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login </title>
+        <title>Login</title>
         <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
-        <form action="login" method="Post">
+        <form action="LoginController" method="Post">
             <div class="login-box">
                 <h1>Login</h1>
                 <div class="textbox">
@@ -28,8 +28,12 @@
                     <input type="password" placeholder="Password" name="password">
                 </div>
                 <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
+                <p style="color:red; display:block">
+                    ${errorMsg}
+                </p>
                 <input type="submit" class="btn" value="Login">
-                <di> <a href="">Forgot Password</a></di>
+                <div> <a href="">Forgot password</a></div>
+                <div> <a href="${pageContext.request.contextPath}/HomePageController">Back to home</a></div>
             </div>
         </form>
     </body>

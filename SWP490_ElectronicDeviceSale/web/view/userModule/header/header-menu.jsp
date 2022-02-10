@@ -37,13 +37,22 @@
                 </div>
                 <div class="col-5 mt-3 ">
                     <input type="text" size="40">
-                    <button>Tìm kiếm</button>
+                    <button>Search</button>
                 </div>
 
-                <div class="col-2 mt-3 text-white"> Giỏ hàng</div>
+                <div class="col-2 mt-3 text-white">Cart</div>
 
-                <a href="" class="col-1 mt-3 text-white">Đăng kí</a>                         
-                <a href="${pageContext.request.contextPath}/LoginController" class="col-1 mt-3 text-white">Đăng nhập</a>
+                <c:if test="${sessionScope.username != null}">
+                    <p class="col-1 mt-3 text-white"><strong>Hello</strong> ${username }</p>
+                    <a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 text-white hidden-xs">Logout</a>
+                </c:if>
+                    
+                <c:if test="${sessionScope.username == null}">
+                    <a href="${pageContext.request.contextPath}/view/client/register" 
+                       class="col-1 mt-3 text-white hidden-xs" >SignUp</a>
+                    <a href="${pageContext.request.contextPath}/LoginController"
+                       class="col-1 mt-3 text-white">Login</a>
+                </c:if>
 
             </div>
             <div class="row text-center bg-dark text-white mt-1">

@@ -11,7 +11,7 @@ public class UserDBContext extends BaseDAO {
 
     public User getUserByUserPass(String username, String password) {
         try {
-            String sql = "select UserName, PassWord from User where UserName = ? AND PassWord = ?";
+            String sql = "select UserName, PassWord from [User] where UserName = ? AND PassWord = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);

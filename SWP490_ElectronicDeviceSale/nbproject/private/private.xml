@@ -5,15 +5,12 @@
         <group>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/User.java</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/ProductDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/forgotPassword.jsp</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/LogOutController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/header/header-menu.jsp</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/BaseDAO.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Shop.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/WEB-INF/web.xml</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/homePage.jsp</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/UserDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/HomePageController.java</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/LoginController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Product.java</file>
             <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/login.jsp</file>
         </group>
     </open-files>
