@@ -12,8 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login </title>
-        <link rel="stylesheet" href="../userModule/assets/css/login.css" />
+        <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
+
 
     <form action="login" method="Post">
         <div class="login-box">
