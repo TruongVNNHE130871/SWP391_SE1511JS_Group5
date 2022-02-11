@@ -10,7 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <link rel="stylesheet" href="../userModule/assets/css/styles.css" />
+        <!--<link rel="stylesheet" href="../userModule/assets/css/styles.css" />-->
+        <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -24,6 +25,9 @@
         ></script>
     </head>
     <body>
+        <!-- Header and Menu-->
+        <jsp:include page = "./header/header-menu.jsp" />
+        <!-- Form view profile-->
         <form style="align-items: center;" class="edit-profile">
             <div class="container">
                 <div class="row">
@@ -34,7 +38,7 @@
                         <!-- <button type="button" class="btn btn-outline-primary">Change Avatar</button> -->
                     </div>
                     <div class="col-6">
-                        <table class="ms-auto mt-4">
+                        <table class="ms-auto mt-2">
                             <tr>
                                 <td class="">
                                     <label for="username" class="label my-3 ">UserName: </label>

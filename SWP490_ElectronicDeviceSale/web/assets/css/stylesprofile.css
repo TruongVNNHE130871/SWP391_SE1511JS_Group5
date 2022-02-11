@@ -13,16 +13,15 @@ and open the template in the editor.
     margin: 0;
     padding: 0;
 }
-html{
-    width: 80%;
-    margin: 70px auto;
-    background-color: rgb(250, 250, 250);
-}
+
 .edit-profile{
-    border: 1px solid rgba(165, 164, 164, 0.3);
-    padding: 50px 0px;
+    border: 1px solid rgb(250, 250, 250);
+    /* padding: 50px 0px; */
     margin: auto 0px;
     border-radius: 5px;
+    margin-top: 180px;
+    border: none;
+    
 }
 label{
     font-size: 13px;
