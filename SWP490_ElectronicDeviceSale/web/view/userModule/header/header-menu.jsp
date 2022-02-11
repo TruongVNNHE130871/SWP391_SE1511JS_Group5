@@ -40,13 +40,15 @@
                     <button>Search</button>
                 </div>
 
-                <div class="col-2 mt-3 text-white">Cart</div>
-
+                <div class="col-1 mt-3 text-white">Cart</div>
+              
                 <c:if test="${sessionScope.username != null}">
+
                     <p class="col-1 mt-3 text-white"><strong>Hello</strong> ${username }</p>
+                    <a href="" class="col-1 mt-3 text-white hidden-xs">Profile</a>
                     <a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 text-white hidden-xs">Logout</a>
                 </c:if>
-                    
+
                 <c:if test="${sessionScope.username == null}">
                     <a href="${pageContext.request.contextPath}/view/client/register" 
                        class="col-1 mt-3 text-white hidden-xs" >SignUp</a>
