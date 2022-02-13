@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         TruongVNN         First Implement
+
  */
 package controller.user;
 
@@ -15,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 /**
- *Lớp này có các phương thức định hướng đến các hàm xử lí logic và truy vấn cho page Change password
+ *
  * 
  * @author TruongVNN
  */
@@ -53,7 +57,7 @@ public class ChangePasswordController extends HttpServlet {
             throws ServletException, IOException {
         int id = 2;
         User user = userDBContext.getUserByID(id);
-        String oldPassword = request.getParameter("oldPassword");
+        String oldPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");        
         String confirmPassword = request.getParameter("confirmPassword");
         if(oldPassword.compareTo(user.getPassWord())==0){
@@ -64,10 +68,10 @@ public class ChangePasswordController extends HttpServlet {
             else
                 request.setAttribute("errorMsg", "Confirm password is wrong");
         }else 
-            request.setAttribute("errorMsg", "Old password is wrong");
+            request.setAttribute("errorMsg", "Current password is wrong");
         
-        String a = "change password.jsp";
-        RequestDispatcher dispatcher= request.getRequestDispatcher(a);
+        String path = "view/userModule/changePassword.jsp";
+        RequestDispatcher dispatcher= request.getRequestDispatcher(path);
         dispatcher.forward(request, response);  
     }
     

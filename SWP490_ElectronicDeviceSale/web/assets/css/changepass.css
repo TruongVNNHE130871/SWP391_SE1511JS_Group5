@@ -1,14 +1,13 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 13, 2022, 4:20:41 PM
-    Author     : ASUS
-*/
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-02-13        1.0         TruongVNN         First Implement
 
-/* Align the Forget Form between the screen */
+ */
+/* Align the Forget Password Form between the screen */
 .style-forget-password{
     border: solid rgb(228, 228, 228);
     background-color: rgb(247, 247, 247);

@@ -1,10 +1,12 @@
 <%-- 
     Document   : changePassword
-    Created on : Feb 13, 2022, 4:19:31 PM
-    Author     : ASUS
+    Created on : Feb 13, 2022, 4:30:31 PM
+    Author     : TruongVNN
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,58 +29,37 @@
 </head>
 <body>
     <!-- header and menu -->
-    <div class="container-fluid bg-danger " id="header">
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-2">
-                <img src="https://inbienquangcao.vn/wp-content/uploads/2020/12/Nhu%CC%9B%CC%83ng-tho%CC%82ng-%C4%91ie%CC%A3%CC%82p-sa%CC%82u-sa%CC%86%CC%81c-phi%CC%81a-sau-logo-FPT.png" alt="" width="150" height="60">
-            </div>
-            <div class="col-5 mt-3 ">
-                <input type="text" size="40">
-                <button>A</button>
-            </div>
-            <!-- <div class="col-1"></div> -->
-            <div class="col-2 mt-3 text-white">IconUser Text</div>
-            <div class="col-1 mt-2">
-                <button class="btn btn-primary text-white">
-                    logout
-                </button>
-            </div>
-            <div class="col-1 mt-3 text-white">IconCart</div>
-        </div>
-        <div class="row text-center bg-dark text-white mt-1">
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-            <div class="col-2"><a class="category-link">Dien Thoai</a></div>
-        </div>
-    </div>
+    <jsp:include page = "./header/header-menu.jsp" />
+    <!-- header and menu -->   
     <!-- form forget password -->
-    <form action="" class="style-forget-password text-center">
+    <form action="changePassword" class="style-forget-password text-center" method="Post">
         <p class="fs-3">Change Password</p>
         <div class="form-group mb-3">
-            <input type="text" placeholder="Current Password" class="form-control mb-2">
+            <input type="text" name="currentPassword" placeholder="Current Password" class="form-control mb-2">
         </div>
         <div class="form-group mb-3">
-            <input type="text" placeholder="New Password" class="form-control mb-2">
+            <input type="text" name="newPassword" placeholder="New Password" class="form-control mb-2">
         </div>
         <div class="form-group mb-3">
-            <input type="text" placeholder="Confirm Password" class="form-control mb-2">
+            <input type="text" name="confirmPassword" placeholder="Confirm new Password" class="form-control mb-2">
         </div>
         <div class="form-group mb-5">
             <a href="">Forgot Password?</a>
         </div>
         <div class="form-group">
             <button class="btn btn-primary">Save</button>
+            <!-- error message -->
             <p style="color:red; display:block">
                     ${errorMsg}
-                </p>
+            </p>
+            <!-- error message-->
+            <!-- success message -->
             <p style="color:blue; display:block">
                     ${successMsg}
-                </p>
+            </p>
+            <!-- success message -->
         </div>
     </form>
+    <!-- form forget password -->
 </body>
 </html>
