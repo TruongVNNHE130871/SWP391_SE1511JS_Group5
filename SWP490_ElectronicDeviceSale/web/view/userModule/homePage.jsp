@@ -25,7 +25,7 @@
         </article>
 
         <!--  Main Home Page-->
-        <article>
+        <article> 
             <section>
                 <h3>Category Product</h3>
                 <div class="grid-container-category-product">
