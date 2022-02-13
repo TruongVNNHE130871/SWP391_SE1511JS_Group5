@@ -41,15 +41,15 @@ public class BaseDAO {
             /**
              * Hung
              */
-//            String url = "jdbc:sqlserver://DESKTOP-AGLT4RV\\HUNGVTHE:1433;databaseName=SWP391";
-//            String user = "test";
-//            String pass = "minamoto2701";
+            String url = "jdbc:sqlserver://DESKTOP-AGLT4RV\\HUNGVTHE:1433;databaseName=SWP391";
+            String user = "test";
+            String pass = "minamoto2701";
             /**
              * Binh
              */
-            String url = "jdbc:sqlserver://DESKTOP-4V2309B\\SQLEXPRESS:1433;databaseName=SWP391";
-            String user = "sa";
-            String pass = "123456";          
+//            String url = "jdbc:sqlserver://DESKTOP-4V2309B\\SQLEXPRESS:1433;databaseName=SWP391";
+//            String user = "sa";
+//            String pass = "123456";          
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException e) {

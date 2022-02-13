@@ -9,11 +9,14 @@ Record of change:
  */
 package controller.user;
 
+import DAO.ProductDBContext;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Product;
 
 /**
  * This class performs product data retrieval from the database and redirects to
@@ -29,6 +32,9 @@ public class HomePageController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProductDBContext db = new ProductDBContext();
+        ArrayList<Product> products = db.getProducts();
+        request.setAttribute("products", products);
         request.getRequestDispatcher("view/userModule/homePage.jsp").forward(request, response);
 
     }
