@@ -1,7 +1,10 @@
 <%-- 
-    Document   : changePassword
-    Created on : Feb 13, 2022, 4:30:31 PM
-    Author     : TruongVNN
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+  DATE          Version       AUTHOR          DESCRIPTION
+2022-02-13       1.0         TruongVNN        First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

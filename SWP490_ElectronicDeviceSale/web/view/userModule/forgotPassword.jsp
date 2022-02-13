@@ -1,7 +1,10 @@
 <%-- 
-    Document   : forgotPassword
-    Created on : Feb 10, 2022, 10:50:26 PM
-    Author     : TruongVNN
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+  DATE          Version       AUTHOR          DESCRIPTION
+2022-02-10       1.0         VinhNT         First Implement
 --%>
 
 <!DOCTYPE html>
