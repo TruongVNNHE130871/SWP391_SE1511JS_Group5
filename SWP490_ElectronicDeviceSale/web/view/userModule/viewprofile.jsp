@@ -5,13 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!--<link rel="stylesheet" href="../userModule/assets/css/styles.css" />-->
-        <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/styles.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -25,9 +25,9 @@
         ></script>
     </head>
     <body>
-        <!-- Header and Menu-->
+         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
-        <!-- Form view profile-->
+        <!-- Form View Profile-->
         <form style="align-items: center;" class="edit-profile">
             <div class="container">
                 <div class="row">
@@ -38,13 +38,13 @@
                         <!-- <button type="button" class="btn btn-outline-primary">Change Avatar</button> -->
                     </div>
                     <div class="col-6">
-                        <table class="ms-auto mt-2">
+                        <table class="ms-auto mt-4">
                             <tr>
                                 <td class="">
                                     <label for="username" class="label my-3 ">UserName: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">dinhvanbinh97</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.userName}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -52,7 +52,7 @@
                                     <label for="register_name" class="label my-3">Full Name: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">Dinh Van Binh</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.name}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +60,9 @@
                                     <label for="gender" class="label my-3">Gender: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">Male</p>
+                                    <p class="m-0 ms-4">
+                                        ${sessionScope.user.gender ? "Male" : "Female"}
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
@@ -68,7 +70,7 @@
                                     <label for="email" class="label my-3">Email: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">binhdvse04856@fpt.edu.vn</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.email}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -76,7 +78,7 @@
                                     <label for="phone_number" class="label my-3">Phone Number: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">301203120030</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.phone}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +86,7 @@
                                     <label for="dob" class="label my-3">Date Of Birth: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">01/01/2020</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.created}</p>
                                 </td>
                             </tr>
                         </table>

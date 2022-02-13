@@ -109,6 +109,7 @@ public class LoginController extends HttpServlet {
                     response.addCookie(c_pass);
                 }
                 request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("user", u);
                 response.sendRedirect("HomePageController");
             } else {
                 request.setAttribute("errorMsg", "Wrong username or password!");

@@ -53,7 +53,7 @@
                 <c:if test="${sessionScope.username != null}">
 
                     <p class="col-1 mt-3"><strong>Hello</strong> ${username }</p>
-                    <a href="" class="col-1 mt-3 hidden-xs">Profile</a>
+                    <a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Profile</a>
                     <a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Logout</a>
                 </c:if>
 
