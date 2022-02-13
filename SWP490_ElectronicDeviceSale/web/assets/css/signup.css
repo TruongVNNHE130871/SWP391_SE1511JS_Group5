@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 13, 2022, 3:40:21 PM
+    Author     : ACER
+*/
+
+.style-form{
+    border: solid rgb(228, 228, 228);
+    background-color: rgb(247, 247, 247);
+    border-radius: 10px;
+}
+div, .background-form{
+    position: relative;
+}
+.background-form{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.title-background{
+    position: absolute;
+    top: 170px;
+    left: 160px;
+    color: white;
+    font-size: 40px;
+
+}
