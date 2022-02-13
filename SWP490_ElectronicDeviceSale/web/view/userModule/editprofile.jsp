@@ -11,8 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Profile</title>
         <!--<link rel="stylesheet" href="../userModule/assets/css/styles.css" />-->
-        <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
-        
+        <link href="../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
+
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -26,10 +26,10 @@
         ></script>
     </head>
     <body>
-         <!-- Header and Menu-->
+        <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form edit profile-->
-        <form style="align-items: center;" class="edit-profile">
+        <form style="align-items: center;" class="edit-profile mt-5" action="EditProfileController" method="POST">
             <div class="container">
                 <div class="row">
                     <div class="col-5 text-center form-group mb-5 border-end">
@@ -39,13 +39,14 @@
                         <button type="button" class="btn btn-outline-primary">Change Avatar</button>
                     </div>
                     <div class="col-6">
+                        <input type="hidden" name="idUser" value="${sessionScope.user.id}"/>
                         <table class="ms-auto mt-4">
                             <tr>
                                 <td class="">
                                     <label for="username" class="label my-3">UserName: </label>
                                 </td>
                                 <td>
-                                    <p class="m-0 ms-4">dinhvanbinh97</p>
+                                    <p class="m-0 ms-4">${sessionScope.user.userName}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -56,8 +57,8 @@
                                     <input
                                         type="text"
                                         name="fullname"
-                                        value=""
-                                        placeholder="Dinh Van Binh"
+                                        value="${sessionScope.user.name}"
+                                        placeholder="${sessionScope.user.name}"
                                         size="35"
                                         class="ms-4"                   
                                         />
@@ -68,11 +69,11 @@
                                     <label for="gender" class="label my-3">Gender: </label>
                                 </td>
                                 <td>
-                                    <input type="radio" name="gender" value="male" class="ms-4 form-check-input"/>
+                                    <input type="radio" ${sessionScope.user.gender ? "checked = \"checked\"" : ""} name="gender" value="male" class="ms-4 form-check-input"/> 
                                     <label for="male">Male</label>
-                                    <input type="radio" name="gender" value="female" class="form-check-input"/>
+                                    <input type="radio" name="gender" ${!sessionScope.user.gender ? "checked = \"checked\"" : ""} value="female" class="form-check-input"/>
                                     <label for="female">Female</label>
-                                    <input type="radio" name="gender" value="other" class="form-check-input"/>
+                                    <input type="radio" name="gender" ${!!!sessionScope.user.gender ? "checked = \"checked\"" : ""} value="other" class="form-check-input"/>
                                     <label for="other_gender">Others</label>
                                 </td>
                             </tr>
@@ -84,9 +85,10 @@
                                     <input
                                         type="email"
                                         name="email"
-                                        placeholder="binhdvse04856@gmail.com"
+                                        placeholder="${sessionScope.user.email}"
                                         size="35"
                                         class="ms-4"
+                                        value="${sessionScope.user.email}"
                                         />
                                 </td>
                             </tr>
@@ -98,19 +100,11 @@
                                     <input
                                         type="text"
                                         name="phone"
-                                        value=""
-                                        placeholder="0320310320"
+                                        value="${sessionScope.user.phone}"
+                                        placeholder="${sessionScope.user.phone}"
                                         size="35"
                                         class="ms-4"
                                         />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="dob" class="label my-3">Date Of Birth: </label>
-                                </td>
-                                <td>
-                                    <input type="text" name="dob" placeholder="01/01/2000" size="35" class="ms-4"/>
                                 </td>
                             </tr>
                         </table>
@@ -118,7 +112,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <button type="button" class="btn btn-outline-primary">Save</button>       
+                <input type="submit" class="btn btn-outline-primary" value="Save"/>       
             </div>
         </form>
     </body>

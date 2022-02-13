@@ -1,4 +1,5 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+/*background of format login*/
 body{
   margin: 0;
   padding: 0;
@@ -6,7 +7,7 @@ body{
   background: url(../images/imageLogin.jpg) no-repeat;
   background-size: cover;
 }
-
+/*Empower the login form on the background*/
 .login-box{
   width: 280px;
   position: absolute;
@@ -15,6 +16,7 @@ body{
   transform: translate(-50%,-50%);
   color: white;
 }
+/**/
 .login-box h1{
   float: left;
   font-size: 40px;
@@ -22,6 +24,7 @@ body{
   margin-bottom: 50px;
   padding: 13px 0;
 }
+/*Align the width and location*/
 .textbox{
   width: 100%;
   overflow: hidden;
@@ -30,11 +33,13 @@ body{
   margin: 8px 0;
   border-bottom: 1px solid #4caf50;
 }
+/*Align the width and location*/
 .textbox i{
   width: 26px;
   float: left;
   text-align: center;
 }
+/*format input*/
 .textbox input{
   border: none;
   outline: none;
@@ -45,6 +50,7 @@ body{
   float: left;
   margin: 0 10px;
 }
+/*format button login and color font, width*/
 .btn{
   width: 100%;
   background: none;

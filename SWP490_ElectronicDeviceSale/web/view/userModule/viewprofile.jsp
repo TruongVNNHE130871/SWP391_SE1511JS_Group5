@@ -28,7 +28,7 @@
          <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
-        <form style="align-items: center;" class="edit-profile">
+        <form style="align-items: center;" class="edit-profile mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-5 text-center form-group mb-5 border-end">
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <a href="./editprofile.jsp"><button type="button" class="btn btn-outline-primary">Edit Profile</button></a>       
+                <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-outline-primary">Edit Profile</button></a>       
             </div>
         </form>
     </body>

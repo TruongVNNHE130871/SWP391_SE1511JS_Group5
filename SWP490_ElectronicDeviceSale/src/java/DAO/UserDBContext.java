@@ -198,5 +198,25 @@ public class UserDBContext extends BaseDAO {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+ 
+    public void editProfile(User u) {
+        try {
+            String sql = "UPDATE [dbo].[User]\n"
+                    + "   SET [Name] = ?\n"
+                    + "      ,[Gender] = ?\n"
+                    + "      ,[Phone] = ?\n"
+                    + "      ,[Email] = ?\n"
+                    + " WHERE ID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, u.getName());
+            stm.setBoolean(2, u.isGender());
+            stm.setInt(3, u.getPhone());
+            stm.setString(4, u.getEmail());
+            stm.setInt(5, u.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

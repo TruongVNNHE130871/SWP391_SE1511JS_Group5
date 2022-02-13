@@ -7,19 +7,22 @@ and open the template in the editor.
     Created on : Feb 13, 2022, 3:40:21 PM
     Author     : ACER
 */
-
+/*border and background of form signup*/
 .style-form{
     border: solid rgb(228, 228, 228);
     background-color: rgb(247, 247, 247);
     border-radius: 10px;
 }
+/*The position of the element will be relative to the static position you set and the space around the element will be kept*/
 div, .background-form{
     position: relative;
 }
+/*Border format of the image*/
 .background-form{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+/*title for in the middle of the photo*/
 .title-background{
     position: absolute;
     top: 170px;

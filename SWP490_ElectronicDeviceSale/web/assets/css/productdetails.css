@@ -7,16 +7,18 @@ and open the template in the editor.
     Created on : Feb 11, 2022, 9:32:48 PM
     Author     : BH1704
 */
-
+/*boldness of letters */
 .product-detail-price{
     color: rgb(209, 0, 0);
     font-weight: 600;
 }
+/*strikethrough discount amount*/
 .product-detail-sale{
     color: grey;
     text-decoration-line: line-through;
     font-weight: 400;
 }
+/*form width and screen center of product description*/
 .product-desciption{
     width: 60%;
     margin: auto;
@@ -25,6 +27,7 @@ and open the template in the editor.
     padding: 20px;
     border-radius: 10px;
 }
+/*form width and screen center of review product*/
 .review-product{
     width: 60%;
     margin: 20px auto;

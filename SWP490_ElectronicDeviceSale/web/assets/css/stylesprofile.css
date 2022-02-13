@@ -7,13 +7,13 @@ and open the template in the editor.
     Created on : Feb 8, 2022, 8:29:10 PM
     Author     : BH1704
 */
-
+/*reset form*/
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
+/*Align profile form balance screen*/
 .edit-profile{
     border: 1px solid rgb(250, 250, 250);
     /* padding: 50px 0px; */
@@ -21,8 +21,8 @@ and open the template in the editor.
     border-radius: 5px;
     margin-top: 180px;
     border: none;
-    
 }
+/*color and fontsize*/
 label{
     font-size: 13px;
     color: grey;
