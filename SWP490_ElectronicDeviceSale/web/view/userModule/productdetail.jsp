@@ -1,15 +1,19 @@
-<%-- 
-    Document   : productdetail
-    Created on : Feb 11, 2022, 9:31:48 PM
-    Author     : BH1704
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         CuongTV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../../assets/css/productdetails.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/productdetails.css" rel="stylesheet" type="text/css"/>
         <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -35,7 +39,7 @@
                         <img src="https://images.fpt.shop/unsafe/fit-in/585x390/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/9/15/637673217820889289_iphone-13-pro-max-vang-1.jpg" alt="">
                     </div>
                     <div class="col-6 mt-5">
-                        <p class="fs-1 product-detail-title">iPhone 13 Pro Max</p>
+                        <p class="fs-1 product-detail-title">${requestScope.product.name}</p>
                         <div class="rating-start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -46,7 +50,7 @@
                         </div>
                         
                           <!-- price -->
-                          <p class="product-detail-price fs-2">30.990.000₫ <span class="product-detail-sale fs-4">33.990.000</span></p>
+                          <p class="product-detail-price fs-2">${requestScope.product.price} <span class="product-detail-sale fs-4">33.990.000</span></p>
                           <div class="quantity">
                               <span>Quantity</span>
                               <button type="button" class="" data-type="minus">-</button>

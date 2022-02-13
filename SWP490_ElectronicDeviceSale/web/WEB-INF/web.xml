@@ -24,6 +24,18 @@
         <servlet-name>ViewProfileController</servlet-name>
         <servlet-class>controller.user.ViewProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductDetailController</servlet-name>
+        <servlet-class>controller.user.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductController</servlet-name>
+        <servlet-class>controller.user.SearchProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>controller.user.SearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>ViewProfileController</servlet-name>
         <url-pattern>/ViewProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailController</servlet-name>
+        <url-pattern>/ProductDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductController</servlet-name>
+        <url-pattern>/SearchProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

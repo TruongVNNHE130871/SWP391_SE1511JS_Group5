@@ -1,14 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+ * EDS.Shop
+ * Electronic Device Sale Shop
+ * Record of change:
+ * DATE            Version       AUTHOR          DESCRIPTION
+ * 2022-01-09       1.0         CuongTV         First Implement
  */
 package controller.user;
 
 import DAO.ProductDBContext;
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.paramValueType;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +20,9 @@ import model.Product;
 
 /**
  *
- * @author Admin
+ * @author CuongTV
  */
-public class SearchController extends HttpServlet {
+public class ProductDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +35,16 @@ public class SearchController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String raw_keyword = request.getParameter("keyword");
         ProductDBContext pDB = new ProductDBContext();
-        ArrayList<Product> products = pDB.searchProducts(raw_keyword);
-        
-        request.setAttribute("keyword", raw_keyword);
-        request.setAttribute("found", products.size());
-        request.setAttribute("products", products);
-        
-        request.getRequestDispatcher("view/userModule/searchproduct.jsp").forward(request, response);
+        String raw_idProduct = request.getParameter("idProduct");
+        if(raw_idProduct == null || raw_idProduct.length() == 0){
+            raw_idProduct = "-1";
+        }
+        int idP = Integer.parseInt(raw_idProduct);
+        Product p = pDB.getProduct(idP);
+        request.setAttribute("product", p);
+
+        request.getRequestDispatcher("view/userModule/productdetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
