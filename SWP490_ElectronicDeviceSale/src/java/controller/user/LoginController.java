@@ -100,15 +100,7 @@ public class LoginController extends HttpServlet {
         User u = userDB.getUserByUserPass(username, password);
         try {
             if (u != null) {
-                if (remember != null) {
-                    Cookie c_user = new Cookie("username", username);
-                    Cookie c_pass = new Cookie("password", password);
-                    c_user.setMaxAge(3600 * 24);
-                    c_pass.setMaxAge(3600 * 24);
-                    response.addCookie(c_user);
-                    response.addCookie(c_pass);
-                }
-                request.getSession().setAttribute("username", username);
+                                request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("user", u);
                 response.sendRedirect("HomePageController");
             } else {

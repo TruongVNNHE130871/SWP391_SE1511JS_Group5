@@ -31,7 +31,6 @@ Record of change:
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Password" name="password">
                 </div>
-                <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
                 <!-- Error message -->
                 <p style="color:red; display:block">${errorMsg}
                     <!-- /Error message -->
