@@ -1,7 +1,10 @@
-<%-- 
-    Document   : homePage
-    Created on : Feb 10, 2022, 3:30:39 AM
-    Author     : soide
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+  DATE          Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,15 +19,15 @@
     <body>
         <!--  Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
-        
+        <!--  /Header and Menu-->
         <!--  Banner-->
         <article id="content"> 
             <section class="banner">
                 <img src="${url}/images/banner1.png"  alt="" width="100%">
             </section>
         </article>
-
-        <!--  Main Home Page-->
+        <!--  /Banner-->
+        <!--  Content home page-->
         <article> 
             <section>
                 <h3>Category Product</h3>
@@ -63,8 +66,9 @@
                 </div>
             </section>
         </article>
-
+        <!--  /Content home page-->
         <!--  Footer-->
         <jsp:include page = "./footer/footer.jsp" />
+        <!--  /Footer-->
     </body>
 </html>

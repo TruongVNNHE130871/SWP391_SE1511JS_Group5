@@ -1,7 +1,10 @@
-<%-- 
-    Document   : homePage
-    Created on : Feb 10, 2022, 3:30:39 AM
-    Author     : soide
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,6 +19,7 @@
     </head>
 
     <body>
+        <!-- Login form -->
         <form action="LoginController" method="Post">
             <div class="login-box">
                 <h1>Login</h1>
@@ -28,13 +32,15 @@
                     <input type="password" placeholder="Password" name="password">
                 </div>
                 <div><p style="display: block"><input type="checkbox" name="remember">Remember me</p> </div>
-                <p style="color:red; display:block">
-                    ${errorMsg}
+                <!-- Error message -->
+                <p style="color:red; display:block">${errorMsg}
+                    <!-- /Error message -->
                 </p>
                 <input type="submit" class="btn" value="Login">
                 <div> <a href="">Forgot password</a></div>
                 <div> <a href="${pageContext.request.contextPath}/HomePageController">Back to home</a></div>
             </div>
         </form>
+        <!-- /Login form -->
     </body>
 </html>

@@ -1,6 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+
  */
 package DAO;
 
@@ -11,8 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * This class implements the connection to the database
  *
- * @author ASUS
+ * @author VinhNT
  */
 public class BaseDAO {
 
@@ -29,15 +35,15 @@ public class BaseDAO {
             /**
              * Vinh
              */
-//            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
-//            String user = "sa";
-//            String pass = "v1";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
+            String user = "sa";
+            String pass = "v1";
             /**
              * Hung
              */
-            String url = "jdbc:sqlserver://DESKTOP-AGLT4RV\\HUNGVTHE:1433;databaseName=SWP391";
-            String user = "test";
-            String pass = "minamoto2701";
+//            String url = "jdbc:sqlserver://DESKTOP-AGLT4RV\\HUNGVTHE:1433;databaseName=SWP391";
+//            String user = "test";
+//            String pass = "minamoto2701";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException e) {

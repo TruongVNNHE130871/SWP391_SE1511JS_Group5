@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+
  */
 package controller.user;
 
@@ -12,11 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * This class performs product data retrieval from the database and redirects to
+ * display the home page
  *
- * @author soide
+ * @author VinhNT
  */
 public class HomePageController extends HttpServlet {
 
+    /**
+     * redirect to home page
+     *
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("view/userModule/homePage.jsp").forward(request, response);

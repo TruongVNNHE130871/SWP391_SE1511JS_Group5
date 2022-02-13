@@ -1,5 +1,20 @@
-package DAO;
+/*
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
 
+ */
+package DAO;
+/**
+ * The class contains methods check, insert user * The method will throw an
+ * object of <code>java.sql.SQLException</code> class if there is any error
+ * occurring when finding, inserting, or updating data
+ *
+ * @author VinhNT
+ */
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +24,13 @@ import java.util.logging.Logger;
 import model.User;
 
 public class UserDBContext extends BaseDAO {
-
+/**
+     * Search username and password in the database
+     *
+     * @param username It is a <code>java.lang.String</code> object
+     * @param password It is a <code>java.lang.String</code> object
+     * @return user
+     */
     public User getUserByUserPass(String username, String password) {
         try {
             String sql = "select UserName, PassWord from [User] where UserName = ? AND PassWord = ?";
@@ -27,7 +48,14 @@ public class UserDBContext extends BaseDAO {
         }
         return null;
     }
-
+  /**
+     * Check username already exists in the database or not
+     *
+     * Search username and password in the database
+     *
+     * @param userName
+     * @return username
+     */
     public User isUserExisted(String userName) {
         try {
             String sql = "select UserName from [User] where UserName = ?";
@@ -43,7 +71,17 @@ public class UserDBContext extends BaseDAO {
         }
         return null;
     }
-
+  /**
+     * Add new user to database
+     *
+     * @param name
+     * @param userName
+     * @param password
+     * @param gender
+     * @param phoneNumber
+     * @param email
+     * @param created
+     */
     public void insertUser(String name, String userName, String password, int gender, int phoneNumber, String email, Date created) throws SQLException {
         try {
             String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?)";
