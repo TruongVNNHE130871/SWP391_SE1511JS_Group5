@@ -111,7 +111,7 @@ public class UserDBContext extends BaseDAO {
      * @param email is the email user registered. It is a <code>java.Lang.String</code> object
      * @return a <code>java.Lang.Int</code> object
      */
-    public int getUserByEmail(String email){
+    public int getUserIDByEmail(String email){
         try {
             String sql = "SELECT [ID]\n" +
                          "  FROM [User]\n" +
@@ -152,7 +152,16 @@ public class UserDBContext extends BaseDAO {
             while (rs.next()) {
                 User u = new User();
                 u.setId(id);
+                u.setName(rs.getString("Name"));
+                u.setUserName(rs.getString("UserName"));
+                String gender = rs.getString("Gender");
                 u.setPassWord(rs.getString("PassWord"));
+                if(gender.equalsIgnoreCase("Male"))
+                    u.setGender(true);
+                if(gender.equalsIgnoreCase("Female"))
+                    u.setGender(false);
+                u.setPhone(rs.getInt("Phone"));
+                u.setEmail(rs.getString("Email"));
                 return u;
             }
         } catch (SQLException e) {
