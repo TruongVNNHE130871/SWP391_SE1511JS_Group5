@@ -15,8 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.User;
 
 /**
- *
- * @author ASUS
+ *Lớp này có các phương thức định hướng đến các hàm xử lí logic và truy vấn cho page Change password
+ * 
+ * @author TruongVNN
  */
 public class ChangePasswordController extends HttpServlet {
     UserDBContext userDBContext= new UserDBContext();

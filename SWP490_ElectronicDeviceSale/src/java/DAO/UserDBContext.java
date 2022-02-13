@@ -66,6 +66,13 @@ public class UserDBContext extends BaseDAO {
 
 //        return null;
     }
+    /**
+     *Find UserId by email. Only one user with matched email will return it's ID.If no user fit the email, return 0
+     * The result is 0 or UserID
+     * 
+     * @param email is the email user registered. It is a <code>java.Lang.String</code> object
+     * @return a <code>java.Lang.Int</code> object
+     */
     public int getUserByEmail(String email){
         try {
             String sql = "SELECT [ID]\n" +
@@ -83,6 +90,13 @@ public class UserDBContext extends BaseDAO {
         }
         return 0;    
     }
+    /**
+     *Find a User by ID. Only one user with matched ID will return. If there are no user, return 0
+     * The result is an <code>User</Code> with ID, name, username, password, gender, phone, email
+     * 
+     * @param id is the id of user need to find. It is a <code>java.Lang.Int</code> object
+     * @return a <code>User</code> object
+     */
     public User getUserByID(int id){
         try {
             String sql = "SELECT [ID]\n" +
@@ -92,7 +106,6 @@ public class UserDBContext extends BaseDAO {
                         "      ,[Gender]\n" +
                         "      ,[Phone]\n" +
                         "      ,[Email]\n" +
-                        "      ,[Created]\n" +
                         "  FROM [User]\n" +
                         "  WHERE [ID]= ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -109,6 +122,14 @@ public class UserDBContext extends BaseDAO {
         }
         return null;    
     }
+    /**
+     *change password of an account.
+     * The result is the change of User password
+     * 
+     * @param id is the id of user need to find. It is a <code>java.Lang.Int</code> object
+     * @param newPassword is the new password user want to change to. It is a <code>java.Lang.String</code>
+     * 
+     */
     public void changePassword(int id, String newPassword){
         try {
             String sql =" UPDATE [User]\n" +
