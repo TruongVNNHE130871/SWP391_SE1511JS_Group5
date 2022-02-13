@@ -50,7 +50,7 @@
                 </c:if>
 
                 <c:if test="${sessionScope.username == null}">
-                    <a href="${pageContext.request.contextPath}/view/client/register" 
+                    <a href="${pageContext.request.contextPath}/SignUp" 
                        class="col-1 mt-3 text-white hidden-xs" >SignUp</a>
                     <a href="${pageContext.request.contextPath}/LoginController"
                        class="col-1 mt-3 text-white">Login</a>

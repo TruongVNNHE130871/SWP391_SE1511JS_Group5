@@ -13,14 +13,14 @@
         <title>Sign Up</title>
     </head>
     <body>
-        <form style="align-items: center;">
+        <form style="align-items: center;" method="POST" action="SignUp">
             <table>
                 <div class="container">
                     <h1>Sign Up</h1>
                     <tr>
                         <td>
-                            <label>Fullname:</label>
-                            <input type="text" placeholder="">
+                            <label>Name:</label>
+                            <input type="text" placeholder="Name" name="name">
                         </td>
                     </tr>
                     <tr>
@@ -35,37 +35,40 @@
                     <tr>
                         <td>
                             <label>Email:</label>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="Email" name="email">
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Phone number:</label>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="Phonenumber" name="phonenumber">
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Username:</label>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="Username" name="username">
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Password:</label>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="Password" name="password">
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Confirm password:</label>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="Confirm" name="confirm">
                         </td>
                     </tr>
                 </div>
             </table>
+            <p style="color:red; display:block">
+                ${errorMsg}
+            </p>
             <div>
-                <button type="button">Sign up</button>       
+                <button type="submit" value="Signup">Sign up</button>       
             </div>
         </form>
     </body>

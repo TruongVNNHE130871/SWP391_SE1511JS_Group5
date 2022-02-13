@@ -32,6 +32,11 @@ public class User {
         this.passWord = password;
     }
 
+    public User(String username) {
+        super();
+        this.userName = username;
+    }
+    
     public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created) {
         this.id = id;
         this.name = name;
