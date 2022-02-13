@@ -66,5 +66,61 @@ public class UserDBContext extends BaseDAO {
 
 //        return null;
     }
+    public int getUserByEmail(String email){
+        try {
+            String sql = "SELECT [ID]\n" +
+                         "  FROM [User]\n" +
+                         "  Where [Email] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                return id;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return 0;    
+    }
+    public User getUserByID(int id){
+        try {
+            String sql = "SELECT [ID]\n" +
+                        "      ,[Name]\n" +
+                        "      ,[UserName]\n" +
+                        "      ,[PassWord]\n" +
+                        "      ,[Gender]\n" +
+                        "      ,[Phone]\n" +
+                        "      ,[Email]\n" +
+                        "      ,[Created]\n" +
+                        "  FROM [User]\n" +
+                        "  WHERE [ID]= ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(id);
+                u.setPassWord(rs.getString("PassWord"));
+                return u;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;    
+    }
+    public void changePassword(int id, String newPassword){
+        try {
+            String sql =" UPDATE [User]\n" +
+                        "  Set [Password]= ?\n" +
+                        "  WHERE ID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, newPassword);
+            statement.setInt(2, id);
+            statement.executeQuery();
+        } catch (SQLException e) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
 }
