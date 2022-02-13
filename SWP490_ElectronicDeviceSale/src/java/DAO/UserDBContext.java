@@ -33,13 +33,21 @@ public class UserDBContext extends BaseDAO {
      */
     public User getUserByUserPass(String username, String password) {
         try {
-            String sql = "select UserName, PassWord from [User] where UserName = ? AND PassWord = ?";
+            String sql = "select * from [User] where UserName = ? AND PassWord = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                User u = new User(rs.getString(1), rs.getString(2));
+                User u = new User();
+                u.setId(rs.getInt("ID"));
+                u.setName(rs.getString("Name"));
+                u.setUserName(rs.getString("UserName"));
+                u.setPassWord(rs.getString("PassWord"));
+                u.setGender(rs.getBoolean("Gender"));
+                u.setPhone(rs.getInt("Phone"));
+                u.setEmail(rs.getString("Email"));
+                u.setCreated(rs.getDate("Created"));
                 return u;
             }
 
