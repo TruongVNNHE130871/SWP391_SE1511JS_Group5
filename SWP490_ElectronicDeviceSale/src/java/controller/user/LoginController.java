@@ -52,32 +52,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        Cookie[] cookies = request.getCookies();
-        String username = "";
-        String password = "";
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("username")) {
-                    username = cookies[i].getValue();
-                }
-                if (cookies[i].getName().equals("password")) {
-                    password = cookies[i].getValue();
-                }
-            }
-            User u = userDB.getUserByUserPass(username, password);
-
-            if (u != null) {
-
-                response.sendRedirect("HomePageController");
-            } else {
-                request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-            }
-
-        } else {
-            request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-        }
-
+        request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
     }
 
     /**
@@ -100,7 +75,7 @@ public class LoginController extends HttpServlet {
         User u = userDB.getUserByUserPass(username, password);
         try {
             if (u != null) {
-                                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("user", u);
                 response.sendRedirect("HomePageController");
             } else {

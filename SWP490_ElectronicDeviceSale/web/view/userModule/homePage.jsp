@@ -10,6 +10,7 @@ Record of change:
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <c:url value = "/assets" var="url"/>
+ <link href="assets/css/stylemenu.css" rel="stylesheet" type="text/css"/>
 <!DOCTYPE html>
 <html>
     <head>
