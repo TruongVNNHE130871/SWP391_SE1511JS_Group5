@@ -82,14 +82,14 @@ public class UserDBContext extends BaseDAO {
      * @param email
      * @param created
      */
-    public void insertUser(String name, String userName, String password, int gender, int phoneNumber, String email, Date created) throws SQLException {
+    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created) throws SQLException {
         try {
             String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, userName);
             statement.setString(3, password);
-            statement.setInt(4, gender);
+            statement.setBoolean(4, gender);
             statement.setInt(5, phoneNumber);
             statement.setString(6, email);
             statement.setDate(7, created);

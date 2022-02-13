@@ -75,7 +75,7 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("name");
-        String gender = request.getParameter("gender");
+        boolean gender = request.getParameter("gender").equals("male");
         String email = request.getParameter("email");
         int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
         String userName = request.getParameter("username");
@@ -85,18 +85,28 @@ public class SignUp extends HttpServlet {
         java.sql.Date created = new java.sql.Date(millis);
         User u = userDB.isUserExisted(userName);
         try {
-            if (u == null && confirmPassword.equals(password)) {
-                if (gender.equals("male")) {
-                    userDB.insertUser(name, userName, password, 1, phoneNumber, email, created);
-                    response.sendRedirect("view/userModule/login.jsp");
+            if (u == null) {
+                if (confirmPassword.equals(password)) {
+                    userDB.insertUser(name, userName, password, gender, phoneNumber, email, created);
+                    response.sendRedirect("LoginController");
+//                        userDB.insertUser(name, userName, password, 0, phoneNumber, email, created);
+//                        response.sendRedirect("HomePageController");
                 } else {
-                    userDB.insertUser(name, userName, password, 0, phoneNumber, email, created);
-                    response.sendRedirect("view/userModule/login.jsp");
+                    request.setAttribute("errorMsg", "Confirm password not match!");
+                    request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("errorMsg", "User existed!");
                 request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
             }
+//             else {
+//                request.setAttribute("errorMsg", "User existed!");
+//                request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
+//            }
+//            if (u == null && !confirmPassword.equals(password)) {
+//                request.setAttribute("errorMsg", "Confirm password not match!");
+//                request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
