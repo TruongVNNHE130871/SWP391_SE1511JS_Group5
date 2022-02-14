@@ -38,13 +38,13 @@ Record of change:
     <form action="changePassword" class="style-forget-password text-center" method="Post">
         <p class="fs-3">Change Password</p>
         <div class="form-group mb-3">
-            <input type="text" name="currentPassword" placeholder="Current Password" class="form-control mb-2">
+            <input type="text" name="currentPassword" placeholder="Current Password" required class="form-control mb-2">
         </div>
         <div class="form-group mb-3">
-            <input type="text" name="newPassword" placeholder="New Password" class="form-control mb-2">
+            <input type="text" name="newPassword" placeholder="New Password" required  class="form-control mb-2">
         </div>
         <div class="form-group mb-3">
-            <input type="text" name="confirmPassword" placeholder="Confirm new Password" class="form-control mb-2">
+            <input type="text" name="confirmPassword" placeholder="Confirm new Password" required class="form-control mb-2">
         </div>
         <div class="form-group mb-5">
             <a href="">Forgot Password?</a>
