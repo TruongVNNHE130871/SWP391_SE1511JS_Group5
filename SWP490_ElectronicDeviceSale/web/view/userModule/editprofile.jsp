@@ -73,8 +73,6 @@
                                     <label for="male">Male</label>
                                     <input type="radio" name="gender" ${!sessionScope.user.gender ? "checked = \"checked\"" : ""} value="female" class="form-check-input"/>
                                     <label for="female">Female</label>
-                                    <input type="radio" name="gender" ${!!!sessionScope.user.gender ? "checked = \"checked\"" : ""} value="other" class="form-check-input"/>
-                                    <label for="other_gender">Others</label>
                                 </td>
                             </tr>
                             <tr>

@@ -198,7 +198,11 @@ public class UserDBContext extends BaseDAO {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
         }
     }
- 
+    
+    /**
+     * edit profile
+     * @param u 
+     */
     public void editProfile(User u) {
         try {
             String sql = "UPDATE [dbo].[User]\n"
