@@ -81,14 +81,6 @@
                                     <p class="m-0 ms-4">${sessionScope.user.phone}</p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <label for="dob" class="label my-3">Date Of Birth: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">${sessionScope.user.created}</p>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>

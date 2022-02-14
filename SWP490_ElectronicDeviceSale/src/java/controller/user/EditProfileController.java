@@ -44,6 +44,8 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        request.setAttribute("user", user);
         request.getRequestDispatcher("view/userModule/editprofile.jsp").forward(request, response);
     }
 
@@ -60,13 +62,15 @@ public class EditProfileController extends HttpServlet {
             throws ServletException, IOException {
         UserDBContext uDB = new UserDBContext();
         User user = new User();
+        user.setUserName(((User) request.getSession().getAttribute("user")).getUserName());
+        user.setPassWord(((User) request.getSession().getAttribute("user")).getPassWord());
         user.setId(Integer.parseInt(request.getParameter("idUser")));
         user.setName(request.getParameter("fullname"));
         user.setGender(request.getParameter("gender").equals("male"));
         user.setEmail(request.getParameter("email"));
         user.setPhone(Integer.parseInt(request.getParameter("phone")));
         uDB.editProfile(user);
-//        request.getRequestDispatcher("view/userModule/viewprofile.jsp").forward(request, response);
+        request.getSession().setAttribute("user", user);
         response.sendRedirect("ViewProfileController");
     }
 

@@ -39,7 +39,7 @@
                         <button type="button" class="btn btn-outline-primary">Change Avatar</button>
                     </div>
                     <div class="col-6">
-                        <input type="hidden" name="idUser" value="${sessionScope.user.id}"/>
+                        <input type="hidden" name="idUser" value="${requestScope.user.id}"/>
                         <table class="ms-auto mt-4">
                             <tr>
                                 <td class="">
@@ -57,8 +57,8 @@
                                     <input
                                         type="text"
                                         name="fullname"
-                                        value="${sessionScope.user.name}"
-                                        placeholder="${sessionScope.user.name}"
+                                        value="${requestScope.user.name}"
+                                        placeholder="${requestScope.user.name}"
                                         size="35"
                                         class="ms-4"                   
                                         />
@@ -69,9 +69,9 @@
                                     <label for="gender" class="label my-3">Gender: </label>
                                 </td>
                                 <td>
-                                    <input type="radio" ${sessionScope.user.gender ? "checked = \"checked\"" : ""} name="gender" value="male" class="ms-4 form-check-input"/> 
+                                    <input type="radio" ${requestScope.user.gender ? "checked = \"checked\"" : ""} name="gender" value="male" class="ms-4 form-check-input"/> 
                                     <label for="male">Male</label>
-                                    <input type="radio" name="gender" ${!sessionScope.user.gender ? "checked = \"checked\"" : ""} value="female" class="form-check-input"/>
+                                    <input type="radio" name="gender" ${!requestScope.user.gender ? "checked = \"checked\"" : ""} value="female" class="form-check-input"/>
                                     <label for="female">Female</label>
                                 </td>
                             </tr>
@@ -83,10 +83,10 @@
                                     <input
                                         type="email"
                                         name="email"
-                                        placeholder="${sessionScope.user.email}"
+                                        placeholder="${requestScope.user.email}"
                                         size="35"
                                         class="ms-4"
-                                        value="${sessionScope.user.email}"
+                                        value="${requestScope.user.email}"
                                         />
                                 </td>
                             </tr>
@@ -98,8 +98,8 @@
                                     <input
                                         type="text"
                                         name="phone"
-                                        value="${sessionScope.user.phone}"
-                                        placeholder="${sessionScope.user.phone}"
+                                        value="${requestScope.user.phone}"
+                                        placeholder="${requestScope.user.phone}"
                                         size="35"
                                         class="ms-4"
                                         />
