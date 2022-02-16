@@ -18,9 +18,6 @@ Record of change:
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
-        <%
-            ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("products");
-        %>
     </head>
     <body>
         <!--  Header and Menu-->
@@ -38,10 +35,9 @@ Record of change:
             <section>
                 <h3>Hot Product</h3>
                 <div class="grid-container-hot-product">
-                    <% for (Product p : products) {
-                    %>
-                    <div class="grid-item"><%=p.getImage()%></div>
-                    <%}%>
+                    <c:forEach items="${requestScope.products}" var="p">
+                        <div class="grid-item"><a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}">${p.image}</a></div>
+                        </c:forEach>
                 </div>
             </section>
         </article>
