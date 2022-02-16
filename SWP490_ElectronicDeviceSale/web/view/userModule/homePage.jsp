@@ -20,30 +20,32 @@ Record of change:
         <title>Home Page</title>
     </head>
     <body>
-        <!--  Header and Menu-->
-        <jsp:include page = "./header/header-menu.jsp" />
-        <!--  /Header and Menu-->
-        <!--  Banner-->
-        <article id="content"> 
-            <section class="banner">
-                <img src="${url}/images/banner1.png"  alt="" width="100%">
-            </section>
-        </article>
-        <!--  /Banner-->
-        <!--  Content home page-->
-        <article>
-            <section>
-                <h3>Hot Product</h3>
-                <div class="grid-container-hot-product">
-                    <c:forEach items="${requestScope.products}" var="p">
-                        <div class="grid-item"><a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}">${p.image}</a></div>
-                        </c:forEach>
-                </div>
-            </section>
-        </article>
-        <!--  /Content home page-->
-        <!--  Footer-->
-        <jsp:include page = "./footer/footer.jsp" />
-        <!--  /Footer-->
+        <form action="HomePageController" method="POST">
+            <!--  Header and Menu-->
+            <jsp:include page = "./header/header-menu.jsp" />
+            <!--  /Header and Menu-->
+            <!--  Banner-->
+            <article id="content"> 
+                <section class="banner">
+                    <img src="${url}/images/banner1.png"  alt="" width="100%">
+                </section>
+            </article>
+            <!--  /Banner-->
+            <!--  Content home page-->
+            <article>
+                <section>
+                    <h3>Hot Product</h3>
+                    <div class="grid-container-hot-product">
+                        <c:forEach items="${requestScope.products}" var="p">
+                            <div class="grid-item"><a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}">${p.image}</a></div>
+                            </c:forEach>
+                    </div>
+                </section>
+            </article>
+            <!--  /Content home page-->
+            <!--  Footer-->
+            <jsp:include page = "./footer/footer.jsp" />
+            <!--  /Footer-->
+        </form>
     </body>
 </html>

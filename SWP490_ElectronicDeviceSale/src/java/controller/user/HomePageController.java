@@ -30,25 +30,26 @@ public class HomePageController extends HttpServlet {
      * redirect to home page
      *
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDBContext db = new ProductDBContext();
         ArrayList<Product> products = db.getProducts();
         request.setAttribute("products", products);
         request.getRequestDispatcher("view/userModule/homePage.jsp").forward(request, response);
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String raw_keyword = request.getParameter("keyword");
+        ProductDBContext pDB = new ProductDBContext();
+        ArrayList<Product> products = pDB.searchProducts(raw_keyword);
+
+        request.setAttribute("keyword", raw_keyword);
+        request.setAttribute("found", products.size());
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("view/userModule/searchproduct.jsp").forward(request, response);
     }
 
     @Override
