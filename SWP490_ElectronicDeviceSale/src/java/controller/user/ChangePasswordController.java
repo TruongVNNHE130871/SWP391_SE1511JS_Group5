@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
@@ -55,14 +56,19 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = 2;
-        User user = userDBContext.getUserByID(id);
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        int id = user.getId();
+//        int id = 2;
+//        User user= userDBContext.getUserByID(2);
         String oldPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");        
         String confirmPassword = request.getParameter("confirmPassword");
         if(oldPassword.compareTo(user.getPassWord())==0){
+            if(newPassword.isEmpty() || newPassword.trim().length() == 0)
+                request.setAttribute("errorMsg", "New password cannot be blank");
             if(newPassword.compareTo(confirmPassword)==0){
-                userDBContext.changePassword(id, newPassword);
+                userDBContext.changePassword(id, newPassword.trim());
                 request.setAttribute("successMsg", "Change password successfully");
             }                  
             else
