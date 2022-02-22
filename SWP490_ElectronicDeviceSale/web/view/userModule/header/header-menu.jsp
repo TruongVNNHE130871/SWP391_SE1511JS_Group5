@@ -24,56 +24,85 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
-
     </head>
     <body>
-        <div class="container-fluid bg-light" id="header">
+        <nav class="container-fluid" id="header">
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-2">
-                    <img src="${url}/images/logo-header.png" alt="" width="150" height="60">
+                    <img src="${url}/images/logo-header.png" alt="" width="150" height="70">
                 </div>
-                <div class="col-5 mt-3 ">
-                    <input type="text" name="keyword" size="40" value="${requestScope.keyword}">
-                    <button type="submit" class="btn-dark rounded px-3">
+                <div class="col-4 my-3 d-flex form-search me-5">
+                    <input type="text" size="40" value="${requestScope.keyword}">
+                    <button type="submit" class="btn-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
                     </button>
                 </div>
-
-                <div class="col-1 mt-3">
-                    <a class="link-cart">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                <div class="col-1 my-3">
+                    <a href="" class="link-cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                         </svg>
                     </a>
                 </div>
-
                 <c:if test="${sessionScope.username != null}">
-
-                    <p class="col-1 mt-3"><strong>Hello</strong> ${username }</p>
-                    <a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Profile</a>
-                    <a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Logout</a>
+                    <div class="col-2 my-4">
+                        <div class="dropdown position-fixed">
+                            <button class="btn-user dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                                <span>${username}</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Profile</a></li>
+                                <li><a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </c:if>
-
                 <c:if test="${sessionScope.username == null}">
-                    <a href="${pageContext.request.contextPath}/SignUp" 
-                       class="col-1 mt-3 hidden-xs" >SignUp</a>
-                    <a href="${pageContext.request.contextPath}/LoginController"
-                       class="col-1 mt-3">Login</a>
+                <div class="col-3 my-3">
+                    <a href="${pageContext.request.contextPath}/LoginController" class="btn btn-outline-danger me-2">
+                        Login
+                    </a>
+                    <a href="${pageContext.request.contextPath}/SignUp" class="btn btn-outline-success">
+                        SignUp
+                    </a>
+                </div>
                 </c:if>
-
-            </div>
-            <div class="row text-center bg-dark text-white mt-1">
-                <div class="col-2"><a href="" class="category-link">Điện Thoại</a></div>
-                <div class="col-2"><a href="" class="category-link">Laptop </a></div>
-                <div class="col-2"><a href="" class="category-link">PC </a></div>
-                <div class="col-2"><a href="" class="category-link">Phụ kiện </a></div>
-                <div class="col-2"><a href="" class="category-link">Linh kiện </a></div>
-                <div class="col-2"><a href="" class="category-link">Khuyến mại</a></div>
-            </div>
         </div>
-    </body>
+        <div class="row text-center bg-category text-white">
+            <div class="col-2">
+                <a class="category-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/> 
+                    </svg>
+                    ĐIỆN THOẠI
+                </a>
+            </div>
+            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                    </svg> LAPTOP</a></div>
+            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tablet-fill" viewBox="0 0 16 16">
+                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+                    </svg> TABLET</a></div>
+            <div class="col-2"><a class="category-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-earbuds" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z"/>
+                    </svg> PHỤ KIỆN</a></div>
+            <div class="col-2"><a class="category-link">KHUYẾN MÃI</a></div>
+            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg> MÁY CŨ GIÁ GIẺ</a></div>            
+        </div>
+    </nav>
+            
+</body>
 
 </html>

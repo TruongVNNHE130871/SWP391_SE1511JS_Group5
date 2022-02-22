@@ -11,8 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Profile</title>
         <!--<link rel="stylesheet" href="../userModule/assets/css/styles.css" />-->
-        <link href="../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
-
+        <!--<link href="../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>-->
+        <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -29,9 +29,9 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form edit profile-->
-        <form style="align-items: center;" class="edit-profile mt-5" action="EditProfileController" method="POST">
+        <form style="align-items: center;" action="EditProfileController" method="POST">
             <div class="container">
-                <div class="row">
+                <div class="row edit-profile">
                     <div class="col-5 text-center form-group mb-5 border-end">
                         <div class="mb-4">
                             <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="300" height="300" class="rounded-circle" />
@@ -60,8 +60,12 @@
                                         value="${requestScope.user.name}"
                                         placeholder="${requestScope.user.name}"
                                         size="35"
-                                        class="ms-4"                   
+                                        class="ms-4"
+                                        minlength="1"
+                                        maxlength="30"                          
+                                        required
                                         />
+                                    <span></span>
                                 </td>
                             </tr>
                             <tr>
@@ -87,7 +91,13 @@
                                         size="35"
                                         class="ms-4"
                                         value="${requestScope.user.email}"
+                                        minlength="4"
+                                        maxlength="40" 
+                                        title="The domain portion of the email address is invalid (the portion after the @)." 
+                                        pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+                                        required
                                         />
+                                    <span></span>
                                 </td>
                             </tr>
                             <tr>
@@ -102,7 +112,10 @@
                                         placeholder="${requestScope.user.phone}"
                                         size="35"
                                         class="ms-4"
+                                        pattern="[0-9]{10}"
+                                        required
                                         />
+                                    <span></span>
                                 </td>
                             </tr>
                         </table>
