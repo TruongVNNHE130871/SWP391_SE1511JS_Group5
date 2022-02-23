@@ -69,9 +69,8 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String remember = request.getParameter("remember");
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
         User u = userDB.getUserByUserPass(username, password);
         try {
             if (u != null) {
@@ -79,7 +78,7 @@ public class LoginController extends HttpServlet {
                 request.getSession().setAttribute("user", u);
                 response.sendRedirect("HomePageController");
             } else {
-                request.setAttribute("errorMsg", "Wrong username or password!");
+                request.setAttribute("errorMsg", "Tài khoản hoặc mật khẩu sai!");
                 request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
             }
         } catch (Exception e) {

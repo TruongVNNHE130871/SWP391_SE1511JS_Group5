@@ -1,7 +1,10 @@
-<%-- 
-    Document   : menu
-    Created on : Feb 8, 2022, 9:01:55 PM
-    Author     : BH1704
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
-        <link href="../../../assets/css/stylemenu.css" rel="stylesheet" type="text/css"/>
+        <link href="${url}/css/stylemenu.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -25,13 +28,18 @@
             crossorigin="anonymous"
         ></script>
     </head>
+
     <body>
+        <!-- Start header-menu -->
         <nav class="container-fluid" id="header">
             <div class="row">
                 <div class="col-1"></div>
+                <!-- Start logo-header left -->
                 <div class="col-2">
                     <img src="${url}/images/logo-header.png" alt="" width="150" height="70">
                 </div>
+                <!-- End logo-header left -->
+                <!-- Start search box -->
                 <div class="col-4 my-3 d-flex form-search me-5">
                     <input type="text" size="40" value="${requestScope.keyword}">
                     <button type="submit" class="btn-search">
@@ -40,6 +48,8 @@
                         </svg>
                     </button>
                 </div>
+                <!-- End search box -->
+                <!-- Start cart -->
                 <div class="col-1 my-3">
                     <a href="" class="link-cart">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
@@ -47,6 +57,8 @@
                         </svg>
                     </a>
                 </div>
+                <!-- End cart -->
+                <!-- Start check login status -->
                 <c:if test="${sessionScope.username != null}">
                     <div class="col-2 my-4">
                         <div class="dropdown position-fixed">
@@ -58,51 +70,55 @@
                                 <span>${username}</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Profile</a></li>
-                                <li><a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Logout</a></li>
+                                <li><a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Thông tin cá nhân</a></li>
+                                <li><a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
                 </c:if>
                 <c:if test="${sessionScope.username == null}">
-                <div class="col-3 my-3">
-                    <a href="${pageContext.request.contextPath}/LoginController" class="btn btn-outline-danger me-2">
-                        Login
-                    </a>
-                    <a href="${pageContext.request.contextPath}/SignUp" class="btn btn-outline-success">
-                        SignUp
+                    <div class="col-3 my-3">
+                        <a href="${pageContext.request.contextPath}/LoginController" class="btn btn-outline-danger me-2">
+                            Đăng nhập
+                        </a>
+                        <a href="${pageContext.request.contextPath}/SignUp" class="btn btn-outline-success">
+                            Tạo tài khoản
+                        </a>
+                    </div>
+                </c:if>
+                <!-- End check login status -->
+            </div>
+            <!-- Start Navigation Bars category  -->
+            <div class="row text-center bg-category text-white">
+                <div class="col-2">
+                    <a class="category-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                        <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/> 
+                        </svg>
+                        ĐIỆN THOẠI
                     </a>
                 </div>
-                </c:if>
-        </div>
-        <div class="row text-center bg-category text-white">
-            <div class="col-2">
-                <a class="category-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
-                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
-                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/> 
-                    </svg>
-                    ĐIỆN THOẠI
-                </a>
+                <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+                        <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+                        </svg> LAPTOP</a></div>
+                <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tablet-fill" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+                        </svg> TABLET</a></div>
+                <div class="col-2"><a class="category-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-earbuds" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z"/>
+                        </svg> PHỤ KIỆN</a></div>
+                <div class="col-2"><a class="category-link">KHUYẾN MÃI</a></div>
+                <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                        </svg> MÁY CŨ GIÁ GIẺ</a></div>            
             </div>
-            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
-                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
-                    </svg> LAPTOP</a></div>
-            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tablet-fill" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm7 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
-                    </svg> TABLET</a></div>
-            <div class="col-2"><a class="category-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-earbuds" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M6.825 4.138c.596 2.141-.36 3.593-2.389 4.117a4.432 4.432 0 0 1-2.018.054c-.048-.01.9 2.778 1.522 4.61l.41 1.205a.52.52 0 0 1-.346.659l-.593.19a.548.548 0 0 1-.69-.34L.184 6.99c-.696-2.137.662-4.309 2.564-4.8 2.029-.523 3.402 0 4.076 1.948zm-.868 2.221c.43-.112.561-.993.292-1.969-.269-.975-.836-1.675-1.266-1.563-.43.112-.561.994-.292 1.969.269.975.836 1.675 1.266 1.563zm3.218-2.221c-.596 2.141.36 3.593 2.389 4.117a4.434 4.434 0 0 0 2.018.054c.048-.01-.9 2.778-1.522 4.61l-.41 1.205a.52.52 0 0 0 .346.659l.593.19c.289.092.6-.06.69-.34l2.536-7.643c.696-2.137-.662-4.309-2.564-4.8-2.029-.523-3.402 0-4.076 1.948zm.868 2.221c-.43-.112-.561-.993-.292-1.969.269-.975.836-1.675 1.266-1.563.43.112.561.994.292 1.969-.269.975-.836 1.675-1.266 1.563z"/>
-                    </svg> PHỤ KIỆN</a></div>
-            <div class="col-2"><a class="category-link">KHUYẾN MÃI</a></div>
-            <div class="col-2"><a class="category-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                    </svg> MÁY CŨ GIÁ GIẺ</a></div>            
-        </div>
-    </nav>
-            
-</body>
+            <!-- End Navigation Bars category  -->
+        </nav>
+        <!-- End header-menu -->
+
+    </body>
 
 </html>
