@@ -37,7 +37,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setVote(rs.getInt("Vote"));
-                p.setPrice(rs.getFloat("Price"));
+                p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getString("Status"));
                 p.setCreated(rs.getDate("Created"));
@@ -73,7 +73,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setVote(rs.getInt("Vote"));
-                p.setPrice(rs.getFloat("Price"));
+                p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getString("Status"));
                 p.setCreated(rs.getDate("Created"));
@@ -106,7 +106,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setVote(rs.getInt("Vote"));
-                p.setPrice(rs.getFloat("Price"));
+                p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getString("Status"));
                 p.setCreated(rs.getDate("Created"));
@@ -143,7 +143,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setVote(rs.getInt("Vote"));
-                p.setPrice(rs.getFloat("Price"));
+                p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getString("Status"));
                 p.setCreated(rs.getDate("Created"));

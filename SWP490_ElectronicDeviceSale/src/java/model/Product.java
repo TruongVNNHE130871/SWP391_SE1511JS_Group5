@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Admin
  */
 public class Product {
+
     private int id;
     private Category c;
     private Shop s;
@@ -19,7 +20,7 @@ public class Product {
     private String image;
     private String description;
     private int vote;
-    private float price;
+    private String price;
     private float discount;
     private String status;
     private Date created;
@@ -80,14 +81,6 @@ public class Product {
         this.vote = vote;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     public float getDiscount() {
         return discount;
     }
@@ -111,5 +104,13 @@ public class Product {
     public void setCreated(Date created) {
         this.created = created;
     }
-    
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
 }

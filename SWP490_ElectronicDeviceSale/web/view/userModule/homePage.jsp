@@ -169,114 +169,29 @@ Record of change:
                 <section>
                     <h4 class="hot-product">Sản phẩm mới</h3>
                         <div class="grid-container-hot-product">
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>   
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-                            <div class="grid-item text-center py-2">
-                                <div class="img-product">
-                                    <img src="https://bizweb.dktcdn.net/100/116/615/products/iphone-13-pro-max-blue-select-318af3c2-da08-48b7-8ce6-122c27395961-1a9e49ec-d8a9-463a-be6a-225e52172074.png?v=1640686124927" alt="" width="200px" height="250px">
-                                </div>
-                                <p class="title-phone">iPhone 13 Pro Max 128GB</p>
-                                <div class="money">
-                                    <p class="money-phone">30,990,000</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000</span>
-                                </div>
-                                <button class="btn-buy-product">Mua Ngay</button>
-                                <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                            </div>
-
-                        </div> 
-                        <div id="paggerbottom" class="pagger"></div>
-                </section>
-            </article>
-            <!-- Start list new product-->
-        </main>
-        <!-- End content -->
-    </body>
-    <!-- custom js file link  -->
-    <script src="assets/js/pager.js" type="text/javascript"></script>
-    <script>
+                            <c:forEach items="${requestScope.products}" var="p"><div class="grid-item text-center py-2">
+                                    <div class="img-product">
+                                        <img src="${p.image}" alt="" width="200px" height="250px">
+                                    </div>
+                                    <p class="title-phone">${p.name}</p>
+                                    <div class="money">
+                                        <p class="money-phone">${p.price} VNĐ</p>
+                                        <span class="text-decoration-line-through title-sale">34,990,000 VNĐ</span>
+                                    </div>
+                                    <button class="btn-add-cart">Thêm Vào Giỏ</button>
+                                    <button class="btn-buy-product">Mua Ngay</button>
+                                </div></c:forEach>
+                            </div> 
+                            <div id="paggerbottom" class="pagger"></div>
+                    </section>
+                </article>
+                <!-- Start list new product-->
+            </main>
+            <!-- End content -->
+        </body>
+        <!-- custom js file link  -->
+        <script src="assets/js/pager.js" type="text/javascript"></script>
+        <script>
                             generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
     <!--Start footer-->
