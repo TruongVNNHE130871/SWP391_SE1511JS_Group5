@@ -142,6 +142,7 @@ public class UserDBContext extends BaseDAO {
      * 
      * @param id is the id of user need to find. It is a <code>java.Lang.Int</code> object
      * @return a <code>User</code> object
+     * 
      */
     public User getUserByID(int id){
         try {
@@ -154,23 +155,32 @@ public class UserDBContext extends BaseDAO {
                         "      ,[Email]\n" +
                         "  FROM [User]\n" +
                         "  WHERE [ID]= ?";
+            //Create sql query
             PreparedStatement statement = connection.prepareStatement(sql);
+            //Init statement of sql query 
             statement.setInt(1, id);
+            //Set value ID in query 
             ResultSet rs = statement.executeQuery();
+            //Excute query and set data of the result
             while (rs.next()) {
-                User u = new User();
-                u.setId(id);
-                u.setName(rs.getString("Name"));
-                u.setUserName(rs.getString("UserName"));
-                String gender = rs.getString("Gender");
-                u.setPassWord(rs.getString("PassWord"));
-                if(gender.equalsIgnoreCase("Male"))
-                    u.setGender(true);
-                if(gender.equalsIgnoreCase("Female"))
-                    u.setGender(false);
-                u.setPhone(rs.getInt("Phone"));
-                u.setEmail(rs.getString("Email"));
-                return u;
+                //Read data of query result
+                User user = new User();
+                //Init user
+                user.setId(id);
+                //Set user ID
+                user.setName(rs.getString("Name"));
+                //Set user's name
+                user.setUserName(rs.getString("UserName"));
+                //Set user's insystem name
+                user.setGender(rs.getBoolean("Gender"));
+                //Set user gender
+                user.setPassWord(rs.getString("PassWord"));
+                //Set user passowrd
+                user.setPhone(rs.getInt("Phone"));
+                //Set user phonenumber
+                user.setEmail(rs.getString("Email"));
+                //Set user email
+                return user;
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
@@ -190,10 +200,15 @@ public class UserDBContext extends BaseDAO {
             String sql =" UPDATE [User]\n" +
                         "  Set [Password]= ?\n" +
                         "  WHERE ID = ?";
+            //Create sql query
             PreparedStatement statement = connection.prepareStatement(sql);
+            //Init statement of sql query 
             statement.setString(1, newPassword);
+            //Set value newPassword in query 
             statement.setInt(2, id);
+            //Set value ID in query 
             statement.executeQuery();
+            //execute query
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
         }
