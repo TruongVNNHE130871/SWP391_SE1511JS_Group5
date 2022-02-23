@@ -102,15 +102,8 @@ public class UserDBContext extends BaseDAO {
             statement.setString(6, email);
             statement.setDate(7, created);
             statement.executeUpdate();
-//            ResultSet rs = statement.executeQuery();
-//            while (rs.next()) {
-//                User u = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getDate(7));
-//                return u;
-//            }
         } catch (Exception e) {
         }
-
-//        return null;
     }
     /**
      *Find UserId by email. Only one user with matched email will return it's ID.If no user fit the email, return 0

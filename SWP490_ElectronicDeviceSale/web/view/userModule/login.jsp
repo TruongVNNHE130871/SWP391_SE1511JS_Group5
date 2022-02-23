@@ -71,7 +71,7 @@ Record of change:
                             <div class="form-group text-center mb-3">
                                 <button type="submit" class="btn btn-outline-success">Đăng nhập</button>
                             </div>
-                            <p class="text-singup text-center">Lần đầu tiên truy cập? <a href="${pageContext.request.contextPath}/SignUp">Đăng kí</a></p>
+                            <p class="text-singup text-center">Lần đầu tiên truy cập? <a href="${pageContext.request.contextPath}/SignUp">Đăng ký</a></p>
                         </div>
                     </form>
                 </div>

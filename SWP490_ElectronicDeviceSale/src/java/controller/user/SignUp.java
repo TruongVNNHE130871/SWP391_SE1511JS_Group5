@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         HungVT         First Implement
+
  */
 package controller.user;
 
@@ -16,7 +20,7 @@ import model.User;
 
 /**
  *
- * @author ACER
+ * @author HungVT
  */
 public class SignUp extends HttpServlet {
 
@@ -85,28 +89,23 @@ public class SignUp extends HttpServlet {
         java.sql.Date created = new java.sql.Date(millis);
         User u = userDB.isUserExisted(userName);
         try {
+//            check user not exist
             if (u == null) {
+//                check confirmpassword equals password
                 if (confirmPassword.equals(password)) {
                     userDB.insertUser(name, userName, password, gender, phoneNumber, email, created);
                     response.sendRedirect("LoginController");
-//                        userDB.insertUser(name, userName, password, 0, phoneNumber, email, created);
-//                        response.sendRedirect("HomePageController");
-                } else {
+                } //                check confirmpassword not equals password
+                else {
                     request.setAttribute("errorMsg", "Confirm password not match!");
                     request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
                 }
-            } else {
+            }
+//            check user exist
+            else {
                 request.setAttribute("errorMsg", "User existed!");
                 request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
             }
-//             else {
-//                request.setAttribute("errorMsg", "User existed!");
-//                request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
-//            }
-//            if (u == null && !confirmPassword.equals(password)) {
-//                request.setAttribute("errorMsg", "Confirm password not match!");
-//                request.getRequestDispatcher("view/userModule/signUp.jsp").forward(request, response);
-//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

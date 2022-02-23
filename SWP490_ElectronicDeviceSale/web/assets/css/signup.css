@@ -1,33 +1,69 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 13, 2022, 3:40:21 PM
-    Author     : ACER
-*/
-/*border and background of form signup*/
-.style-form{
-    border: solid rgb(228, 228, 228);
-    background-color: rgb(247, 247, 247);
-    border-radius: 10px;
+/* reset margin and padding */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-/*The position of the element will be relative to the static position you set and the space around the element will be kept*/
-div, .background-form{
-    position: relative;
+/* background of body */
+body{
+    background-color: #D0D0D0 !important;
 }
-/*Border format of the image*/
-.background-form{
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+/* size of logo */
+.title-logo{
+     font-size: 20px;
 }
-/*title for in the middle of the photo*/
-.title-background{
-    position: absolute;
-    top: 170px;
-    left: 160px;
-    color: white;
-    font-size: 40px;
-    
+/* set position logo of body */
+.img-logo-left{
+    text-align: center;
+    margin-top: 100px;
+}
+/* size text */
+.title-logo-body{
+    font-size: 30px;
+}
+/* set height, position, height and background of form login */
+.edit-signup{
+    margin: 60px;
+    height: 600px;
+    background-color: white;
+    margin-bottom: 40px;
+}
+/* size text and size weight of font title login */
+.title-signup{
+    font-size: 50px;
+    font-weight: 700;
+}
+/* set width height of form login */
+.form-signup{
+    /* background-color: #e0ebeb; */
+    padding: 0 60px ;
+    /* padding-bottom: 200px; */
+    padding-top: 15px;
+}
+.text-singup{
+    color: rgb(190, 190, 190);
+}
+/* set background, width, height position of footer */
+footer{
+    background-color: #EEEEEE;
+    padding: 20px;
+    margin: 0;
+    margin-top: 20px;
+}
+/* delete underline text of tag <a> */
+.link-footer{
+    text-decoration: none;
+    color: black;
+}
+/* color icon facebook */
+.icon-facebook{
+    color: blue;
+}
+/* color icon youtube */
+.icon-youtube{
+    color: red;
+}
+/* color icon instagram */
+.icon-insta{
+    color: #9999CC;
 }
