@@ -267,12 +267,18 @@ Record of change:
                             </div>
 
                         </div> 
+                        <div id="paggerbottom" class="pagger"></div>
                 </section>
             </article>
             <!-- Start list new product-->
         </main>
         <!-- End content -->
     </body>
+    <!-- custom js file link  -->
+    <script src="assets/js/pager.js" type="text/javascript"></script>
+    <script>
+                            generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+    </script>
     <!--Start footer-->
     <jsp:include page = "./footer/footer.jsp" />
     <!--End footer-->

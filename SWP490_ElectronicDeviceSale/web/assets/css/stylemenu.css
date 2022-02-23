@@ -194,3 +194,21 @@ footer{
 .icon-insta{
     color: #9999CC;
 }
+.pagger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+}
+.pagger a{
+    padding: 2px;
+    margin-left: 2px;
+    color: black;
+    font-size: 2rem;
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.pagger .target{
+    color: red;
+}

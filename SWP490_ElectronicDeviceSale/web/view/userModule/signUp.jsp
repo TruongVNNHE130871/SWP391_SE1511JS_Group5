@@ -24,7 +24,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
-        <title>Document</title>
+        <title>Sign Up</title>
     </head>
     <body>
         <!-- Header and Menu-->
@@ -44,10 +44,10 @@
                             <input type="text"" class="form-control" placeholder="Full name" name="name">          
                         </div>
                         <div class="form-group mb-3">
-                            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="gender">
+                            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="gender" checked>
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Male
-                            </label><input class="form-check-input ms-2" type="radio" id="flexRadioDefault2" name="gender" checked>
+                            </label><input class="form-check-input ms-2" type="radio" id="flexRadioDefault2" name="gender">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                             </label>

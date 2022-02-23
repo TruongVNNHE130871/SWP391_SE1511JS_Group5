@@ -118,13 +118,19 @@ public class ProductDBContext extends BaseDAO {
         return null;
     }
 
-    public ArrayList<Product> getProducts() {
+    public ArrayList<Product> getProducts(int pageindex, int pagesize) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
-                    + "from Product p inner join Category c\n"
-                    + "on p.CategoryId = c.ID\n";
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.CategoryID, p.CategoryName , p.CategoryDescription\n"
+                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY p.id asc) as rownum, p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
+                    + "from Product p inner join Category c \n"
+                    + "on p.CategoryId = c.ID) p \n"
+                    + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pageindex);
+            stm.setInt(4, pagesize);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -147,5 +153,19 @@ public class ProductDBContext extends BaseDAO {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return products;
+    }
+
+    public int getRowCount() {
+        try {
+            String sql = "select COUNT(*) as Total from Product";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }

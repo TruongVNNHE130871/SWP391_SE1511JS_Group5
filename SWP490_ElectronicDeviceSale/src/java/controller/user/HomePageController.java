@@ -34,8 +34,22 @@ public class HomePageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDBContext db = new ProductDBContext();
-        ArrayList<Product> products = db.getProducts();
+//        ArrayList<Product> products = db.getProducts();
+//        request.setAttribute("products", products);
+        int pagesize = 8;
+        String raw_page = request.getParameter("page");
+        if (raw_page == null || raw_page.length() == 0) {
+            raw_page = "1";
+        }
+
+        int pageindex = Integer.parseInt(raw_page);
+        int totalRows = db.getRowCount();
+        int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
+        ArrayList<Product> products = db.getProducts(pageindex, pagesize);
+
         request.setAttribute("products", products);
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
         request.getRequestDispatcher("view/userModule/homePage.jsp").forward(request, response);
     }
 
