@@ -8,12 +8,73 @@ Record of change:
 
  */
 /* Align the Forget Password Form between the screen */
-.style-forget-password{
-    border: solid rgb(228, 228, 228);
-    background-color: rgb(247, 247, 247);
-    border-radius: 10px;
-    width: 40%;
-    margin: auto;
-    padding: 110px 20px;
-    margin-top: 30px;
+/* reset margin and padding */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* background of body */
+body{
+    background-color: #D0D0D0 !important;
+}
+/* size of logo */
+.title-logo{
+     font-size: 20px;
+}
+/* set position logo of body */
+.img-logo-left{
+    /* margin: 0px auto; */
+    text-align: center;
+}
+/* size text*/
+.title-logo-body{
+    font-size: 30px;
+}
+/* set height, position, height and background of form login */
+.change-pass{
+    margin: 60px;
+    height: 400px;
+    background-color: white;
+    margin-bottom: 40px;
+}
+/* size text and size weight of font title login */
+.title-change-pass{
+    font-size: 30px;
+    font-weight: 700;
+}
+/* set width height of form change pass */
+.form-change-pass{
+    /* background-color: #e0ebeb; */
+    padding: 0 60px ;
+    /* padding-bottom: 200px; */
+    padding-top: 15px;
+}
+.text-forget-pass{
+    color: rgb(190, 190, 190);
+    font-size: 13px;
+}
+/* set background, width, height position of footer */
+footer{
+    background-color: #EEEEEE;
+    padding: 20px;
+    margin: 0;
+    margin-top: 20px;
+}
+/* delete underline text of tag <a> */
+.link-footer{
+    text-decoration: none;
+    color: black;
+}
+/* color icon facebook */
+.icon-facebook{
+    color: blue;
+}
+/* color icon youtube */
+.icon-youtube{
+    color: red;
+}
+/* color icon instagram */
+.icon-insta{
+    color: #9999CC;
 }

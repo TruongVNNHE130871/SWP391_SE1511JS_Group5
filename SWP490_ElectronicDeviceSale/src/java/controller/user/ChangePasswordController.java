@@ -57,28 +57,35 @@ public class ChangePasswordController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        //Init session
         User user = (User)session.getAttribute("user");
+        //Set value for user from session
         int id = user.getId();
-//        int id = 2;
-//        User user= userDBContext.getUserByID(2);
+        //Set user id value to a an integer
         String oldPassword = request.getParameter("currentPassword");
-        String newPassword = request.getParameter("newPassword");        
+        //Get value of curentPassword textbox in front end 
+        String newPassword = request.getParameter("newPassword");
+        //Get value of newPassword textbox in front end 
         String confirmPassword = request.getParameter("confirmPassword");
+        //Get value of confirmPassword textbox in front end 
         if(oldPassword.compareTo(user.getPassWord())==0){
+            // Compare value of curentPassword textbox with newPassword textbox
             if(newPassword.isEmpty() || newPassword.trim().length() == 0)
-                request.setAttribute("errorMsg", "New password cannot be blank");
+                request.setAttribute("errorMsg", "New password cannot be blank");//Display error message if new password is blank
             if(newPassword.compareTo(confirmPassword)==0){
                 userDBContext.changePassword(id, newPassword.trim());
-                request.setAttribute("successMsg", "Change password successfully");
+                //Change password in database
+                request.setAttribute("successMsg", "Change password successfully");//Display message successfully if confirm password equal new password
             }                  
             else
-                request.setAttribute("errorMsg", "Confirm password is wrong");
+                request.setAttribute("errorMsg", "Confirm password is wrong");// display error message if new password not equal confirm password
         }else 
-            request.setAttribute("errorMsg", "Current password is wrong");
+            request.setAttribute("errorMsg", "Current password is wrong");// display error message if current password is wrong
         
         String path = "view/userModule/changePassword.jsp";
         RequestDispatcher dispatcher= request.getRequestDispatcher(path);
-        dispatcher.forward(request, response);  
+        dispatcher.forward(request, response);
+        // forward to change password page
     }
     
 
