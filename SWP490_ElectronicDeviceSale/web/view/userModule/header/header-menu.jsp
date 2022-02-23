@@ -36,7 +36,8 @@ Record of change:
                 <div class="col-1"></div>
                 <!-- Start logo-header left -->
                 <div class="col-2">
-                    <img src="${url}/images/logo-header.png" alt="" width="150" height="70">
+                    <a href="${pageContext.request.contextPath}/HomePageController">
+                        <img src="${url}/images/logo-header.png" alt="" width="150" height="70"></a>
                 </div>
                 <!-- End logo-header left -->
                 <!-- Start search box -->
