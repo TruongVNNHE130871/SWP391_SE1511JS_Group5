@@ -5,33 +5,114 @@ and open the template in the editor.
 */
 /* 
     Created on : Feb 11, 2022, 9:32:48 PM
-    Author     : BH1704
+    Author     : CuongTVHE153073
 */
-/*boldness of letters */
-.product-detail-price{
-    color: rgb(209, 0, 0);
-    font-weight: 600;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-/*strikethrough discount amount*/
-.product-detail-sale{
-    color: grey;
-    text-decoration-line: line-through;
-    font-weight: 400;
+#header {
+    overflow: hidden;
+    background-color: #E8E8E8;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
-/*form width and screen center of product description*/
-.product-desciption{
-    width: 60%;
-    margin: auto;
-    margin-top: 100px;
-    border: 1px solid rgb(241, 241, 241);
+#content {
+    width: 90%;
+    height: 100%; 
+    margin: 0 auto;
+    margin-top: 120px;
+  }
+.bg-category{
+    background-color: black;
+}
+.btn-search{
+    padding: 0 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+.category-link{
+    text-decoration: none;
+    color: white;
+}
+
+.btn-user{
+    background-color: #E8E8E8;
+    border: none;
+}
+
+.product-detail{
+    margin-top: 150px;
+}
+
+.money-text{
+    color: rgb(184, 0, 0);
+}
+.color-star{
+    color: orange;
+}
+.link-feedback{
+    text-decoration: none;
+}
+table, th, td {
+    border: 1px solid rgb(238, 238, 238) !important; 
+}
+.quantity-decrease{
+    margin-left: 20px;
+}
+.btn-decrease{
+    border: none;
+    padding: 0 10px;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    background-color: rgb(248, 248, 248);
+}
+.input-group-text{
+    background-color: white !important;
+    width: 7%;
+    text-align: center;
+}
+.btn-increase{
+    border: none;
+    padding: 0 8px;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    background-color: rgb(248, 248, 248);
+}
+.free-ship{
+    font-size: 10px;
+}
+footer{
+    background-color: #D8D8D8;
     padding: 20px;
-    border-radius: 10px;
+    margin: 0;
+    margin-top: 20px;
 }
-/*form width and screen center of review product*/
-.review-product{
-    width: 60%;
-    margin: 20px auto;
-    border: 1px solid rgb(241, 241, 241);
-    padding: 20px;
-    border-radius: 10px;
+.form-valid{
+    display: flex;
+    align-items: center;
+}
+/* delete underline text of tag <a> */
+.link-footer{
+    text-decoration: none;
+    /* color: white; */
+    color: black;
+}
+/* color icon facebook */
+.icon-facebook{
+    color: blue;
+}
+/* color icon youtube */
+.icon-youtube{
+    color: red;
+}
+/* color icon instagram */
+.icon-insta{
+    color: #9999CC;
 }

@@ -10,7 +10,7 @@ Record of change:
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<c:url value = "/assets" var="url"/>
+<c:url value = "assets" var="url"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,9 +30,11 @@ Record of change:
         <script src="${url}/js/homepage.js" type="text/javascript" defer></script>
         <title>Home Page</title>
     </head>
-    <!--Start header-menu-->
-    <jsp:include page = "./header/header-menu.jsp" />
-    <!--End header-menu-->
+    <form action="SearchController">
+        <!--Start header-menu-->
+        <jsp:include page = "./header/header-menu.jsp" />
+        <!--End header-menu-->
+    </form>
     <body>
         <!-- Start content -->
         <main id="content">
@@ -171,7 +173,7 @@ Record of change:
                         <div class="grid-container-hot-product">
                             <c:forEach items="${requestScope.products}" var="p"><div class="grid-item text-center py-2">
                                     <div class="img-product">
-                                        <img src="${p.image}" alt="" width="200px" height="250px">
+                                        <a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}"><img src="${p.image}" alt="" width="200px" height="250px"></a>
                                     </div>
                                     <p class="title-phone">${p.name}</p>
                                     <div class="money">
@@ -180,18 +182,19 @@ Record of change:
                                     </div>
                                     <button class="btn-add-cart">Thêm Vào Giỏ</button>
                                     <button class="btn-buy-product">Mua Ngay</button>
-                                </div></c:forEach>
-                            </div> 
-                            <div id="paggerbottom" class="pagger"></div>
-                    </section>
-                </article>
-                <!-- Start list new product-->
-            </main>
-            <!-- End content -->
-        </body>
-        <!-- custom js file link  -->
-        <script src="assets/js/pager.js" type="text/javascript"></script>
-        <script>
+                                </div>
+                            </c:forEach>
+                        </div> 
+                        <div id="paggerbottom" class="pagger"></div>
+                </section>
+            </article>
+            <!-- Start list new product-->
+        </main>
+        <!-- End content -->
+    </body>
+    <!-- custom js file link  -->
+    <script src="assets/js/pager.js" type="text/javascript"></script>
+    <script>
                             generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
     <!--Start footer-->
