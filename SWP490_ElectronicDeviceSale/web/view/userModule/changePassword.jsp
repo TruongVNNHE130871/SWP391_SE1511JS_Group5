@@ -32,7 +32,7 @@ Record of change:
     </head>
     <header>
         <div class="img-header bg-light">
-            <img src=".././home/image/logo.png" alt="" width="150" height="100" class="ms-5"><span class="title-logo fs-2 mx-2">LOGIN</span>
+            <jsp:include page = "./header/header-menu.jsp" />
         </div>
     </header>
     <body>
@@ -40,12 +40,13 @@ Record of change:
             <div class="row">
                 <div class="col-6">
                     <div class="img-logo-left">
-                        <img src=".././home/image/logo.png" alt="" width="400" height="300">
+                        <br>
+                        <img src="assets/images/logo-header.png" alt="" width="400" height="300">
                         <p class="title-logo-body">The most popular e-commerce <br> platform in the world</p>
                     </div>
                 </div>
                 <div class="col-6">
-                    <form style="align-items: center;" class="change-pass">
+                    <form style="align-items: center;" class="change-pass">                       
                         <div class="form-change-pass">
                             <p class="title-change-pass text-center my-4">Change Password</p>
                             <div class="form-group">
@@ -68,7 +69,7 @@ Record of change:
                             <!-- success message -->
                             <p style="color:blue; display:block">
                                 ${successMsg}
-                            </p> 
+                            </p>
                         </div>
                     </form>
                 </div>
