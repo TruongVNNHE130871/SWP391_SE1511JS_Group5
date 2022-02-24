@@ -10,8 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Profile</title>
-        <!--<link rel="stylesheet" href="../userModule/assets/css/styles.css" />-->
-        <!--<link href="../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>-->
+        <link href="assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -29,7 +28,7 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form edit profile-->
-        <form style="align-items: center;" action="EditProfileController" method="POST">
+        <form style="align-items: center;" action="EditProfileController" method="POST" class="edit-profile">
             <div class="container">
                 <div class="row edit-profile">
                     <div class="col-5 text-center form-group mb-5 border-end">

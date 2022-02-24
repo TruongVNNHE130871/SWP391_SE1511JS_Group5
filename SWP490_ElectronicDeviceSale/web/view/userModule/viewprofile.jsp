@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link href="../assets/css/styles.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -28,7 +28,7 @@
          <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
-        <form style="align-items: center;" class="edit-profile mt-5">
+        <form style="align-items: center;" class="edit-profile">
             <div class="container">
                 <div class="row">
                     <div class="col-5 text-center form-group mb-5 border-end">
