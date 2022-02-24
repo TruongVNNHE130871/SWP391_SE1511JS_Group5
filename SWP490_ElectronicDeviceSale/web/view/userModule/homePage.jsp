@@ -173,7 +173,7 @@ Record of change:
                         <div class="grid-container-hot-product">
                             <c:forEach items="${requestScope.products}" var="p"><div class="grid-item text-center py-2">
                                     <div class="img-product">
-                                        <a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}"><img src="${p.image}" alt="" width="200px" height="250px"></a>
+                                        <a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${p.id}"><img src="${p.image}" alt="" width="200px" height="200px"></a>
                                     </div>
                                     <p class="title-phone">${p.name}</p>
                                     <div class="money">
@@ -195,7 +195,7 @@ Record of change:
     <!-- custom js file link  -->
     <script src="assets/js/pager.js" type="text/javascript"></script>
     <script>
-                            generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+       generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
     <!--Start footer-->
     <jsp:include page = "./footer/footer.jsp" />

@@ -27,6 +27,7 @@ Record of change:
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <script src="../../../assets/js/menu.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -41,9 +42,9 @@ Record of change:
                 </div>
                 <!-- End logo-header left -->
                 <!-- Start search box -->
-                <div class="col-4 my-3 d-flex form-search me-5">
+                <div class="col-4 my-3 d-flex form-search m-0 me-5">
                     <form action="SearchController" method="POST">
-                        <input type="text" size="40" name="keyword" value="${requestScope.keyword}">
+                        <input type="text" size="35" name="keyword" value="${requestScope.keyword}">
                         <button type="submit" class="btn-search">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -64,19 +65,17 @@ Record of change:
                 <!-- Start check login status -->
                 <c:if test="${sessionScope.username != null}">
                     <div class="col-2 my-4">
-                        <div class="dropdown position-fixed">
-                            <button class="btn-user dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                </svg>
-                                <span>${username}</span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a href="${pageContext.request.contextPath}/ViewProfileController" class="col-1 mt-3 hidden-xs">Thông tin cá nhân</a></li>
-                                <li><a href="${pageContext.request.contextPath}/LogOutController" class="col-1 mt-3 hidden-xs">Đăng xuất</a></li>
-                            </ul>
+                                            <div class="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                        <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
+                        <div id="myDropdown" class="dropdown-content">
+                          <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
+                          <a href="${pageContext.request.contextPath}/LogOutController">Đăng Xuất</a>
                         </div>
+                      </div>
                     </div>
                 </c:if>
                 <c:if test="${sessionScope.username == null}">
@@ -123,5 +122,25 @@ Record of change:
         <!-- End header-menu -->
 
     </body>
+    <script>
+        /* When the user clicks on the button,
+         toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
+// Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </html>
