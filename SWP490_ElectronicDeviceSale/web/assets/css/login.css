@@ -51,3 +51,7 @@ body{
 .text-singup{
     color: rgb(190, 190, 190);
 }
+.form-group img{
+    width: 20px;
+    vertical-align: middle;
+}

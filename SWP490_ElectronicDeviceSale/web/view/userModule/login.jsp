@@ -53,30 +53,44 @@ Record of change:
                 <div class="col-6">
                     <form action="LoginController" method="Post" style="align-items: center;" class="edit-login">
                         <div class="form-login">
-                            <p class="title-login text-center my-4">Đăng nhập</p>
+                            <p class="title-login text-center my-2">Đăng nhập</p>
                             <div class="form-group">
 
-                                <input  type="text" required placeholder="Tài khoản" name="username"class="form-control mb-3">
+                                <input  type="text" required placeholder="Nhập tài khoản" name="username"class="form-control mb-3">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" required placeholder="Mật khẩu" name="password"class="form-control">
+                                <input id="password"type="password" required placeholder="Nhập mật khẩu" name="password"class="form-control">
+                                <img onclick="myfunction()" src="${url}/images/eye.png"> Hiện mật khẩu
                             </div>
                             <!-- Error message -->
                             <p style="color:red; display:block">${errorMsg}
                                 <!-- /Error message -->
                             </p>
                             <div class="form-group mb-3 text-center">
-                                <a href="#" class="color-link">Quên mật khẩu?</a>
+                                <a href="#" class="color-link">Bạn quên mật khẩu?</a>
                             </div>
                             <div class="form-group text-center mb-3">
                                 <button type="submit" class="btn btn-outline-success">Đăng nhập</button>
                             </div>
-                            <p class="text-singup text-center">Lần đầu tiên truy cập? <a href="${pageContext.request.contextPath}/SignUp">Đăng ký</a></p>
+                            <p class="text-singup text-center">Lần đầu bạn truy cập? <a href="${pageContext.request.contextPath}/SignUp">Tạo tài khoản</a></p>
                         </div>
                     </form>
                 </div>
                 <!-- End login form -->
             </div>
         </div>
+        <script type="text/javascript">
+            var x = true;
+            function myfunction() {
+                if (x) {
+                    document.getElementById('password').type = "text";
+                    x = false;
+                } else {
+                    document.getElementById('password').type = "password";
+                    x = true;
+                }
+            }
+        </script>
     </body>
+
 </html>
