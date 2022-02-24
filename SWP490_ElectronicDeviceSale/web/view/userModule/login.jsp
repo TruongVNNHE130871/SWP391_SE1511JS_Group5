@@ -59,7 +59,8 @@ Record of change:
                                 <input  type="text" required placeholder="Tài khoản" name="username"class="form-control mb-3">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" required placeholder="Mật khẩu" name="password"class="form-control">
+                                <input id="password"type="password" required placeholder="Mật khẩu" name="password"class="form-control">
+                                <img onclick="myfunction()" src="${url}/images/eye.png"> Hiện mật khẩu
                             </div>
                             <!-- Error message -->
                             <p style="color:red; display:block">${errorMsg}
@@ -78,5 +79,18 @@ Record of change:
                 <!-- End login form -->
             </div>
         </div>
+        <script type="text/javascript">
+            var x = true;
+            function myfunction() {
+                if (x) {
+                    document.getElementById('password').type = "text";
+                    x = false;
+                } else {
+                    document.getElementById('password').type = "password";
+                    x = true;
+                }
+            }
+        </script>
     </body>
+
 </html>
