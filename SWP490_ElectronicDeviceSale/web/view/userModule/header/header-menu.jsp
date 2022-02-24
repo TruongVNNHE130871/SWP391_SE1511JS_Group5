@@ -9,7 +9,7 @@ Record of change:
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<c:url value = "/assets" var="url"/>
+<c:url value = "assets" var="url"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,12 +42,14 @@ Record of change:
                 <!-- End logo-header left -->
                 <!-- Start search box -->
                 <div class="col-4 my-3 d-flex form-search me-5">
-                    <input type="text" size="40" value="${requestScope.keyword}">
-                    <button type="submit" class="btn-search">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
+                    <form action="SearchController" method="POST">
+                        <input type="text" size="40" name="keyword" value="${requestScope.keyword}">
+                        <button type="submit" class="btn-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
                 <!-- End search box -->
                 <!-- Start cart -->

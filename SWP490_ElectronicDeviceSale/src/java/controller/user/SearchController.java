@@ -32,14 +32,15 @@ public class SearchController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String raw_keyword = request.getParameter("keyword");
         ProductDBContext pDB = new ProductDBContext();
+        String raw_keyword = request.getParameter("keyword");
         ArrayList<Product> products = pDB.searchProducts(raw_keyword);
         
-        request.setAttribute("keyword", raw_keyword);
         request.setAttribute("found", products.size());
+        request.setAttribute("productSize", products.size());
+        request.setAttribute("keyword", raw_keyword);
         request.setAttribute("products", products);
-        
+
         request.getRequestDispatcher("view/userModule/searchproduct.jsp").forward(request, response);
     }
 
