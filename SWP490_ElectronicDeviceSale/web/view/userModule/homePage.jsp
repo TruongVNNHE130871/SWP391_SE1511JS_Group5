@@ -16,6 +16,7 @@ Record of change:
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="${url}/css/stylemenu.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -191,11 +192,15 @@ Record of change:
             <!-- Start list new product-->
         </main>
         <!-- End content -->
+        <img src="" alt=""/>
+        <!-- Create button back to top -->
+        <a id="button"></a>
     </body>
     <!-- custom js file link  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/js/pager.js" type="text/javascript"></script>
     <script>
-       generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+                            generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
     <!--Start footer-->
     <jsp:include page = "./footer/footer.jsp" />

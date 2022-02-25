@@ -63,7 +63,7 @@ Record of change:
             <!--List all product found-->
             <article>
                 <section>
-                    <h3>Found ${requestScope.found} result contain keyword "${requestScope.keyword}"</h3>
+                    <h3>Đã tìm thấy ${requestScope.found} sản phẩm chứa từ khoá "${requestScope.keyword}"</h3>
                     <div class="grid-container-hot-product">
                         <c:forEach items="${requestScope.products}" var="p"><div class="grid-item text-center py-2">
                                 <div class="img-product">
