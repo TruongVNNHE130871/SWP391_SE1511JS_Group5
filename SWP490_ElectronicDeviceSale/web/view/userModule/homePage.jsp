@@ -10,7 +10,7 @@ Record of change:
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<c:url value = "assets" var="url"/>
+<c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
     <head>

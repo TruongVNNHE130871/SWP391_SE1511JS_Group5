@@ -40,6 +40,10 @@
         <servlet-name>EditProfileController</servlet-name>
         <servlet-class>controller.user.EditProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controller.user.CartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>EditProfileController</servlet-name>
         <url-pattern>/EditProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
