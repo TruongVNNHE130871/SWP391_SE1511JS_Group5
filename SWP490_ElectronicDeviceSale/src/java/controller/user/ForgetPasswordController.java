@@ -5,7 +5,6 @@ Electronic Device Sale Shop
 Record of change:
    DATE         Version       AUTHOR          DESCRIPTION
 2022-02-20       1.0         TruongVNN         First Implement
-
  */
 package controller.user;
 
