@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password").trim();
         User u = userDB.getUserByUserPass(username, password);
         try {
-            if (u != null) {
+            if (u != null && u.getUserName().equals(username)&& u.getPassWord().equals(password)) {
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("user", u);
                 response.sendRedirect("HomePageController");

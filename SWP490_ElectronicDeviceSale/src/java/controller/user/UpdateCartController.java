@@ -71,12 +71,13 @@ public class UpdateCartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         Order order = (Order) session.getAttribute("order");
         List<Item> listItems = order.getItems();
         order.setSumPrice(0);
         for (Item item : listItems) {
-            item.setQty(Integer.parseInt(request.getParameter(item.getProduct().getId())));
+            String v = String.valueOf(item.getProduct().getId());
+            item.setQty(Integer.parseInt(request.getParameter(v)));
             item.setPrice((Double.parseDouble(item.getProduct().getPrice())));
             order.setSumPrice(order.getSumPrice() + item.getPrice());
         }
@@ -84,7 +85,7 @@ public class UpdateCartController extends HttpServlet {
         session.setAttribute("order", order);
         session.setAttribute("sumprice", df.format(order.getSumPrice()));
         response.sendRedirect(request.getContextPath() + "/CartController");
-    
+
     }
 
     /**

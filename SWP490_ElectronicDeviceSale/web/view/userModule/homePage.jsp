@@ -31,11 +31,10 @@ Record of change:
         <script src="${url}/js/homepage.js" type="text/javascript" defer></script>
         <title>Home Page</title>
     </head>
-    <form action="SearchController">
-        <!--Start header-menu-->
-        <jsp:include page = "./header/header-menu.jsp" />
-        <!--End header-menu-->
-    </form>
+    <!--Start header-menu-->
+    <jsp:include page = "./header/header-menu.jsp" />
+    <!--End header-menu-->
+
     <body>
         <!-- Start content -->
         <main id="content">
