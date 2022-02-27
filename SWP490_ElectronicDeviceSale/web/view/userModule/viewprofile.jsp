@@ -28,7 +28,7 @@
          <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
-        <form style="align-items: center;" class="edit-profile">
+        <form style="align-items: center;" class="profile" id="content">
             <div class="container">
                 <div class="row">
                     <div class="col-5 text-center form-group mb-5 border-end">
@@ -90,4 +90,6 @@
             </div>
         </form>
     </body>
+    <!--footer-->
+    <jsp:include page = "./footer/footer.jsp" />
 </html>
