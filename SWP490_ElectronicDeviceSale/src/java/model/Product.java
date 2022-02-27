@@ -29,6 +29,23 @@ public class Product {
         return id;
     }
 
+    public Product() {
+    }
+
+    public Product(int id, Category c, Shop s, String name, String image, String description, int vote, String price, float discount, String status, Date created) {
+        this.id = id;
+        this.c = c;
+        this.s = s;
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.vote = vote;
+        this.price = price;
+        this.discount = discount;
+        this.status = status;
+        this.created = created;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

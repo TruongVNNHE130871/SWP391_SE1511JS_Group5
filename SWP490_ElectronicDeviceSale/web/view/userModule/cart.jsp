@@ -15,8 +15,7 @@ Record of change:
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cart</title>
-        <link href="${url}/css/stylemenu.css" rel="stylesheet" type="text/css"/>
-<!--        <link href="${url}/css/cart.css" rel="stylesheet" type="text/css"/>-->
+        <link href="${url}/css/cart.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -28,48 +27,60 @@ Record of change:
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <style>
+            table, th, td {
+                border: 1px solid rgb(230, 230, 230);
+                border-collapse: collapse;
+                text-align: center;
+                background-color: #F8F8F8;
+                padding: 20px;
+            }
+        </style>
     </head>
     <!--Start header-menu-->
     <jsp:include page = "./header/header-menu.jsp" />
     <!--End header-menu-->
 
-    <!-- catg header banner section -->
-    <section id="">
-        <img src="${url}/images/banner-cart.png" alt="banner giỏ hàng">
-        <div class="container">
-            <h2>Giỏ hàng</h2>
-            <ol class="breadcrumb">
-                <li> <a href="${pageContext.request.contextPath}/HomePageController">Trang chủ </a></li>
-                <li style="color:#fff">Thông tin giỏ hàng</li>
-            </ol>
-        </div>
-    </section>
-    <!-- / catg header banner section -->
+
     <!-- Cart view section -->
-    <section id="">
-        <div class="container">
-            <form action="${pageContext.request.contextPath}/view/client/cart-update" method="post">
-                <div class="">
-                    <table class="table">
+    <body>
+
+        <!-- Start banner -->
+        <div  id="content">
+            <div class="image-parent">
+                <img src="${url}/images/banner-cart.png" alt="" height="350px" width="100%" class="">
+                <div class="title-image">
+                    <p class="text-cart text-white text-center">Giỏ Hàng</p>
+                    <p>
+                        <a href="${pageContext.request.contextPath}/HomePageController">Trang Chủ /</a>
+                        <a style="color:#fff"> Thông Tin Giỏ Hàng</a>
+                    </p>
+                </div>
+            </div>
+
+            <!--End banner  -->
+            <div class="container-table">
+                <form action="${pageContext.request.contextPath}/UpdateCartController" method="post">
+                    <table style="width:100%">
                         <thead>
                             <tr>
-                                <th>Bỏ chọn</th>
-                                <th>Hình ảnh</th>
-                                <th>Tên Sản phẩm</th>
+                                <th>Bỏ Chọn</th>
+                                <th>Hình Ảnh</th>
+                                <th>Tên Sản Phẩm</th>
                                 <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Giảm giá</th>
+                                <th>Số Lượng</th>
+                                <th>Giảm Giá</th>
                                 <th>Thành Tiền</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${order.items}" var="item">
                                 <tr>
-                                    <td><a class="" href="${pageContext.request.contextPath}/cart-delete?id=${item.product.id}"><fa class="fa fa-close"></fa></a></td>
-                                    <td><a href="${pageContext.request.contextPath}/product-detail?id=${item.product.id}"><img src="${url}/images/products/img-test/${item.product.image_link}" alt="img${item.product.name }"></a></td>
-                                    <td><a class="" href="${pageContext.request.contextPath}/product-detail?id=${item.product.id}">${item.product.name }</a></td>
+                                    <td><a class="remove-link" href="${pageContext.request.contextPath}/DeleteToCart?id=${item.product.id}">X</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${item.product.id}"><img src="${item.product.image}" alt="img${item.product.name }" width="100" height="100"></a></td>
+                                    <td><a class="aa-cart-title" href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${item.product.id}">${item.product.name }</a></td>
                                     <td>${item.product.price} VNĐ</td>
-                                    <td><input class="" type="number" name="${item.product.id}" value="${item.qty}" min=1></td>
+                                    <td><input class="input-quantity" type="number" name="${item.product.id}" value="${item.qty}" min=1></td>
                                     <td>${item.product.discount} %</td>
                                     <td>${item.price}00 VNĐ</td>
                                 </tr>
@@ -79,37 +90,38 @@ Record of change:
                                 <td><strong>${sumprice} VNĐ</strong></td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="">
-                                    <input class="aa-cart-view-btn" type="submit" value="Cập nhật giỏ hàng">
+                                <td colspan="7">
+                                    <button class="update-cart" type="submit">Cập Nhật Giỏ Hàng</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </form>
-            <!-- Cart Total view -->
-            <div class="">
-                <h4>Thông tin giỏ hàng</h4>
-                <table class="">
-                    <tbody>
+                </form>
+
+                <hr>
+                <div class="infor-cart text-center">
+                    <p class="text-center fs-3">Thông Tin Giỏ Hàng</p>
+                    <table class="mx-auto" width="60%">
                         <tr>
-                            <th>Tạm tính</th>
+                            <th>Tạm Tính</th>
                             <td>${sumprice} VNĐ</td>
                         </tr>
                         <tr>
                             <th>VAT</th>
-                            <td>0 VNĐ</td>
+                            <td>0 VND</td>
                         </tr>
                         <tr>
-                            <th>Tổng cộng</th>
+                            <th>Tổng Cộng</th>
                             <td><strong>${sumprice} VNĐ</strong></td>
                         </tr>
-                    </tbody>
-                </table>
-                <a href="${pageContext.request.contextPath}/checkout" class="">Thanh toán</a>
+                    </table>
+                    <a href="${pageContext.request.contextPath}/Checkout" class="update-cart mt-5">Thanh Toán</a>
+                </div>
             </div>
         </div>
-    </section>
+
+
+    </body>
     <!-- / Cart view section -->
 
     <!--Start footer-->

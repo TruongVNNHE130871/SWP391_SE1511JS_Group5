@@ -8,6 +8,8 @@ Record of change:
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
     <html lang="en">
@@ -31,7 +33,9 @@ Record of change:
         </head>
         <header>
             <div class="img-header bg-light">
-                <img src="assets/images/logo-header.png" alt="logo" width="150" height="100" class="ms-5"><span class="title-logo fs-2 mx-2">Quên mật khẩu</span>
+                <a href="${pageContext.request.contextPath}/HomePageController">
+                    <img src="${url}/images/logo-header.png" alt="" width="150" height="100" 
+                         class="ms-5"></a><span class="title-logo fs-2 mx-2">Quên Mật khẩu</span>
             </div>
         </header>
         <body>
@@ -39,20 +43,20 @@ Record of change:
                 <div class="row">
                     <div class="col-6">
                         <div class="img-logo-left">
-                            <img src="assets/images/logo-header.png" alt="logo" width="400" height="300">
-                            <p class="title-logo-body">The most popular e-commerce <br> platform in the world</p>
+                            <img src="${url}/images/logo-header.png" alt="" width="400" height="300">
+                            <p class="title-logo-body">Nền tảng thương mại điện tử <br> phổ biến nhất trên thế giới </p>
                         </div>
                     </div>
                     <div class="col-6">
                         <form style="align-items: center;" class="change-pass" method="Post">
                             <div class="form-change-pass">
-                                <p class="title-change-pass text-center my-4">Forget Password</p>
+                                <p class="title-change-pass text-center my-4">Quên Mật Khẩu</p>
                                 <div class="form-group">
                                     <input type="email" placeholder="Your Email" class="form-control mb-4" name="email" required 
                                            title="The domain portion of the email address is invalid (the portion after the @)." pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$">
                                 </div>
                                 <div class="form-group text-center mb-3">
-                                    <button type="submit" class="btn btn-outline-success">Send Code</button>
+                                    <button type="submit" class="btn btn-outline-success">Gửi mã</button>
                                     <!-- success message -->
                                     <p style="color:blue; display:block">
                                         ${successMsg}
@@ -62,7 +66,7 @@ Record of change:
                                         ${errorMsg}                               
                                     </p>
                                 </div>
-                                <p class="text-forget-pass text-center">Did you remember the password? <a href=".././login/login.html">LogIn?</a>
+                                <p class="text-forget-pass text-center">Bạn đã nhớ mật khẩu? <a href="${pageContext.request.contextPath}/LoginController">Đăng nhập</a>
                             </div>
                         </form>
                     </div>
