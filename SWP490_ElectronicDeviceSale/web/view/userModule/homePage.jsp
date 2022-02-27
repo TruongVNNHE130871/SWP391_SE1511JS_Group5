@@ -93,74 +93,18 @@ Record of change:
                         <div class="grid-item-category text-center py-2">
                             <div class="img-category">
                                 <a href="#">
-                                    <img src="${url}/images/dienthoai1.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
+                                    <img src="${url}/images/tainghe.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
-                            <p class="title-phone">Phone</p>                       
+                            <p class="title-phone">Phụ kiện</p>                       
                         </div>  
                         <div class="grid-item-category text-center py-2 ">
                             <div class="img-category">
                                 <a href="#">
-                                    <img src="${url}/images/laptop.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
+                                    <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
-                            <p class="title-phone">Laptop</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/ipad.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">                          
-                                </a>
-                            </div>
-                            <p class="title-phone">Ipad</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/dienthoai1.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Phone</p>                       
-                        </div>  
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/laptop.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Laptop</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/ipad.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">                          
-                                </a>
-                            </div>
-                            <p class="title-phone">Ipad</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/dienthoai1.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Phone</p>                       
-                        </div>  
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/laptop.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Laptop</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="#">
-                                    <img src="${url}/images/ipad.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">                          
-                                </a>
-                            </div>
-                            <p class="title-phone">Ipad</p>                       
+                            <p class="title-phone">Linh kiện</p>                       
                         </div>
                     </div>
                 </section>
@@ -177,8 +121,8 @@ Record of change:
                                     </div>
                                     <p class="title-phone">${p.name}</p>
                                     <div class="money">
-                                        <p class="money-phone">${p.price} VNĐ</p>
-                                        <span class="text-decoration-line-through title-sale">34,990,000 VNĐ</span>
+                                        <p class="money-phone">${p.price-(p.price*(p.discount/100))} VNĐ</p>
+                                        <span class="text-decoration-line-through title-sale">${p.price} VNĐ</span>
                                     </div>
                                     <a class="btn-add-cart text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>
                                     <a class="btn-buy-product text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Mua Ngay</a>

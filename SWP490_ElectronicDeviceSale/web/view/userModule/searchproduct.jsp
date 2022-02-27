@@ -71,8 +71,8 @@ Record of change:
                                 </div>
                                 <p class="title-phone">${p.name}</p>
                                 <div class="money">
-                                    <p class="money-phone">${p.price} VNĐ</p>
-                                    <span class="text-decoration-line-through title-sale">34,990,000 VNĐ</span>
+                                    <p class="money-phone">${p.price-(p.price*(p.discount/100))} VNĐ</p>
+                                    <span class="text-decoration-line-through title-sale">${p.price} VNĐ</span>
                                 </div>
                                 <button class="btn-add-cart">Thêm Vào Giỏ</button>
                                 <button class="btn-buy-product">Mua Ngay</button>

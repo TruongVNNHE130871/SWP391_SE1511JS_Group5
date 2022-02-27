@@ -34,8 +34,6 @@ public class HomePageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDBContext db = new ProductDBContext();
-//        ArrayList<Product> products = db.getProducts();
-//        request.setAttribute("products", products);
         int pagesize = 8;
         String raw_page = request.getParameter("page");
         if (raw_page == null || raw_page.length() == 0) {

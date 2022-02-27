@@ -35,15 +35,15 @@ public class BaseDAO {
             /**
              * Vinh
              */
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
-            String user = "sa";
-            String pass = "sa";
+//            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
+//            String user = "sa";
+//            String pass = "sa";
             /**
              * Hung
              */
-//            String url = "jdbc:sqlserver://DESKTOP-AGLT4RV\\HUNGVTHE:1433;databaseName=SWP391";
-//            String user = "test";
-//            String pass = "minamoto2701";
+            String url = "jdbc:sqlserver://SK-202202261335:1433;databaseName=SWP391";
+            String user = "test";
+            String pass = "baobinh123";
             /**
              * Binh
              */
