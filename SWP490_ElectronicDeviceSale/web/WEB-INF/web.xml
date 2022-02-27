@@ -72,6 +72,10 @@
         <servlet-name>ViewProductByCategory</servlet-name>
         <servlet-class>controller.user.ViewProductByCategory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdvanceSearchController</servlet-name>
+        <servlet-class>controller.user.AdvanceSearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>ViewProductByCategory</servlet-name>
         <url-pattern>/ViewProductByCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdvanceSearchController</servlet-name>
+        <url-pattern>/AdvanceSearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
