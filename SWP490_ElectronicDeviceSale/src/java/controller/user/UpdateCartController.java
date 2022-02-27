@@ -9,23 +9,26 @@ Record of change:
  */
 package controller.user;
 
-import DAO.implement.UserDBContext;
 import java.io.IOException;
-
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
+import javax.servlet.http.HttpSession;
+import model.Item;
+import model.Order;
 
 /**
  *
  * @author VinhNT
  */
-public class LoginController extends HttpServlet {
+public class UpdateCartController extends HttpServlet {
 
-    UserDBContext userDB = new UserDBContext();
+    DecimalFormat df = new DecimalFormat("#.000");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,6 +44,7 @@ public class LoginController extends HttpServlet {
 
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -52,7 +56,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() + "/CartController");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -66,30 +71,31 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
-        User u = userDB.getUserByUserPass(username, password);
-        try {
-            if (u != null && u.getUserName().equals(username)&& u.getPassWord().equals(password)) {
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("user", u);
-                response.sendRedirect("HomePageController");
-            } else {
-                request.setAttribute("errorMsg", "Tài khoản hoặc mật khẩu sai!");
-                request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        HttpSession session = request.getSession();
+        Order order = (Order) session.getAttribute("order");
+        List<Item> listItems = order.getItems();
+        order.setSumPrice(0);
+        for (Item item : listItems) {
+            String v = String.valueOf(item.getProduct().getId());
+            item.setQty(Integer.parseInt(request.getParameter(v)));
+            item.setPrice((Double.parseDouble(item.getProduct().getPrice())));
+            order.setSumPrice(order.getSumPrice() + item.getPrice());
         }
+        order.setItems(listItems);
+        session.setAttribute("order", order);
+        session.setAttribute("sumprice", df.format(order.getSumPrice()));
+        response.sendRedirect(request.getContextPath() + "/CartController");
 
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

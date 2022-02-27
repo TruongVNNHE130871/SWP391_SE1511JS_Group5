@@ -6,3 +6,54 @@ Record of change:
 DATE         Version       AUTHOR          DESCRIPTION
 2022-01-07        1.0         VinhNT         First Implement
 */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+#content {
+    width: 90%;
+    height: 100%; 
+    margin: 0 auto;
+    margin-top: 120px;
+}
+.image-parent {
+    position: relative;
+}
+.remove-link{
+    text-decoration: none;
+    color:black;
+} 
+a:hover{
+    color:red;
+}
+.title-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text-cart{
+    font-size: 35px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p a{
+    text-decoration: none;
+    color: white;
+}
+.input-quantity{
+    width: 15%;
+    text-align: center;
+}
+.container-table{
+    padding: 40px;
+}
+.update-cart{
+    padding: 10px 20px;
+    border: none;
+    background-color: brown;
+    color: white;
+}

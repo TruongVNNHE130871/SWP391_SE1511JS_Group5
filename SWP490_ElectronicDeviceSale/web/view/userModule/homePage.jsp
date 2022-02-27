@@ -31,11 +31,10 @@ Record of change:
         <script src="${url}/js/homepage.js" type="text/javascript" defer></script>
         <title>Home Page</title>
     </head>
-    <form action="SearchController">
-        <!--Start header-menu-->
-        <jsp:include page = "./header/header-menu.jsp" />
-        <!--End header-menu-->
-    </form>
+    <!--Start header-menu-->
+    <jsp:include page = "./header/header-menu.jsp" />
+    <!--End header-menu-->
+
     <body>
         <!-- Start content -->
         <main id="content">
@@ -181,8 +180,8 @@ Record of change:
                                         <p class="money-phone">${p.price} VNĐ</p>
                                         <span class="text-decoration-line-through title-sale">34,990,000 VNĐ</span>
                                     </div>
-                                    <button class="btn-add-cart">Thêm Vào Giỏ</button>
-                                    <button class="btn-buy-product">Mua Ngay</button>
+                                    <a class="btn-add-cart" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>
+                                    <a class="btn-buy-product" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Mua Ngay</a>
                                 </div>
                             </c:forEach>
                         </div> 

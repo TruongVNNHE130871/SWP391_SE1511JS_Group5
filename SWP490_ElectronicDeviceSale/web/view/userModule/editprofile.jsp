@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Profile</title>
-        <link href="assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link href="../../assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -28,15 +27,9 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form edit profile-->
-        <form style="align-items: center;" action="EditProfileController" method="POST" class="edit-profile">
-            <div class="container">
-                <div class="row edit-profile">
-                    <div class="col-5 text-center form-group mb-5 border-end">
-                        <div class="mb-4">
-                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="300" height="300" class="rounded-circle" />
-                        </div>
-                        <button type="button" class="btn btn-outline-primary">Change Avatar</button>
-                    </div>
+        <form style="align-items: center;" action="EditProfileController" method="POST" class="profile" id="content">
+            <div class="container mb-3">
+                <div class="row py-4">
                     <div class="col-6">
                         <input type="hidden" name="idUser" value="${requestScope.user.id}"/>
                         <table class="ms-auto mt-4">
@@ -52,7 +45,7 @@
                                 <td>
                                     <label for="register_name" class="label my-3">Full Name: </label>
                                 </td>
-                                <td>
+                                <td class="form-valid">
                                     <input
                                         type="text"
                                         name="fullname"
@@ -82,7 +75,7 @@
                                 <td>
                                     <label for="email" class="label my-3">Email: </label>
                                 </td>
-                                <td>
+                                <td class="form-valid">
                                     <input
                                         type="email"
                                         name="email"
@@ -103,7 +96,7 @@
                                 <td class="tdLabel">
                                     <label for="phone_number" class="label my-3">Phone Number: </label>
                                 </td>
-                                <td>
+                                <td class="form-valid">
                                     <input
                                         type="text"
                                         name="phone"
@@ -117,13 +110,30 @@
                                     <span></span>
                                 </td>
                             </tr>
+                            <!-- <tr>
+                              <td>
+                                <label for="dob" class="label my-3">Date Of Birth: </label>
+                              </td>
+                              <td>
+                                <input type="text" name="dob" placeholder="01/01/2000" size="35" class="ms-4"/>
+                              </td>
+                            </tr> -->
                         </table>
+                    </div>
+                    <div class="col-1 border-end"></div>
+                    <div class="col-5 text-center form-group">
+                        <div class="mb-4">
+                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="200" height="200" class="rounded-circle  mb-4" />
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary">Change Avatar</button>
                     </div>
                 </div>
             </div>
             <div class="form-group text-center">
-                <input type="submit" class="btn btn-outline-primary" value="Save"/>       
+                <input type="submit" class="btn btn-secondary" value="Save"/>  
             </div>
         </form>
     </body>
+<!--    footer-->
+    <jsp:include page = "./footer/footer.jsp" />
 </html>
