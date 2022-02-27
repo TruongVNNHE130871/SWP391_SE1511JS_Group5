@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Product {
 
-    private int id;
+    private String id;
     private Category c;
     private Shop s;
     private String name;
@@ -25,14 +25,14 @@ public class Product {
     private String status;
     private Date created;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public Product() {
     }
 
-    public Product(int id, Category c, Shop s, String name, String image, String description, int vote, String price, float discount, String status, Date created) {
+    public Product(String id, Category c, Shop s, String name, String image, String description, int vote, String price, float discount, String status, Date created) {
         this.id = id;
         this.c = c;
         this.s = s;
@@ -46,7 +46,7 @@ public class Product {
         this.created = created;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

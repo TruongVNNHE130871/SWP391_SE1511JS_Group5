@@ -34,7 +34,7 @@ public class ProductDBContext extends BaseDAO {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setId(rs.getInt("ID"));
+                p.setId(rs.getString("ID"));
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setVote(rs.getInt("Vote"));
@@ -65,7 +65,7 @@ public class ProductDBContext extends BaseDAO {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setId(rs.getInt("ID"));
+                p.setId(rs.getString("ID"));
                 Category c = new Category();
                 c.setId(rs.getInt("CategoryID"));
                 c.setName(rs.getString("CategoryName"));
@@ -98,7 +98,7 @@ public class ProductDBContext extends BaseDAO {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setId(rs.getInt("ID"));
+                p.setId(rs.getString("ID"));
                 Category c = new Category();
                 c.setId(rs.getInt("CategoryID"));
                 c.setName(rs.getString("CategoryName"));
@@ -135,7 +135,7 @@ public class ProductDBContext extends BaseDAO {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setId(rs.getInt("ID"));
+                p.setId(rs.getString("ID"));
                 Category c = new Category();
                 c.setId(rs.getInt("CategoryID"));
                 c.setName(rs.getString("CategoryName"));

@@ -76,7 +76,7 @@ public class UpdateCartController extends HttpServlet {
         List<Item> listItems = order.getItems();
         order.setSumPrice(0);
         for (Item item : listItems) {
-//            item.setQty(Integer.parseInt(request.getParameter(item.getProduct().getId())));
+            item.setQty(Integer.parseInt(request.getParameter(item.getProduct().getId())));
             item.setPrice((Double.parseDouble(item.getProduct().getPrice())));
             order.setSumPrice(order.getSumPrice() + item.getPrice());
         }
