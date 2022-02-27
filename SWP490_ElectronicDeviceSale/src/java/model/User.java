@@ -27,7 +27,7 @@ public class User {
     private int phone;
     private String email;
     private Date created;
-
+    private boolean status;
     public User() {
 
     }
@@ -43,7 +43,7 @@ public class User {
         this.userName = username;
     }
     
-    public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created) {
+    public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created,boolean status) {
         this.id = id;
         this.name = name;
         this.userName = userName;
@@ -52,6 +52,7 @@ public class User {
         this.phone = phone;
         this.email = email;
         this.created = created;
+        this.status = status;
     }
 
     public int getId() {
@@ -116,6 +117,13 @@ public class User {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
 }

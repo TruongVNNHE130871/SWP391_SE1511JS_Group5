@@ -33,7 +33,7 @@ Record of change:
         <div class="img-header bg-light">
             <a href="${pageContext.request.contextPath}/HomePageController">
                 <img src="${url}/images/logo-header.png" alt="" width="150" height="100" 
-                     class="ms-5"></a><span class="title-logo fs-2 mx-2">Đăng nhập</span>
+                     class="ms-5"></a><span class="title-logo fs-2 mx-2">Quên mật khẩu</span>
         </div>
     </header>
     <!--End logo header left-->
