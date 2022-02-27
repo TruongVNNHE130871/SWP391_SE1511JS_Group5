@@ -4,7 +4,7 @@ EDS.Shop
 Electronic Device Sale Shop
 Record of change:
   DATE          Version       AUTHOR          DESCRIPTION
-2022-02-10       1.0         VinhNT         First Implement
+2022-02-10       1.0         TruongVNN         First Implement
 --%>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ Record of change:
             <p class="fs-3">Forget Password</p>
             <div class="form-group mb-5">
                 <input type="text" placeholder="Email" class="form-control mb-2" name="email" required>            
-                <a href="">Try to Log in?</a>
+                <a href="${pageContext.request.contextPath}/LoginController">Try to Log in?</a>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Send code</button>

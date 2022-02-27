@@ -67,7 +67,7 @@ Record of change:
                                 <!-- /Error message -->
                             </p>
                             <div class="form-group mb-3 text-center">
-                                <a href="#" class="color-link">Bạn quên mật khẩu?</a>
+                                <a href="${pageContext.request.contextPath}/forgetPassword" class="color-link">Bạn quên mật khẩu?</a>
                             </div>
                             <div class="form-group text-center mb-3">
                                 <button type="submit" class="btn btn-outline-success">Đăng nhập</button>
