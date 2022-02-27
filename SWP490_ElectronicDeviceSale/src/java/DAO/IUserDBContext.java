@@ -6,6 +6,7 @@
 package DAO;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import model.User;
 
 /**
@@ -44,11 +45,11 @@ public interface IUserDBContext {
      */
     public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created);
      /**
-     *Find UserId by email. Only one user with matched email will return it's ID.If no user fit the email, return 0
-     * The result is 0 or UserID
+     * Find User record by email and change password attribute
+     * The result is password changed
      * 
      * @param email is the email user registered. It is a <code>java.Lang.String</code> object
-     * @param randomPassword
+     * @param randomPassword is the new password. It is a <code>java.Lang.String</code> object
      */
     public void changeUserPassByEmail(String email,String randomPassword);
      /**
@@ -80,5 +81,9 @@ public interface IUserDBContext {
      * @return an integer (1 if there is an email, and return 0 if there is no such email
      */
     public int checkEmailExisted(String email);
-    
+    /**
+     * get data of all user in the system
+     * @return List of all user.It is a <code>java.Lang.ArrayList</code>
+     */
+    public ArrayList<User> getAllUser();
 }

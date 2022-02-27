@@ -1,29 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-02-20       1.0         TruongVNN         First Implement
+
  */
 package controller.user;
 
 import DAO.IUserDBContext;
 import DAO.implement.UserDBContext;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 import utilities.MyUtility;
 
 /**
  *
- * @author ASUS
+ * @author TruongVNN
  */
 public class ForgetPasswordController extends HttpServlet {
 
     MyUtility myUtility = new MyUtility();
+    //init class utility
     IUserDBContext userDBContext = new UserDBContext();
+    //init class userDBContext
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -40,6 +47,7 @@ public class ForgetPasswordController extends HttpServlet {
         String path = "view/userModule/forgotPassword.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(path);
         dispatcher.forward(request, response);
+        // forward to change password page
     }
 
     /**
@@ -53,25 +61,43 @@ public class ForgetPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String randomPassword = myUtility.randomToken();
-        int checkEmail;
-        if (email.trim().isEmpty()) {
-            request.setAttribute("errorMsg", "Email cannot be blank");
-        } else {
-            checkEmail = userDBContext.checkEmailExisted(email);
-            if (checkEmail == 0) {
-                request.setAttribute("errorMsg", "Email didn't exist or have to flow format abc@xyz.sdf");
+        try {
+            String email = request.getParameter("email");
+            //get value email of the account that forgot password
+            String randomPassword = myUtility.randomToken();
+            //random password using utility
+            int checkEmail;
+            //init a checkvalue about Email
+            if (email.trim().isEmpty()) {
+                //if email is blank
+                request.setAttribute("errorMsg", "Email cannot be blank");
+                // return error messgae that this email cannot be blank
+            } else {
+                //if email is not blank
+                checkEmail = userDBContext.checkEmailExisted(email);
+                //check email user input and set value for check value
+                if (checkEmail == 0) {
+                    //if email didn't exist in the database
+                    request.setAttribute("errorMsg", "Email didn't exist");
+                    //return message that email didn't exist
+                }
+                if (checkEmail == 1) {
+                    //if email existed in database
+                    userDBContext.changeUserPassByEmail(email, randomPassword);
+                    //change account password to random password 
+                    myUtility.sendNewPasswordToEmail(email, randomPassword);
+                    //send mail to the account requested to annouce their email
+                    request.setAttribute("successMsg", "new Password have been sent to your email");
+                    //return message that say new password have been set anew
+                }
             }
-            if (checkEmail == 1) {
-                userDBContext.changeUserPassByEmail(email, randomPassword);
-                myUtility.sendNewPasswordToEmail(email, randomPassword);
-                request.setAttribute("successMsg", "new Password have been sent to your email");
-            }
-        }
-        String path = "view/userModule/forgotPassword.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-        dispatcher.forward(request, response);
+            String path = "view/userModule/forgotPassword.jsp";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+            dispatcher.forward(request, response);
+            // forward to change password page
+        } catch (Exception e) {
+            Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, e);
+        }       
     }
 
     /**

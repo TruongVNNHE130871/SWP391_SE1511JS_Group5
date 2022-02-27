@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
@@ -116,25 +117,45 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     }
 
     /**
-     * Find UserId by email. Only one user with matched email will return it's
-     * ID.If no user fit the email, return 0 The result is 0 or UserID
+     * Find User record by email and change password attribute The result is
+     * password changed
      *
      * @param email is the email user registered. It is a
+     * <code>java.Lang.String</code> object
+     * @param randomPassword is the new password. It is a
      * <code>java.Lang.String</code> object
      */
     @Override
     public void changeUserPassByEmail(String email, String randomPassword) {
+        PreparedStatement statement = null;
+        //Init statement
         try {
             String sql = "UPDATE [User]\n"
                     + "  SET [PassWord] = ?\n"
                     + "  WHERE Email= ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            //Create sql query
+            statement = connection.prepareStatement(sql);
+            //prepare statement
             statement.setString(1, randomPassword);
+            //Set value randomPassword in query
             statement.setString(2, email);
+            //Set value email in query
             statement.executeQuery();
+            //execute query
 
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -150,6 +171,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public User getUserByID(int id) {
+        PreparedStatement statement = null;
+        //Init statement
         try {
             String sql = "SELECT [ID]\n"
                     + "      ,[Name]\n"
@@ -161,8 +184,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                     + "  FROM [User]\n"
                     + "  WHERE [ID]= ?";
             //Create sql query
-            PreparedStatement statement = connection.prepareStatement(sql);
-            //Init statement of sql query 
+            statement = connection.prepareStatement(sql);
+            //prepare statement
             statement.setInt(1, id);
             //Set value ID in query 
             ResultSet rs = statement.executeQuery();
@@ -189,6 +212,17 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
@@ -204,13 +238,15 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public void changePassword(int id, String newPassword) {
+        PreparedStatement statement = null;
+        //Init statement
         try {
             String sql = " UPDATE [User]\n"
                     + "  Set [Password]= ?\n"
                     + "  WHERE ID = ?";
             //Create sql query
-            PreparedStatement statement = connection.prepareStatement(sql);
-            //Init statement of sql query 
+            statement = connection.prepareStatement(sql);
+            //Prepare statement 
             statement.setString(1, newPassword);
             //Set value newPassword in query 
             statement.setInt(2, id);
@@ -219,6 +255,17 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             //execute query
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -248,8 +295,17 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
         }
     }
 
+    /**
+     * Check if an email have already existed in the system
+     *
+     * @param email is the email we need to check if it existed in the system
+     * @return an integer (1 if there is an email, and return 0 if there is no
+     * such email
+     */
     @Override
     public int checkEmailExisted(String email) {
+        int result = 0;
+        //return if emails exist or not
         String sql = "SELECT [ID]\n"
                 + "      ,[Name]\n"
                 + "      ,[UserName]\n"
@@ -260,16 +316,112 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                 + "      ,[Created]\n"
                 + "  FROM [User]\n"
                 + "  WHERE Email= ?";
+        //Create sql query
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        //Init result set
         try {
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1,email);
-            ResultSet rs = stm.executeQuery();
-            if(rs.next())
-                return 1;
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            stm.setString(1, email);
+            //Set value email in query 
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            if (rs.next()) {
+                ////Read data of query result
+                result = 1;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        return 0;
+        return result;
+    }
+    /**
+     * get data of all user in the system
+     * @return List of all user.It is a <code>java.Lang.ArrayList</code>
+     */
+    @Override
+    public ArrayList<User> getAllUser() {
+        //Create sql query
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        //Init result set
+        ArrayList<User> users = new ArrayList();
+        //Init List of Users
+        String sql = "SELECT [ID]\n"
+                + "      ,[Name]\n"
+                + "      ,[UserName]\n"
+                + "      ,[PassWord]\n"
+                + "      ,[Gender]\n"
+                + "      ,[Phone]\n"
+                + "      ,[Email]\n"
+                + "      ,[Created]\n"
+                + "      ,[Status]\n"
+                + "  FROM [User]";
+        //create query
+        try {
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            while (rs.next()) {//Read data of query result
+                User user = new User();
+                //Init user
+                user.setId(rs.getInt("ID"));
+                //Set user ID
+                user.setName(rs.getString("Name"));
+                //Set user's name
+                user.setUserName(rs.getString("UserName"));
+                //Set user's insystem name
+                user.setGender(rs.getBoolean("Gender"));
+                //Set user gender
+                user.setPassWord(rs.getString("PassWord"));
+                //Set user passowrd
+                user.setPhone(rs.getInt("Phone"));
+                //Set user phonenumber
+                user.setEmail(rs.getString("Email"));
+                //Set user email
+                user.setStatus(rs.getBoolean("Status"));
+                //Set user status
+                users.add(user);
+                //Add user to the ArrayList
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }       
+        return users;
     }
 
 }
