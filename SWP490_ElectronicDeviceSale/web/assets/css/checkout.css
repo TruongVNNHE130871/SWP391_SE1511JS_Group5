@@ -1,0 +1,47 @@
+/* 
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.image-parent {
+    position: relative;
+}
+  
+.title-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.text-cart{
+    font-size: 35px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p a{
+    text-decoration: none;
+    color: white;
+}
+.form-ship{
+    border: 1px solid rgb(230, 230, 230);
+}
+.form-order-payment{
+    border: 1px solid rgb(233, 233, 233);
+    width: 75%;
+    padding: 10px;
+}
+.btn-payments{
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    background-color: rgba(163, 23, 23, 0.904);
+    color: white;
+}
