@@ -115,7 +115,7 @@ Record of change:
                             <td><strong>${sumprice} VNĐ</strong></td>
                         </tr>
                     </table>
-                    <a href="${pageContext.request.contextPath}/Checkout" class="update-cart mt-5">Thanh Toán</a>
+                    <a href="${pageContext.request.contextPath}/CheckOutController" class="update-cart mt-5">Thanh Toán</a>
                 </div>
             </div>
         </div>
