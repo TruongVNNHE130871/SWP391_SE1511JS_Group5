@@ -180,8 +180,8 @@ Record of change:
                                         <p class="money-phone">${p.price} VNĐ</p>
                                         <span class="text-decoration-line-through title-sale">34,990,000 VNĐ</span>
                                     </div>
-                                    <a class="btn-add-cart" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>
-                                    <a class="btn-buy-product" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Mua Ngay</a>
+                                    <a class="btn-add-cart text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>
+                                    <a class="btn-buy-product text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Mua Ngay</a>
                                 </div>
                             </c:forEach>
                         </div> 

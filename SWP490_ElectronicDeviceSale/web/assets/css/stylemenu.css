@@ -171,6 +171,10 @@
     border-radius: 5px;
     padding: 7px 3px;
     font-size: 15px;
+    text-decoration: none;
+}
+a{
+  text-decoration: none;
 }
 .grid-container-category-product {
     display: grid;
