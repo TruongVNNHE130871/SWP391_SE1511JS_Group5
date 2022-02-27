@@ -9,7 +9,8 @@ Record of change:
  */
 package controller.user;
 
-import DAO.UserDBContext;
+import DAO.IUserDBContext;
+import DAO.implement.UserDBContext;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,9 +26,8 @@ import model.User;
  * @author TruongVNN
  */
 public class ChangePasswordController extends HttpServlet {
-    UserDBContext userDBContext= new UserDBContext();
-    
-
+    IUserDBContext userDBContext= new UserDBContext();
+   
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,6 +56,7 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
         //Init session
         User user = (User)session.getAttribute("user");

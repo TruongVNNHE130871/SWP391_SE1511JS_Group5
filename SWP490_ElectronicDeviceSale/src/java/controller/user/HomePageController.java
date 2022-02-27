@@ -9,7 +9,7 @@ Record of change:
  */
 package controller.user;
 
-import DAO.ProductDBContext;
+import DAO.implement.ProductDBContext;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;

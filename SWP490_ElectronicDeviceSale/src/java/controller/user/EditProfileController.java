@@ -5,8 +5,8 @@
  */
 package controller.user;
 
-import DAO.ProductDBContext;
-import DAO.UserDBContext;
+import DAO.implement.ProductDBContext;
+import DAO.implement.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

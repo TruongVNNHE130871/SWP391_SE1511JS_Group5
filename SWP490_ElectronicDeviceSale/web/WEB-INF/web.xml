@@ -44,6 +44,10 @@
         <servlet-name>CartController</servlet-name>
         <servlet-class>controller.user.CartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>forgetPassword</servlet-name>
+        <servlet-class>controller.user.ForgetPasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>forgetPassword</servlet-name>
+        <url-pattern>/forgetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

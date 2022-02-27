@@ -5,44 +5,25 @@
  */
 package controller.user;
 
-import DAO.implement.ProductDBContext;
+import DAO.IUserDBContext;
+import DAO.implement.UserDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import model.User;
+import utilities.MyUtility;
 
 /**
  *
- * @author Admin
+ * @author ASUS
  */
-public class SearchController extends HttpServlet {
+public class ForgetPasswordController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ProductDBContext pDB = new ProductDBContext();
-        String raw_keyword = request.getParameter("keyword");
-        ArrayList<Product> products = pDB.searchProducts(raw_keyword);
-        
-        request.setAttribute("found", products.size());
-        request.setAttribute("productSize", products.size());
-        request.setAttribute("keyword", raw_keyword);
-        request.setAttribute("products", products);
-
-        request.getRequestDispatcher("view/userModule/searchproduct.jsp").forward(request, response);
-    }
+    MyUtility myUtility = new MyUtility();
+    IUserDBContext userDBContext = new UserDBContext();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,7 +37,9 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String path = "view/userModule/forgotPassword.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -70,7 +53,25 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String email = request.getParameter("email");
+        String randomPassword = myUtility.randomToken();
+        int checkEmail;
+        if (email.trim().isEmpty()) {
+            request.setAttribute("errorMsg", "Email cannot be blank");
+        } else {
+            checkEmail = userDBContext.checkEmailExisted(email);
+            if (checkEmail == 0) {
+                request.setAttribute("errorMsg", "Email didn't exist or have to flow format abc@xyz.sdf");
+            }
+            if (checkEmail == 1) {
+                userDBContext.changeUserPassByEmail(email, randomPassword);
+                myUtility.sendNewPasswordToEmail(email, randomPassword);
+                request.setAttribute("successMsg", "new Password have been sent to your email");
+            }
+        }
+        String path = "view/userModule/forgotPassword.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+        dispatcher.forward(request, response);
     }
 
     /**

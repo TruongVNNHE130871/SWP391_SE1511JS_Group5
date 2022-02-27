@@ -8,7 +8,7 @@
  */
 package controller.user;
 
-import DAO.ProductDBContext;
+import DAO.implement.ProductDBContext;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.paramValueType;
 import java.io.IOException;
 import java.io.PrintWriter;

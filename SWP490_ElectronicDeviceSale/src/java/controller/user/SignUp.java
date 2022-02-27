@@ -9,7 +9,7 @@ Record of change:
  */
 package controller.user;
 
-import DAO.UserDBContext;
+import DAO.implement.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

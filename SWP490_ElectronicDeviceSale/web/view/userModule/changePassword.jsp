@@ -46,30 +46,30 @@ Record of change:
                     </div>
                 </div>
                 <div class="col-6">
-                    <form style="align-items: center;" class="change-pass">                       
+                    <form style="align-items: center;" class="change-pass" action="changePassword" method="Post">                       
                         <div class="form-change-pass">
                             <p class="title-change-pass text-center my-4">Change Password</p>
                             <div class="form-group">
-                                <input type="text" placeholder="Current Password" class="form-control mb-3">
+                                <input type="text" placeholder="Current Password" class="form-control mb-3" name="currentPassword">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="New PassWord" class="form-control">
+                                <input type="password" placeholder="New PassWord" class="form-control" name ="newPassword">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="Confirm PassWord" class="form-control">
+                                <input type="password" placeholder="Confirm PassWord" class="form-control" name="confirmPassword">
                             </div>
                             <div class="form-group text-center mb-3">
-                                <button type="submit" class="btn btn-outline-success">Save</button>
-                            </div>
-                            <p class="text-forget-pass text-center">You Forgott Current Password <a href=".././singup/signup.html">Forget PassWord?</a></p>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
                             <!-- error message -->
                             <p style="color:red; display:block">
-                                ${errorMsg}
+                                ${errorMsg}                               
                             </p>
                             <!-- success message -->
                             <p style="color:blue; display:block">
                                 ${successMsg}
                             </p>
+                            </div>
+                            <p class="text-forget-pass text-center">You Forgott Current Password <a href=".././singup/signup.html">Forget PassWord?</a></p>                           
                         </div>
                     </form>
                 </div>
