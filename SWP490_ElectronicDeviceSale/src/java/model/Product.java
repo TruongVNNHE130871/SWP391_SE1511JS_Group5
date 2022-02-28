@@ -22,7 +22,7 @@ public class Product {
     private int vote;
     private String price;
     private float discount;
-    private String status;
+    private boolean status;
     private Date created;
 
     public int getId() {
@@ -32,7 +32,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, Category c, Shop s, String name, String image, String description, int vote, String price, float discount, String status, Date created) {
+    public Product(int id, Category c, Shop s, String name, String image, String description, int vote, String price, float discount, boolean status, Date created) {
         this.id = id;
         this.c = c;
         this.s = s;
@@ -106,11 +106,11 @@ public class Product {
         this.discount = discount;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

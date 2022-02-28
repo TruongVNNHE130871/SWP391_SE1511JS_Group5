@@ -3,9 +3,39 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/SWP490_ElectronicDeviceSale/web/view/userModule/homePage.jsp</file>
-            <file>file:/D:/GitHub/SWP490_ElectronicDeviceSale/src/java/controller/user/HomePageController.java</file>
-            <file>file:/D:/GitHub/SWP490_ElectronicDeviceSale/src/java/DAO/implement/ProductDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/AdvanceSearchController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/CategoryDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Product.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/editprofile.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/HomePageController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/BaseDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/forgotPassword.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Category.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/productdetails.css</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/SearchController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/ProductDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/searchproduct.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/js/detail.js</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/stylemenu.css</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/js/pager.js</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/js/homepage.js</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/js/menu.js</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/LoginController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/AddToCart.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/productdetail.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/homePage.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/User.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/IUserDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/styleAdvance.css</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/signup.css</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/signUp.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/header/header-menu.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/advancesearch.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/ProductDetailController.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/login.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Shop.java</file>
+            <file>file:/C:/Users/Admin/Documents/GitHub/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/viewprofile.jsp</file>
         </group>
     </open-files>
 </project-private>

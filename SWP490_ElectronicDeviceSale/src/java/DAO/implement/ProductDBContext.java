@@ -5,6 +5,7 @@
  */
 package DAO.implement;
 
+import DAO.IProductDBContext;
 import DAO.implement.BaseDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
 import model.Product;
+import model.Shop;
 
 /**
  *
- * @author Admin
+ * @author CuongTV
  */
-public class ProductDBContext extends BaseDAO {
+public class ProductDBContext extends BaseDAO implements IProductDBContext {
 
     public ArrayList<Product> searchProducts(String keyword) {
         ArrayList<Product> products = new ArrayList<>();
@@ -40,7 +42,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
                 products.add(p);
             }
@@ -76,7 +78,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
                 products.add(p);
             }
@@ -109,7 +111,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
                 return p;
             }
@@ -146,7 +148,7 @@ public class ProductDBContext extends BaseDAO {
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
                 products.add(p);
             }
@@ -168,5 +170,60 @@ public class ProductDBContext extends BaseDAO {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
+    }
+
+    @Override
+    public ArrayList<Product> listProduct() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName , c.Description as CategoryDescription\n"
+                    + "from Product p inner join Category c \n"
+                    + "on p.CategoryId = c.ID";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("ID"));
+                Category c = new Category();
+                c.setId(rs.getInt("CategoryID"));
+                c.setName(rs.getString("CategoryName"));
+                c.setDescription(rs.getString("CategoryDescription"));
+                p.setC(c);
+                p.setName(rs.getString("Name"));
+                p.setImage(rs.getString("Image"));
+                p.setVote(rs.getInt("Vote"));
+                p.setPrice(rs.getString("Price"));
+                p.setDiscount(rs.getFloat("Discount"));
+                p.setStatus(rs.getBoolean("Status"));
+                p.setCreated(rs.getDate("Created"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
+
+    @Override
+    public void insertProduct(Product p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateProduct(Product p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        String sql = "DELETE FROM [dbo].[Product]\n"
+                + "WHERE ID = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
