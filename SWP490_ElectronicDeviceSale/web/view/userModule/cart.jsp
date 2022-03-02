@@ -64,7 +64,7 @@ Record of change:
                     <table style="width:100%">
                         <thead>
                             <tr>
-                                <th>Bỏ Chọn</th>
+                                <th>Xóa Sản Phẩm</th>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Giá</th>

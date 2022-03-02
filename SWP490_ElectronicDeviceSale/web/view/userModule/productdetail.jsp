@@ -76,13 +76,13 @@ Record of change:
 
                             </div>
                             <div class="btn-add-buy mt-5">
-                                <button class="btn btn-success py-2 mb-1" style="width: 100%;">
+                                <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
                                     Add To Cart
-                                </button><br>
-                                <button class="btn btn-danger p-0" style="width: 100%;">
+                                </a><br>
+                                <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
                                     Buy Now <br>
                                     <span class="free-ship">Free shipping or pick up in store</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
