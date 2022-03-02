@@ -82,7 +82,7 @@ Record of change:
                                     <td>${item.product.price} VNĐ</td>
                                     <td><input class="input-quantity" type="number" name="${item.product.id}" value="${item.qty}" min=1></td>
                                     <td>${item.product.discount} %</td>
-                                    <td>${item.price}00 VNĐ</td>
+                                    <td>${item.price} VNĐ</td>
                                 </tr>
                             </c:forEach>
                             <tr>

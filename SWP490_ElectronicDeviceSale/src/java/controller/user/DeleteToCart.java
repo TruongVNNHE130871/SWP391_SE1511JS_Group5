@@ -12,6 +12,7 @@ package controller.user;
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,8 @@ import model.Product;
 public class DeleteToCart extends HttpServlet {
 
     ProductDBContext pDB = new ProductDBContext();
-    DecimalFormat df = new DecimalFormat("#.000");
+//    DecimalFormat df = new DecimalFormat("#.000");
+     NumberFormat currentLocale = NumberFormat.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,6 +59,7 @@ public class DeleteToCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int n = 0;
         String id = request.getParameter("id");
         HttpSession session = request.getSession(true);
         Product product = pDB.getProduct(Integer.parseInt(id));;
@@ -71,11 +74,13 @@ public class DeleteToCart extends HttpServlet {
         }
         order.setItems(listItems);
         session.setAttribute("order", order);
+        n = listItems.size();
+        session.setAttribute("length_order", n);
         response.sendRedirect(request.getContextPath() + "/CartController");
         if (order.getSumPrice() == 0) {
             session.setAttribute("sumprice", "0");
         } else {
-            session.setAttribute("sumprice", df.format(order.getSumPrice()));
+             session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
         }
 
     }

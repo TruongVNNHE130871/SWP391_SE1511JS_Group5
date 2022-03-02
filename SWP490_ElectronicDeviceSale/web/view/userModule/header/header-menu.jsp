@@ -60,22 +60,26 @@ Record of change:
                         <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                         </svg>
                     </a>
+                    <c:if test="${length_order != NULL}">
+                        <span class="aa-cart-notify">${length_order}</span>
+                    </c:if>
+                        
                 </div>
                 <!-- End cart -->
                 <!-- Start check login status -->
                 <c:if test="${sessionScope.username != null}">
                     <div class="col-2 my-4">
-                                            <div class="dropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <div class="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                          </svg>
-                        <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
-                        <div id="myDropdown" class="dropdown-content">
-                          <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
-                          <a href="${pageContext.request.contextPath}/LogOutController">Đăng Xuất</a>
+                            </svg>
+                            <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
+                                <a href="${pageContext.request.contextPath}/LogOutController">Đăng Xuất</a>
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </c:if>
                 <c:if test="${sessionScope.username == null}">

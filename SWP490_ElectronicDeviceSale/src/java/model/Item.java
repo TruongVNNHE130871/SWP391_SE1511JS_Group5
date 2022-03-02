@@ -18,7 +18,7 @@ public class Item {
     private int id;
     private Product product;
     private int qty;
-    private double price;
+    private float price;
 
     public Item() {
     }
@@ -47,11 +47,11 @@ public class Item {
         this.qty = qty;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double string) {
+    public void setPrice(float string) {
         this.price = string;
     }
 

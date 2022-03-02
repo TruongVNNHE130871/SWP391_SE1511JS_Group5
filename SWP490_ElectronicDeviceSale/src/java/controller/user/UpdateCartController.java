@@ -12,6 +12,7 @@ package controller.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +29,8 @@ import model.Order;
  */
 public class UpdateCartController extends HttpServlet {
 
-    DecimalFormat df = new DecimalFormat("#.000");
+//    DecimalFormat df = new DecimalFormat("#.000");
+    NumberFormat currentLocale = NumberFormat.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,12 +80,15 @@ public class UpdateCartController extends HttpServlet {
         for (Item item : listItems) {
             String v = String.valueOf(item.getProduct().getId());
             item.setQty(Integer.parseInt(request.getParameter(v)));
-            item.setPrice((Double.parseDouble(item.getProduct().getPrice())));
+            item.setPrice((Float.parseFloat(item.getProduct().getPrice())
+                    - Float.parseFloat(item.getProduct().getPrice())
+                    * ((item.getProduct().getDiscount()) / 100))
+                    * Integer.parseInt(request.getParameter(v)));
             order.setSumPrice(order.getSumPrice() + item.getPrice());
         }
         order.setItems(listItems);
         session.setAttribute("order", order);
-        session.setAttribute("sumprice", df.format(order.getSumPrice()));
+        session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
         response.sendRedirect(request.getContextPath() + "/CartController");
 
     }

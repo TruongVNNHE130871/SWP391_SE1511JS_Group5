@@ -13,6 +13,7 @@ import DAO.implement.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -31,7 +32,8 @@ import model.Product;
 public class AddToCart extends HttpServlet {
 
     ProductDBContext pDB = new ProductDBContext();
-    DecimalFormat df = new DecimalFormat("#.000");
+//    DecimalFormat df = new DecimalFormat("#.000");
+    NumberFormat currentLocale = NumberFormat.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -76,7 +78,7 @@ public class AddToCart extends HttpServlet {
                     Item item = new Item();
                     item.setQty(qty);
                     item.setProduct(product);
-                    item.setPrice(Double.parseDouble(product.getPrice()));
+                    item.setPrice(Float.parseFloat(product.getPrice()) - Float.parseFloat(product.getPrice()) * (product.getDiscount() / 100));
                     order.setSumPrice(0);
                     order.setSumPrice(order.getSumPrice() + item.getPrice());
                     listItems.add(item);
@@ -84,7 +86,8 @@ public class AddToCart extends HttpServlet {
                     n = listItems.size();
                     session.setAttribute("length_order", n);
                     session.setAttribute("order", order);
-                    session.setAttribute("sumprice", df.format(order.getSumPrice()));
+                    session.setAttribute("sumprice", order.getSumPrice());
+                    session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
                 } else {
                     Order order = (Order) session.getAttribute("order");
                     List<Item> listItems = order.getItems();
@@ -92,8 +95,10 @@ public class AddToCart extends HttpServlet {
                     for (Item item : listItems) {
                         if (item.getProduct().getId() == product.getId()) {
                             item.setQty(item.getQty() + qty);
-                            order.setSumPrice(order.getSumPrice() + Double.parseDouble(item.getProduct().getPrice()));
-                            item.setPrice(item.getPrice() + (Double.parseDouble(item.getProduct().getPrice())));
+                            order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice())
+                                    - Float.parseFloat(item.getProduct().getPrice()) * (item.getProduct().getDiscount() / 100));
+                            item.setPrice(item.getPrice() + (Float.parseFloat(item.getProduct().getPrice())
+                                    - Float.parseFloat(item.getProduct().getPrice()) * ((item.getProduct().getDiscount()) / 100)));
                             check = true;
                         } else {
                         }
@@ -102,14 +107,16 @@ public class AddToCart extends HttpServlet {
                         Item item = new Item();
                         item.setQty(qty);
                         item.setProduct(product);
-                        item.setPrice(Double.parseDouble(product.getPrice()));
-                        order.setSumPrice(order.getSumPrice() + Double.parseDouble(item.getProduct().getPrice()));
+                        item.setPrice(Float.parseFloat(product.getPrice()) - Float.parseFloat(item.getProduct().getPrice())
+                                * ((item.getProduct().getDiscount()) / 100));
+                        order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice())
+                                - Float.parseFloat(item.getProduct().getPrice()) * ((item.getProduct().getDiscount()) / 100));
                         listItems.add(item);
                     }
                     n = listItems.size();
                     session.setAttribute("length_order", n);
                     session.setAttribute("order", order);
-                    session.setAttribute("sumprice", df.format(order.getSumPrice()));
+                    session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
                 }
             }
             response.sendRedirect(request.getContextPath() + "/HomePageController");
