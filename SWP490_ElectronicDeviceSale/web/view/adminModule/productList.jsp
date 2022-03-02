@@ -45,27 +45,27 @@
     </header>
     <body>
         <div class="container mt-5">
-            <button class="btn btn-outline-primary mb-4">New Product</button>
+            <button class="btn btn-outline-primary mb-4">Thêm Sản Phẩm</button>
             <div class="list-product">
-                <p>List Product: </p>
+                <p>Danh sách sản phẩm: </p>
                 <table class="table text-center">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Discount</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Tên Sản Phẩm</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Danh Mục</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col">Giảm Giá</th>
+                            <th scope="col">Ngày Tạo</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${requestScope.products}" var="p">
                         <input type="hidden" value="${p.id}" name="productID"/>
-                        <tr>
+                        <tr class="align-middle text-product">
                             <th scope="row">
                                 ${p.id}
                             </th>
@@ -85,8 +85,8 @@
                             <td>${p.discount}</td>
                             <td>${p.created}</td>
                             <td>
-                                <button type="submit" class="btn btn-outline-success">Update</button>
-                                <button type="submit" onclick="doDelete(${p.id});" class="btn btn-outline-danger">Delete</button>
+                                <button type="submit" class="btn btn-outline-success text-up-dlt">Cập nhật</button>
+                                <button type="submit" onclick="doDelete(${p.id});" class="btn btn-outline-danger text-up-dlt">Xóa</button>
                             </td>
                         </tr>           
                     </c:forEach>

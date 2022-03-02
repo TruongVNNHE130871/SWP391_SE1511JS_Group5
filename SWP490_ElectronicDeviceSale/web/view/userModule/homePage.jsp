@@ -106,6 +106,14 @@ Record of change:
                             </div>
                             <p class="title-phone">Linh kiện</p>                       
                         </div>
+                                <div class="grid-item-category text-center py-2 ">
+                            <div class="img-category">
+                                <a href="#">
+                                    <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
+                                </a>
+                            </div>
+                            <p class="title-phone">Linh kiện</p>                       
+                        </div>
                     </div>
                 </section>
             </article>

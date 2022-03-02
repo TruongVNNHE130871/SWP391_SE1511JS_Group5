@@ -20,4 +20,13 @@ and open the template in the editor.
 .infor{
     background-color: #F8F8F8;
 }
+.text-up-dlt{
+    font-size: 10px !important;
+}
+th{
+    font-size: 14px;
+}
+td{
+    font-size: 14px;
+}
 
