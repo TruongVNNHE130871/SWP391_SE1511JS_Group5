@@ -17,7 +17,7 @@ import model.Product;
 
 /**
  *
- * @author CuongTV
+ * @author BH1704
  */
 public class ProductListController extends HttpServlet {
 

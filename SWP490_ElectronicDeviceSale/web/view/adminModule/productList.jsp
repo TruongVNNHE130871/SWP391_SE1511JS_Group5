@@ -1,7 +1,7 @@
 <%-- 
     Document   : productList
     Created on : Feb 27, 2022, 10:42:23 PM
-    Author     : CuongTV
+    Author     : BH1704
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -51,7 +51,7 @@
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Image</th>
                             <th scope="col">Category</th>
@@ -64,10 +64,10 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${requestScope.products}" var="p">
-                        <input type="hidden" value="${p.id}}" name="productID"/>
+                        <input type="hidden" value="${p.id}" name="productID"/>
                         <tr>
                             <th scope="row">
-                                1
+                                ${p.id}
                             </th>
                             <td>
                                 ${p.name}

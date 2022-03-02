@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author CuongTV
+ * @author BH1704
  */
 public class ProductDeleteController extends HttpServlet {
 
