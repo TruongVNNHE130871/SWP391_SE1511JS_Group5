@@ -24,6 +24,12 @@ public class Product {
     private float discount;
     private boolean status;
     private Date created;
+    private Manufacturer man;
+    private float size;
+    private float weight;
+    private int ram;
+    private String original;
+    private String year;
 
     public int getId() {
         return id;
@@ -123,11 +129,59 @@ public class Product {
     }
 
     public String getPrice() {
-        return price;
+        return String.format("%,.0f", Float.parseFloat(price));
     }
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public Manufacturer getMan() {
+        return man;
+    }
+
+    public void setMan(Manufacturer man) {
+        this.man = man;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public int getRam() {
+        return ram;
+    }
+
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
+
+    public String getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(String original) {
+        this.original = original;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
 }

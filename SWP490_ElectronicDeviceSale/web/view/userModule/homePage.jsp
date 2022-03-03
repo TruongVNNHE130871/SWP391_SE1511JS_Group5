@@ -68,7 +68,7 @@ Record of change:
                     <div class="grid-container-category-product">
                         <div class="grid-item-category text-center py-2">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/dienthoai1.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
@@ -76,7 +76,7 @@ Record of change:
                         </div>  
                         <div class="grid-item-category text-center py-2 ">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/laptop.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
@@ -84,7 +84,7 @@ Record of change:
                         </div>
                         <div class="grid-item-category text-center py-2 ">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/ipad.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">                          
                                 </a>
                             </div>
@@ -92,7 +92,7 @@ Record of change:
                         </div>
                         <div class="grid-item-category text-center py-2">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/tainghe.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
@@ -100,7 +100,7 @@ Record of change:
                         </div>  
                         <div class="grid-item-category text-center py-2 ">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
@@ -108,7 +108,7 @@ Record of change:
                         </div>
                                 <div class="grid-item-category text-center py-2 ">
                             <div class="img-category">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
                                     <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
                                 </a>
                             </div>
@@ -129,7 +129,7 @@ Record of change:
                                     </div>
                                     <p class="title-phone">${p.name}</p>
                                     <div class="money">
-                                        <p class="money-phone">${p.price-(p.price*(p.discount/100))} VNĐ</p>
+                                        <p class="money-phone">${p.price} VNĐ</p>
                                         <span class="text-decoration-line-through title-sale">${p.price} VNĐ</span>
                                     </div>
                                     <a class="btn-add-cart text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>

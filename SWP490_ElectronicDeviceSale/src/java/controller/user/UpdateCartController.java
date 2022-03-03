@@ -80,8 +80,8 @@ public class UpdateCartController extends HttpServlet {
         for (Item item : listItems) {
             String v = String.valueOf(item.getProduct().getId());
             item.setQty(Integer.parseInt(request.getParameter(v)));
-            item.setPrice((Float.parseFloat(item.getProduct().getPrice())
-                    - Float.parseFloat(item.getProduct().getPrice())
+            item.setPrice((Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                    - Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
                     * ((item.getProduct().getDiscount()) / 100))
                     * Integer.parseInt(request.getParameter(v)));
             order.setSumPrice(order.getSumPrice() + item.getPrice());

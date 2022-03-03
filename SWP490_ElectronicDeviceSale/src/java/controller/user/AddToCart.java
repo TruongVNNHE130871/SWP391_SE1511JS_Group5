@@ -78,7 +78,7 @@ public class AddToCart extends HttpServlet {
                     Item item = new Item();
                     item.setQty(qty);
                     item.setProduct(product);
-                    item.setPrice(Float.parseFloat(product.getPrice()) - Float.parseFloat(product.getPrice()) * (product.getDiscount() / 100));
+                    item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100));
                     order.setSumPrice(0);
                     order.setSumPrice(order.getSumPrice() + item.getPrice());
                     listItems.add(item);
@@ -95,10 +95,10 @@ public class AddToCart extends HttpServlet {
                     for (Item item : listItems) {
                         if (item.getProduct().getId() == product.getId()) {
                             item.setQty(item.getQty() + qty);
-                            order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice())
-                                    - Float.parseFloat(item.getProduct().getPrice()) * (item.getProduct().getDiscount() / 100));
-                            item.setPrice(item.getPrice() + (Float.parseFloat(item.getProduct().getPrice())
-                                    - Float.parseFloat(item.getProduct().getPrice()) * ((item.getProduct().getDiscount()) / 100)));
+                            order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                    - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * (item.getProduct().getDiscount() / 100));
+                            item.setPrice(item.getPrice() + (Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                    - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100)));
                             check = true;
                         } else {
                         }
@@ -107,10 +107,10 @@ public class AddToCart extends HttpServlet {
                         Item item = new Item();
                         item.setQty(qty);
                         item.setProduct(product);
-                        item.setPrice(Float.parseFloat(product.getPrice()) - Float.parseFloat(item.getProduct().getPrice())
+                        item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
                                 * ((item.getProduct().getDiscount()) / 100));
-                        order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice())
-                                - Float.parseFloat(item.getProduct().getPrice()) * ((item.getProduct().getDiscount()) / 100));
+                        order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100));
                         listItems.add(item);
                     }
                     n = listItems.size();

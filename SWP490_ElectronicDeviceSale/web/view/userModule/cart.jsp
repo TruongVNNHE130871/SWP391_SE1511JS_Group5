@@ -9,6 +9,7 @@ Record of change:
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
@@ -74,6 +75,7 @@ Record of change:
                             </tr>
                         </thead>
                         <tbody>
+                            <c:out value="${pageContext.request.locale.language}"/>
                             <c:forEach items="${order.items}" var="item">
                                 <tr>
                                     <td><a class="remove-link" href="${pageContext.request.contextPath}/DeleteToCart?id=${item.product.id}">X</a></td>
@@ -82,7 +84,7 @@ Record of change:
                                     <td>${item.product.price} VNĐ</td>
                                     <td><input class="input-quantity" type="number" name="${item.product.id}" value="${item.qty}" min=1></td>
                                     <td>${item.product.discount} %</td>
-                                    <td>${item.price} VNĐ</td>
+                                    <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${item.price}" /> VNĐ</td>
                                 </tr>
                             </c:forEach>
                             <tr>

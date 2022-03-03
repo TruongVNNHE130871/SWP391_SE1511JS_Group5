@@ -45,6 +45,7 @@ public class HomePageController extends HttpServlet {
         int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
         ArrayList<Product> products = db.getProducts(pageindex, pagesize);
 
+        
         request.setAttribute("products", products);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("totalpage", totalpage);
