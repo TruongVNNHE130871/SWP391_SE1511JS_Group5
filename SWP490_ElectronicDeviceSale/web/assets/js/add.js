@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /* When the user clicks on the button,
  toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+function myCategory() {
+    document.getElementById("myDropCategory").classList.toggle("show");
 }
 
 // Close the dropdown menu if the user clicks outside of it
@@ -25,4 +23,3 @@ window.onclick = function (event) {
     }
 }
 
-// Add primary--active class to the current button (highlight it)

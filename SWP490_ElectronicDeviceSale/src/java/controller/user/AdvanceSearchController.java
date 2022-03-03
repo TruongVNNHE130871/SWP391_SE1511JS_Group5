@@ -6,6 +6,7 @@
 package controller.user;
 
 import DAO.implement.CategoryDBContext;
+import DAO.implement.ManufacturerDBContext;
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,11 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
+import model.Manufacturer;
 import model.Product;
 
 /**
  *
- * @author Admin
+ * @author CuongTV
  */
 public class AdvanceSearchController extends HttpServlet {
 
@@ -36,20 +38,37 @@ public class AdvanceSearchController extends HttpServlet {
             throws ServletException, IOException {
         ProductDBContext pDB = new ProductDBContext();
         CategoryDBContext cDB = new CategoryDBContext();
-        String raw_keyword = request.getParameter("keyword");
-        String raw_idCategory = request.getParameter("idCategory");
-        if (raw_idCategory == null || raw_idCategory.length() == 0) {
-            raw_idCategory = "-1";
+        ManufacturerDBContext mDB = new ManufacturerDBContext();
+        int categoryId = -1;
+        int manufacturerId = -1;
+        int searchByPrice = -1;
+        String sort = "";
+        try {
+            String[] raw_categoryIds = request.getParameterValues("categoryId");
+            categoryId = Integer.parseInt(raw_categoryIds[raw_categoryIds.length - 1]);
+            String[] raw_manufacturerIds = request.getParameterValues("manufacturerId");
+            manufacturerId = Integer.parseInt(raw_manufacturerIds[raw_manufacturerIds.length - 1]);
+            String[] raw_prices = request.getParameterValues("searchPrice");
+            searchByPrice = Integer.parseInt(raw_prices[raw_prices.length - 1]);
+//            String sortPrice = request.getParameter("sortPrice");
+//            if (sortPrice.equals("Giá thấp")) {
+//                sort = "asc";
+//
+//            } else {
+//                sort = "desc";
+//            }
+        } catch (Exception e) {
         }
-        int idCategory = Integer.parseInt(raw_idCategory);
-        ArrayList<Category> categories = cDB.getCategories();
-        ArrayList<Product> products = pDB.getProductsByCategory(idCategory);
-//        products.sort((p1, p2) -> p2.getPrice() - p2.getPrice());
 
+        ArrayList<Product> products = pDB.advanceSearch(categoryId, manufacturerId, searchByPrice);
+        ArrayList<Category> categories = cDB.getCategories();
+        ArrayList<Manufacturer> manufacturers = mDB.getManufacturers();
+
+        request.setAttribute("searchByPrice", searchByPrice);
+        request.setAttribute("manufacturerId", manufacturerId);
+        request.setAttribute("categoryId", categoryId);
+        request.setAttribute("manufacturers", manufacturers);
         request.setAttribute("categories", categories);
-        request.setAttribute("found", products.size());
-        request.setAttribute("productSize", products.size());
-        request.setAttribute("keyword", raw_keyword);
         request.setAttribute("products", products);
 
         request.getRequestDispatcher("view/userModule/advancesearch.jsp").forward(request, response);

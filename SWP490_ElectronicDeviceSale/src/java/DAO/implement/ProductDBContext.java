@@ -7,13 +7,18 @@ package DAO.implement;
 
 import DAO.IProductDBContext;
 import DAO.implement.BaseDAO;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Category;
+import model.Manufacturer;
+import model.ManufacturerGroup;
 import model.Product;
 import model.Shop;
 
@@ -191,6 +196,7 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 p.setC(c);
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
@@ -206,12 +212,54 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
 
     @Override
     public void insertProduct(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "INSERT INTO [dbo].[Product]\n"
+                    + "           ([CategoryId]\n"
+                    + "           ,[Name]\n"
+                    + "           ,[Image]\n"
+                    + "           ,[Description]\n"
+                    + "           ,[Discount]\n"
+                    + "           ,[Created]\n"
+                    + "           ,[Price])\n"
+                    + "     VALUES\n"
+                    + "           ?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void updateProduct(Product p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [CategoryId] = ?\n"
+                    + "      ,[Name] = ?\n"
+                    + "      ,[Description] = ?\n"
+                    + "      ,[Discount] = ?\n"
+                    + "      ,[Created] = ?\n"
+                    + "      ,[Price] = ?\n"
+                    + " WHERE ID = ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, p.getC().getId());
+            stm.setString(2, p.getName());
+            stm.setString(3, p.getDescription());
+            stm.setFloat(4, p.getDiscount());
+            stm.setDate(5, (Date) p.getCreated());
+            stm.setString(6, p.getPrice());
+            stm.setInt(7, p.getId());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -225,5 +273,138 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    //categoryId = -1, manufacturerId = -1
+    public ArrayList<Product> advanceSearch(int categoryId, int manufacturerId, int priceToSearch) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "select p.ID, p.Name, p.Image, p.Description, \n"
+                    + "p.Vote, p.Price, p.Discount, p.Status, \n"
+                    + "p.Created, c.ID as CategoryID, c.Name as CategoryName , \n"
+                    + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                    + "m.Name as ManufacturerName\n"
+                    + "from Product p inner join Category c \n"
+                    + "on p.CategoryId = c.ID\n"
+                    + "left join ManufacturerGroup mg\n"
+                    + "on mg.pId = p.ID\n"
+                    + "left join Manufacturer m\n"
+                    + "on m.ID = mg.mId\n"
+                    + "where \n"
+                    + "(1=1) ";
+
+            int paramIndex = 0;
+            HashMap<Integer, Object[]> params = new HashMap<>();
+
+            if (categoryId != -1) {
+                sql += "AND c.ID = ? ";
+                paramIndex++;
+                Object[] param = new Object[2];
+                param[0] = Integer.class.getName();
+                param[1] = categoryId;
+                params.put(paramIndex, param);
+            }
+            if (manufacturerId != -1) {
+                sql += "AND m.ID = ? ";
+                paramIndex++;
+                Object[] param = new Object[2];
+                param[0] = Integer.class.getName();
+                param[1] = manufacturerId;
+                params.put(paramIndex, param);
+            }
+
+            if (priceToSearch != -1) {
+                switch (priceToSearch) {
+                    case 1:
+                        sql += "AND p.Price between 0 and 2000000 ";
+                        break;
+                    case 2:
+                        sql += "AND p.Price between 2000001 and 4000000 ";
+                        break;
+                    case 3:
+                        sql += "AND p.Price between 4000001 and 7000000 ";
+                        break;
+                    case 4:
+                        sql += "AND p.Price between 7000001 and 13000000 ";
+                        break;
+                    case 5:
+                        sql += "AND p.Price > 13000000 ";
+                        break;
+                    default:
+                        break;
+                }
+            }
+//            if (sort != null) {
+//                sql += "order by p.Price ?";
+//                paramIndex++;
+//                Object[] param = new Object[2];
+//                param[0] = String.class.getName();
+//                param[1] = sort;
+//                params.put(paramIndex, param);
+//            }
+
+            PreparedStatement stm = connection.prepareStatement(sql);
+
+            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+                Integer index = entry.getKey();
+                Object[] value = entry.getValue();
+                String type = value[0].toString();
+                if (type.equals(Integer.class.getName())) {
+                    stm.setInt(index, (Integer) value[1]);
+                } else if (type.equals(String.class.getName())) {
+                    stm.setString(index, value[1].toString());
+                }
+            }
+
+//            if (priceToSearch != -1) {
+//                switch (priceToSearch) {
+//                    case 1:
+//                        sql += "AND p.Price between 0 and 2000000";
+//                        break;
+//                    case 2:
+//                        sql += "AND p.Price between 2000001 and 4000000";
+//                        break;
+//                    case 3:
+//                        sql += "AND p.Price between 4000001 and 7000000";
+//                        break;
+//                    case 4:
+//                        sql += "AND p.Price between 7000001 and 13000000";
+//                        break;
+//                    case 5:
+//                        sql += "AND p.Price > 13000000";
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("ID"));
+                product.setName(rs.getString("Name"));
+                product.setImage(rs.getString("Image"));
+                product.setDescription(rs.getString("Description"));
+                product.setVote(rs.getInt("Vote"));
+                product.setPrice(rs.getString("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setStatus(rs.getBoolean("Status"));
+                product.setCreated(rs.getDate("Created"));
+                Category category = new Category();
+                category.setId(rs.getInt("CategoryId"));
+                category.setName(rs.getString("CategoryName"));
+                category.setDescription(rs.getString("CategoryDescription"));
+                product.setC(category);
+//                Manufacturer manufacturer = new Manufacturer();
+//                manufacturer.setId(rs.getInt("ManufacturerId"));
+//                manufacturer.setName(rs.getString("ManufacturerName"));
+//                ManufacturerGroup mg = new ManufacturerGroup();
+//                mg.setP(product);
+//                mg.setM(manufacturer);
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
     }
 }

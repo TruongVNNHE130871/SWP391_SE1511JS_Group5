@@ -19,6 +19,7 @@ public interface IProductDBContext {
 
     /**
      * View all product
+     * @return 
      */
     public ArrayList<Product> listProduct();
 
