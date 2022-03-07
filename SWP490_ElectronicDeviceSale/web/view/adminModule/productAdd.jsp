@@ -1,7 +1,7 @@
 <%-- 
     Document   : productAdd
     Created on : Feb 28, 2022, 11:50:38 AM
-    Author     : Admin
+    Author     : BH1704
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,14 +24,8 @@
         <script src="${url}/js/menu.js" type="text/javascript"></script>
         <title>Document</title>
     </head>
-    <header>
-        <div class="title-add-new">
-            <p class="text-header text-center">
-                Add New Product
-            </p>
-        </div>
-    </header>
-
+    <!--side bar admin-->
+    <jsp:include page = "./sideBar.jsp" />
     <body>
         <div class="admin-add-new">
             <div class="container">
@@ -67,7 +61,7 @@
                         <div class="description">
                             <p>Description:</p>
                             <div class="mb-3"> 
-                                 <input style="width:860px;height:200px;font-size:14pt;" type="text" name="productDescription" value="${requestScope.product.description}"/>
+                                <input style="width:860px;height:200px;font-size:14pt;" type="text" name="productDescription" value="${requestScope.product.description}"/>
                             </div>
                         </div>
                         <div class="mb-3 row">
