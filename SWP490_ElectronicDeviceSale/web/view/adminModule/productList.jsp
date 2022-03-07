@@ -35,17 +35,12 @@
         </script>
         <title>Document</title>
     </head>
-    <header>
-        <div class="infor d-flex justify-content-around">
-            <div class="text-admin mt-2">ADMIN</div>
-            <div class="image-admin">
-                <img src="https://duytan.thinkingschool.vn/wp-content/uploads/avatars/1/5c2ecfd10c228-bpfull.png" alt="" width="80" height="80" class="rounded-circle">
-            </div>
-        </div>
-    </header>
+    <jsp:include page = "./sideBar.jsp" />
     <body>
-        <div class="container mt-5">
-            <button class="btn btn-outline-primary mb-4">Thêm Sản Phẩm</button>
+        <div class="height-100">
+        <div class="container-fluid box-view-list">
+            <div class="list-product">
+                <button class="btn btn-outline-primary mb-4">Thêm Sản Phẩm</button>
             <div class="list-product">
                 <p>Danh sách sản phẩm: </p>
                 <table class="table text-center">
@@ -93,7 +88,10 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
+
+    </div>
     </body>
     <script src="assets/js/pager.js" type="text/javascript"></script>
     <script>
