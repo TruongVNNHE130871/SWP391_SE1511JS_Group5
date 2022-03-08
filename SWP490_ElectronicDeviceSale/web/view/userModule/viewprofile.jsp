@@ -25,19 +25,13 @@
         ></script>
     </head>
     <body>
-         <!-- Header and Menu-->
+        <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
         <form style="align-items: center;" class="profile" id="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-5 text-center form-group mb-5 border-end">
-                        <div class="mb-4">
-                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="300" height="300" class="rounded-circle" />
-                        </div>
-                        <!-- <button type="button" class="btn btn-outline-primary">Change Avatar</button> -->
-                    </div>
-                    <div class="col-6">
+            <div class="container mb-3">
+                <div class="row py-4">
+                    <div class="col-5">
                         <table class="ms-auto mt-4">
                             <tr>
                                 <td class="">
@@ -82,6 +76,14 @@
                                 </td>
                             </tr>
                         </table>
+                    </div>
+                    <div class="col-2 border-end"></div>
+                    <div class="col-5 text-center form-group">
+                        <div class="mb-4">
+                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="200" height="200" class="rounded-circle mt-4"/>
+                        </div>
+                        <!-- <button type="button" class="btn btn-outline-primary">Change Avatar</button> -->
+
                     </div>
                 </div>
             </div>
