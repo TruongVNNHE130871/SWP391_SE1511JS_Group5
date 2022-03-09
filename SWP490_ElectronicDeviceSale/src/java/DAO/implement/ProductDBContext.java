@@ -215,22 +215,50 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         try {
             String sql = "INSERT INTO [dbo].[Product]\n"
                     + "           ([CategoryId]\n"
+                    + "           ,[ShopId]\n"
                     + "           ,[Name]\n"
                     + "           ,[Image]\n"
                     + "           ,[Description]\n"
                     + "           ,[Discount]\n"
+                    + "           ,[Status]\n"
                     + "           ,[Created]\n"
+                    + "           ,[Size]\n"
+                    + "           ,[Weight]\n"
+                    + "           ,[Ram]\n"
+                    + "           ,[Orginal]\n"
+                    + "           ,[Year]\n"
                     + "           ,[Price])\n"
                     + "     VALUES\n"
-                    + "           ?\n"
+                    + "           (?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
-                    + "           ,?";
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
             PreparedStatement stm = connection.prepareStatement(sql);
-
+            stm.setInt(1, p.getC().getId());
+            stm.setInt(2, p.getS().getId());
+            stm.setString(3, p.getName());
+            stm.setString(4, p.getImage());
+            stm.setString(5, p.getDescription());
+            stm.setFloat(6, p.getDiscount());
+            stm.setBoolean(7, p.isStatus());
+            stm.setDate(8, (Date) p.getCreated());
+            stm.setFloat(9, p.getSize());
+            stm.setFloat(10, p.getWeight());
+            stm.setInt(11, p.getRam());
+            stm.setString(12, p.getOrginal());
+            stm.setString(13, p.getYear());
+            stm.setString(14, p.getPrice().replace(",", ""));
+            stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }

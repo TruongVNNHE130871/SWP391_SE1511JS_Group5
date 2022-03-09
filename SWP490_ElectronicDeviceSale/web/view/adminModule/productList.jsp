@@ -1,7 +1,10 @@
-<%-- 
-    Document   : productList
-    Created on : Feb 27, 2022, 10:42:23 PM
-    Author     : BH1704
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         CuongTV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,6 +35,17 @@
                     window.location.href = "ProductDeleteController?productID=" + id;
                 }
             }
+
+            function doUpdate(id) {
+                var confirmDelete = confirm("Do you want to update?");
+                if (confirmDelete) {
+                    window.location.href = "ProductUpdateController?productID=" + id;
+                }
+            }
+
+            function doAdd() {
+                window.location.href = "ProductInsertController";
+            }
         </script>
         <title>Document</title>
     </head>
@@ -40,7 +54,7 @@
         <div class="height-100">
         <div class="container-fluid box-view-list">
             <div class="list-product">
-                <button class="btn btn-outline-primary mb-4">Thêm Sản Phẩm</button>
+                <button class="btn btn-outline-primary mb-4" onclick="doAdd();">Thêm Sản Phẩm</button>
             <div class="list-product">
                 <p>Danh sách sản phẩm: </p>
                 <table class="table text-center">
@@ -80,7 +94,7 @@
                             <td>${p.discount}</td>
                             <td>${p.created}</td>
                             <td>
-                                <button type="submit" class="btn btn-outline-success text-up-dlt">Cập nhật</button>
+                                <button type="submit" onclick="doUpdate(${p.id});" class="btn btn-outline-success text-up-dlt">Cập nhật</button>
                                 <button type="submit" onclick="doDelete(${p.id});" class="btn btn-outline-danger text-up-dlt">Xóa</button>
                             </td>
                         </tr>           

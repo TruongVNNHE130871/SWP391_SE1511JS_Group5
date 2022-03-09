@@ -1,7 +1,10 @@
-<%-- 
-    Document   : productAdd
-    Created on : Feb 28, 2022, 11:50:38 AM
-    Author     : Admin
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         CuongTV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -52,20 +55,22 @@
                         <div class="mb-3 row">
                             <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
                             <div class="col-sm-10">
-                                <div class="dropdown">
-                                    <button onclick="myFunction()" class="dropbtn dropdown-toggle">Choose Category</button>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <c:forEach items="${requestScope.categories}" var="c">
-                                            <a href="${pageContext.request.contextPath}/ProductUpdateController"><input type="hidden" value="${c.id}" name="cid"/>${c.name}</a>
-                                            </c:forEach>
-                                    </div>
-                                </div>
+                                <select name="cid">
+                                    <option value="-1">Choose Category</option>
+                                    <c:forEach items="${requestScope.categories}" var="c">
+                                        <option 
+                                            <c:if test="${c.id eq requestScope.product.c.id}">
+                                                selected="selected"
+                                            </c:if>
+                                            value="${crequestScope.product.c.id}"> ${requestScope.product.c.name} </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="description">
                             <p>Description:</p>
                             <div class="mb-3">
-                                <input style="width:860px;height:200px;font-size:14pt;" type="text" name="productDescription" value="${requestScope.product.description}"/>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription">${requestScope.product.description}</textarea>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -80,7 +85,7 @@
                         <div class="mb-3 row">
                             <label for="staticEmail2" class="col-sm-2 col-form-label">Discount: </label>
                             <div class="col-sm-4">
-                                <input type="text" value="${requestScope.product.discount * 100}" name="productDiscount" class="form-control" id="" placeholder="">
+                                <input type="text" value="${requestScope.product.discount}" name="productDiscount" class="form-control" id="" placeholder="">
                             </div>
                             <div class="col-auto">
                                 <label class="col-sm-2 col-form-label">%</label>

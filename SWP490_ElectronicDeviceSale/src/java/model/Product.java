@@ -28,7 +28,7 @@ public class Product {
     private float size;
     private float weight;
     private int ram;
-    private String original;
+    private String orginal;
     private String year;
 
     public int getId() {
@@ -168,12 +168,12 @@ public class Product {
         this.ram = ram;
     }
 
-    public String getOriginal() {
-        return original;
+    public String getOrginal() {
+        return orginal;
     }
 
-    public void setOriginal(String original) {
-        this.original = original;
+    public void setOrginal(String orginal) {
+        this.orginal = orginal;
     }
 
     public String getYear() {

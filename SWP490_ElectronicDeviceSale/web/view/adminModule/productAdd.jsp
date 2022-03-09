@@ -1,9 +1,11 @@
-<%-- 
-    Document   : productAdd
-    Created on : Feb 28, 2022, 11:50:38 AM
-    Author     : BH1704
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         CuongTV         First Implement
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <c:url value = "assets" var="url"/>
@@ -27,69 +29,112 @@
     <!--side bar admin-->
     <jsp:include page = "./sideBar.jsp" />
     <body>
-        <div class="admin-add-new">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-8">
+        <form action="ProductInsertController" method="POST">
 
-                        <div class="mb-3 row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="productName" class="form-control">
-                            </div>
-                        </div>
+            <div class="admin-add-new">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-8">
 
-                        <div class="mb-3 row">
-                            <label for="inputImage" class="col-sm-2 col-form-label">Link Image: </label>
-                            <div class="col-sm-10">
-                                <input type="text" value="" name="productImage" class="form-control">
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" required name="productName" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
-                            <div class="col-sm-10">
-                                <div class="dropdown">
-                                    <button onclick="myFunction()" class="dropbtn dropdown-toggle">Choose Category</button>
-                                    <div id="myDropdown" class="dropdown-content">
+
+                            <div class="mb-3 row">
+                                <label for="inputImage" class="col-sm-2 col-form-label">Link Image: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="" required name="productImage" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
+                                <div class="col-sm-10">
+                                    <select name="cid">
+                                        <option value="-1">Choose Category</option>
                                         <c:forEach items="${requestScope.categories}" var="c">
-                                            <a href=""><input type="hidden" value="${c.id}" name="cid"/>${c.name}</a>
-                                            </c:forEach>
-                                    </div>
+                                            <option 
+                                                <c:if test="${c.id eq param.id}">
+                                                    selected="selected"
+                                                </c:if>
+                                                value="${c.id}"> ${c.name} </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="description">
+                                <p>Description:</p>
+                                <div class="mb-3"> 
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPrice" class="col-sm-2 col-form-label">Price: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productPrice" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">VNĐ</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputDiscount" class="col-sm-2 col-form-label">Discount: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productDiscount" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">%</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputSize" class="col-sm-2 col-form-label">Size: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productSize" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">mm</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputWeight" class="col-sm-2 col-form-label">Weight: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">gram</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">GB</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputOrginal" class="col-sm-2 col-form-label">Orginal: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productOrginal" class="form-control" id="" placeholder="">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputYear" class="col-sm-2 col-form-label">Release Year: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" required name="productYear" class="form-control" id="" placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <div class="description">
-                            <p>Description:</p>
-                            <div class="mb-3"> 
-                                <input style="width:860px;height:200px;font-size:14pt;" type="text" name="productDescription" value="${requestScope.product.description}"/>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail2" class="col-sm-2 col-form-label">Price: </label>
-                            <div class="col-sm-4">
-                                <input type="text" name="productPrice" class="form-control" id="" placeholder="">
-                            </div>
-                            <div class="col-auto">
-                                <label class="col-sm-2 col-form-label">VNĐ</label>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail2" class="col-sm-2 col-form-label">Discount: </label>
-                            <div class="col-sm-4">
-                                <input type="text" name="productDiscount" class="form-control" id="" placeholder="">
-                            </div>
-                            <div class="col-auto">
-                                <label class="col-sm-2 col-form-label">%</label>
-                            </div>
-                        </div>
-
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success">Add</button>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-outline-success">Add</button>
-                </div>
             </div>
-        </div>
+        </form>
     </body>
     <footer>
     </footer>
