@@ -27,21 +27,16 @@ Record of change:
         <script src="${url}/js/menu.js" type="text/javascript"></script>
         <title>Admin - Update Product Page</title>
     </head>
-    <header>
-        <div class="title-add-new">
-            <p class="text-header text-center">
-                Update Product
-            </p>
-        </div>
-    </header>
-
+    <!--side bar admin-->
+    <jsp:include page = "./sideBar.jsp" />
+    <!--update product admin-->
     <body>
         <div class="admin-add-new">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-4 text-center">
                         <img src="${requestScope.product.image}" alt=""
-                             width="300" height="400"> <br/>
+                             width="300" height="300"> <br/>
                         <button class="btn btn-outline-primary mt-3">Change Picture</button>
                     </div>
                     <div class="col-8">
