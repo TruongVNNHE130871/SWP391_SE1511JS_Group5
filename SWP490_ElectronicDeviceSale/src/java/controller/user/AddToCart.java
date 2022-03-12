@@ -61,68 +61,73 @@ public class AddToCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int n = 0;
-        int qty = 1;
-        String id;
-        if (request.getParameter("idProduct") != null) {
-            id = request.getParameter("idProduct");
-            Product product = pDB.getProduct(Integer.parseInt(id));;
-            if (product != null) {
-                if (request.getParameter("qty") != null) {
-                    qty = Integer.parseInt(request.getParameter("qty"));
-                }
-                HttpSession session = request.getSession();
-                if (session.getAttribute("order") == null) {
-                    Cart cart = new Cart();
-                    List<Item> listItems = new ArrayList<Item>();
-                    Item item = new Item();
-                    item.setQty(qty);
-                    item.setProduct(product);
-                    item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100));
-                    cart.setSumPrice(0);
-                    cart.setSumPrice(cart.getSumPrice() + item.getPrice());
-                    listItems.add(item);
-                    cart.setItems(listItems);
-                    n = listItems.size();
-                    session.setAttribute("length_order", n);
-                    session.setAttribute("order", cart);
-                    session.setAttribute("sumprice", cart.getSumPrice());
-                    session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
-                } else {
-                    Cart order = (Cart) session.getAttribute("order");
-                    List<Item> listItems = order.getItems();
-                    boolean check = false;
-                    for (Item item : listItems) {
-                        if (item.getProduct().getId() == product.getId()) {
-                            item.setQty(item.getQty() + qty);
-                            order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
-                                    - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * (item.getProduct().getDiscount() / 100));
-                            item.setPrice(item.getPrice() + (Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
-                                    - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100)));
-                            check = true;
-                        } else {
-                        }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("username") == null) {
+            response.sendRedirect(request.getContextPath() + "/LoginController");
+        } else {
+            int n = 0;
+            int qty = 1;
+            String id;
+            if (request.getParameter("idProduct") != null) {
+                id = request.getParameter("idProduct");
+                Product product = pDB.getProduct(Integer.parseInt(id));;
+                if (product != null) {
+                    if (request.getParameter("qty") != null) {
+                        qty = Integer.parseInt(request.getParameter("qty"));
                     }
-                    if (check == false) {
+                    if (session.getAttribute("order") == null) {
+                        Cart cart = new Cart();
+                        List<Item> listItems = new ArrayList<Item>();
                         Item item = new Item();
                         item.setQty(qty);
                         item.setProduct(product);
-                        item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
-                                * ((item.getProduct().getDiscount()) / 100));
-                        order.setSumPrice(order.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
-                                - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100));
+                        item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100));
+                        cart.setSumPrice(0);
+                        cart.setSumPrice(cart.getSumPrice() + item.getPrice());
                         listItems.add(item);
+                        cart.setItems(listItems);
+                        n = listItems.size();
+                        session.setAttribute("length_order", n);
+                        session.setAttribute("order", cart);
+                        session.setAttribute("sumprice", cart.getSumPrice());
+                        session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
+                    } else {
+                        Cart cart = (Cart) session.getAttribute("order");
+                        List<Item> listItems = cart.getItems();
+                        boolean check = false;
+                        for (Item item : listItems) {
+                            if (item.getProduct().getId() == product.getId()) {
+                                item.setQty(item.getQty() + qty);
+                                cart.setSumPrice(cart.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                        - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * (item.getProduct().getDiscount() / 100));
+                                item.setPrice(item.getPrice() + (Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                        - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100)));
+                                check = true;
+                            } else {
+                            }
+                        }
+                        if (check == false) {
+                            Item item = new Item();
+                            item.setQty(qty);
+                            item.setProduct(product);
+                            item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                    * ((item.getProduct().getDiscount()) / 100));
+                            cart.setSumPrice(cart.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
+                                    - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * ((item.getProduct().getDiscount()) / 100));
+                            listItems.add(item);
+                        }
+                        n = listItems.size();
+                        session.setAttribute("length_order", n);
+                        session.setAttribute("order", cart);
+                        session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
                     }
-                    n = listItems.size();
-                    session.setAttribute("length_order", n);
-                    session.setAttribute("order", order);
-                    session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
                 }
+                response.sendRedirect(request.getContextPath() + "/HomePageController");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/HomePageController");
             }
-            response.sendRedirect(request.getContextPath() + "/HomePageController");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/HomePageController");
         }
+
     }
 
     /**

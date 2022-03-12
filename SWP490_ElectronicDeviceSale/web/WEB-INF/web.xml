@@ -66,7 +66,7 @@
     </servlet>
     <servlet>
         <servlet-name>CheckOutController</servlet-name>
-        <servlet-class>controller.user.CheckOutController</servlet-class>
+        <servlet-class>controller.user.PaymentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewProductByCategory</servlet-name>

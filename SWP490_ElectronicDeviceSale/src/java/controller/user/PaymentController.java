@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author VinhNT
  */
-public class CheckOutController extends HttpServlet {
+public class PaymentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +48,7 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/userModule/checkout.jsp").forward(request, response);
+        request.getRequestDispatcher("view/userModule/payment.jsp").forward(request, response);
     }
 
     /**

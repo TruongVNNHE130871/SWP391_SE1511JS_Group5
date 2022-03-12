@@ -75,7 +75,6 @@ Record of change:
                             </tr>
                         </thead>
                         <tbody>
-                            <c:out value="${pageContext.request.locale.language}"/>
                             <c:forEach items="${order.items}" var="item">
                                 <tr>
                                     <td><a class="remove-link" href="${pageContext.request.contextPath}/DeleteToCart?id=${item.product.id}">X</a></td>

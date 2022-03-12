@@ -35,6 +35,9 @@ public class LogOutController extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.removeAttribute("username"); //remove session
+            session.removeAttribute("order"); //remove session
+            session.removeAttribute("sumprice"); //remove session
+            session.removeAttribute("length_order"); //remove session
         }
         response.sendRedirect("HomePageController");
 
