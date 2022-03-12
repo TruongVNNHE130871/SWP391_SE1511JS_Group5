@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Item;
-import model.Order;
+import model.Cart;
 import model.Product;
 
 /**
@@ -73,23 +73,23 @@ public class AddToCart extends HttpServlet {
                 }
                 HttpSession session = request.getSession();
                 if (session.getAttribute("order") == null) {
-                    Order order = new Order();
+                    Cart cart = new Cart();
                     List<Item> listItems = new ArrayList<Item>();
                     Item item = new Item();
                     item.setQty(qty);
                     item.setProduct(product);
                     item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100));
-                    order.setSumPrice(0);
-                    order.setSumPrice(order.getSumPrice() + item.getPrice());
+                    cart.setSumPrice(0);
+                    cart.setSumPrice(cart.getSumPrice() + item.getPrice());
                     listItems.add(item);
-                    order.setItems(listItems);
+                    cart.setItems(listItems);
                     n = listItems.size();
                     session.setAttribute("length_order", n);
-                    session.setAttribute("order", order);
-                    session.setAttribute("sumprice", order.getSumPrice());
-                    session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
+                    session.setAttribute("order", cart);
+                    session.setAttribute("sumprice", cart.getSumPrice());
+                    session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
                 } else {
-                    Order order = (Order) session.getAttribute("order");
+                    Cart order = (Cart) session.getAttribute("order");
                     List<Item> listItems = order.getItems();
                     boolean check = false;
                     for (Item item : listItems) {

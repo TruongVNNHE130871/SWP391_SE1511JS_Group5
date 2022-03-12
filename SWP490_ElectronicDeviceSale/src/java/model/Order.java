@@ -9,7 +9,7 @@ Record of change:
  */
 package model;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -18,9 +18,11 @@ import java.util.List;
 public class Order {
 
     private String id;
-    private List<Item> items;
-    private double sumPrice;
-    private String created;
+    private String productId;
+    private String orderDetailId;
+    private int quantity;
+    private Date orderDate;
+    private Date deliveryDate;
 
     public String getId() {
         return id;
@@ -30,34 +32,55 @@ public class Order {
         this.id = id;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public double getSumPrice() {
-        return sumPrice;
+    public String getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public void setSumPrice(double sumPrice) {
-        this.sumPrice = sumPrice;
+    public void setOrderDetailId(String orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
-    public String getCreated() {
-        return created;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCreated(String created) {
-        this.created = created;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "Order [id=" + id + ", items=" + items + ", sumPrice="
-                + sumPrice + ", created=" + created + "]";
+    public Date getOrderDate() {
+        return orderDate;
     }
 
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Order(String id, String productId, String orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
+        this.id = id;
+        this.productId = productId;
+        this.orderDetailId = orderDetailId;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Order() {
+    }
 }

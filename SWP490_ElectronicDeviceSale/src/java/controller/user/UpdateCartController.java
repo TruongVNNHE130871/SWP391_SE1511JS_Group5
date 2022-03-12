@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Item;
-import model.Order;
+import model.Cart;
 
 /**
  *
@@ -74,9 +74,9 @@ public class UpdateCartController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("order");
-        List<Item> listItems = order.getItems();
-        order.setSumPrice(0);
+        Cart cart = (Cart) session.getAttribute("order");
+        List<Item> listItems = cart.getItems();
+        cart.setSumPrice(0);
         for (Item item : listItems) {
             String v = String.valueOf(item.getProduct().getId());
             item.setQty(Integer.parseInt(request.getParameter(v)));
@@ -84,11 +84,11 @@ public class UpdateCartController extends HttpServlet {
                     - Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
                     * ((item.getProduct().getDiscount()) / 100))
                     * Integer.parseInt(request.getParameter(v)));
-            order.setSumPrice(order.getSumPrice() + item.getPrice());
+            cart.setSumPrice(cart.getSumPrice() + item.getPrice());
         }
-        order.setItems(listItems);
-        session.setAttribute("order", order);
-        session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
+        cart.setItems(listItems);
+        session.setAttribute("order", cart);
+        session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
         response.sendRedirect(request.getContextPath() + "/CartController");
 
     }

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Item;
-import model.Order;
+import model.Cart;
 import model.Product;
 
 /**
@@ -63,24 +63,24 @@ public class DeleteToCart extends HttpServlet {
         String id = request.getParameter("id");
         HttpSession session = request.getSession(true);
         Product product = pDB.getProduct(Integer.parseInt(id));;
-        Order order = (Order) session.getAttribute("order");
-        List<Item> listItems = order.getItems();
+        Cart cart = (Cart) session.getAttribute("order");
+        List<Item> listItems = cart.getItems();
         for (Item item : listItems) {
             if (item.getProduct().getId() == product.getId()) {
-                order.setSumPrice(order.getSumPrice() - item.getPrice());
+                cart.setSumPrice(cart.getSumPrice() - item.getPrice());
                 listItems.remove(item);
                 break;
             }
         }
-        order.setItems(listItems);
-        session.setAttribute("order", order);
+        cart.setItems(listItems);
+        session.setAttribute("order", cart);
         n = listItems.size();
         session.setAttribute("length_order", n);
         response.sendRedirect(request.getContextPath() + "/CartController");
-        if (order.getSumPrice() == 0) {
+        if (cart.getSumPrice() == 0) {
             session.setAttribute("sumprice", "0");
         } else {
-             session.setAttribute("sumprice", currentLocale.format(order.getSumPrice()));
+             session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
         }
 
     }
