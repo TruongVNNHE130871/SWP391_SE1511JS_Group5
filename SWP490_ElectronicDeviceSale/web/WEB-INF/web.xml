@@ -65,10 +65,6 @@
         <servlet-class>controller.user.UpdateCartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CheckOutController</servlet-name>
-        <servlet-class>controller.user.PaymentController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewProductByCategory</servlet-name>
         <servlet-class>controller.user.ViewProductByCategory</servlet-class>
     </servlet>
@@ -91,6 +87,10 @@
     <servlet>
         <servlet-name>ProductUpdateController</servlet-name>
         <servlet-class>controller.admin.ProductUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentController</servlet-name>
+        <servlet-class>controller.user.PaymentController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -157,10 +157,6 @@
         <url-pattern>/UpdateCartController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CheckOutController</servlet-name>
-        <url-pattern>/CheckOutController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ViewProductByCategory</servlet-name>
         <url-pattern>/ViewProductByCategory</url-pattern>
     </servlet-mapping>
@@ -183,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>ProductUpdateController</servlet-name>
         <url-pattern>/ProductUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentController</servlet-name>
+        <url-pattern>/PaymentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

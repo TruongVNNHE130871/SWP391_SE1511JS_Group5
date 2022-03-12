@@ -18,7 +18,7 @@ public class OrderDetail {
     private int id;
     private String user_session;
     private String user_name;
-    private String user_phone;
+    private int user_phone;
     private String user_mail;
     private String address;
     private String note;
@@ -29,7 +29,7 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(int id, String user_session, String user_name, String user_phone, String user_mail, String address, String note, String amount, String payment, String status) {
+    public OrderDetail(int id, String user_session, String user_name, int user_phone, String user_mail, String address, String note, String amount, String payment, String status) {
         this.id = id;
         this.user_session = user_session;
         this.user_name = user_name;
@@ -66,11 +66,11 @@ public class OrderDetail {
         this.user_name = user_name;
     }
 
-    public String getUser_phone() {
+    public int getUser_phone() {
         return user_phone;
     }
 
-    public void setUser_phone(String user_phone) {
+    public void setUser_phone(int user_phone) {
         this.user_phone = user_phone;
     }
 
@@ -121,5 +121,5 @@ public class OrderDetail {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

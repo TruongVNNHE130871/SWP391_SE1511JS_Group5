@@ -17,34 +17,56 @@ import java.util.Date;
  */
 public class Order {
 
-    private String id;
-    private String productId;
-    private String orderDetailId;
+    private int id;
+    private int userId;
+    private int productId;
+    private int orderDetailId;
     private int quantity;
     private Date orderDate;
     private Date deliveryDate;
 
-    public String getId() {
+    public Order() {
+    }
+
+    public Order(int id, int userId, int productId, int orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
+        this.id = id;
+        this.userId = userId;
+        this.productId = productId;
+        this.orderDetailId = orderDetailId;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getProductId() {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public String getOrderDetailId() {
+    public int getOrderDetailId() {
         return orderDetailId;
     }
 
-    public void setOrderDetailId(String orderDetailId) {
+    public void setOrderDetailId(int orderDetailId) {
         this.orderDetailId = orderDetailId;
     }
 
@@ -72,15 +94,4 @@ public class Order {
         this.deliveryDate = deliveryDate;
     }
 
-    public Order(String id, String productId, String orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
-        this.id = id;
-        this.productId = productId;
-        this.orderDetailId = orderDetailId;
-        this.quantity = quantity;
-        this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
-    }
-
-    public Order() {
-    }
 }

@@ -72,10 +72,10 @@ Record of change:
                         </div>
                         <div class="form-group mb-5">
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                      placeholder="Ghi Chú*" name="payment_notr"></textarea>
+                                      placeholder="Ghi Chú*" name="payment_note"></textarea>
                         </div>
                         <div class="form-group mb-5"style="display: none">
-                            <input type="text" placeholder="userid_session" name="payment_usersession" value="${userName }"> 
+                            <input type="text" placeholder="userid_session" name="payment_usersession" value="${sessionScope.username}"> 
 
                             <input type="text" placeholder="totalmoney_session" name="payment_amount" value="${sumprice}">   
                         </div>

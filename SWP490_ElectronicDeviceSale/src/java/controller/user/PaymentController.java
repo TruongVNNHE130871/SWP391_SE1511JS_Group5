@@ -9,18 +9,29 @@ Record of change:
  */
 package controller.user;
 
+import DAO.implement.OrderDBContext;
+import DAO.implement.OrderDetailDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Cart;
+import model.Item;
+import model.Order;
+import model.OrderDetail;
+import model.User;
 
 /**
  *
  * @author VinhNT
  */
 public class PaymentController extends HttpServlet {
+
+    OrderDetailDBContext odDB = new OrderDetailDBContext();
+    OrderDBContext oDB = new OrderDBContext();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +44,7 @@ public class PaymentController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +73,61 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        String user_session = request.getParameter("payment_usersession");
+        String name = request.getParameter("payment_name");
+        int phone = Integer.parseInt(request.getParameter("payment_phone"));
+        String mail = request.getParameter("payment_email");
+        String address = request.getParameter("payment_address");
+        String note = request.getParameter("payment_note");
+        String amount = request.getParameter("payment_amount");
+        String payment = "COD";
+        String status = "Xac nhan";
+
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setUser_session(user_session);
+        orderDetail.setUser_name(name);
+        orderDetail.setUser_phone(phone);
+        orderDetail.setUser_mail(mail);
+        orderDetail.setAddress(address);
+        orderDetail.setNote(note);
+        orderDetail.setAmount(amount);
+        orderDetail.setPayment(payment);
+        orderDetail.setStatus(status);
+        odDB.insert(orderDetail);
+
+        int maxid = 0;
+        List<OrderDetail> listOrderDetail = odDB.getAll();
+        if (listOrderDetail.size() == 0) {
+            maxid = 0;
+        } else {
+            for (OrderDetail listOrderDetail2 : listOrderDetail) {
+                if (listOrderDetail2.getId() >= maxid) {
+                    maxid = listOrderDetail2.getId();
+                }
+            }
+        }
+
+        User user = (User) session.getAttribute("user");
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<Item> listItems = cart.getItems();
+        for (Item item : listItems) {
+            Order order = new Order();
+            order.setId(user.getId());
+            order.setProductId(item.getProduct().getId());
+            order.setQuantity(item.getQty());
+            long millis = System.currentTimeMillis();
+            java.sql.Date created = new java.sql.Date(millis);
+            order.setOrderDate(created);
+            order.setOrderDetailId(maxid);
+            oDB.insert(order);
+        }
+        if (session != null) {
+            session.removeAttribute("cart"); //remove session
+            session.removeAttribute("sumprice"); //remove session
+            session.removeAttribute("length_order"); //remove session
+        }
+        response.sendRedirect(request.getContextPath() + "/HomePageController");
     }
 
     /**

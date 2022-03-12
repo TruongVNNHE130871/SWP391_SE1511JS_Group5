@@ -115,7 +115,7 @@ Record of change:
                             <th>Tổng Cộng</th>
                             <td><strong>${sumprice} VNĐ</strong></td>
                         </tr>
-                        <tr><td colspan="2"><a href="${pageContext.request.contextPath}/CheckOutController" class="update-cart mt-5 text-decoration-none">Thanh Toán</a></td></tr>
+                        <tr><td colspan="2"><a href="${pageContext.request.contextPath}/PaymentController" class="update-cart mt-5 text-decoration-none">Thanh Toán</a></td></tr>
                     </table>
                 </div>
             </div>
