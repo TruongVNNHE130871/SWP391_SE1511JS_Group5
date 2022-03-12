@@ -12,6 +12,7 @@ package controller.user;
 import DAO.implement.OrderDBContext;
 import DAO.implement.OrderDetailDBContext;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -81,6 +82,7 @@ public class PaymentController extends HttpServlet {
         String address = request.getParameter("payment_address");
         String note = request.getParameter("payment_note");
         String amount = request.getParameter("payment_amount");
+        String created = request.getParameter("payment_created");
         String payment = "COD";
         String status = "Xac nhan";
 
@@ -116,9 +118,7 @@ public class PaymentController extends HttpServlet {
             order.setId(user.getId());
             order.setProductId(item.getProduct().getId());
             order.setQuantity(item.getQty());
-            long millis = System.currentTimeMillis();
-            java.sql.Date created = new java.sql.Date(millis);
-            order.setOrderDate(created);
+            order.setOrderDate(Date.valueOf(created));
             order.setOrderDetailId(maxid);
             oDB.insert(order);
         }

@@ -22,7 +22,7 @@ import model.Order;
 public class OrderDBContext extends BaseDAO {
 
     public void insert(Order order) {
-        String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?, ?, ?,?,?)";
+        String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, order.getUserId());
