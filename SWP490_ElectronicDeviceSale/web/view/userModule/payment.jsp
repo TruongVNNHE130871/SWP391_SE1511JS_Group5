@@ -10,6 +10,7 @@ Record of change:
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
@@ -94,7 +95,7 @@ Record of change:
                                     <c:forEach items="${cart.items}" var="item">
                                         <tr>
                                             <td>${item.product.name } <strong> x  ${item.qty}</strong></td>
-                                            <td>${item.price}VNĐ</td>
+                                            <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${item.price}" />VNĐ</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

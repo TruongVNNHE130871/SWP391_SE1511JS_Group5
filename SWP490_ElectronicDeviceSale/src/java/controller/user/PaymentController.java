@@ -115,7 +115,7 @@ public class PaymentController extends HttpServlet {
         List<Item> listItems = cart.getItems();
         for (Item item : listItems) {
             Order order = new Order();
-            order.setId(user.getId());
+            order.setUserId(user.getId());
             order.setProductId(item.getProduct().getId());
             order.setQuantity(item.getQty());
             order.setOrderDate(Date.valueOf(created));
