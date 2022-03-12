@@ -75,7 +75,7 @@ Record of change:
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${order.items}" var="item">
+                            <c:forEach items="${cart.items}" var="item">
                                 <tr>
                                     <td><a class="remove-link" href="${pageContext.request.contextPath}/DeleteToCart?id=${item.product.id}">X</a></td>
                                     <td><a href="${pageContext.request.contextPath}/ProductDetailController?idProduct=${item.product.id}"><img src="${item.product.image}" alt="img${item.product.name }" width="100" height="100"></a></td>

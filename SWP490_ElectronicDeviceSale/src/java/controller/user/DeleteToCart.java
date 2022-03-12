@@ -63,7 +63,7 @@ public class DeleteToCart extends HttpServlet {
         String id = request.getParameter("id");
         HttpSession session = request.getSession(true);
         Product product = pDB.getProduct(Integer.parseInt(id));;
-        Cart cart = (Cart) session.getAttribute("order");
+        Cart cart = (Cart) session.getAttribute("cart");
         List<Item> listItems = cart.getItems();
         for (Item item : listItems) {
             if (item.getProduct().getId() == product.getId()) {
@@ -73,7 +73,7 @@ public class DeleteToCart extends HttpServlet {
             }
         }
         cart.setItems(listItems);
-        session.setAttribute("order", cart);
+        session.setAttribute("cart", cart);
         n = listItems.size();
         session.setAttribute("length_order", n);
         response.sendRedirect(request.getContextPath() + "/CartController");

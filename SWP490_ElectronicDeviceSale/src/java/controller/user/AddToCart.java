@@ -75,7 +75,7 @@ public class AddToCart extends HttpServlet {
                     if (request.getParameter("qty") != null) {
                         qty = Integer.parseInt(request.getParameter("qty"));
                     }
-                    if (session.getAttribute("order") == null) {
+                    if (session.getAttribute("cart") == null) {
                         Cart cart = new Cart();
                         List<Item> listItems = new ArrayList<Item>();
                         Item item = new Item();
@@ -88,11 +88,11 @@ public class AddToCart extends HttpServlet {
                         cart.setItems(listItems);
                         n = listItems.size();
                         session.setAttribute("length_order", n);
-                        session.setAttribute("order", cart);
+                        session.setAttribute("cart", cart);
                         session.setAttribute("sumprice", cart.getSumPrice());
                         session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
                     } else {
-                        Cart cart = (Cart) session.getAttribute("order");
+                        Cart cart = (Cart) session.getAttribute("cart");
                         List<Item> listItems = cart.getItems();
                         boolean check = false;
                         for (Item item : listItems) {
@@ -118,7 +118,7 @@ public class AddToCart extends HttpServlet {
                         }
                         n = listItems.size();
                         session.setAttribute("length_order", n);
-                        session.setAttribute("order", cart);
+                        session.setAttribute("cart", cart);
                         session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
                     }
                 }
