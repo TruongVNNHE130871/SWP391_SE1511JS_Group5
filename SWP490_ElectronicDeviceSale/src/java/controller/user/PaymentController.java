@@ -50,6 +50,7 @@ public class PaymentController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          request.getRequestDispatcher("view/userModule/payment.jsp").forward(request, response);
 
     }
 
@@ -65,7 +66,8 @@ public class PaymentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/userModule/payment.jsp").forward(request, response);
+         processRequest(request, response);
+
     }
 
     /**
@@ -147,7 +149,7 @@ public class PaymentController extends HttpServlet {
             session.removeAttribute("sumprice"); //remove session
             session.removeAttribute("length_order"); //remove session
         }
-        response.sendRedirect(request.getContextPath() + "/HomePageController");
+        response.sendRedirect(request.getContextPath() + "/PaymentController");
     }
 
     /**

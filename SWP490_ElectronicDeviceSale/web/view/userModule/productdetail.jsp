@@ -70,7 +70,7 @@ Record of change:
                                 <div class="input-group">
                                     <span class="fs-6 me-3 my-2">Quantity</span>
                                     <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
-                                    <input type="text" value="1" id="num" class="input-group-text">                           
+                                    <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
                                     <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
                                 </div>
 
@@ -204,8 +204,10 @@ Record of change:
                 </div>
             </section>
         </article>
+
         <article>
-            <h4>Đánh giá của khách hàng</h4>
+            <!-- Start list review -->
+            <h4 class="c">Đánh giá của khách hàng</h4>
             <div class="">
                 <ul class="">
                     <c:forEach items="${reviewbyid}" var="review" >
@@ -219,8 +221,10 @@ Record of change:
                         </li>
                     </c:forEach>
                 </ul>
-                <h4>Thêm đánh giá</h4>
-                <!-- review form -->
+                <!-- End list review -->
+
+                <h4 class="c">Thêm đánh giá</h4>
+                <!-- Start review form -->
                 <form action="ReviewController?id=${requestScope.product.id}" method="post" class="">
                     <div class="form-group">
                         <label>Tên</label>
@@ -229,7 +233,7 @@ Record of change:
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <input type="text" class="form-control"  placeholder="Số điện thoại"  pattern="[0-9]{10}"
-                                        required name="phone">
+                               required name="phone">
                     </div>
                     <div class="form-group">
                         <label>Đánh giá của bạn</label>
@@ -238,9 +242,8 @@ Record of change:
 
                     <button type="submit">Gửi đánh giá</button>
                 </form>
-
+                <!--End review form -->
             </div>
-
         </div>
     </article>
 </body>
