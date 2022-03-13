@@ -79,10 +79,7 @@ Record of change:
                                 <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
                                     Add To Cart
                                 </a><br>
-                                <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
-                                    Buy Now <br>
-                                    <span class="free-ship">Free shipping or pick up in store</span>
-                                </a>
+                              
                             </div>
                         </div>
                     </div>
