@@ -28,6 +28,11 @@
             crossorigin="anonymous"
         ></script>
         <script src="${url}/js/homepage.js" type="text/javascript" defer></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
         <title>Lịch sử đặt hàng</title>
     </head>
     <!--Start header-menu-->
@@ -59,26 +64,23 @@
                 </section>
             </article>
             <!-- End banner-->
-            <div>
-                <table class="table">
-                    <tr class="tr">
-                        <th class="th">
-                            Mã đơn hàng
-                        </th>
-                        <th class="th">
-                            Ngày đặt hàng
-                        </th>
-                        <th class="th">
-                            Ngày giao hàng
-                        </th>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Ngày đặt hàng</th>
+                        <th scope="col">Ngày giao hàng</th>
+                        <th scope="col"></th>
                     </tr>
+                </thead>
+                <tbody>
                     <c:forEach items="${requestScope.orders}" var="order">
                         <tr class="tr">
                             <td class="td">
                                 ${order.id}
                             </td>
                             <td class="td">
-                                ${order.created}
+                                ${order.orderDate}
                             </td>
                             <td class="td">
                                 ${order.deliveryDate}
@@ -88,8 +90,8 @@
                             </td>
                         </tr>
                     </c:forEach>
-                </table>
-            </div>
+                </tbody>
+            </table>
             <div id="paggerbottom" class="pagger"></div>
         </main>
     </body>
