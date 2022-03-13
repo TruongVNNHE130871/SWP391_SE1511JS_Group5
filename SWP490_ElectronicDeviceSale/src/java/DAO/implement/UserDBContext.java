@@ -36,7 +36,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      * @return user
      */
     @Override
-   public User getUserByUserPass(String username, String password) {
+    public User getUserByUserPass(String username, String password) {
         PreparedStatement statement = null;
         //Init statement
         this.getConnection();
@@ -323,6 +323,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public void editProfile(User u) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "UPDATE [dbo].[User]\n"
                     + "   SET [Name] = ?\n"
@@ -330,15 +332,26 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                     + "      ,[Phone] = ?\n"
                     + "      ,[Email] = ?\n"
                     + " WHERE ID = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, u.getName());
-            stm.setBoolean(2, u.isGender());
-            stm.setInt(3, u.getPhone());
-            stm.setString(4, u.getEmail());
-            stm.setInt(5, u.getId());
-            stm.executeUpdate();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, u.getName());
+            statement.setBoolean(2, u.isGender());
+            statement.setInt(3, u.getPhone());
+            statement.setString(4, u.getEmail());
+            statement.setInt(5, u.getId());
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

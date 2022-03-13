@@ -21,10 +21,12 @@ public class ManufacturerDBContext extends BaseDAO {
 
     public ArrayList<Manufacturer> getManufacturers() {
         ArrayList<Manufacturer> manufacturers = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select * from Manufacturer";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Manufacturer manufacturer = new Manufacturer();
                 manufacturer.setId(rs.getInt("ID"));
@@ -33,6 +35,17 @@ public class ManufacturerDBContext extends BaseDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ManufacturerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return manufacturers;
     }

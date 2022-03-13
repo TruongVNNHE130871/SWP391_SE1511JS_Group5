@@ -140,7 +140,7 @@ Record of change:
                         <div id="paggerbottom" class="pagger"></div>
                 </section>
             </article>
-            <!-- Start list new product-->
+            <!-- End list new product-->
         </main>
         <!-- End content -->
         <img src="" alt=""/>

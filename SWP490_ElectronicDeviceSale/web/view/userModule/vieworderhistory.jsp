@@ -8,7 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
@@ -28,13 +28,14 @@
             crossorigin="anonymous"
         ></script>
         <script src="${url}/js/homepage.js" type="text/javascript" defer></script>
-        <title>View Order History</title>
+        <title>Lịch sử đặt hàng</title>
     </head>
     <!--Start header-menu-->
     <jsp:include page = "./header/header-menu.jsp" />
     <!--End header-menu-->
     <body>
         <main id="content">
+            <!-- Start banner-->
             <article>
                 <section class="banner">
                     <div class="slideshow-container">
@@ -57,76 +58,18 @@
                     </div>          
                 </section>
             </article>
-            <!-- Start category product-->
-            <article class="mt-3">
-                <section>
-                    <div class="grid-container-category-product">
-                        <div class="grid-item-category text-center py-2">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/dienthoai1.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Phone</p>                       
-                        </div>  
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/laptop.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Laptop</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/ipad.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">                          
-                                </a>
-                            </div>
-                            <p class="title-phone">Ipad</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/tainghe.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Phụ kiện</p>                       
-                        </div>  
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Linh kiện</p>                       
-                        </div>
-                        <div class="grid-item-category text-center py-2 ">
-                            <div class="img-category">
-                                <a href="${pageContext.request.contextPath}/AdvanceSearchController">
-                                    <img src="${url}/images/banphim.png" alt="" width="100px" height="100px" class="rounded-circle bg-light">
-                                </a>
-                            </div>
-                            <p class="title-phone">Linh kiện</p>                       
-                        </div>
-                    </div>
-                </section>
-            </article>
-            <!-- End category product-->
+            <!-- End banner-->
             <div>
                 <table class="table">
                     <tr class="tr">
                         <th class="th">
-                            STT
+                            Mã đơn hàng
                         </th>
                         <th class="th">
                             Ngày đặt hàng
                         </th>
                         <th class="th">
                             Ngày giao hàng
-                        </th>
-                        <th class="th">
-                            Xem chi tiết
                         </th>
                     </tr>
                     <c:forEach items="${requestScope.orders}" var="order">
@@ -150,6 +93,7 @@
             <div id="paggerbottom" class="pagger"></div>
         </main>
     </body>
+    <!-- custom js file link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/js/pagger.js" type="text/javascript"></script>
     <script>

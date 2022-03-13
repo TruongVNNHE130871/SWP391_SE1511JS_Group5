@@ -21,10 +21,12 @@ public class CategoryDBContext extends BaseDAO {
 
     public ArrayList<Category> getCategories() {
         ArrayList<Category> categories = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select * from Category";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Category category = new Category();
                 category.setId(rs.getInt("ID"));
@@ -34,6 +36,17 @@ public class CategoryDBContext extends BaseDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(CategoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return categories;
     }

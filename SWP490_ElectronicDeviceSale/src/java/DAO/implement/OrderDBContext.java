@@ -30,14 +30,14 @@ import model.User;
 public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 
     @Override
-       public void insert(Order order) {
-           PreparedStatement statement = null;
+    public void insert(Order order) {
+        PreparedStatement statement = null;
         //Init statement
         this.getConnection();
         try {
-             String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
-             statement = connection.prepareStatement(sql);
-            User user= order.getUsername();
+            String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            User user = order.getUsername();
             statement.setInt(1, user.getId());
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
@@ -46,7 +46,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             try {
                 if (statement != null) {
                     statement.close();
@@ -65,18 +65,21 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
     @Override
     public ArrayList<Order> getOrders(int pageindex, int pagesize, int id) {
         ArrayList<Order> orders = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+
         try {
             String sql = "select o.ID, o.OrderDate, o.DeliveryDate, o.UserId\n"
                     + "from (SELECT ROW_NUMBER() OVER (ORDER BY o.ID asc) as rownum,o.ID, o.OrderDate, o.DeliveryDate, o.UserId\n"
                     + "from [Order] o) o\n"
                     + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? AND o.UserId = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, pageindex);
-            stm.setInt(2, pagesize);
-            stm.setInt(3, pageindex);
-            stm.setInt(4, pagesize);
-            stm.setInt(5, id);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, pageindex);
+            statement.setInt(2, pagesize);
+            statement.setInt(3, pageindex);
+            statement.setInt(4, pagesize);
+            statement.setInt(5, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
                 o.setId(rs.getInt("ID"));
@@ -86,21 +89,46 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return orders;
     }
 
     @Override
     public int getOrderRowCount() {
+        PreparedStatement statement = null;
+        this.getConnection();
+
         try {
             String sql = "select COUNT(*) as Total from [Order]";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getInt("Total");
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return -1;
     }
@@ -108,13 +136,15 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
     @Override
     public ArrayList<Order> listOrder(int id) {
         ArrayList<Order> orders = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select o.ID, o.OrderDate, o.DeliveryDate,o.UserId\n"
                     + "from Order o"
                     + "where o.UserId = ? ";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
                 o.setId(rs.getInt("ID"));
@@ -124,6 +154,17 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return orders;
     }
@@ -161,7 +202,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 sql += "AND o.[OrderDate] = ?\n";
                 param.setIndex(pageIndex);
                 param.setType("DATE");
-                params.add(param);   
+                params.add(param);
                 paramIndex++;
 //                Object[] param = new Object[2];
 //                param[0] = "DATE";
@@ -172,7 +213,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 sql += "AND o.[DeliveryDate] = ?\n";
                 param.setIndex(pageIndex);
                 param.setType("DATE");
-                params.add(param); 
+                params.add(param);
                 paramIndex++;
 //                Object[] param = new Object[2];
 //                param[0] = "DATE";
@@ -208,7 +249,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 //                }
 //            }
             rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("ID"));
                 order.getUsername(rs.getString("UserName"));
@@ -218,7 +259,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
+        } finally {
             try {
                 connection.close();
                 //close connection
@@ -227,13 +268,13 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 }
                 //close result set
                 if (stm != null) {
-                    stm.close();                   
+                    stm.close();
                 }
                 //close statement
             } catch (SQLException ex) {
                 Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        
+        }
         return orders;
     }
 
