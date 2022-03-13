@@ -18,7 +18,7 @@ import java.util.Date;
 public class Order {
 
     private int id;
-    private String username;
+    private User username;
     private int productId;
     private int orderDetailId;
     private int quantity;
@@ -28,7 +28,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, String username, int productId, int orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
+    public Order(int id, User username, int productId, int orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
         this.id = id;
         this.username = username;
         this.productId = productId;
@@ -46,11 +46,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getUsername() {
+    public User getUsername() {
         return username;
     }
 
-    public void getUsername(String username) {
+    public void setUsername(User username) {
         this.username = username;
     }
 
@@ -93,5 +93,7 @@ public class Order {
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
+
+   
 
 }

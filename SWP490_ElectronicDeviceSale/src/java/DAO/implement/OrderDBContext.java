@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Order;
 import model.TempObject;
+import model.User;
 
 /**
  *
@@ -29,11 +30,12 @@ import model.TempObject;
 public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 
     @Override
-    public void insert(Order order) {
+       public void insert(Order order) {
         String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, order.getUsername());
+            User user= order.getUsername();
+            statement.setInt(1, user.getId());
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
             statement.setDate(4, (Date) order.getOrderDate());

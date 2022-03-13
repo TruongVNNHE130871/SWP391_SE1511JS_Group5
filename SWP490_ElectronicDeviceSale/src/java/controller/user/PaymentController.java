@@ -115,13 +115,16 @@ public class PaymentController extends HttpServlet {
         List<Item> listItems = cart.getItems();
         for (Item item : listItems) {
             Order order = new Order();
-            order.getUsername(user.getName());
+            User user2 = new User();
+            user2.setId(user.getId());
+            order.setUsername(user2);
             order.setProductId(item.getProduct().getId());
             order.setQuantity(item.getQty());
             order.setOrderDate(Date.valueOf(created));
             order.setOrderDetailId(maxid);
             oDB.insert(order);
         }
+
         if (session != null) {
             session.removeAttribute("cart"); //remove session
             session.removeAttribute("sumprice"); //remove session
