@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Admin
  */
-public class Product {
+public class Product implements Cloneable{
 
     private int id;
     private Category c;
@@ -182,6 +182,12 @@ public class Product {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return (Product) super.clone();
     }
 
 }

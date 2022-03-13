@@ -108,6 +108,10 @@
         <servlet-name>ViewAllOrderController</servlet-name>
         <servlet-class>controller.admin.ViewAllOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>controller.admin.OrderDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>ViewAllOrderController</servlet-name>
         <url-pattern>/ViewAllOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/OrderDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

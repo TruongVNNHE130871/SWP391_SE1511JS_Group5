@@ -73,7 +73,6 @@ public class ProductInsertController extends HttpServlet {
         int productCategory = Integer.parseInt(raw_productCategory);
 
         String productDescription = request.getParameter("productDescription");
-
         String productPrice = request.getParameter("productPrice");
         String raw_productDiscount = request.getParameter("productDiscount");
         if (raw_productDiscount == null || raw_productDiscount.length() == 0) {
