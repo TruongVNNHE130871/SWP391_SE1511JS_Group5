@@ -31,9 +31,12 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 
     @Override
        public void insert(Order order) {
-        String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+           PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+             String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+             statement = connection.prepareStatement(sql);
             User user= order.getUsername();
             statement.setInt(1, user.getId());
             statement.setInt(2, order.getProductId());
@@ -43,6 +46,19 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

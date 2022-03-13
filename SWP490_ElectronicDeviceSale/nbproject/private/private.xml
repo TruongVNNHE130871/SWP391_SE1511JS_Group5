@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/controller/user/SignUp.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/DAO/IUserDBContext.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/controller/user/ViewOrderHistory.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/web/view/userModule/vieworderhistory.jsp</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/DAO/implement/UserDBContext.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/DAO/implement/BaseDAO.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/web/view/userModule/signUp.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/IProductDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/BaseDAO.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/IOrderDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/UserDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/OrderDetailDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/OrderDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/IUserDBContext.java</file>
         </group>
     </open-files>
 </project-private>

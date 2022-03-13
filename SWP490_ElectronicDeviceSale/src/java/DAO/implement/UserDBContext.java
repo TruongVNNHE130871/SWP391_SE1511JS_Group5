@@ -36,10 +36,13 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      * @return user
      */
     @Override
-    public User getUserByUserPass(String username, String password) {
+   public User getUserByUserPass(String username, String password) {
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
             String sql = "select * from [User] where UserName = ? AND PassWord = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
@@ -58,6 +61,19 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
