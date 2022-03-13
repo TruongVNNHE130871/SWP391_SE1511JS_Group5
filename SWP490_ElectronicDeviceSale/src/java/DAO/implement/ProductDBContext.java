@@ -30,15 +30,17 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
 
     public ArrayList<Product> searchProducts(String keyword) {
         ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created from Product p\n";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             if (keyword != null) {
                 sql += "where p.Name like '%'+ ? + '%'";
-                stm = connection.prepareStatement(sql);
-                stm.setString(1, keyword);
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, keyword);
             }
-            ResultSet rs = stm.executeQuery();
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("ID"));
@@ -53,23 +55,36 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return products;
     }
 
     public ArrayList<Product> getProductsByCategory(int cid) {
         ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
                     + "from Product p inner join Category c\n"
                     + "on p.CategoryId = c.ID\n";
-            PreparedStatement stm = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             if (cid != -1) {
                 sql += "where c.ID = ?";
-                stm = connection.prepareStatement(sql);
-                stm.setInt(1, cid);
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, cid);
             }
-            ResultSet rs = stm.executeQuery();
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("ID"));
@@ -89,20 +104,33 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return products;
     }
 
     // Get product information by product's id
     public Product getProduct(int id) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
                     + "from Product p inner join Category c\n"
                     + "on p.CategoryId = c.ID\n"
                     + "where p.ID = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("ID"));
@@ -122,24 +150,37 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
 
     public ArrayList<Product> getProducts(int pageindex, int pagesize) {
         ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.CategoryID, p.CategoryName , p.CategoryDescription\n"
                     + "from (SELECT ROW_NUMBER() OVER (ORDER BY p.id asc) as rownum, p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
                     + "from Product p inner join Category c \n"
                     + "on p.CategoryId = c.ID) p \n"
                     + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, pageindex);
-            stm.setInt(2, pagesize);
-            stm.setInt(3, pageindex);
-            stm.setInt(4, pagesize);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, pageindex);
+            statement.setInt(2, pagesize);
+            statement.setInt(3, pageindex);
+            statement.setInt(4, pagesize);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("ID"));
@@ -159,20 +200,44 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return products;
     }
 
     public int getRowCount() {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select COUNT(*) as Total from Product";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getInt("Total");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return -1;
     }
@@ -180,12 +245,14 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
     @Override
     public ArrayList<Product> listProduct() {
         ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName , c.Description as CategoryDescription\n"
                     + "from Product p inner join Category c \n"
                     + "on p.CategoryId = c.ID";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
                 p.setId(rs.getInt("ID"));
@@ -206,12 +273,25 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return products;
     }
 
     @Override
     public void insertProduct(Product p) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "INSERT INTO [dbo].[Product]\n"
                     + "           ([CategoryId]\n"
@@ -243,30 +323,44 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?)";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, p.getC().getId());
-            stm.setInt(2, p.getS().getId());
-            stm.setString(3, p.getName());
-            stm.setString(4, p.getImage());
-            stm.setString(5, p.getDescription());
-            stm.setFloat(6, p.getDiscount());
-            stm.setBoolean(7, p.isStatus());
-            stm.setDate(8, (Date) p.getCreated());
-            stm.setFloat(9, p.getSize());
-            stm.setFloat(10, p.getWeight());
-            stm.setInt(11, p.getRam());
-            stm.setString(12, p.getOrginal());
-            stm.setString(13, p.getYear());
-            stm.setString(14, p.getPrice().replace(",", ""));
-            stm.executeUpdate();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, p.getC().getId());
+            statement.setInt(2, p.getS().getId());
+            statement.setString(3, p.getName());
+            statement.setString(4, p.getImage());
+            statement.setString(5, p.getDescription());
+            statement.setFloat(6, p.getDiscount());
+            statement.setBoolean(7, p.isStatus());
+            statement.setDate(8, (Date) p.getCreated());
+            statement.setFloat(9, p.getSize());
+            statement.setFloat(10, p.getWeight());
+            statement.setInt(11, p.getRam());
+            statement.setString(12, p.getOrginal());
+            statement.setString(13, p.getYear());
+            statement.setString(14, p.getPrice().replace(",", ""));
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
 
     @Override
     public void updateProduct(Product p) {
+        PreparedStatement statement = null;
+        this.getConnection();
+
         try {
             String sql = "UPDATE [dbo].[Product]\n"
                     + "   SET [CategoryId] = ?\n"
@@ -276,36 +370,63 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                     + "      ,[Created] = ?\n"
                     + "      ,[Price] = ?\n"
                     + " WHERE ID = ? ";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, p.getC().getId());
-            stm.setString(2, p.getName());
-            stm.setString(3, p.getDescription());
-            stm.setFloat(4, p.getDiscount());
-            stm.setDate(5, (Date) p.getCreated());
-            stm.setString(6, p.getPrice());
-            stm.setInt(7, p.getId());
-            stm.executeUpdate();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, p.getC().getId());
+            statement.setString(2, p.getName());
+            statement.setString(3, p.getDescription());
+            statement.setFloat(4, p.getDiscount());
+            statement.setDate(5, (Date) p.getCreated());
+            statement.setString(6, p.getPrice());
+            statement.setInt(7, p.getId());
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     @Override
     public void deleteProduct(int id) {
+        PreparedStatement statement = null;
+        this.getConnection();
         String sql = "DELETE FROM [dbo].[Product]\n"
                 + "WHERE ID = ?";
         try {
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            stm.executeUpdate();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     //categoryId = -1, manufacturerId = -1
     public ArrayList<Product> advanceSearch(int categoryId, int manufacturerId, int priceToSearch) {
         ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+
         try {
             String sql = "select p.ID, p.Name, p.Image, p.Description, \n"
                     + "p.Vote, p.Price, p.Discount, p.Status, \n"
@@ -371,16 +492,16 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
 //                params.put(paramIndex, param);
 //            }
 
-            PreparedStatement stm = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
 
             for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
                 Integer index = entry.getKey();
                 Object[] value = entry.getValue();
                 String type = value[0].toString();
                 if (type.equals(Integer.class.getName())) {
-                    stm.setInt(index, (Integer) value[1]);
+                    statement.setInt(index, (Integer) value[1]);
                 } else if (type.equals(String.class.getName())) {
-                    stm.setString(index, value[1].toString());
+                    statement.setString(index, value[1].toString());
                 }
             }
 
@@ -405,7 +526,7 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
 //                        break;
 //                }
 //            }
-            ResultSet rs = stm.executeQuery();
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("ID"));
@@ -432,6 +553,17 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return products;
     }

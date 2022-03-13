@@ -77,6 +77,7 @@ Record of change:
                             <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
+                                <a href="${pageContext.request.contextPath}/ViewOrderHistory">Lịch sử đặt hàng</a>
                                 <a href="${pageContext.request.contextPath}/LogOutController">Đăng Xuất</a>
                             </div>
                         </div>

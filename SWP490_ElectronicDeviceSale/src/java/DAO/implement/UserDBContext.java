@@ -37,9 +37,12 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public User getUserByUserPass(String username, String password) {
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
             String sql = "select * from [User] where UserName = ? AND PassWord = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
@@ -58,6 +61,19 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
@@ -72,9 +88,11 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public User isUserExisted(String userName) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select UserName from [User] where UserName = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, userName);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -83,6 +101,17 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
@@ -99,10 +128,12 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      * @param created
      */
     @Override
-    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created) {
+    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created, boolean status) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
-            String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?, ?)";
+            statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, userName);
             statement.setString(3, password);
@@ -110,9 +141,21 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             statement.setInt(5, phoneNumber);
             statement.setString(6, email);
             statement.setDate(7, created);
+            statement.setBoolean(8, status);
             statement.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -280,6 +323,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public void editProfile(User u) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "UPDATE [dbo].[User]\n"
                     + "   SET [Name] = ?\n"
@@ -287,15 +332,26 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                     + "      ,[Phone] = ?\n"
                     + "      ,[Email] = ?\n"
                     + " WHERE ID = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, u.getName());
-            stm.setBoolean(2, u.isGender());
-            stm.setInt(3, u.getPhone());
-            stm.setString(4, u.getEmail());
-            stm.setInt(5, u.getId());
-            stm.executeUpdate();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, u.getName());
+            statement.setBoolean(2, u.isGender());
+            statement.setInt(3, u.getPhone());
+            statement.setString(4, u.getEmail());
+            statement.setInt(5, u.getId());
+            statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

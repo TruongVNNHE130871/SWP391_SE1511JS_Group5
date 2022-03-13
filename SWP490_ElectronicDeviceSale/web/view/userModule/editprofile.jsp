@@ -53,8 +53,7 @@
                                         placeholder="${requestScope.user.name}"
                                         size="35"
                                         class="ms-4"
-                                        minlength="1"
-                                        maxlength="30"                          
+                                        pattern="^[a-zA-Z ]{3,30}$"                          
                                         required
                                         />
                                     <span></span>

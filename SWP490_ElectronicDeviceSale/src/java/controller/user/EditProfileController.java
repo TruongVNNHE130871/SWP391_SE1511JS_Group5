@@ -67,8 +67,8 @@ public class EditProfileController extends HttpServlet {
         user.setId(Integer.parseInt(request.getParameter("idUser")));
         user.setName(request.getParameter("fullname").trim());
         user.setGender(request.getParameter("gender").equals("male"));
-        user.setEmail(request.getParameter("email"));
-        user.setPhone(Integer.parseInt(request.getParameter("phone")));
+        user.setEmail(request.getParameter("email").trim());
+        user.setPhone(Integer.parseInt(request.getParameter("phone").trim()));
         uDB.editProfile(user);
         request.getSession().setAttribute("user", user);
         response.sendRedirect("ViewProfileController");

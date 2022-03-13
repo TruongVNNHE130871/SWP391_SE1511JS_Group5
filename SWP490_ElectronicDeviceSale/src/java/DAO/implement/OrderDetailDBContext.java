@@ -9,25 +9,31 @@ Record of change:
  */
 package DAO.implement;
 
+import DAO.IOrderDetailDBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.OrderDetail;
 
 /**
  *
  * @author VinhNT
  */
-public class OrderDetailDBContext extends BaseDAO {
+public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBContext {
 
+    @Override
     public void insert(OrderDetail orderDetail) {
-
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
             String sql = "INSERT INTO [OrderDetail]([UserSesstion],[Name],[Phone],[Email],[Address],[Note],[Amount],[Payment],[Status]) VALUES (?,?,?,?,?,?,?,?,?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, orderDetail.getUser_session());
             statement.setString(2, orderDetail.getUser_name());
             statement.setInt(3, orderDetail.getUser_phone());
@@ -41,14 +47,31 @@ public class OrderDetailDBContext extends BaseDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
+    @Override
     public List<OrderDetail> getAll() {
         List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
             String sql = "SELECT * FROM [OrderDetail]";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 OrderDetail orderDetail = new OrderDetail();
@@ -67,6 +90,19 @@ public class OrderDetailDBContext extends BaseDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return orderDetails;

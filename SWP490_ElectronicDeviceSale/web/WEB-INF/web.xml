@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>SignUp</servlet-name>
-        <servlet-class>controller.user.SignUp</servlet-class>
+        <servlet-class>controller.user.SignUpController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
@@ -54,11 +54,11 @@
     </servlet>
     <servlet>
         <servlet-name>AddToCart</servlet-name>
-        <servlet-class>controller.user.AddToCart</servlet-class>
+        <servlet-class>controller.user.AddToCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteToCart</servlet-name>
-        <servlet-class>controller.user.DeleteToCart</servlet-class>
+        <servlet-class>controller.user.DeleteToCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateCartController</servlet-name>

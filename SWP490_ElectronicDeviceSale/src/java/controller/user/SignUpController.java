@@ -22,7 +22,7 @@ import model.User;
  *
  * @author HungVT
  */
-public class SignUp extends HttpServlet {
+public class SignUpController extends HttpServlet {
 
     UserDBContext userDB = new UserDBContext();
 
@@ -78,11 +78,11 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         boolean gender = request.getParameter("gender").equals("male");
         String email = request.getParameter("email");
         int phoneNumber = Integer.parseInt(request.getParameter("phonenumber"));
-        String userName = request.getParameter("username");
+        String userName = request.getParameter("username").trim();
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm");
         long millis = System.currentTimeMillis();
@@ -93,7 +93,7 @@ public class SignUp extends HttpServlet {
             if (u == null) {
 //                check confirmpassword equals password
                 if (confirmPassword.equals(password)) {
-                    userDB.insertUser(name, userName, password, gender, phoneNumber, email, created);
+                    userDB.insertUser(name, userName, password, gender, phoneNumber, email, created, true);
                     response.sendRedirect("LoginController");
                 } //                check confirmpassword not equals password
                 else {

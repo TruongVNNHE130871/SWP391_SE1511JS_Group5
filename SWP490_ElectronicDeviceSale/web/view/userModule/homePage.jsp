@@ -133,14 +133,14 @@ Record of change:
                                         <span class="text-decoration-line-through title-sale">${p.price} VNĐ</span>
                                     </div>
                                     <a class="btn-add-cart text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ</a>
-                                    <a class="btn-buy-product text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Mua Ngay</a>
+                                 
                                 </div>
                             </c:forEach>
                         </div> 
                         <div id="paggerbottom" class="pagger"></div>
                 </section>
             </article>
-            <!-- Start list new product-->
+            <!-- End list new product-->
         </main>
         <!-- End content -->
         <img src="" alt=""/>

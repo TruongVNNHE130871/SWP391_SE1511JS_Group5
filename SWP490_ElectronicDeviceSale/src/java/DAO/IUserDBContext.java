@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         TruongVNN         First Implement
+
  */
 package DAO;
 
@@ -43,7 +47,7 @@ public interface IUserDBContext {
      * @param email
      * @param created
      */
-    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created);
+    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created,boolean status);
      /**
      * Find User record by email and change password attribute
      * The result is password changed
