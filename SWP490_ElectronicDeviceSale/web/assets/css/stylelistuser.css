@@ -1,0 +1,23 @@
+/*
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-02-21        1.0         TruongVNN         First Implement
+
+*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.text-admin{
+    font-weight: 600;
+    font-size: 40px;
+    color: rgb(82, 54, 54);
+}
+.infor{
+    background-color: #F8F8F8;
+}
+

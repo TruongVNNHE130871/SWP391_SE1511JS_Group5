@@ -17,7 +17,7 @@ Record of change:
             <meta charset="UTF-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="assets/css/forgetpassword.css">
+            <link rel="stylesheet" href="assets/css/changepass.css">
             <link
                 href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
                 rel="stylesheet"
@@ -34,7 +34,7 @@ Record of change:
         <header>
             <div class="img-header bg-light">
                 <a href="${pageContext.request.contextPath}/HomePageController">
-                    <img src="${url}/images/logo-header.png" alt="" width="150" height="100" 
+                    <img src="assets/images/logo-header.png" alt="" width="150" height="100" 
                          class="ms-5"></a><span class="title-logo fs-2 mx-2">Quên Mật khẩu</span>
             </div>
         </header>
@@ -43,7 +43,7 @@ Record of change:
                 <div class="row">
                     <div class="col-6">
                         <div class="img-logo-left">
-                            <img src="${url}/images/logo-header.png" alt="" width="400" height="300">
+                            <img src="assets/images/logo-header.png" alt="" width="400" height="300">
                             <p class="title-logo-body">Nền tảng thương mại điện tử <br> phổ biến nhất trên thế giới </p>
                         </div>
                     </div>

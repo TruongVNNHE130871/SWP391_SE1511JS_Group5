@@ -86,4 +86,30 @@ public interface IUserDBContext {
      * @return List of all user.It is a <code>java.Lang.ArrayList</code>
      */
     public ArrayList<User> getAllUser();
+    /**
+     * count total number of user in system
+     * @return total number of user in system  .It is a <code>java.Lang.Integer</code>
+     */
+    public int countTotalUser();
+    /**
+     * count total number of user in system
+     * @param pageIndex
+     * @param pageSize
+     * @return data of list user in page index. It is a <code>java.Lang.ArrayList</code>
+     */
+    public ArrayList<User> pagingUser(int pageIndex, int pageSize);
+    /**
+     * count total number of user in system
+     * @param username
+     * @return total number of user in system  .It is a <code>java.Lang.Integer</code>
+     */
+    public int countTotalUserSearchResult(String username);
+    /**
+     * count total number of user in system
+     * @param pageIndex
+     * @param pageSize
+     * @param username
+     * @return data of list user in page index. It is a <code>java.Lang.ArrayList</code>
+     */
+    public ArrayList<User> pagingUserSearchResult(int pageIndex, int pageSize, String username);
 }

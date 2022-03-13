@@ -129,6 +129,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     public void changeUserPassByEmail(String email, String randomPassword) {
         PreparedStatement statement = null;
         //Init statement
+        this.connectToTruongDB();
         try {
             String sql = "UPDATE [User]\n"
                     + "  SET [PassWord] = ?\n"
@@ -151,7 +152,9 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                     statement.close();
                 }
                 //close statement
-                connection.close();
+                if (connection != null) {
+                    connection.close();
+                }
                 //close connection
             } catch (SQLException ex) {
                 Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,6 +175,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     @Override
     public User getUserByID(int id) {
         PreparedStatement statement = null;
+        this.connectToTruongDB();
         //Init statement
         try {
             String sql = "SELECT [ID]\n"
@@ -304,6 +308,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public int checkEmailExisted(String email) {
+        this.connectToTruongDB();
         int result = 0;
         //return if emails exist or not
         String sql = "SELECT [ID]\n"
@@ -345,20 +350,23 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                 if (stm != null) {
                     stm.close();
                 }
-                //close statement                
+                //close statement             
             } catch (SQLException ex) {
                 Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return result;
     }
+
     /**
      * get data of all user in the system
+     *
      * @return List of all user.It is a <code>java.Lang.ArrayList</code>
      */
     @Override
     public ArrayList<User> getAllUser() {
-        //Create sql query
+        this.connectToTruongDB();
+        //connect to database
         PreparedStatement stm = null;
         //Init statement
         ResultSet rs = null;
@@ -405,7 +413,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             try {
                 connection.close();
                 //close connection
@@ -420,7 +428,240 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             } catch (SQLException ex) {
                 Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }       
+        }
+        return users;
+    }
+
+    @Override
+    public int countTotalUser() {
+        int totalNumberOfUser = 0;
+        //Init total of users in the system
+        this.connectToTruongDB();
+        //Connect to database
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        String sql = "SELECT COUNT(*)\n"
+                + "FROM [user]";
+        try {
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            if (rs.next()) {
+                totalNumberOfUser = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return totalNumberOfUser;
+    }
+
+    @Override
+    public ArrayList<User> pagingUser(int pageIndex, int pageSize) {
+        this.connectToTruongDB();
+        //connect to database
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        //Init result set
+        ArrayList<User> users = new ArrayList();
+        //Init List of Users
+        String sql = "SELECT [ID]\n"
+                + "      ,[Name]\n"
+                + "      ,[UserName]\n"
+                + "      ,[PassWord]\n"
+                + "      ,[Gender]\n"
+                + "      ,[Phone]\n"
+                + "      ,[Email]\n"
+                + "      ,[Created]\n"
+                + "      ,[Status]\n"
+                + "FROM [User]\n"
+                + "ORDER BY ID\n"
+                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        //create query
+        try {
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            stm.setInt(1, (pageIndex - 1) * pageSize);
+            stm.setInt(2, pageSize);
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            while (rs.next()) {//Read data of query result
+                User user = new User();
+                //Init user
+                user.setId(rs.getInt("ID"));
+                //Set user ID
+                user.setName(rs.getString("Name"));
+                //Set user's name
+                user.setUserName(rs.getString("UserName"));
+                //Set user's insystem name
+                user.setGender(rs.getBoolean("Gender"));
+                //Set user gender
+                user.setPassWord(rs.getString("PassWord"));
+                //Set user passowrd
+                user.setPhone(rs.getInt("Phone"));
+                //Set user phonenumber
+                user.setEmail(rs.getString("Email"));
+                //Set user email
+                user.setStatus(rs.getBoolean("Status"));
+                //Set user status
+                users.add(user);
+                //Add user to the ArrayList
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return users;
+    }
+
+    @Override
+    public int countTotalUserSearchResult(String username) {
+        this.connectToTruongDB();
+        //connect to database
+        int totalNumberOfUser = 0;
+        //Init total of users in the system
+        this.connectToTruongDB();
+        //Connect to database
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        String sql = "  SELECT Count(*) \n"
+                + "  From [User]\n"
+                + "  Where UserName like ?";
+        try {
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            stm.setString(1, "%" + username + "%");
+            //Set value username to query
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            if (rs.next()) {
+                totalNumberOfUser = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return totalNumberOfUser;
+    }
+
+    @Override
+    public ArrayList<User> pagingUserSearchResult(int pageIndex, int pageSize, String username) {
+        this.connectToTruongDB();
+        //connect to database
+        PreparedStatement stm = null;
+        //Init statement
+        ResultSet rs = null;
+        //Init result set
+        ArrayList<User> users = new ArrayList();
+        //Init List of Users
+        String sql = "SELECT [ID]\n"
+                + "      ,[Name]\n"
+                + "      ,[UserName]\n"
+                + "      ,[PassWord]\n"
+                + "      ,[Gender]\n"
+                + "      ,[Phone]\n"
+                + "      ,[Email]\n"
+                + "      ,[Created]\n"
+                + "      ,[Status]\n"
+                + "FROM [User]\n"
+                + "WHERE UserName like ?\n"
+                + "ORDER BY ID\n"
+                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        //create query
+        try {
+            stm = connection.prepareStatement(sql);
+            //prepare statement
+            stm.setString(1, "%" + username + "%");
+            stm.setInt(2, (pageIndex - 1) * pageSize);
+            stm.setInt(3, pageSize);
+            rs = stm.executeQuery();
+            //Excute query and set data of the result
+            while (rs.next()) {//Read data of query result
+                User user = new User();
+                //Init user
+                user.setId(rs.getInt("ID"));
+                //Set user ID
+                user.setName(rs.getString("Name"));
+                //Set user's name
+                user.setUserName(rs.getString("UserName"));
+                //Set user's insystem name
+                user.setGender(rs.getBoolean("Gender"));
+                //Set user gender
+                user.setPassWord(rs.getString("PassWord"));
+                //Set user passowrd
+                user.setPhone(rs.getInt("Phone"));
+                //Set user phonenumber
+                user.setEmail(rs.getString("Email"));
+                //Set user email
+                user.setStatus(rs.getBoolean("Status"));
+                //Set user status
+                users.add(user);
+                //Add user to the ArrayList
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement                
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return users;
     }
 

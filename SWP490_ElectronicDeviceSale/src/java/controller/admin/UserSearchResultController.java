@@ -1,16 +1,14 @@
 /*
- * TCopyright(C) 2021, Class SE1511-JS of FPT University
-EDS.Shop
-Electronic Device Sale Shop
-Record of change:
-   DATE         Version       AUTHOR          DESCRIPTION
-2022-01-21        1.0         TruongVNN         First Implement
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controller.admin;
 
 import DAO.IUserDBContext;
 import DAO.implement.UserDBContext;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,11 +24,10 @@ import model.User;
  *
  * @author ASUS
  */
-public class UserListController extends HttpServlet {
+public class UserSearchResultController extends HttpServlet {
 
     IUserDBContext userDBContext = new UserDBContext();
 
-    //init class userDBContext
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,47 +39,51 @@ public class UserListController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         try {
             String indexPage = request.getParameter("pageIndex");
+            HttpSession session = request.getSession();
+            //init session
+             
             if (indexPage == null) {
                 indexPage = "1";
             }
             int pageIndex = Integer.parseInt(indexPage);
-            HttpSession session = request.getSession();
-            //init session
+            String searchUsername =(String)session.getAttribute("searchUserName");
+            
             int pageSize = 10;
-            int countUser = userDBContext.countTotalUser();
+            int countUser = userDBContext.countTotalUserSearchResult(searchUsername);
             int maxPage = countUser / pageSize;
             if (countUser % pageSize != 0) {
                 maxPage++;
             }
             request.setAttribute("maxPage", maxPage);
-            ArrayList<User> users = userDBContext.pagingUser(pageIndex, pageSize);
+            ArrayList<User> users = userDBContext.pagingUserSearchResult(pageIndex, pageSize, searchUsername);
             //get all users data from database
             session.setAttribute("users", users);
             //set list of all user into session
-            String path = "../view/adminModule/userList.jsp";
+            String path = "../../view/adminModule/userList.jsp";
             RequestDispatcher dispatcher = request.getRequestDispatcher(path);
             dispatcher.forward(request, response);
             // forward to change user list page
         } catch (Exception ex) {
             Logger.getLogger(UserListController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -94,13 +95,13 @@ public class UserListController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String searchUserName = request.getParameter("search").trim();
         //init session
         session.setAttribute("searchUserName", searchUserName);
-        response.sendRedirect("listUser/search");
+        processRequest(request, response);
     }
 
     /**
@@ -109,7 +110,7 @@ public class UserListController extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

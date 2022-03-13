@@ -35,15 +35,15 @@ public class BaseDAO {
             /**
              * Vinh
              */
-//            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
-//            String user = "sa";
-//            String pass = "sa";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
+            String user = "sa";
+            String pass = "sa";
             /**
              * Hung
              */
-            String url = "jdbc:sqlserver://SK-202202261335:1433;databaseName=SWP391";
-            String user = "test";
-            String pass = "baobinh123";
+//            String url = "jdbc:sqlserver://SK-202202261335:1433;databaseName=SWP391";
+//            String user = "test";
+//            String pass = "baobinh123";
             /**
              * Binh
              */
@@ -56,5 +56,17 @@ public class BaseDAO {
             Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    public void connectToTruongDB(){
+        try{
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
+            String user = "sa";
+            String pass = "sa";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(url, user, pass);
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }
+
+

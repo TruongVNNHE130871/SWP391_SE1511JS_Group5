@@ -26,11 +26,6 @@ import utilities.MyUtility;
  */
 public class ForgetPasswordController extends HttpServlet {
 
-    MyUtility myUtility = new MyUtility();
-    //init class utility
-    IUserDBContext userDBContext = new UserDBContext();
-    //init class userDBContext
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -61,7 +56,11 @@ public class ForgetPasswordController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String email = request.getParameter("email");
+            MyUtility myUtility = new MyUtility();
+            //init class utility
+            IUserDBContext userDBContext = new UserDBContext();
+            //init class userDBContext
+            String email = request.getParameter("email").trim();
             //get value email of the account that forgot password
             String randomPassword = myUtility.randomToken();
             //random password using utility
@@ -96,7 +95,7 @@ public class ForgetPasswordController extends HttpServlet {
             // forward to change password page
         } catch (Exception e) {
             Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, e);
-        }       
+        }
     }
 
     /**

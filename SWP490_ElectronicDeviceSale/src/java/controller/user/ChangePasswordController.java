@@ -67,15 +67,15 @@ public class ChangePasswordController extends HttpServlet {
             //Set value for user from session
             int id = user.getId();
             //Set user id value to a an integer
-            String oldPassword = request.getParameter("currentPassword");
+            String oldPassword = request.getParameter("currentPassword").trim();
             //Get value of curentPassword textbox in front end 
-            String newPassword = request.getParameter("newPassword");
+            String newPassword = request.getParameter("newPassword").trim();
             //Get value of newPassword textbox in front end 
-            String confirmPassword = request.getParameter("confirmPassword");
+            String confirmPassword = request.getParameter("confirmPassword").trim();
             //Get value of confirmPassword textbox in front end 
             if (oldPassword.compareTo(user.getPassWord()) == 0) {
                 // Compare value of curentPassword textbox with newPassword textbox
-                if (newPassword.isEmpty() || newPassword.trim().length() == 0) {
+                if (newPassword.isEmpty() || newPassword.length() == 0) {
                     request.setAttribute("errorMsg", "New password cannot be blank");//Display error message if new password is blank
                 }
                 if (newPassword.compareTo(confirmPassword) == 0) {

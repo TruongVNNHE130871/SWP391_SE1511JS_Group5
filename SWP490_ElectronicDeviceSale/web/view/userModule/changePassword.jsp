@@ -50,7 +50,7 @@ Record of change:
                         <div class="form-change-pass">
                             <p class="title-change-pass text-center my-4">Change Password</p>
                             <div class="form-group">
-                                <input type="text" placeholder="Current Password" class="form-control mb-3" name="currentPassword">
+                                <input type="password" placeholder="Current Password" class="form-control mb-3" name="currentPassword">
                             </div>
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="New PassWord" class="form-control" name ="newPassword">

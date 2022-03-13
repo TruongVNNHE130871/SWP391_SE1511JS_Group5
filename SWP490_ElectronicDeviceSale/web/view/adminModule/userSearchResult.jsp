@@ -13,7 +13,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../assets/css/stylelistuser.css">
+        <link href="${pageContext.request.contextPath}/assets/css/stylelistuser.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -40,7 +40,7 @@
             <div class="list-product">
                 <form method="Post">
                     <input type="input" placeholder="Username" class="form-control mb-4" name="search">
-                    <button type="submit" class="btn btn-outline-success">tìm kiếm</button>
+                    <button type="submit" class="btn btn-outline-success">Tìm kiếm</button>
                 </form>
                 <p>List User: </p>
                 <table class="table text-center">
@@ -49,7 +49,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Username</th>
-                            <th scope="col">PassWord</th>
+                            <th scope="col">Password</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
@@ -96,7 +96,7 @@
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
                             <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
                 </nav>
             </div>
