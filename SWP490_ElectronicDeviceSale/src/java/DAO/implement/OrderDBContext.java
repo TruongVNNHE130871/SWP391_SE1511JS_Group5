@@ -42,7 +42,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
             statement.setDate(4, (Date) order.getOrderDate());
-              statement.setDate(5, (Date) order.getOrderDate());
+            statement.setDate(5, (Date) order.getOrderDate());
             statement.setInt(6, order.getOrderDetailId());
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -275,6 +275,48 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 //close statement
             } catch (SQLException ex) {
                 Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return orders;
+    }
+
+    public ArrayList<Order> getOrdersByOrderDetailId(int id) {
+        ArrayList<Order> orders = new ArrayList<>();
+        PreparedStatement stm = null;
+        this.getConnection();
+        try {
+            String sql = "select * from [Order]\n"
+                    + "where OrderDetailId = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getInt("ID"));
+                User user = new User();
+                user.setId(rs.getInt("UserId"));
+                order.setUsername(user);
+                order.setProductId(rs.getInt("ProductId"));
+                order.setQuantity(rs.getInt("Quantity"));
+                order.setOrderDate(rs.getDate("OrderDate"));
+                order.setDeliveryDate(rs.getDate("DeliveryDate"));
+                order.setOrderDetailId(rs.getInt("OrderDetailId"));
+                orders.add(order);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (stm != null) {
+                    stm.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return orders;
