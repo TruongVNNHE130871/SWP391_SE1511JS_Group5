@@ -1,30 +1,26 @@
 /*
  * TCopyright(C) 2021, Class SE1511-JS of FPT University
- * EDS.Shop
- * Electronic Device Sale Shop
- * Record of change:
- * DATE            Version       AUTHOR          DESCRIPTION
- * 2022-01-09       1.0         CuongTV         First Implement
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+
  */
 package controller.user;
 
-import DAO.implement.ProductDBContext;
 import DAO.implement.ReviewDBContext;
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.paramValueType;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
 
 /**
  *
- * @author CuongTV
+ * @author VinhNT
  */
-public class ProductDetailController extends HttpServlet {
+public class ReviewController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,23 +33,8 @@ public class ProductDetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ProductDBContext pDB = new ProductDBContext();
-        ReviewDBContext rDB = new ReviewDBContext();
+        response.setContentType("text/html;charset=UTF-8");
 
-        String raw_idProduct = request.getParameter("idProduct");
-        if (raw_idProduct == null || raw_idProduct.length() == 0) {
-            raw_idProduct = "-1";
-        }
-        int idP = Integer.parseInt(raw_idProduct);
-        Product p = pDB.getProduct(idP);
-        request.setAttribute("product", p);
-
-        List<Review> reviewById = rDB.getReviewById(idP);
-        request.setAttribute("reviewbyid", reviewById);
-
-        request.getRequestDispatcher("view/userModule/productdetail.jsp").forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,9 +61,30 @@ public class ProductDetailController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ReviewDBContext rDB = new ReviewDBContext();
+
+        String raw_id = req.getParameter("id");
+        if (raw_id == null || raw_id.length() == 0) {
+            raw_id = "-1";
+        }
+       int id= Integer.parseInt(raw_id);
+        String name = req.getParameter("name");
+        int phone = Integer.parseInt(req.getParameter("phone"));
+        String content = req.getParameter("content");
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        Review review = new Review();
+        review.setName(name);
+        review.setProduct_id(id);
+        review.setContent(content);
+        review.setCreated(date);
+        review.setPhone(phone);
+        
+        
+        rDB.insert(review);
+        resp.sendRedirect(req.getContextPath() + "/ProductDetailController?idProduct=" + id);
     }
 
     /**

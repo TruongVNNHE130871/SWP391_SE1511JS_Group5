@@ -120,6 +120,10 @@
         <servlet-name>BanUnbanController</servlet-name>
         <servlet-class>controller.admin.BanUnbanController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReviewController</servlet-name>
+        <servlet-class>controller.user.ReviewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>BanUnbanController</servlet-name>
         <url-pattern>/BanUnbanController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewController</servlet-name>
+        <url-pattern>/ReviewController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
