@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
+import model.Shop;
 
 /**
  *
@@ -43,8 +44,10 @@ public class ProductUpdateController extends HttpServlet {
             raw_ProductID = "-1";
         }
         Product product = pDB.getProduct(Integer.parseInt(raw_ProductID));
+        String productPrice = product.getPrice().replace(",", "");
         request.setAttribute("categories", categories);
         request.setAttribute("product", product);
+        request.setAttribute("productPrice", productPrice);
         request.getRequestDispatcher("view/adminModule/productUpdate.jsp").forward(request, response);
     }
 
@@ -59,12 +62,45 @@ public class ProductUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = new Product();
+        ProductDBContext pDB = new ProductDBContext();
+        String raw_ProductID = request.getParameter("productID");
+        if (raw_ProductID == null || raw_ProductID.length() == 0) {
+            raw_ProductID = "-1";
+        }
+        Product product = pDB.getProduct(Integer.parseInt(raw_ProductID));
         String productName = request.getParameter("productName");
+        String productImage = request.getParameter("productImage");
+        String raw_productCategory = request.getParameter("cid");
+        if (raw_productCategory == null || raw_productCategory.length() == 0) {
+            raw_productCategory = "-1";
+        }
+        int productCategory = Integer.parseInt(raw_productCategory);
         String productDescription = request.getParameter("productDescription");
-        int price = Integer.parseInt(request.getParameter("productPrice"));
-        float discount = Float.parseFloat(request.getParameter("productDiscount")) / 100;
-        
+        String productPrice = request.getParameter("productPrice");
+
+        String raw_productDiscount = request.getParameter("productDiscount");
+        if (raw_productDiscount == null || raw_productDiscount.length() == 0) {
+            raw_productDiscount = "0";
+        }
+        float productDiscount = Float.parseFloat(raw_productDiscount);
+
+        String raw_producRam = request.getParameter("productRam");
+        if (raw_producRam == null || raw_producRam.length() == 0) {
+            raw_producRam = "0";
+        }
+        int productRam = Integer.parseInt(raw_producRam);
+
+        product.setName(productName);
+        product.setImage(productImage);
+        product.setDescription(productDescription);
+        Category category = new Category();
+        category.setId(productCategory);
+        product.setC(category);
+        product.setPrice(productPrice);
+        product.setDiscount(productDiscount);
+        product.setRam(productRam);
+        pDB.updateProduct(product);
+        response.sendRedirect("ProductListController");
     }
 
     /**

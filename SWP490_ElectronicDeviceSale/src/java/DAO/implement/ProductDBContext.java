@@ -124,7 +124,7 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.Size, p.Weight, p.Ram, p.Orginal, p.Year, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
                     + "from Product p inner join Category c\n"
                     + "on p.CategoryId = c.ID\n"
                     + "where p.ID = ?";
@@ -141,12 +141,19 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 p.setC(c);
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
+                p.setSize(rs.getFloat("Size"));
+                p.setWeight(rs.getFloat("Weight"));
+                p.setRam(rs.getInt("Ram"));
+                p.setOrginal(rs.getString("Orginal"));
+                p.setYear(rs.getString("Year"));
                 return p;
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);

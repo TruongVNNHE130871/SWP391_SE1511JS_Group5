@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/controller/user/ViewOrderHistory.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/web/view/userModule/vieworderhistory.jsp</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/web/view/userModule/homePage.jsp</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/web/view/userModule/header/header-menu.jsp</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/controller/user/HomePageController.java</file>
-            <file>file:/D:/GitHub/SWP391/SWP490_ElectronicDeviceSale/src/java/DAO/implement/OrderDBContext.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/IOrderDetailDBContext.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/admin/ProductListController.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Product.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/admin/ProductUpdateController.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/ProductDBContext.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/productUpdate.jsp</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/BaseDAO.java</file>
         </group>
     </open-files>
 </project-private>

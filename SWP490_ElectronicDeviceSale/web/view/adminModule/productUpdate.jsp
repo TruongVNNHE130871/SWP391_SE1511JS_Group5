@@ -4,7 +4,7 @@ EDS.Shop
 Electronic Device Sale Shop
 Record of change:
    DATE         Version       AUTHOR          DESCRIPTION
-2022-01-07        1.0         CuongTV         First Implement
+2022-01-07        1.0         BinhDV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,69 +31,87 @@ Record of change:
     <jsp:include page = "./sideBar.jsp" />
     <!--update product admin-->
     <body>
-        <div class="admin-add-new">
-            <div class="container">
-                <div class="row mb-5">
-                    <div class="col-4 text-center">
-                        <img src="${requestScope.product.image}" alt=""
-                             width="300" height="300"> <br/>
-                        <button class="btn btn-outline-primary mt-3">Change Picture</button>
-                    </div>
-                    <div class="col-8">
+        <form action="ProductUpdateController" method="POST">
 
-                        <div class="mb-3 row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
-                            <div class="col-sm-10">
-                                <input type="text" value="${requestScope.product.name}" name="productName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
-                            <div class="col-sm-10">
-                                <select name="cid">
-                                    <option value="-1">Choose Category</option>
-                                    <c:forEach items="${requestScope.categories}" var="c">
-                                        <option 
-                                            <c:if test="${c.id eq requestScope.product.c.id}">
-                                                selected="selected"
-                                            </c:if>
-                                            value="${crequestScope.product.c.id}"> ${requestScope.product.c.name} </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="description">
-                            <p>Description:</p>
-                            <div class="mb-3">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription">${requestScope.product.description}</textarea>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail2" class="col-sm-2 col-form-label">Price: </label>
-                            <div class="col-sm-4">
-                                <input type="text" value="${requestScope.product.price}" value="productPrice" class="form-control" id="" placeholder="">
-                            </div>
-                            <div class="col-auto">
-                                <label class="col-sm-2 col-form-label">VNĐ</label>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail2" class="col-sm-2 col-form-label">Discount: </label>
-                            <div class="col-sm-4">
-                                <input type="text" value="${requestScope.product.discount}" name="productDiscount" class="form-control" id="" placeholder="">
-                            </div>
-                            <div class="col-auto">
-                                <label class="col-sm-2 col-form-label">%</label>
-                            </div>
-                        </div>
 
+            <div class="admin-add-new">
+                <div class="container">
+                    <div class="row mb-5">
+                        <div class="col-8">
+                            <input type="hidden" value="${requestScope.product.id}" name="productID"/>
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="${requestScope.product.name}" required name="productName" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputImage" class="col-sm-2 col-form-label">Link Image: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="${requestScope.product.image}" required name="productImage" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
+                                <div class="col-sm-10">
+                                    <select name="cid">
+                                        <option value="-1">Choose Category</option>
+                                        <c:forEach items="${requestScope.categories}" var="c">
+                                            <option 
+                                                <c:if test="${c.id eq requestScope.product.c.id}">
+                                                    selected="selected"
+                                                </c:if>
+                                                value="${c.id}"> ${c.name} </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="description">
+                                <p>Description:</p>
+                                <div class="mb-3"> 
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription">${requestScope.product.description}</textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPrice" class="col-sm-2 col-form-label">Price: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" value="${requestScope.productPrice}" required name="productPrice" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">VNĐ</label>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputDiscount" class="col-sm-2 col-form-label">Discount: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" value="${requestScope.product.discount}" required name="productDiscount" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">%</label>
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 row">
+                                <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
+                                <div class="col-sm-4">
+                                    <input type="text" value="${requestScope.product.ram}" required name="productRam" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="col-sm-2 col-form-label">GB</label>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-outline-success">Save</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </body>
     <footer>
     </footer>
