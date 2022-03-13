@@ -56,7 +56,7 @@ public class BaseDAO {
             Logger.getLogger(BaseDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    public void connectToTruongDB(){
+    public void getConnection(){
         try{
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SWP391";
             String user = "sa";

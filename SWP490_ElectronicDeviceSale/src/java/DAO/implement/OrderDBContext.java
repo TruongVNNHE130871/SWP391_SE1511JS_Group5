@@ -9,7 +9,7 @@ Record of change:
  */
 package DAO.implement;
 
-import java.sql.Connection;
+import DAO.IOrderDBContext;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +23,9 @@ import model.Order;
  *
  * @author VinhNT
  */
-public class OrderDBContext extends BaseDAO {
-
+public class OrderDBContext extends BaseDAO implements IOrderDBContext {
+    
+    @Override
     public void insert(Order order) {
         String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
         try {
@@ -40,6 +41,7 @@ public class OrderDBContext extends BaseDAO {
         }
     }
 
+    @Override
     public ArrayList<Order> getOrders(int pageindex, int pagesize, int id) {
         ArrayList<Order> orders = new ArrayList<>();
         try {
@@ -67,6 +69,7 @@ public class OrderDBContext extends BaseDAO {
         return orders;
     }
 
+    @Override
     public int getOrderRowCount() {
         try {
             String sql = "select COUNT(*) as Total from Order";
@@ -81,6 +84,7 @@ public class OrderDBContext extends BaseDAO {
         return -1;
     }
 
+    @Override
     public ArrayList<Order> listOrder(int id) {
         ArrayList<Order> orders = new ArrayList<>();
         try {
@@ -101,5 +105,5 @@ public class OrderDBContext extends BaseDAO {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orders;
-    }
+    }  
 }

@@ -129,7 +129,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     public void changeUserPassByEmail(String email, String randomPassword) {
         PreparedStatement statement = null;
         //Init statement
-        this.connectToTruongDB();
+        this.getConnection();
         try {
             String sql = "UPDATE [User]\n"
                     + "  SET [PassWord] = ?\n"
@@ -175,7 +175,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     @Override
     public User getUserByID(int id) {
         PreparedStatement statement = null;
-        this.connectToTruongDB();
+        this.getConnection();
         //Init statement
         try {
             String sql = "SELECT [ID]\n"
@@ -308,7 +308,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public int checkEmailExisted(String email) {
-        this.connectToTruongDB();
+        this.getConnection();
         int result = 0;
         //return if emails exist or not
         String sql = "SELECT [ID]\n"
@@ -365,7 +365,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public ArrayList<User> getAllUser() {
-        this.connectToTruongDB();
+        this.getConnection();
         //connect to database
         PreparedStatement stm = null;
         //Init statement
@@ -436,7 +436,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     public int countTotalUser() {
         int totalNumberOfUser = 0;
         //Init total of users in the system
-        this.connectToTruongDB();
+        this.getConnection();
         //Connect to database
         PreparedStatement stm = null;
         //Init statement
@@ -474,7 +474,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
     @Override
     public ArrayList<User> pagingUser(int pageIndex, int pageSize) {
-        this.connectToTruongDB();
+        this.getConnection();
         //connect to database
         PreparedStatement stm = null;
         //Init statement
@@ -547,12 +547,10 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
     @Override
     public int countTotalUserSearchResult(String username) {
-        this.connectToTruongDB();
+        this.getConnection();
         //connect to database
         int totalNumberOfUser = 0;
         //Init total of users in the system
-        this.connectToTruongDB();
-        //Connect to database
         PreparedStatement stm = null;
         //Init statement
         ResultSet rs = null;
@@ -592,7 +590,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
     @Override
     public ArrayList<User> pagingUserSearchResult(int pageIndex, int pageSize, String username) {
-        this.connectToTruongDB();
+        this.getConnection();
         //connect to database
         PreparedStatement stm = null;
         //Init statement
