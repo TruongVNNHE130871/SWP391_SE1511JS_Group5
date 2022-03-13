@@ -72,9 +72,11 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      */
     @Override
     public User isUserExisted(String userName) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select UserName from [User] where UserName = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             statement.setString(1, userName);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -83,6 +85,17 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
@@ -99,10 +112,12 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
      * @param created
      */
     @Override
-    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created) {
+    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created, boolean status) {
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
-            String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            String sql = "insert into [User] values " + "(? , ? , ? , ? , ? , ? , ?, ?)";
+            statement = connection.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, userName);
             statement.setString(3, password);
@@ -110,9 +125,21 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             statement.setInt(5, phoneNumber);
             statement.setString(6, email);
             statement.setDate(7, created);
+            statement.setBoolean(8, status);
             statement.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

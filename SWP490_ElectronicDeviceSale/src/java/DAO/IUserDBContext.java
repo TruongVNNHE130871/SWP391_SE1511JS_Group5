@@ -43,7 +43,7 @@ public interface IUserDBContext {
      * @param email
      * @param created
      */
-    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created);
+    public void insertUser(String name, String userName, String password, boolean gender, int phoneNumber, String email, Date created, boolean status);
      /**
      * Find User record by email and change password attribute
      * The result is password changed
