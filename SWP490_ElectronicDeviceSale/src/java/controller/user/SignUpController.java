@@ -22,7 +22,7 @@ import model.User;
  *
  * @author HungVT
  */
-public class SignUp extends HttpServlet {
+public class SignUpController extends HttpServlet {
 
     UserDBContext userDB = new UserDBContext();
 

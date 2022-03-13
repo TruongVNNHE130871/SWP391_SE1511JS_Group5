@@ -27,7 +27,7 @@ import model.Product;
  *
  * @author VinhNT
  */
-public class DeleteToCart extends HttpServlet {
+public class DeleteToCartController extends HttpServlet {
 
     ProductDBContext pDB = new ProductDBContext();
 //    DecimalFormat df = new DecimalFormat("#.000");

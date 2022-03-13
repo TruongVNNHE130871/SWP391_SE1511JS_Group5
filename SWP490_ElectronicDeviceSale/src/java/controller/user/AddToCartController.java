@@ -29,7 +29,7 @@ import model.Product;
  *
  * @author VinhNT
  */
-public class AddToCart extends HttpServlet {
+public class AddToCartController extends HttpServlet {
 
     ProductDBContext pDB = new ProductDBContext();
 //    DecimalFormat df = new DecimalFormat("#.000");
