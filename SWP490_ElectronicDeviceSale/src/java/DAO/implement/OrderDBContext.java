@@ -30,11 +30,14 @@ import model.User;
 public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 
     @Override
-       public void insert(Order order) {
-        String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+    public void insert(Order order) {
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            User user= order.getUsername();
+            String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+            statement = connection.prepareStatement(sql);
+            User user = order.getUsername();
             statement.setInt(1, user.getId());
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
@@ -43,24 +46,41 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     @Override
     public ArrayList<Order> getOrders(int pageindex, int pagesize, int id) {
         ArrayList<Order> orders = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+
         try {
             String sql = "select o.ID, o.OrderDate, o.DeliveryDate, o.UserId\n"
-                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY o.ID asc) as rownum,o.ID, o.OrderDate, o.DeliveryDate, o.UserId\n"
-                    + "from [Order] o) o\n"
-                    + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? AND o.UserId = ?";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, pageindex);
-            stm.setInt(2, pagesize);
-            stm.setInt(3, pageindex);
-            stm.setInt(4, pagesize);
-            stm.setInt(5, id);
-            ResultSet rs = stm.executeQuery();
+                    + "                    from (SELECT ROW_NUMBER() OVER (ORDER BY o.ID asc) as rownum,o.ID, o.OrderDate, o.DeliveryDate, u.ID as UserId\n"
+                    + "                    from [Order] o left join [User] u\n"
+                    + "                    on o.UserId = u.ID) o\n"
+                    + "                    Where rownum >= (? - 1)*?+ 1 AND rownum <= ? * ? AND o.UserId = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, pageindex);
+            statement.setInt(2, pagesize);
+            statement.setInt(3, pageindex);
+            statement.setInt(4, pagesize);
+            statement.setInt(5, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
                 o.setId(rs.getInt("ID"));
@@ -70,22 +90,45 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return orders;
     }
 
     @Override
     public int getOrderRowCount() {
+        PreparedStatement statement = null;
         this.getConnection();
         try {
             String sql = "select COUNT(*) as Total from [Order]";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            ResultSet rs = stm.executeQuery();
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getInt("Total");
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return -1;
     }
@@ -93,13 +136,16 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
     @Override
     public ArrayList<Order> listOrder(int id) {
         ArrayList<Order> orders = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
         try {
             String sql = "select o.ID, o.OrderDate, o.DeliveryDate,o.UserId\n"
-                    + "from Order o"
-                    + "where o.UserId = ? ";
-            PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            ResultSet rs = stm.executeQuery();
+                    + "from [Order] o left join [User] u"
+                    + "on o.UserId = u.ID"
+                    + "where o.UserId = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
                 o.setId(rs.getInt("ID"));
@@ -109,6 +155,17 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return orders;
     }
@@ -123,74 +180,87 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 + "  FROM [Order] o, [User] u\n"
                 + "  WHERE o.UserId = u.ID\n";
         int paramIndex = 0;
-        HashMap<Integer, Object[]> params = new HashMap<>();
+        ArrayList<TempObject> params = new ArrayList();
+        TempObject param = new TempObject();
+//        HashMap<Integer, Object[]> params = new HashMap<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
         ArrayList<Order> orders = new ArrayList();
         try {
             if (userId != null && userId.isEmpty() == false) {
                 sql += "AND u.[UserName] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("STRING");
+                params.add(param);
                 paramIndex++;
-                Object[] param = new Object[2];
-                param[0] = "STRING";
-                param[1] = userId;
-                params.put(paramIndex, param);
+//                Object[] param = new Object[2];
+//                param[0] = "STRING";
+//                param[1] = userId;
+//                params.put(paramIndex, param);
 
             }
             if (orderDate != null) {
-                sql += "AND o.[OrderDate] = ?\n"; 
+                sql += "AND o.[OrderDate] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("DATE");
+                params.add(param);
                 paramIndex++;
-                Object[] param = new Object[2];
-                param[0] = "DATE";
-                param[1] = orderDate;
-                params.put(paramIndex, param);
+//                Object[] param = new Object[2];
+//                param[0] = "DATE";
+//                param[1] = orderDate;
+//                params.put(paramIndex, param);
             }
             if (deliveryDate != null) {
                 sql += "AND o.[DeliveryDate] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("DATE");
+                params.add(param);
                 paramIndex++;
-                Object[] param = new Object[2];
-                param[0] = "DATE";
-                param[1] = deliveryDate;
-                params.put(paramIndex, param);
+//                Object[] param = new Object[2];
+//                param[0] = "DATE";
+//                param[1] = deliveryDate;
+//                params.put(paramIndex, param);
             }
             sql += "ORDER BY ID\n"
                     + "  OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
+            paramIndex++;
+//            Object[] param = new Object[2];
+//            param[0] = "INT";
+//            param[1] = (pageIndex - 1) * pageSize;
+//            params.put(paramIndex, param);
+            paramIndex++;
+//            param[0] = "INT";
+//            param[1] = pageSize;
+//            params.put(paramIndex, param);
             stm = connection.prepareStatement(sql);
-            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
-                Integer key = entry.getKey();
-                Object[] value = entry.getValue();
-                String type = value[0].toString();
-                switch (type) {
-                    case "INT":
-                        stm.setInt(key, (int) value[1]);
-                        break;
-                    case "STRING":
-                        stm.setString(key, value[1].toString());
-                        break;
-                    case "DATE":
-                        stm.setDate(key, (Date) value[1]);
-                        break;
-                }
-            }
-            paramIndex++;
-            stm.setInt(paramIndex, (pageIndex - 1) * pageSize);
-            paramIndex++;
-            stm.setInt(paramIndex, pageSize);
+//            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+//                Integer key = entry.getKey();
+//                Object[] value = entry.getValue();
+//                String type = value[0].toString();
+//                switch (type) {
+//                    case "INT":
+//                        stm.setInt(key, (int) value[1]);
+//                        break;
+//                    case "STRING":
+//                        stm.setString(key, value[1].toString());
+//                        break;
+//                    case "DATE":
+//                        stm.setDate(key, (Date) value[1]);
+//                        break;
+//                }
+//            }
             rs = stm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("ID"));
-                User user = new User();
-                user.setUserName(rs.getString("UserName"));
-                order.setUsername(user);
+                order.getUsername(rs.getString("UserName"));
                 order.setOrderDate(rs.getDate("OrderDate"));
                 order.setDeliveryDate(rs.getDate("DeliveryDate"));
                 orders.add(order);
             }
         } catch (SQLException ex) {
             Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
+        } finally {
             try {
                 connection.close();
                 //close connection
@@ -199,13 +269,13 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 }
                 //close result set
                 if (stm != null) {
-                    stm.close();                   
+                    stm.close();
                 }
                 //close statement
             } catch (SQLException ex) {
                 Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }        
+        }
         return orders;
     }
 
