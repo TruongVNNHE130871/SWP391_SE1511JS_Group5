@@ -56,10 +56,10 @@ Record of change:
                             <p class="title-login text-center my-2">Đăng nhập</p>
                             <div class="form-group">
 
-                                <input  type="text" required placeholder="Nhập tài khoản" name="username"class="form-control mb-3">
+                                <input  type="text" required placeholder="Nhập tài khoản" name="username" value="${username}"class="form-control mb-3">
                             </div>
                             <div class="form-group mb-3">
-                                <input id="password"type="password" required placeholder="Nhập mật khẩu" name="password"class="form-control">
+                                <input id="password"type="password" required placeholder="Nhập mật khẩu" name="password" value="${password}"class="form-control">
                                 <img onclick="myfunction()" src="${url}/images/eye.png"> Hiện mật khẩu
                             </div>
                             <!-- Error message -->
