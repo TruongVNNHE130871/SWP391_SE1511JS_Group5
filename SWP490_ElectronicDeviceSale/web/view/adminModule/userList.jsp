@@ -54,6 +54,7 @@
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
+                            <<th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,8 +73,8 @@
                                     ${user.passWord}
                                 </td>
                                 <td>
-                                    <c:if test = "${user.gender == true}">Male</c:if>
-                                    <c:if test = "${user.gender == false}">Female</c:if>                         
+                                    <c:if test = "${user.gender == true}">Nam</c:if>
+                                    <c:if test = "${user.gender == false}">Nữ</c:if>                         
                                     </td>
                                     <td>
                                     ${user.phone}
@@ -82,11 +83,11 @@
                                     ${user.email}
                                 </td>
                                 <td>
-                                    <c:if test = "${user.status == true}">Active</c:if>
-                                    <c:if test = "${user.status == false}">Banned</c:if>  
+                                    <c:if test = "${user.status == true}">Hoạt động</c:if>
+                                    <c:if test = "${user.status == false}">Bị cấm</c:if>  
                                     </td>
                                     <td>
-                                        <button class="btn btn-outline-danger">Details</button>
+                                        <a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/ViewUserDetailController?idUser=${user.id}">Xem chi tiết</a>
                                     </td>
                                 </tr>
                         </c:forEach>
@@ -95,7 +96,7 @@
                 <nav aria-label="...">
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
-                            <li class="page-item"><a class="page-link" href="userList?pageIndex=${pageIndex}">${pageIndex}</a></li>
+                            <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
                         </c:forEach>
                     </ul>
                 </nav>

@@ -112,6 +112,14 @@
         <servlet-name>OrderDetailController</servlet-name>
         <servlet-class>controller.admin.OrderDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewUserDetailController</servlet-name>
+        <servlet-class>controller.admin.ViewUserDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BanUnbanController</servlet-name>
+        <servlet-class>controller.admin.BanUnbanController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>OrderDetailController</servlet-name>
         <url-pattern>/OrderDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserDetailController</servlet-name>
+        <url-pattern>/ViewUserDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BanUnbanController</servlet-name>
+        <url-pattern>/BanUnbanController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

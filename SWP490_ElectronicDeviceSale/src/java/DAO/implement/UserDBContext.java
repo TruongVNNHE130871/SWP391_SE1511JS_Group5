@@ -228,8 +228,9 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                     + "      ,[Gender]\n"
                     + "      ,[Phone]\n"
                     + "      ,[Email]\n"
+                    + "      ,[Status]\n"
                     + "  FROM [User]\n"
-                    + "  WHERE [ID]= ?";
+                    + "  WHERE [ID] = ?";
             //Create sql query
             statement = connection.prepareStatement(sql);
             //prepare statement
@@ -255,6 +256,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                 //Set user phonenumber
                 user.setEmail(rs.getString("Email"));
                 //Set user email
+                user.setStatus(rs.getBoolean("Status"));
+                //Set user status
                 return user;
             }
         } catch (SQLException e) {
@@ -717,6 +720,60 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         }
         return users;
+    }
+
+    @Override
+    public void banUser(int id) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "UPDATE [User]\n"
+                    + "set Status='false'\n"
+                    + "where ID = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public void unbanUser(int id) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "UPDATE [User]\n"
+                    + "set Status='true'\n"
+                    + "where ID = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }
