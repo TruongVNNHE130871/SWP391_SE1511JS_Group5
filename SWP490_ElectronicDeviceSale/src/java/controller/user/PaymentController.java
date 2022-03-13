@@ -13,7 +13,12 @@ import DAO.implement.OrderDBContext;
 import DAO.implement.OrderDetailDBContext;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -121,6 +126,18 @@ public class PaymentController extends HttpServlet {
             order.setProductId(item.getProduct().getId());
             order.setQuantity(item.getQty());
             order.setOrderDate(Date.valueOf(created));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            Calendar cal = Calendar.getInstance();
+            try {
+                cal.setTime(sdf.parse(created));
+            } catch (ParseException ex) {
+                Logger.getLogger(PaymentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            cal.add(Calendar.DAY_OF_MONTH, 10);
+            String deliveryDate = sdf.format(cal.getTime());
+            order.setDeliveryDate(Date.valueOf(deliveryDate));
             order.setOrderDetailId(maxid);
             oDB.insert(order);
         }

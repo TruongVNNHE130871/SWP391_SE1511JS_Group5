@@ -35,14 +35,15 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
         //Init statement
         this.getConnection();
         try {
-            String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[DeliveryDate],[OrderDetailId]) VALUES (?,?,?,?,?,?)";
             statement = connection.prepareStatement(sql);
             User user = order.getUsername();
             statement.setInt(1, user.getId());
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
             statement.setDate(4, (Date) order.getOrderDate());
-            statement.setInt(5, order.getOrderDetailId());
+              statement.setDate(5, (Date) order.getOrderDate());
+            statement.setInt(6, order.getOrderDetailId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
