@@ -1,5 +1,6 @@
 
 
+<%@page import="model.User"%>
 <%@page import="model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
@@ -39,30 +40,41 @@
         <div class="container mt-5">
             <div class="list-product">
                 <form method="Post">
-                    <input type="input" placeholder="Username" class="form-control mb-4" name="search">
+                    <input type="input" placeholder="username" class="form-control mb-4" name="search">
                     <button type="submit" class="btn btn-outline-success">tìm kiếm</button>
+                    
                 </form>
                 <p>List User: </p>
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">OrderDate</th>
-                            <th scope="col">DeliveryDate</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Số thứ tự</th>
+                            <th scope="col">Tên tài khoản</th>
+                            <th scope="col">Ngày đặt hàng</th>
+                            <th scope="col">Ngày ship hàng</th>
+                            <th scope="col">Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items = "${orders}" var= "order" end = "${orders.size()}">
+                        <%
+                            for (Order order : orders){
+                        %>                      
                             <tr>
                                 <td>
-                                    ${order.username}
+                                    <%=order.getId()%>
                                 </td>
                                 <td>
-                                    ${order.orderDate}
+                                    <%
+                                        User user = new User();
+                                        user = order.getUsername();
+                                    %>
+                                    <%=user.getUserName()%>
                                 </td>
                                 <td>
-                                    ${order.deliveryDate}
+                                    <%=order.getOrderDate()%>
+                                </td>
+                                <td>
+                                    <%=order.getDeliveryDate()%>
                                 </td>
                                 <td>
                                     Shipped
@@ -70,14 +82,14 @@
                                 <td>
                                     <button class="btn btn-outline-danger">Details</button>
                                 </td>
-                            </tr>
-                        </c:forEach>
+                            </tr>                       
+                        <%}%>
                     </tbody>
                 </table>
                 <nav aria-label="...">
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
-                            <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
+                            <li class="page-item"><a class="page-link" href="listOrder?pageIndex=${pageIndex}">${pageIndex}</a></li>
                             </c:forEach>
                     </ul>
                 </nav>

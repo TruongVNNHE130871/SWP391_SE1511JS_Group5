@@ -102,7 +102,6 @@ public class UserListController extends HttpServlet {
         session.setAttribute("searchUserName", searchUserName);
         response.sendRedirect("listUser/search");
     }
-
     /**
      * Returns a short description of the servlet.
      *

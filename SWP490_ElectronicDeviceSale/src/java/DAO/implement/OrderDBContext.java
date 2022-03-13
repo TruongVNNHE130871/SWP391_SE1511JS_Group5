@@ -76,6 +76,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
 
     @Override
     public int getOrderRowCount() {
+        this.getConnection();
         try {
             String sql = "select COUNT(*) as Total from [Order]";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -122,80 +123,67 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
                 + "  FROM [Order] o, [User] u\n"
                 + "  WHERE o.UserId = u.ID\n";
         int paramIndex = 0;
-        ArrayList<TempObject> params = new ArrayList();
-        TempObject param = new TempObject();
-//        HashMap<Integer, Object[]> params = new HashMap<>();
+        HashMap<Integer, Object[]> params = new HashMap<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
         ArrayList<Order> orders = new ArrayList();
         try {
             if (userId != null && userId.isEmpty() == false) {
                 sql += "AND u.[UserName] = ?\n";
-                param.setIndex(pageIndex);
-                param.setType("STRING");
-                params.add(param);
                 paramIndex++;
-//                Object[] param = new Object[2];
-//                param[0] = "STRING";
-//                param[1] = userId;
-//                params.put(paramIndex, param);
+                Object[] param = new Object[2];
+                param[0] = "STRING";
+                param[1] = userId;
+                params.put(paramIndex, param);
 
             }
             if (orderDate != null) {
-                sql += "AND o.[OrderDate] = ?\n";
-                param.setIndex(pageIndex);
-                param.setType("DATE");
-                params.add(param);   
+                sql += "AND o.[OrderDate] = ?\n"; 
                 paramIndex++;
-//                Object[] param = new Object[2];
-//                param[0] = "DATE";
-//                param[1] = orderDate;
-//                params.put(paramIndex, param);
+                Object[] param = new Object[2];
+                param[0] = "DATE";
+                param[1] = orderDate;
+                params.put(paramIndex, param);
             }
             if (deliveryDate != null) {
                 sql += "AND o.[DeliveryDate] = ?\n";
-                param.setIndex(pageIndex);
-                param.setType("DATE");
-                params.add(param); 
                 paramIndex++;
-//                Object[] param = new Object[2];
-//                param[0] = "DATE";
-//                param[1] = deliveryDate;
-//                params.put(paramIndex, param);
+                Object[] param = new Object[2];
+                param[0] = "DATE";
+                param[1] = deliveryDate;
+                params.put(paramIndex, param);
             }
             sql += "ORDER BY ID\n"
                     + "  OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-            paramIndex++;
-//            Object[] param = new Object[2];
-//            param[0] = "INT";
-//            param[1] = (pageIndex - 1) * pageSize;
-//            params.put(paramIndex, param);
-            paramIndex++;
-//            param[0] = "INT";
-//            param[1] = pageSize;
-//            params.put(paramIndex, param);
+
             stm = connection.prepareStatement(sql);
-//            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
-//                Integer key = entry.getKey();
-//                Object[] value = entry.getValue();
-//                String type = value[0].toString();
-//                switch (type) {
-//                    case "INT":
-//                        stm.setInt(key, (int) value[1]);
-//                        break;
-//                    case "STRING":
-//                        stm.setString(key, value[1].toString());
-//                        break;
-//                    case "DATE":
-//                        stm.setDate(key, (Date) value[1]);
-//                        break;
-//                }
-//            }
+            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+                Integer key = entry.getKey();
+                Object[] value = entry.getValue();
+                String type = value[0].toString();
+                switch (type) {
+                    case "INT":
+                        stm.setInt(key, (int) value[1]);
+                        break;
+                    case "STRING":
+                        stm.setString(key, value[1].toString());
+                        break;
+                    case "DATE":
+                        stm.setDate(key, (Date) value[1]);
+                        break;
+                }
+            }
+            paramIndex++;
+            stm.setInt(paramIndex, (pageIndex - 1) * pageSize);
+            paramIndex++;
+            stm.setInt(paramIndex, pageSize);
             rs = stm.executeQuery();
             while(rs.next()){
                 Order order = new Order();
                 order.setId(rs.getInt("ID"));
-                order.getUsername(rs.getString("UserName"));
+                User user = new User();
+                user.setUserName(rs.getString("UserName"));
+                order.setUsername(user);
                 order.setOrderDate(rs.getDate("OrderDate"));
                 order.setDeliveryDate(rs.getDate("DeliveryDate"));
                 orders.add(order);
