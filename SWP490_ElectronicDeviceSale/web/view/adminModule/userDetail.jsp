@@ -146,7 +146,7 @@
 
                     </div>
                     <div class="ban-user text-center my-5">
-                        <button class="btn btn-danger">
+                        <button class="btn btn-danger" href="${pageContext.request.contextPath}/BanUnbanController?idUser=${user.id}">
                         <c:if test = "${user.status == true}">Cấm người dùng</c:if>
                         <c:if test = "${user.status == false}">Bỏ cấm</c:if>
                     </button>

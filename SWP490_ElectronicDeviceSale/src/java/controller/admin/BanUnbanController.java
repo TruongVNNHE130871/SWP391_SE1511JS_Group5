@@ -5,12 +5,14 @@
  */
 package controller.admin;
 
+import DAO.implement.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
@@ -29,19 +31,22 @@ public class BanUnbanController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BanUnbanController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BanUnbanController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        UserDBContext db = new UserDBContext();
+        String raw_idUser = request.getParameter("idUser");
+        if (raw_idUser == null || raw_idUser.length() == 0) {
+            raw_idUser = "-1";
         }
+        int idU = Integer.parseInt(raw_idUser);
+        User u = db.getUserByID(idU);
+
+        if(u.isStatus()){
+            db.banUser(idU);
+        }
+        else{
+            db.unbanUser(idU);
+        }
+                request.setAttribute("user", u);
+        request.getRequestDispatcher("view/adminModule/userDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,10 +12,10 @@ package model;
 import java.util.Date;
 
 /**
- *This class contains the attributes of the user
- * 
+ * This class contains the attributes of the user
+ *
  * @author VinhNT
- * 
+ *
  */
 public class User {
 
@@ -28,6 +28,7 @@ public class User {
     private String email;
     private Date created;
     private boolean status;
+
     public User() {
 
     }
@@ -42,8 +43,8 @@ public class User {
         super();
         this.userName = username;
     }
-    
-    public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created,boolean status) {
+
+    public User(int id, String name, String userName, String passWord, boolean gender, int phone, String email, Date created, boolean status) {
         this.id = id;
         this.name = name;
         this.userName = userName;
@@ -118,6 +119,7 @@ public class User {
     public void setCreated(Date created) {
         this.created = created;
     }
+
     public boolean isStatus() {
         return status;
     }
