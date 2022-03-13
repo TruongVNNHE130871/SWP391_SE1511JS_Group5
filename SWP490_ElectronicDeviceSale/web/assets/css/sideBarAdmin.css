@@ -72,7 +72,7 @@ a {
     position: fixed;
     top: 0;
     left: -30%;
-    width: var(--nav-width);
+/*    width: var(--nav-width);*/
     height: 100vh;
     background-color: #404e68;
     padding: .5rem 1rem 0 0;

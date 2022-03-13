@@ -1,12 +1,12 @@
 
 
+<%@page import="model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.User"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%
-    ArrayList<User> users = (ArrayList<User>) session.getAttribute("users");
+    ArrayList<Order> orders = (ArrayList<Order>) session.getAttribute("orders");
 %>
 <html>
     <head>
@@ -29,7 +29,7 @@
     </head>
     <header>
         <div class="infor d-flex justify-content-around">
-            <div class="text-admin mt-2">ADMIN</div>
+            <div class="text-admin mt-2">ADMIN List Order</div>
             <div class="image-admin">
                 <img src="https://duytan.thinkingschool.vn/wp-content/uploads/avatars/1/5c2ecfd10c228-bpfull.png" alt="" width="80" height="80" class="rounded-circle">
             </div>
@@ -46,47 +46,31 @@
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">UserId</th>
-                            <th scope="col">ProductID</th>
-                            <th scope="col">Quantity</th>
+                            <th scope="col">Username</th>
                             <th scope="col">OrderDate</th>
                             <th scope="col">DeliveryDate</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items = "${users}" var= "user" end = "${users.size()}">
+                        <c:forEach items = "${orders}" var= "order" end = "${orders.size()}">
                             <tr>
                                 <td>
-                                    ${user.id}
+                                    ${order.username}
                                 </td>
                                 <td>
-                                    ${user.name}
+                                    ${order.orderDate}
                                 </td>
                                 <td>
-                                    ${user.userName}
+                                    ${order.deliveryDate}
                                 </td>
                                 <td>
-                                    ${user.passWord}
+                                    Shipped
                                 </td>
                                 <td>
-                                    <c:if test = "${user.gender == true}">Male</c:if>
-                                    <c:if test = "${user.gender == false}">Female</c:if>                         
-                                    </td>
-                                    <td>
-                                    ${user.phone}
+                                    <button class="btn btn-outline-danger">Details</button>
                                 </td>
-                                <td>
-                                    ${user.email}
-                                </td>
-                                <td>
-                                    <c:if test = "${user.status == true}">Active</c:if>
-                                    <c:if test = "${user.status == false}">Banned</c:if>  
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-outline-danger">Details</button>
-                                    </td>
-                                </tr>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -94,7 +78,7 @@
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
                             <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
                 </nav>
             </div>

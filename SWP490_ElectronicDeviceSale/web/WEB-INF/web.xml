@@ -89,17 +89,20 @@
         <servlet-class>controller.admin.ProductUpdateController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< Updated upstream
         <servlet-name>PaymentController</servlet-name>
         <servlet-class>controller.user.PaymentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewOrderHistory</servlet-name>
         <servlet-class>controller.user.ViewOrderHistory</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>UserSearchResultController</servlet-name>
         <servlet-class>controller.admin.UserSearchResultController</servlet-class>
->>>>>>> Stashed changes
+    </servlet>
+    <servlet>
+        <servlet-name>OrderManagementController</servlet-name>
+        <servlet-class>controller.admin.OrderManagementController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -196,8 +199,14 @@
     <servlet-mapping>
         <servlet-name>ViewOrderHistory</servlet-name>
         <url-pattern>/ViewOrderHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UserSearchResultController</servlet-name>
         <url-pattern>/admin/listUser/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderManagementController</servlet-name>
+        <url-pattern>/admin/listOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

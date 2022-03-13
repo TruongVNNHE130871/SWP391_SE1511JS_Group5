@@ -15,29 +15,32 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Order;
+import model.TempObject;
 
 /**
  *
  * @author VinhNT
  */
 public class OrderDBContext extends BaseDAO implements IOrderDBContext {
-    
+
     @Override
     public void insert(Order order) {
         String sql = "INSERT INTO [Order]([UserId], [ProductId],[Quantity],[OrderDate],[OrderDetailId]) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, order.getUserId());
+            statement.setString(1, order.getUsername());
             statement.setInt(2, order.getProductId());
             statement.setInt(3, order.getQuantity());
             statement.setDate(4, (Date) order.getOrderDate());
             statement.setInt(5, order.getOrderDetailId());
             statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -72,7 +75,7 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
     @Override
     public int getOrderRowCount() {
         try {
-            String sql = "select COUNT(*) as Total from Order";
+            String sql = "select COUNT(*) as Total from [Order]";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -105,5 +108,115 @@ public class OrderDBContext extends BaseDAO implements IOrderDBContext {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orders;
-    }  
+    }
+
+    @Override
+    public ArrayList<Order> listOrderPaging(String userId, java.util.Date orderDate, java.util.Date deliveryDate, int pageIndex, int pageSize) {
+        this.getConnection();
+        String sql = "SELECT o.[ID]\n"
+                + "      ,u.[UserName]\n"
+                + "      ,o.[OrderDate]\n"
+                + "      ,o.[DeliveryDate]\n"
+                + "  FROM [Order] o, [User] u\n"
+                + "  WHERE o.UserId = u.ID\n";
+        int paramIndex = 0;
+        ArrayList<TempObject> params = new ArrayList();
+        TempObject param = new TempObject();
+//        HashMap<Integer, Object[]> params = new HashMap<>();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ArrayList<Order> orders = new ArrayList();
+        try {
+            if (userId != null && userId.isEmpty() == false) {
+                sql += "AND u.[UserName] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("STRING");
+                params.add(param);
+                paramIndex++;
+//                Object[] param = new Object[2];
+//                param[0] = "STRING";
+//                param[1] = userId;
+//                params.put(paramIndex, param);
+
+            }
+            if (orderDate != null) {
+                sql += "AND o.[OrderDate] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("DATE");
+                params.add(param);   
+                paramIndex++;
+//                Object[] param = new Object[2];
+//                param[0] = "DATE";
+//                param[1] = orderDate;
+//                params.put(paramIndex, param);
+            }
+            if (deliveryDate != null) {
+                sql += "AND o.[DeliveryDate] = ?\n";
+                param.setIndex(pageIndex);
+                param.setType("DATE");
+                params.add(param); 
+                paramIndex++;
+//                Object[] param = new Object[2];
+//                param[0] = "DATE";
+//                param[1] = deliveryDate;
+//                params.put(paramIndex, param);
+            }
+            sql += "ORDER BY ID\n"
+                    + "  OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            paramIndex++;
+//            Object[] param = new Object[2];
+//            param[0] = "INT";
+//            param[1] = (pageIndex - 1) * pageSize;
+//            params.put(paramIndex, param);
+            paramIndex++;
+//            param[0] = "INT";
+//            param[1] = pageSize;
+//            params.put(paramIndex, param);
+            stm = connection.prepareStatement(sql);
+//            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+//                Integer key = entry.getKey();
+//                Object[] value = entry.getValue();
+//                String type = value[0].toString();
+//                switch (type) {
+//                    case "INT":
+//                        stm.setInt(key, (int) value[1]);
+//                        break;
+//                    case "STRING":
+//                        stm.setString(key, value[1].toString());
+//                        break;
+//                    case "DATE":
+//                        stm.setDate(key, (Date) value[1]);
+//                        break;
+//                }
+//            }
+            rs = stm.executeQuery();
+            while(rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("ID"));
+                order.getUsername(rs.getString("UserName"));
+                order.setOrderDate(rs.getDate("OrderDate"));
+                order.setDeliveryDate(rs.getDate("DeliveryDate"));
+                orders.add(order);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                connection.close();
+                //close connection
+                if (rs != null) {
+                    rs.close();
+                }
+                //close result set
+                if (stm != null) {
+                    stm.close();                   
+                }
+                //close statement
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        
+        return orders;
+    }
+
 }

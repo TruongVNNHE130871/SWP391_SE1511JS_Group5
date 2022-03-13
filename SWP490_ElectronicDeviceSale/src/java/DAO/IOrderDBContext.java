@@ -6,6 +6,7 @@
 package DAO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import model.Order;
 
 
@@ -18,5 +19,5 @@ public interface IOrderDBContext {
     public ArrayList<Order> getOrders(int pageindex, int pagesize, int id);
     public int getOrderRowCount();
     public ArrayList<Order> listOrder(int id);
-    
+    public ArrayList<Order> listOrderPaging(String userId, Date orderDate,Date deliveryDate, int pageIndex, int pageSize);
 }
