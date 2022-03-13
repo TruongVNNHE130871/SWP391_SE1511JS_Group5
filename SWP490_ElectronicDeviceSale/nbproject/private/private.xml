@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/PaymentController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/BaseDAO.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/OrderDBContext.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/LoginController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/User.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Order.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/cart.css</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/editprofile.jsp</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/sideBarAdmin.css</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/EditProfileController.java</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/addNewProduct.css</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/index.html</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/sideBar.jsp</file>
+            <file>file:/C:/Users/BH1704/Desktop/SWP/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/productdetails.css</file>
         </group>
     </open-files>
 </project-private>
