@@ -95,7 +95,7 @@
                 <nav aria-label="...">
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
-                            <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
+                            <li class="page-item"><a class="page-link" href="userList?pageIndex=${pageIndex}">${pageIndex}</a></li>
                         </c:forEach>
                     </ul>
                 </nav>
