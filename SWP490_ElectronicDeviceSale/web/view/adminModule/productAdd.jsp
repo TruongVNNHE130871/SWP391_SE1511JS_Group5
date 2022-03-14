@@ -37,23 +37,23 @@ Record of change:
                         <div class="col-8">
 
                             <div class="mb-3 row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Tên SP: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" required name="productName" class="form-control">
+                                    <input type="text" name="productName" class="form-control" pattern="^[a-zA-Z0-9 ]{3,30}" required>
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="inputImage" class="col-sm-2 col-form-label">Link Image: </label>
+                                <label for="inputImage" class="col-sm-2 col-form-label">Hình ảnh: </label>
                                 <div class="col-sm-10">
                                     <input type="text" value="" required name="productImage" class="form-control">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Danh mục: </label>
                                 <div class="col-sm-10">
                                     <select name="cid">
-                                        <option value="-1">Choose Category</option>
+                                        <option value="-1">Chọn danh mục</option>
                                         <c:forEach items="${requestScope.categories}" var="c">
                                             <option 
                                                 <c:if test="${c.id eq param.id}">
@@ -65,42 +65,42 @@ Record of change:
                                 </div>
                             </div>
                             <div class="description">
-                                <p>Description:</p>
+                                <p>Mô tả: </p>
                                 <div class="mb-3"> 
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="[-+]?[a-zA-Z0-9 ]*[.,]?[a-zA-Z0-9 ]+" required></textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputPrice" class="col-sm-2 col-form-label">Price: </label>
+                                <label for="inputPrice" class="col-sm-2 col-form-label">Giá: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productPrice" class="form-control" id="" placeholder="">
+                                    <input type="text" required name="productPrice" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{3,50}" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">VNĐ</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputDiscount" class="col-sm-2 col-form-label">Discount: </label>
+                                <label for="inputDiscount" class="col-sm-2 col-form-label">Giảm giá: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productDiscount" class="form-control" id="" placeholder="">
+                                    <input type="text" required name="productDiscount" class="form-control" id="" placeholder="" minlength="1" maxlength="5" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">%</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputSize" class="col-sm-2 col-form-label">Size: </label>
+                                <label for="inputSize" class="col-sm-2 col-form-label">Kích thước: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productSize" class="form-control" id="" placeholder="">
+                                    <input type="text" required name="productSize" class="form-control" id="" placeholder="" minlength="1" maxlength="10" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">mm</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputWeight" class="col-sm-2 col-form-label">Weight: </label>
+                                <label for="inputWeight" class="col-sm-2 col-form-label">Trọng lượng: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="">
+                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="" minlength="1" maxlength="10" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">gram</label>
@@ -109,28 +109,28 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="">
+                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{1,10}" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">GB</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputOrginal" class="col-sm-2 col-form-label">Orginal: </label>
+                                <label for="inputOrginal" class="col-sm-2 col-form-label">Xuất sứ: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productOrginal" class="form-control" id="" placeholder="">
+                                    <input type="text" name="productOrginal" class="form-control" id="" placeholder="" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputYear" class="col-sm-2 col-form-label">Release Year: </label>
+                                <label for="inputYear" class="col-sm-2 col-form-label">Năm phát hành: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productYear" class="form-control" id="" placeholder="">
+                                    <input type="text" name="productYear" class="form-control" id="" placeholder="" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" required>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-success">Add</button>
+                        <button type="submit" class="btn btn-outline-success">Thêm</button>
                     </div>
                 </div>
             </div>

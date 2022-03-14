@@ -4,7 +4,7 @@ EDS.Shop
 Electronic Device Sale Shop
 Record of change:
    DATE         Version       AUTHOR          DESCRIPTION
-2022-01-07        1.0         BinhDV         First Implement
+2022-02-28        1.0         BinhDV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,23 +40,23 @@ Record of change:
                         <div class="col-8">
                             <input type="hidden" value="${requestScope.product.id}" name="productID"/>
                             <div class="mb-3 row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Tên SP: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="${requestScope.product.name}" required name="productName" class="form-control">
+                                    <input type="text" value="${requestScope.product.name}" name="productName" class="form-control" pattern="^[a-zA-Z0-9 ]{3,30}" required>
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="inputImage" class="col-sm-2 col-form-label">Link Image: </label>
+                                <label for="inputImage" class="col-sm-2 col-form-label">Hình ảnh: </label>
                                 <div class="col-sm-10">
                                     <input type="text" value="${requestScope.product.image}" required name="productImage" class="form-control">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Category: </label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Danh mục: </label>
                                 <div class="col-sm-10">
                                     <select name="cid">
-                                        <option value="-1">Choose Category</option>
+                                        <option value="-1">Chọn danh mục</option>
                                         <c:forEach items="${requestScope.categories}" var="c">
                                             <option 
                                                 <c:if test="${c.id eq requestScope.product.c.id}">
@@ -68,24 +68,24 @@ Record of change:
                                 </div>
                             </div>
                             <div class="description">
-                                <p>Description:</p>
+                                <p>Mô tả: </p>
                                 <div class="mb-3"> 
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription">${requestScope.product.description}</textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="[-+]?[a-zA-Z0-9 ]*[.,]?[a-zA-Z0-9 ]+" required >${requestScope.product.description}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputPrice" class="col-sm-2 col-form-label">Price: </label>
+                                <label for="inputPrice" class="col-sm-2 col-form-label">Giá:  </label>
                                 <div class="col-sm-4">
-                                    <input type="text" value="${requestScope.productPrice}" required name="productPrice" class="form-control" id="" placeholder="">
+                                    <input type="text" value="${requestScope.productPrice}" name="productPrice" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{3,50}" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">VNĐ</label>
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="inputDiscount" class="col-sm-2 col-form-label">Discount: </label>
+                                <label for="inputDiscount" class="col-sm-2 col-form-label">Giảm giá: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" value="${requestScope.product.discount}" required name="productDiscount" class="form-control" id="" placeholder="">
+                                    <input type="text" value="${requestScope.product.discount}" name="productDiscount" class="form-control" id="" placeholder="" minlength="1" maxlength="5" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">%</label>
@@ -96,7 +96,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" value="${requestScope.product.ram}" required name="productRam" class="form-control" id="" placeholder="">
+                                    <input type="text" value="${requestScope.product.ram}" required name="productRam" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{1,10}" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">GB</label>
@@ -107,7 +107,7 @@ Record of change:
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-success">Save</button>
+                        <button type="submit" class="btn btn-outline-success">Lưu</button>
                     </div>
                 </div>
             </div>

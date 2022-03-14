@@ -99,11 +99,11 @@ public class ProductInsertController extends HttpServlet {
         long millis = System.currentTimeMillis();
         java.sql.Date dateCreated = new java.sql.Date(millis);
 
-        p.setName(productName);
-        p.setImage(productImage);
-        p.setDescription(productDescription);
-        p.setPrice(productPrice);
-        p.setDiscount(Float.parseFloat(raw_productDiscount));
+        p.setName(productName.trim());
+        p.setImage(productImage.trim());
+        p.setDescription(productDescription.trim());
+        p.setPrice(productPrice.trim());
+        p.setDiscount(Float.parseFloat(raw_productDiscount.trim()));
         p.setStatus(true);
         Category category = new Category();
         category.setId(productCategory);
@@ -112,11 +112,11 @@ public class ProductInsertController extends HttpServlet {
         shop.setId(1);
         p.setS(shop);
         p.setCreated(dateCreated);
-        p.setSize(Float.parseFloat(raw_productSize));
-        p.setWeight(Float.parseFloat(raw_productWeight));
-        p.setRam(Integer.parseInt(raw_productRam));
-        p.setOrginal(productOrginal);
-        p.setYear(productYear);
+        p.setSize(Float.parseFloat(raw_productSize.trim()));
+        p.setWeight(Float.parseFloat(raw_productWeight.trim()));
+        p.setRam(Integer.parseInt(raw_productRam.trim()));
+        p.setOrginal(productOrginal.trim());
+        p.setYear(productYear.trim());
         pDB.insertProduct(p);
         response.sendRedirect("ProductListController");
 

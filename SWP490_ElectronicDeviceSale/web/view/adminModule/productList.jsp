@@ -60,7 +60,7 @@ Record of change:
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">Mã Sản Phẩm</th>
                             <th scope="col">Tên Sản Phẩm</th>
                             <th scope="col">Ảnh</th>
                             <th scope="col">Danh Mục</th>

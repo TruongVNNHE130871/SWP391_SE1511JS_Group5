@@ -20,7 +20,7 @@ import model.Shop;
 
 /**
  *
- * @author BH1704
+ * @author BinhDV
  */
 public class ProductUpdateController extends HttpServlet {
 
@@ -82,21 +82,21 @@ public class ProductUpdateController extends HttpServlet {
         if (raw_productDiscount == null || raw_productDiscount.length() == 0) {
             raw_productDiscount = "0";
         }
-        float productDiscount = Float.parseFloat(raw_productDiscount);
+        float productDiscount = Float.parseFloat(raw_productDiscount.trim());
 
         String raw_producRam = request.getParameter("productRam");
         if (raw_producRam == null || raw_producRam.length() == 0) {
             raw_producRam = "0";
         }
-        int productRam = Integer.parseInt(raw_producRam);
+        int productRam = Integer.parseInt(raw_producRam.trim());
 
-        product.setName(productName);
-        product.setImage(productImage);
-        product.setDescription(productDescription);
+        product.setName(productName.trim());
+        product.setImage(productImage.trim());
+        product.setDescription(productDescription.trim());
         Category category = new Category();
         category.setId(productCategory);
         product.setC(category);
-        product.setPrice(productPrice);
+        product.setPrice(productPrice.trim());
         product.setDiscount(productDiscount);
         product.setRam(productRam);
         pDB.updateProduct(product);
