@@ -91,7 +91,7 @@ Record of change:
                 <div class="container description-product">
                     <div class="row">
                         <div class="col-7 border p-3">
-                            <p class="fs-5 fw-bolder">Detailed review of ${requestScope.product.name}</p><hr>
+                            <p class="fs-5 fw-bolder">Đặc điểm nổi bật của ${requestScope.product.name}</p><hr>
                             <p class="fw-bold">iPhone 13 Pro Max deserves to be the largest, most powerful and longest-lasting iPhone ever that will give you a great experience, from casual tasks to professional applications.</p>
                             <div class="img-detail text-center">
                                 <img src="${requestScope.product.image}" alt="">
@@ -110,7 +110,7 @@ Record of change:
                         </div>
                         <div class="col-5">
                             <div class="specifications border p-3">
-                                <p class="fs-5 fw-bolder">Specifications</p>
+                                <p class="fs-5 fw-bolder">Thông số kỹ thuật</p>
                                 <table style="width: 100%;">
                                     <tr>
                                         <td>Screen</td>
@@ -163,7 +163,7 @@ Record of change:
                                 </table>
                             </div>
                             <div class="container news border mt-3">
-                                <p>News about iPhone</p>
+                                <p>Tin tức về ${requestScope.product.name}</p>
                                 <table style="width: 100%;">
                                     <tr>
                                         <td>

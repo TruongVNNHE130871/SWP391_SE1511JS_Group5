@@ -153,7 +153,7 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 p.setOrginal(rs.getString("Orginal"));
                 p.setYear(rs.getString("Year"));
                 return p;
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,19 +372,21 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             String sql = "UPDATE [dbo].[Product]\n"
                     + "   SET [CategoryId] = ?\n"
                     + "      ,[Name] = ?\n"
+                    + "      ,[Image] = ?\n"
                     + "      ,[Description] = ?\n"
                     + "      ,[Discount] = ?\n"
-                    + "      ,[Created] = ?\n"
+                    + "      ,[Ram] = ?\n"
                     + "      ,[Price] = ?\n"
-                    + " WHERE ID = ? ";
+                    + " WHERE ID = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, p.getC().getId());
             statement.setString(2, p.getName());
-            statement.setString(3, p.getDescription());
-            statement.setFloat(4, p.getDiscount());
-            statement.setDate(5, (Date) p.getCreated());
-            statement.setString(6, p.getPrice());
-            statement.setInt(7, p.getId());
+            statement.setString(3, p.getImage());
+            statement.setString(4, p.getDescription());
+            statement.setFloat(5, p.getDiscount());
+            statement.setInt(6, p.getRam());
+            statement.setString(7, p.getPrice().replace(",", ""));
+            statement.setInt(8, p.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);

@@ -6,6 +6,7 @@
 package model;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -129,7 +130,7 @@ public class Product implements Cloneable{
     }
 
     public String getPrice() {
-        return String.format("%,.0f", Float.parseFloat(price));
+        return String.format(Locale.US, "%,.0f", Float.parseFloat(price));
     }
 
     public void setPrice(String price) {
