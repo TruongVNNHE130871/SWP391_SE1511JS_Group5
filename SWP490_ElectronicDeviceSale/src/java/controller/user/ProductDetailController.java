@@ -40,7 +40,6 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         ProductDBContext pDB = new ProductDBContext();
         ReviewDBContext rDB = new ReviewDBContext();
-
         String idProduct = request.getParameter("idProduct");
         int idP = Integer.parseInt(idProduct);
         Product p = pDB.getProduct(idP);

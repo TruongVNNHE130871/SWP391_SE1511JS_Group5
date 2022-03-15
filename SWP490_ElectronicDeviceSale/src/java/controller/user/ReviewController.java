@@ -65,12 +65,8 @@ public class ReviewController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ReviewDBContext rDB = new ReviewDBContext();
-
-        String raw_id = req.getParameter("id");
-        if (raw_id == null || raw_id.length() == 0) {
-            raw_id = "-1";
-        }
-        int id = Integer.parseInt(raw_id);
+        String idProduct = req.getParameter("id");
+        int id = Integer.parseInt(idProduct);
         String name = req.getParameter("name");
         int phone = Integer.parseInt(req.getParameter("phone"));
         String content = req.getParameter("content");
