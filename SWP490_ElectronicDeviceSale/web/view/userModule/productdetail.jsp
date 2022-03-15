@@ -79,7 +79,7 @@ Record of change:
 
                             </div>
                             <div class="btn-add-buy mt-5">
-                                <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
+                                <a href="${pageContext.request.contextPath}/AddToCartFromProductDetailController?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
                                     Thêm vào giỏ hàng
                                 </a><br>
                                 <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
@@ -411,16 +411,23 @@ Record of change:
                         </div>
                     </div>
                     <div class="review-comment">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Đánh giá của bạn" required name="content"rows="5"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Đánh giá của bạn"  name="content"rows="5" 
+                                  required></textarea>
                     </div>
                     <div class="input-name-phone row g-2 my-4">
                         <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Tên của bạn" required name="name">
+                            <input type="text" class="form-control" placeholder="Tên của bạn"  name="name"
+                                   minlength="3"
+                                   maxlength="255"
+                                   required="required">
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Số điện thoại" pattern="[0-9]{10}" required name="phone">
+                            <input type="text" class="form-control" placeholder="Số điện thoại" required name="phone"
+                                   minlength="10"
+                                   maxlength="10"
+                                   pattern="[0-9]{10}"
+                                   required>
                         </div>
-
                     </div>
                     <div class="text-center my-4">
                         <button type="submit"class="btn btn-success">Gửi đánh giá</button>

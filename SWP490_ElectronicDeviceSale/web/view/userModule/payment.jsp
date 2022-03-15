@@ -58,28 +58,37 @@ Record of change:
                             <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;">Địa chỉ giao hàng</p>
 
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Họ Tên*" required="required" name="payment_name">
+                                <input type="text" class="form-control" placeholder="Họ Tên*" name="payment_name"
+                                       minlength="3"
+                                       maxlength="255"
+                                       required>
+
                             </div>
                             <div class="form-group row mb-3">
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Email*"  name="payment_email" minlength="4"
-                                           maxlength="40" 
-                                           title="The domain portion of the email address is invalid (the portion after the @)." 
-                                           pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+                                    <input type="email" class="form-control" placeholder="Email*"  name="payment_email" minlength="4"
+                                           minlength="4"
+                                           maxlength="40"
                                            required>
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Số Điện Thoại*"  pattern="[0-9]{10}"
-                                           required name="payment_phone">
+                                    <input type="text" class="form-control" placeholder="Số Điện Thoại*"  name="payment_phone"
+                                           minlength="4"
+                                           maxlength="10"
+                                           pattern="[0-9]{10}"
+                                           required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                          placeholder="Địa Chỉ*" required="required" name="payment_address"></textarea>
+                                          placeholder="Địa Chỉ" name="payment_address"
+                                          minlength="10"
+                                          maxlength="255"
+                                          required></textarea>
                             </div>
                             <div class="form-group mb-5">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                          placeholder="Ghi Chú*" name="payment_note"></textarea>
+                                          placeholder="Ghi Chú*" name="payment_note" maxlength="255"></textarea>
                             </div>
                             <div> <input type="date" placeholder="Password" name="payment_created" id="the-date" style="display: none">   </div>
 

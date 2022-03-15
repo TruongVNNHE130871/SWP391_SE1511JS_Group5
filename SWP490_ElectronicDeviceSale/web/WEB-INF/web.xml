@@ -128,6 +128,10 @@
         <servlet-name>ByNowController</servlet-name>
         <servlet-class>controller.user.ByNowController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCartFromProductDetailController</servlet-name>
+        <servlet-class>controller.user.AddToCartFromProductDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -255,6 +259,10 @@
     <servlet-mapping>
         <servlet-name>ByNowController</servlet-name>
         <url-pattern>/ByNowController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartFromProductDetailController</servlet-name>
+        <url-pattern>/AddToCartFromProductDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

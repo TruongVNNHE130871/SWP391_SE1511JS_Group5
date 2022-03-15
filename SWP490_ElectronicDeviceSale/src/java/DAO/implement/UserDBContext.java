@@ -56,6 +56,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                 u.setPhone(rs.getInt("Phone"));
                 u.setEmail(rs.getString("Email"));
                 u.setCreated(rs.getDate("Created"));
+                u.setStatus(rs.getBoolean("Status"));
                 return u;
             }
 

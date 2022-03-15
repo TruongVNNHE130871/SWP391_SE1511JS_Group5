@@ -67,9 +67,9 @@ public class ReviewController extends HttpServlet {
         ReviewDBContext rDB = new ReviewDBContext();
         String idProduct = req.getParameter("id");
         int id = Integer.parseInt(idProduct);
-        String name = req.getParameter("name");
-        int phone = Integer.parseInt(req.getParameter("phone"));
-        String content = req.getParameter("content");
+        String name = req.getParameter("name").trim();
+        int phone = Integer.parseInt(req.getParameter("phone").trim());
+        String content = req.getParameter("content").trim();
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         int vote = Integer.parseInt(req.getParameter("vote"));

@@ -73,9 +73,17 @@ public class LoginController extends HttpServlet {
         User u = userDB.getUserByUserPass(username, password);
         try {
             if (u != null && u.getPassWord().equals(password)) {
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("user", u);
-                response.sendRedirect("HomePageController");
+                if (u.isStatus() == true) {
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("user", u);
+                    response.sendRedirect("HomePageController");
+                }
+                if (u.isStatus() == false) {
+                    request.setAttribute("username", username);
+                    request.setAttribute("password", password);
+                    request.setAttribute("errorMsg", "Bạn không thể đăng nhập vào lúc này!");
+                    request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                }
             } else {
                 request.setAttribute("username", username);
                 request.setAttribute("password", password);

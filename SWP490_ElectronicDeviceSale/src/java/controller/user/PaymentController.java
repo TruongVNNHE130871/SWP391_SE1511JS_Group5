@@ -83,11 +83,11 @@ public class PaymentController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         String user_session = request.getParameter("payment_usersession");
-        String name = request.getParameter("payment_name");
-        int phone = Integer.parseInt(request.getParameter("payment_phone"));
-        String mail = request.getParameter("payment_email");
-        String address = request.getParameter("payment_address");
-        String note = request.getParameter("payment_note");
+        String name = request.getParameter("payment_name").trim();
+        int phone = Integer.parseInt(request.getParameter("payment_phone").trim());
+        String mail = request.getParameter("payment_email").trim();
+        String address = request.getParameter("payment_address").trim();
+        String note = request.getParameter("payment_note").trim();
         String amount = request.getParameter("payment_amount");
         String created = request.getParameter("payment_created");
         String payment = "COD";
