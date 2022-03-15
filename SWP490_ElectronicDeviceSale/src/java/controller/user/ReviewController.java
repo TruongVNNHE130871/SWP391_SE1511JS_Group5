@@ -9,6 +9,7 @@ Record of change:
  */
 package controller.user;
 
+import model.Review;
 import DAO.implement.ReviewDBContext;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -69,20 +70,20 @@ public class ReviewController extends HttpServlet {
         if (raw_id == null || raw_id.length() == 0) {
             raw_id = "-1";
         }
-       int id= Integer.parseInt(raw_id);
+        int id = Integer.parseInt(raw_id);
         String name = req.getParameter("name");
         int phone = Integer.parseInt(req.getParameter("phone"));
         String content = req.getParameter("content");
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
+        int vote = Integer.parseInt(req.getParameter("vote"));
         Review review = new Review();
         review.setName(name);
         review.setProduct_id(id);
         review.setContent(content);
         review.setCreated(date);
         review.setPhone(phone);
-        
-        
+        review.setVote(vote);
         rDB.insert(review);
         resp.sendRedirect(req.getContextPath() + "/ProductDetailController?idProduct=" + id);
     }

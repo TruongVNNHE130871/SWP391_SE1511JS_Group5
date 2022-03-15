@@ -1,0 +1,29 @@
+/* 
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+*/
+.form-review{
+    width: 70% !important;
+    margin: auto;
+    border: 1px solid rgb(219, 219, 219);
+    padding: 30px;
+    border-radius: 5px;
+}
+.btn-icon-star{
+    background-color: white;
+    border: none;
+}
+.color-star{
+    color: orange;
+}
+.title-star{
+    font-size: 13px;
+}
+.input-quantity{
+    width: 15%;
+    text-align: center;
+}

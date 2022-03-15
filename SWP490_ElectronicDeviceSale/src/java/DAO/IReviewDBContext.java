@@ -9,7 +9,7 @@ Record of change:
  */
 package DAO;
 
-import controller.user.Review;
+import model.Review;
 import java.util.List;
 
 

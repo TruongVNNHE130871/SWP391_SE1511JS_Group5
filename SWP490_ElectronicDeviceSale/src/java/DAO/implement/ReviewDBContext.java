@@ -9,8 +9,7 @@ Record of change:
  */
 package DAO.implement;
 
-import controller.user.Review;
-import java.sql.Connection;
+import model.Review;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,13 +31,14 @@ public class ReviewDBContext extends BaseDAO {
         this.getConnection();
 
         try {
-            String sql = "INSERT INTO Review([Name], [ProductId],[Content],[Created],[Phone]) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Review([Name], [ProductId],[Content],[Created],[Phone],[Vote]) VALUES (?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, review.getName());
             statement.setInt(2, review.getProduct_id());
             statement.setString(3, review.getContent());
             statement.setDate(4, (Date) review.getCreated());
             statement.setInt(5, review.getPhone());
+            statement.setInt(6, review.getVote());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,6 +77,7 @@ public class ReviewDBContext extends BaseDAO {
                 review.setContent(rs.getString("content"));
                 review.setCreated(rs.getDate("Created"));
                 review.setPhone(rs.getInt("Phone"));
+                review.setVote(rs.getInt("Vote"));
                 reviews.add(review);
             }
         } catch (SQLException e) {

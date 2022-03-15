@@ -1,15 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * TCopyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+   DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+
  */
-package controller.user;
+package model;
 
 import java.util.Date;
 
 /**
  *
- * @author soide
+ * @author VinhNT
  */
 public class Review {
 
@@ -19,17 +23,19 @@ public class Review {
     private String content;
     private Date created;
     private int phone;
+    private int vote;
 
     public Review() {
     }
 
-    public Review(String id, String name, int product_id, String content, Date created, int phone) {
+    public Review(String id, String name, int product_id, String content, Date created, int phone, int vote) {
         this.id = id;
         this.name = name;
         this.product_id = product_id;
         this.content = content;
         this.created = created;
         this.phone = phone;
+        this.vote = vote;
     }
 
     public String getId() {
@@ -80,5 +86,12 @@ public class Review {
         this.phone = phone;
     }
 
-    
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
+
 }

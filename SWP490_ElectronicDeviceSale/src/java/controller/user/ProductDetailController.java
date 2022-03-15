@@ -8,6 +8,7 @@
  */
 package controller.user;
 
+import model.Review;
 import DAO.implement.ProductDBContext;
 import DAO.implement.ReviewDBContext;
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.paramValueType;
