@@ -12,7 +12,6 @@ package controller.user;
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +20,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Item;
 import model.Cart;
+import model.Item;
 import model.Product;
 
 /**
  *
  * @author VinhNT
  */
-public class AddToCartController extends HttpServlet {
+public class ByNowController extends HttpServlet {
 
     ProductDBContext pDB = new ProductDBContext();
     NumberFormat currentLocale = NumberFormat.getInstance();
@@ -45,6 +44,7 @@ public class AddToCartController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
     }
 
@@ -121,12 +121,11 @@ public class AddToCartController extends HttpServlet {
                         session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
                     }
                 }
-                response.sendRedirect(request.getContextPath() + "/HomePageController");
+                response.sendRedirect(request.getContextPath() + "/PaymentController");
             } else {
-                response.sendRedirect(request.getContextPath() + "/HomePageController");
+                response.sendRedirect(request.getContextPath() + "/PaymentController");
             }
         }
-
     }
 
     /**

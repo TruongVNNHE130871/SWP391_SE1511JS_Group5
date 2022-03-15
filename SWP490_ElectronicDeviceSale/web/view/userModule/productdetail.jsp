@@ -65,13 +65,13 @@ Record of change:
                                 </span>
                                 <span class="border-start me-4"></span>
                                 <a class="link-feedback">
-                                    134 FeedBack
+                                    134 Đánh giá
                                 </a>
                             </div>
 
                             <div class="quantity">
                                 <div class="input-group">
-                                    <span class="fs-6 me-3 my-2">Quantity</span>
+                                    <span class="fs-6 me-3 my-2">Số lượng</span>
                                     <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
                                     <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
                                     <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
@@ -80,8 +80,12 @@ Record of change:
                             </div>
                             <div class="btn-add-buy mt-5">
                                 <a href="${pageContext.request.contextPath}/AddToCart?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
-                                    Add To Cart
+                                    Thêm vào giỏ hàng
                                 </a><br>
+                                <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
+                                    Mua ngay <br>
+                                    <span class="free-ship">Miễn phí giao hàng</span>
+                                </a>
 
                             </div>
                         </div>
@@ -222,7 +226,7 @@ Record of change:
                             <div class="">
                                 <div class="">
                                     <h4 class=""><strong>${review.name}</strong>  - <span>${review.created}</span></h4>
-                                    <c:if test="${review.vote == 1}">
+                                            <c:if test="${review.vote == 1}">
                                         <div>
                                             <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                                                                fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">

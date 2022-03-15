@@ -55,7 +55,7 @@ Record of change:
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-7 form-ship">
-                            <p>Địa chỉ giao hàng</p>
+                            <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;text-align:center;">Địa chỉ giao hàng</p>
 
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="Họ Tên*" required="required" name="payment_name">
@@ -90,17 +90,19 @@ Record of change:
                             </div>
                         </div>
                         <div class="col-5">
-                            <div class="infor-order">
-                                <p style="color: rgba(163, 23, 23, 0.904);">Thông tin đơn hàng</p>
+                            <div>
+                                <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;">Thông tin đơn hàng</p>
                                 <table>
                                     <tr>
-                                        <th>Sản Phẩm</th>
-                                        <th>Số Tiền</th>
+                                        <th>Sản phẩm  </th>
+                                        <th></th>
+                                        <th>Số tiền </th>
                                     </tr>
                                     <tbody>
                                         <c:forEach items="${cart.items}" var="item">
                                             <tr>
                                                 <td>${item.product.name } <strong> x  ${item.qty}</strong></td>
+                                                <td> <img src="${item.product.image}" alt="" width="80" height="80"></td>
                                                 <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${item.price}" />VNĐ</td>
                                             </tr>
                                         </c:forEach>
@@ -108,14 +110,17 @@ Record of change:
                                     <tfoot>
                                         <tr>
                                             <th>Tạm tính</th>
+                                            <th></th>
                                             <td>${sumprice} VNĐ</td>
                                         </tr>
                                         <tr>
-                                            <th>Thuế</th>
+                                            <th>Phí giao hàng</th>
+                                            <th></th>
                                             <td>0 VNĐ</td>
                                         </tr>
                                         <tr>
                                             <th>Tổng cộng</th>
+                                            <th></th>
                                             <td><strong>${sumprice} VNĐ</strong></td>
                                         </tr>
                                     </tfoot>
