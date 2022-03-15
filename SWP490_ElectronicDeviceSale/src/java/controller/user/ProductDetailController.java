@@ -38,23 +38,17 @@ public class ProductDetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ProductDBContext pDB = new ProductDBContext();
+        ProductDBContext pDB = new ProductDBContext();
         ReviewDBContext rDB = new ReviewDBContext();
 
-        String raw_idProduct = request.getParameter("idProduct");
-        if (raw_idProduct == null || raw_idProduct.length() == 0) {
-            raw_idProduct = "-1";
-        }
-        int idP = Integer.parseInt(raw_idProduct);
+        String idProduct = request.getParameter("idProduct");
+        int idP = Integer.parseInt(idProduct);
         Product p = pDB.getProduct(idP);
         request.setAttribute("product", p);
-
         List<Review> reviewById = rDB.getReviewById(idP);
         request.setAttribute("reviewbyid", reviewById);
-
         request.getRequestDispatcher("view/userModule/productdetail.jsp").forward(request, response);
-        
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

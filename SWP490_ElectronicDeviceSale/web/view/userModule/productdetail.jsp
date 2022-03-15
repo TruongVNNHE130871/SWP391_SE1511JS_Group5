@@ -31,6 +31,7 @@ Record of change:
         ></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <script src="${url}/js/detail.js" type="text/javascript" defer></script>
+        <script src="${url}/js/review.js" type="text/javascript" defer></script>
         <title>${requestScope.product.name}</title>
     </head>
     <!--Start header-menu-->
@@ -208,20 +209,23 @@ Record of change:
         </article>
 
         <article>
+            <br>
+            <div class="mb-3 text-center">
+                <button class="btn-review" onclick="openTab('Review')">Đánh giá của khách hàng</button>
+                <button class="btn-review" onclick="openTab('AddReview')">Thêm đánh giá</button>
+            </div>
             <!-- Start list review -->
-            <div>
-                <h4 class="c">Đánh giá của khách hàng</h4>
-
+            <div id="Review" class="w3-container tab">
                 <ul class="">
                     <c:forEach items="${reviewbyid}" var="review" >
                         <li>
                             <div class="">
                                 <div class="">
-                                    <h4 class=""><strong>Khách hàng: ${review.name}</strong> - Ngày: <span>${review.created}</span></h4>
-                                            <c:if test="${review.vote == 1}">
+                                    <h4 class=""><strong>${review.name}</strong>  - <span>${review.created}</span></h4>
+                                    <c:if test="${review.vote == 1}">
                                         <div>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
@@ -230,14 +234,14 @@ Record of change:
                                     </c:if>
                                     <c:if test="${review.vote == 2}">
                                         <div>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                                fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
@@ -247,20 +251,20 @@ Record of change:
                                     </c:if>
                                     <c:if test="${review.vote == 3}">
                                         <div>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
@@ -269,26 +273,26 @@ Record of change:
                                     </c:if>
                                     <c:if test="${review.vote == 4}">
                                         <div>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
@@ -297,32 +301,32 @@ Record of change:
                                     </c:if>
                                     <c:if test="${review.vote == 5}">
                                         <div>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
                                             </a>
-                                            <a class="btn-icon-star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                          fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
+                                            <a class="btn-icon-star text-decoration-none"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                                               fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
                                                 <path
                                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                 </svg>
@@ -340,8 +344,7 @@ Record of change:
             <!-- End list review -->
 
             <!-- Start review form -->
-            <div>
-                <h4 class="c">Thêm đánh giá</h4>
+            <div id="AddReview" class="w3-container tab" style="display:none">
                 <form action="ReviewController?id=${requestScope.product.id}" method="post" class="form-review">
                     <div class="row">
                         <div class="col-2">
