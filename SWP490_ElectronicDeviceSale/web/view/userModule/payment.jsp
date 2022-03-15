@@ -55,7 +55,7 @@ Record of change:
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-7 form-ship">
-                            <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;text-align:center;">Địa chỉ giao hàng</p>
+                            <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;">Địa chỉ giao hàng</p>
 
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="Họ Tên*" required="required" name="payment_name">
@@ -91,19 +91,23 @@ Record of change:
                         </div>
                         <div class="col-5">
                             <div>
-                                <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;">Thông tin đơn hàng</p>
+                                <p style="color: rgba(163, 23, 23, 0.904);font-size:200%;">Thông tin đơn đặt hàng</p>
                                 <table>
                                     <tr>
                                         <th>Sản phẩm  </th>
-                                        <th></th>
-                                        <th>Số tiền </th>
+                                        <th>Hình ảnh</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền </th>
+                                        <th>Đơn vị</th>
                                     </tr>
                                     <tbody>
                                         <c:forEach items="${cart.items}" var="item">
                                             <tr>
-                                                <td>${item.product.name } <strong> x  ${item.qty}</strong></td>
-                                                <td> <img src="${item.product.image}" alt="" width="80" height="80"></td>
-                                                <td><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${item.price}" />VNĐ</td>
+                                                <td>${item.product.name } </td>
+                                                <td><img src="${item.product.image}"width="80" height="80"></td>
+                                                <td width="80" height="80" style="text-align:center;"><strong>${item.qty}</strong></td>
+                                                <td width="90" height="80"><fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${item.price}" /> </td>
+                                                <td width="80" height="80">VNĐ</td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -111,24 +115,30 @@ Record of change:
                                         <tr>
                                             <th>Tạm tính</th>
                                             <th></th>
-                                            <td>${sumprice} VNĐ</td>
+                                            <th></th>
+                                            <td>${sumprice}</td>
+                                            <td>VNĐ</td>
                                         </tr>
                                         <tr>
                                             <th>Phí giao hàng</th>
                                             <th></th>
-                                            <td>0 VNĐ</td>
+                                            <th></th>
+                                            <td>0</td>
+                                            <td>VNĐ</td>
                                         </tr>
                                         <tr>
                                             <th>Tổng cộng</th>
                                             <th></th>
-                                            <td><strong>${sumprice} VNĐ</strong></td>
+                                            <th></th>
+                                            <td><strong>${sumprice}</strong></td>
+                                            <td>VNĐ</td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="payments">
                                 <p style="color: rgba(163, 23, 23, 0.904);">Hình Thức Thanh Toán</p>
-                                <div class="form-order-payment">
+                                <div class="form-order-payment" >
                                       <input type="radio" id="html" name="payment"checked value="0" value="">
                                       <label for="cod">Thanh toán khi nhận hàng (COD)</label><br>
                                     <button type="submit"class="btn-payments mt-3"> Đặt hàng </button>
