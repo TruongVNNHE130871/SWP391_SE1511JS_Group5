@@ -1,11 +1,10 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
-    Created on : Feb 28, 2022, 11:51:18 AM
-    Author     : Admin
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-02-28        1.0         BinhDV         First Implement
 */
 *{
     box-sizing: border-box;
@@ -67,3 +66,15 @@ body{
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+input:invalid+span::after{
+    content: 'x';
+    color: red;
+    padding-left: 5px;
+}
+
+input:valid+span::after{
+    content: '✓';
+    color: green;
+    padding-left: 5px;
+}

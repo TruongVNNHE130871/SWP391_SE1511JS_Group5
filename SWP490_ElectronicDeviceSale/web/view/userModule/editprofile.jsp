@@ -27,7 +27,7 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form edit profile-->
-        <form style="align-items: center;" action="EditProfileController" method="POST" class="profile" id="content">
+        <form style="align-items: center;" action="EditProfileController" method="POST" class="profile border rounded p-4" id="content">
             <div class="container mb-3">
                 <div class="row py-4">
                     <div class="col-6">
@@ -53,7 +53,9 @@
                                         placeholder="${requestScope.user.name}"
                                         size="35"
                                         class="ms-4"
-                                        pattern="^[a-zA-Z ]{3,30}$"                          
+                                        minlength="1"
+                                        maxlength="30"
+                                        pattern="^[a-zA-Z0-9]+"                          
                                         required
                                         />
                                     <span></span>

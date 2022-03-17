@@ -28,7 +28,7 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
-        <form style="align-items: center;" class="profile" id="content">
+        <form style="align-items: center;" class="profile border rounded p-4" id="content">
             <div class="container mb-3">
                 <div class="row py-4">
                     <div class="col-5">
