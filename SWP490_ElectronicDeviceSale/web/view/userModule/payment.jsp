@@ -60,35 +60,36 @@ Record of change:
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="Họ Tên*" name="payment_name"
                                        minlength="3"
-                                       maxlength="255"
+                                       maxlength="50"
                                        required>
 
                             </div>
                             <div class="form-group row mb-3">
                                 <div class="col-6">
-                                    <input type="email" class="form-control" placeholder="Email*"  name="payment_email" minlength="4"
-                                           minlength="4"
-                                           maxlength="40"
-                                           required>
+                                    <input type="text" class="form-control" placeholder="Email*"  name="payment_email" minlength="4"
+                                           maxlength="255"
+                                           required
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,}$"
+                                           title="Example: abc@gmail.com">
                                 </div>
                                 <div class="col-6">
                                     <input type="text" class="form-control" placeholder="Số Điện Thoại*"  name="payment_phone"
-                                           minlength="4"
                                            maxlength="10"
-                                           pattern="[0-9]{10}"
+                                           pattern="(09|03|07|08|05)+([0-9]{8})$"
+                                           title="Example: 0912345678"
                                            required>
                                 </div>
                             </div>
                             <div class="form-group mb-3">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                          placeholder="Địa Chỉ" name="payment_address"
+                                          placeholder="Địa Chỉ*" name="payment_address"
                                           minlength="10"
                                           maxlength="255"
                                           required></textarea>
                             </div>
                             <div class="form-group mb-5">
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                          placeholder="Ghi Chú*" name="payment_note" maxlength="255"></textarea>
+                                          placeholder="Ghi Chú" name="payment_note" maxlength="255"></textarea>
                             </div>
                             <div> <input type="date" placeholder="Password" name="payment_created" id="the-date" style="display: none">   </div>
 

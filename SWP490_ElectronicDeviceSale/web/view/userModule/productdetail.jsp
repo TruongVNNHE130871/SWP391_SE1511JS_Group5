@@ -411,21 +411,23 @@ Record of change:
                         </div>
                     </div>
                     <div class="review-comment">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Đánh giá của bạn"  name="content"rows="5" 
-                                  required></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Nội dung đánh giá của bạn*"  name="content"rows="5" 
+                                  maxlength="255"
+                                  required
+                                  ></textarea>
                     </div>
                     <div class="input-name-phone row g-2 my-4">
                         <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Tên của bạn"  name="name"
+                            <input type="text" class="form-control" placeholder="Tên của bạn*"  name="name"
                                    minlength="3"
-                                   maxlength="255"
-                                   required="required">
+                                   maxlength="50"
+                                   required>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Số điện thoại" required name="phone"
-                                   minlength="10"
+                            <input type="text" class="form-control" placeholder="Số điện thoại*" required name="phone"
                                    maxlength="10"
-                                   pattern="[0-9]{10}"
+                                   pattern="(09|03|07|08|05)+([0-9]{8})$"
+                                   title="Example 0912345678"
                                    required>
                         </div>
                     </div>
