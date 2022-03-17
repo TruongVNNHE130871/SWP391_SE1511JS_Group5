@@ -55,11 +55,12 @@ Record of change:
                         <div class="form-login">
                             <p class="title-login text-center my-2">Đăng nhập</p>
                             <div class="form-group">
-
-                                <input  type="text" required placeholder="Nhập tài khoản" name="username" value="${username}"class="form-control mb-3">
+                                <input  type="text" placeholder="Tài khoản*" name="username" value="${inputUsername}"class="form-control mb-3"
+                                        maxlength="50">
                             </div>
                             <div class="form-group mb-3">
-                                <input id="password"type="password" required placeholder="Nhập mật khẩu" name="password" value="${password}"class="form-control">
+                                <input id="password"type="password" placeholder="Mật khẩu*" name="password" value="${inputPassword}"class="form-control"
+                                       maxlength="30">
                                 <img onclick="myfunction()" src="${url}/images/eye.png"> Hiện mật khẩu
                             </div>
                             <!-- Error message -->

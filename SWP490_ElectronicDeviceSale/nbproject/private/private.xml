@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/cart.jsp</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/checkout.css</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/payment.jsp</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/assets/css/productdetails.css</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/OrderDBContext.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/UpdateCartController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/productdetail.jsp</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/PaymentController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/LoginController.java</file>
-            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/login.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/productUpdate.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/userModule/searchproduct.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/controller/user/SearchController.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/sideBar.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/DAO/implement/ProductDBContext.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/src/java/model/Product.java</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/productList.jsp</file>
+            <file>file:/F:/Documents/FPT/8/SWP391/SWP391_SE1511JS_Group5/SWP490_ElectronicDeviceSale/web/view/adminModule/viewOrder.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -51,6 +51,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getSession().removeAttribute("inputUsername");
+        request.getSession().removeAttribute("inputPassword");
         request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
     }
 
@@ -79,16 +81,31 @@ public class LoginController extends HttpServlet {
                     response.sendRedirect("HomePageController");
                 }
                 if (u.isStatus() == false) {
-                    request.setAttribute("username", username);
-                    request.setAttribute("password", password);
+                    request.setAttribute("inputUsername", username);
+                    request.setAttribute("inputPassword", password);
                     request.setAttribute("errorMsg", "Bạn không thể đăng nhập vào lúc này!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("username", username);
-                request.setAttribute("password", password);
-                request.setAttribute("errorMsg", "Tài khoản hoặc mật khẩu sai!");
-                request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                if (username.equals("") && password.equals("")) {
+                    request.setAttribute("errorMsg", "Bạn phải nhập tài khoản và mật khẩu!");
+                    request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                } else if (username.equals("")) {
+                    request.getSession().setAttribute("inputPassword", password);
+                    request.setAttribute("errorMsg", "Bạn phải nhập tài khoản!");
+                    request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                } else if (password.equals("")) {
+                    request.getSession().removeAttribute("inputPassword");
+                    request.setAttribute("inputUsername", username);
+                    request.setAttribute("errorMsg", "Bạn phải nhập mật khẩu!");
+                    request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("inputUsername", username);
+                    request.setAttribute("inputPassword", password);
+                    request.setAttribute("errorMsg", "Tài khoản hoặc mật khẩu sai!");
+                    request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
