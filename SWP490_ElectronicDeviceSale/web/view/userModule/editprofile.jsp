@@ -55,7 +55,7 @@
                                         class="ms-4"
                                         minlength="1"
                                         maxlength="30"
-                                        pattern="^[a-zA-Z0-9]+"                          
+                                        pattern="^[a-zA-Z0-9 ]+"                          
                                         required
                                         />
                                     <span></span>
@@ -105,7 +105,7 @@
                                         placeholder="${requestScope.user.phone}"
                                         size="35"
                                         class="ms-4"
-                                        pattern="[0-9]{10}"
+                                        pattern="[0-9]+{10}"
                                         required
                                         />
                                     <span></span>
@@ -131,7 +131,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <input type="submit" class="btn btn-secondary" value="Save"/>  
+                <input type="submit" class="btn btn-outline-secondary" value="Save"/>  
             </div>
         </form>
     </body>

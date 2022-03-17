@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link href="assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
+        <link href="${url}/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-outline-primary">Edit Profile</button></a>       
+                <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-outline-secondary">Edit Profile</button></a>       
             </div>
         </form>
     </body>
