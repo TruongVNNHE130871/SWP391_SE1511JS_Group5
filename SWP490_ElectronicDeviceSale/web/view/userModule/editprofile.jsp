@@ -51,11 +51,11 @@
                                         name="fullname"
                                         value="${requestScope.user.name}"
                                         placeholder="${requestScope.user.name}"
-                                        size="35"
+                                        size="35"s
                                         class="ms-4"
                                         minlength="1"
                                         maxlength="30"
-                                        pattern="^[a-zA-Z0-9 ]+"                          
+                                        pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$"                          
                                         required
                                         />
                                     <span></span>
@@ -105,7 +105,9 @@
                                         placeholder="${requestScope.user.phone}"
                                         size="35"
                                         class="ms-4"
-                                        pattern="[0-9]+{10}"
+                                        minlength="8"
+                                        maxlength="10"
+                                        pattern="^(?![\s.]+$)[0-9\s.]*$"
                                         required
                                         />
                                     <span></span>

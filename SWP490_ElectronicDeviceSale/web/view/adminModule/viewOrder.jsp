@@ -21,7 +21,7 @@ Record of change:
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <title>JSP Page</title>
         <style>
-            table tr:nth-child(2){
+            table tr:nth-child(1){
                 counter-reset: rowNumber;
             }
             table tr {
