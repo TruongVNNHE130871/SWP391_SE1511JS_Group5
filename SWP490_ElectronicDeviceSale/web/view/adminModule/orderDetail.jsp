@@ -19,6 +19,14 @@
         </script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <title>JSP Page</title>
+        <style>
+            .order-sumprice{
+                color: #ee4d2d;
+                font-size: 20px;
+                line-height: 30px;
+                float: right;
+            }
+        </style>
     </head>
     <jsp:include page = "./sideBar.jsp" />
     <body>
@@ -33,8 +41,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID Khách Hàng</th>
+                                    <th scope="col">Tên Khách Hàng</th>
                                     <th scope="col">Ngày Mua</th>
                                     <th scope="col">Ngày Giao Hàng Dự Kiến</th>
+                                    <th scope="col">Trạng thái</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,10 +53,16 @@
                                         ${requestScope.order.username.id}
                                     </td>
                                     <td>
+                                        ${requestScope.order.username.name}
+                                    </td>
+                                    <td>
                                         ${requestScope.order.orderDate}
                                     </td>
                                     <td>
                                         ${requestScope.order.deliveryDate}
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="wait-order" value="wait">
                                     </td>
                                 </tr>
                             </tbody>
@@ -55,6 +71,7 @@
                     <div class="product-list">
                         <p>Sản phẩm: </p>
                         <table class="table">
+                            <c:set var = "sumPrice" value = "${0}"/>
                             <c:forEach items="${requestScope.items}" var="item">
                                 <tr>
                                     <td>
@@ -73,8 +90,10 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <c:set var = "sumPrice" value = "${sumPrice + item.price}"/>
                             </c:forEach>
                         </table>
+                        <div class="order-sumprice">Tổng số tiền: <fmt:formatNumber type = "number" maxFractionDigits = "3" value = "${sumPrice}"/> VNĐ</div>
                     </div>
 
                 </div>

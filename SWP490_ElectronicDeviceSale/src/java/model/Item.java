@@ -54,7 +54,7 @@ public class Item {
     public void setPrice(float string) {
         this.price = string;
     }
-
+    
     @Override
     public String toString() {
         return "Item [id=" + id + ", product=" + product + ", qty=" + qty + ", price=" + price + "]";

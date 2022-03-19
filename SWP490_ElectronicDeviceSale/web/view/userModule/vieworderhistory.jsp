@@ -1,14 +1,15 @@
-<%-- 
-    Document   : vieworderhistory
-    Created on : Mar 7, 2022, 7:00:39 PM
-    Author     : admin
---%>
 
-<%@page import="model.Order"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Product"%>
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07     1.0        CuongTV         First Implement
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <html>
@@ -33,6 +34,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <title>Lịch sử đặt hàng</title>
     </head>
     <!--Start header-menu-->
@@ -40,65 +42,13 @@
     <!--End header-menu-->
     <body>
         <main id="content">
-            <!-- Start banner-->
-            <article>
-                <section class="banner">
-                    <div class="slideshow-container">
-                        <div class="mySlides fade">                
-                            <img src="${url}/images/banner2.jpg" alt="" style="width:100%"/>
-                        </div>                 
-                        <div class="mySlides fade">        
-                            <img src="${url}/images/banner1.jpg" alt="" style="width:100%"/>
-                        </div>           
-                        <div class="mySlides fade">
-
-                            <img src="${url}/images/banner.jpg" alt="" style="width:100%"/>
-                        </div>
-                    </div>
-                    <br>                  
-                    <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(0)"></span> 
-                        <span class="dot" onclick="currentSlide(1)"></span> 
-                        <span class="dot" onclick="currentSlide(2)"></span> 
-                    </div>          
-                </section>
-            </article>
-            <!-- End banner-->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Mã đơn hàng</th>
-                        <th scope="col">Ngày đặt hàng</th>
-                        <th scope="col">Ngày giao hàng</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${requestScope.orders}" var="order">
-                        <tr class="tr">
-                            <td class="td">
-                                ${order.id}
-                            </td>
-                            <td class="td">
-                                ${order.orderDate}
-                            </td>
-                            <td class="td">
-                                ${order.deliveryDate}
-                            </td>
-                            <td class="td">
-                                Xem chi tiết
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <div id="paggerbottom" class="pagger"></div>
+            <jsp:include page = "vieworderhistorysub.jsp" />
         </main>
     </body>
     <!-- custom js file link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/js/pagger.js" type="text/javascript"></script>
     <script>
-                            generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+                    generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
 </html>

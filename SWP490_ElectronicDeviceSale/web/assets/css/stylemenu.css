@@ -9,6 +9,7 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 100000;
 }
 
 #content {
@@ -169,12 +170,12 @@
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
-    padding: 7px 3px;
+    padding: 7px 50px;
     font-size: 15px;
     text-decoration: none;
 }
 a{
-  text-decoration: none;
+    text-decoration: none;
 }
 .grid-container-category-product {
     display: grid;
@@ -297,4 +298,131 @@ footer{
     opacity: 1;
     visibility: visible;
 }
+
+.container-hisroty-order , .status-and-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-and-price {
+    padding: 15px;
+}
+
+.order-status{
+    color: #26aa99;
+}
+
+.order-empty-container{
+    width: 100%;
+    height: 600px;
+    text-align: center;
+}
+
+.order-empty{
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+    border-radius: 0.125rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.order-empty-icon{
+    background-position: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/5fafbb923393b712b96488590b8f781f.png);
+}
+
+.order-empty-text{
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.4;
+    color: rgba(0,0,0,.8);
+}
+
+
+.product-order-container{
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.product-single{
+    padding: 10px;
+}
+
+.order-sumprice{
+    color: #ee4d2d;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.icon-free-shipping-line {
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+    font-size: 1rem;
+    color: #00bfa5;
+    stroke: #26aa99;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+.shopee-svg-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    position: relative;
+}
+
+.nav {
+    width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.nav .nav-link {
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    padding: 16px 0;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: rgba(0,0,0,.8);
+    background: #fff;
+    border-bottom: 2px solid rgba(0,0,0,.09);
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    transition: color .2s;
+}
+.nav a:hover {
+    color: #c6342e; 
+}
+
+.nav-link.active{
+    border-color: #ee4d2d;
+}
+
+
 

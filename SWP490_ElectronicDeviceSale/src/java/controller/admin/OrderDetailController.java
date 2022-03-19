@@ -49,6 +49,7 @@ public class OrderDetailController extends HttpServlet {
         ArrayList<Order> orders = oDB.getOrdersByOrderDetailId(orderDetailId);
         ArrayList<Item> items = new ArrayList<Item>();
         int count = 0;
+        float sumPrice = 0;
         for (Order order : orders) {
             Item item = new Item();
             count++;
@@ -57,6 +58,7 @@ public class OrderDetailController extends HttpServlet {
             item.setProduct(product);
             item.setQty(order.getQuantity());
             item.setPrice((Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100)) * order.getQuantity());
+            sumPrice += item.getPrice();
             items.add(item);
         }
 
@@ -64,6 +66,7 @@ public class OrderDetailController extends HttpServlet {
 
         request.setAttribute("order", order);
         request.setAttribute("items", items);
+        request.setAttribute("sumPrice", sumPrice);
         request.getRequestDispatcher("view/adminModule/orderDetail.jsp").forward(request, response);
     }
 

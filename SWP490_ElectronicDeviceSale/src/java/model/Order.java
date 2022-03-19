@@ -20,7 +20,7 @@ public class Order {
     private int id;
     private User username;
     private int productId;
-    private int orderDetailId;
+    private OrderDetail orderdetail;
     private int quantity;
     private Date orderDate;
     private Date deliveryDate;
@@ -28,11 +28,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, User username, int productId, int orderDetailId, int quantity, Date orderDate, Date deliveryDate) {
+    public Order(int id, User username, int productId, OrderDetail orderdetail, int quantity, Date orderDate, Date deliveryDate) {
         this.id = id;
         this.username = username;
         this.productId = productId;
-        this.orderDetailId = orderDetailId;
+        this.orderdetail = orderdetail;
         this.quantity = quantity;
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
@@ -62,12 +62,12 @@ public class Order {
         this.productId = productId;
     }
 
-    public int getOrderDetailId() {
-        return orderDetailId;
+    public OrderDetail getOrderDetail() {
+        return orderdetail;
     }
 
-    public void setOrderDetailId(int orderDetailId) {
-        this.orderDetailId = orderDetailId;
+    public void setOrderDetail(OrderDetail orderdetail) {
+        this.orderdetail = orderdetail;
     }
 
     public int getQuantity() {
