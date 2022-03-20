@@ -39,21 +39,21 @@
         <div class="container mt-5">
             <div class="list-product">
                 <form method="Post">
-                    <input type="input" placeholder="Username" class="form-control mb-4" name="search">
-                    <button type="submit" class="btn btn-outline-success">tìm kiếm</button>
+                    <input type="input" placeholder="Tên tài khoản người dùng" class="form-control mb-4" name="search">
+                    <button type="submit" class="btn btn-outline-success">Tìm kiếm</button>
                 </form>
-                <p>List User: </p>
+                <p>Danh sách người dùng: </p>
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">PassWord</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Mã</th>
+                            <th scope="col">Họ Tên</th>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Mật khẩu</th>
+                            <th scope="col">Giới tính</th>
+                            <th scope="col">Số điện thoại</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Trạng thái</th>
                             <<th scope="col"></th>
                         </tr>
                     </thead>

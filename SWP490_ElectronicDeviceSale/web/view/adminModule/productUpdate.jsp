@@ -71,7 +71,7 @@ Record of change:
                             <div class="description">
                                 <p>Mô tả: </p>
                                 <div class="mb-3"> 
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required >${requestScope.product.description}</textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required>${requestScope.product.description}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">

@@ -39,7 +39,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputName" class="col-sm-2 col-form-label">Tên SP: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="productName" class="form-control" pattern="^[a-zA-Z0-9 ]{3,30}" required>
+                                    <input type="text" name="productName" class="form-control" minlength="3" maxlength="30" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
                                 </div>
                             </div>
 
@@ -67,13 +67,13 @@ Record of change:
                             <div class="description">
                                 <p>Mô tả: </p>
                                 <div class="mb-3"> 
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="[-+]?[a-zA-Z0-9 ]*[.,]?[a-zA-Z0-9 ]+" required></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required></textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="inputPrice" class="col-sm-2 col-form-label">Giá: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productPrice" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{3,50}" required>
+                                    <input type="text" required name="productPrice" class="form-control" id="" placeholder="" minlength="5" maxlength="10" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">VNĐ</label>
@@ -82,7 +82,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputDiscount" class="col-sm-2 col-form-label">Giảm giá: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productDiscount" class="form-control" id="" placeholder="" minlength="1" maxlength="5" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
+                                    <input type="text" required name="productDiscount" class="form-control" id="" placeholder="" minlength="1" maxlength="4" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">%</label>
@@ -91,7 +91,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputSize" class="col-sm-2 col-form-label">Kích thước: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productSize" class="form-control" id="" placeholder="" minlength="1" maxlength="10" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
+                                    <input type="text" required name="productSize" class="form-control" id="" placeholder="" minlength="1" maxlength="4" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">mm</label>
@@ -100,7 +100,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputWeight" class="col-sm-2 col-form-label">Trọng lượng: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="" minlength="1" maxlength="10" pattern="[-+]?[0-9 ]*[.,]?[0-9 ]+" required>
+                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="" minlength="1" maxlength="4" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">gram</label>
@@ -109,7 +109,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="" pattern="[-+]?[0-9 ]{1,10}" required>
+                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">GB</label>
@@ -118,7 +118,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputOrginal" class="col-sm-2 col-form-label">Xuất sứ: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="productOrginal" class="form-control" id="" placeholder="" required>
+                                    <input type="text" name="productOrginal" class="form-control" id="" placeholder="" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">

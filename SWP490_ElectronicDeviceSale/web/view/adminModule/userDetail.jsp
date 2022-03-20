@@ -4,6 +4,8 @@
     Author     : BH1704
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -28,7 +30,7 @@
                     <p class="fw-bold fs-3">Chi Tiết Người Dùng</p>
                     <div class="row">
                         <div class="col-5">
-                            <img src="" alt="" width="300" height="300">
+                            <img src="https://www.seekpng.com/png/detail/73-730482_existing-user-default-avatar.png" alt="" width="300" height="300">
                         </div>
                         <div class="col-7">
                             <table width="100%" class="fs-5 lh-lg align-middle">
@@ -60,7 +62,7 @@
                                     <td>
                                         <c:if test = "${user.status == true}">Hoạt động</c:if>
                                         <c:if test = "${user.status == false}">Bị cấm</c:if>
-                                        </td>
+                                    </td>
                                     </tr>
                                 </table>
                             </div>
@@ -146,10 +148,10 @@
 
                     </div>
                     <div class="ban-user text-center my-5">
-                        <button class="btn btn-danger" href="${pageContext.request.contextPath}/BanUnbanController?idUser=${user.id}">
+                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/BanUnbanController?idBanUnbanUser=${user.id}">
                         <c:if test = "${user.status == true}">Cấm người dùng</c:if>
                         <c:if test = "${user.status == false}">Bỏ cấm</c:if>
-                    </button>
+                    </a>
 
                 </div>
             </div>

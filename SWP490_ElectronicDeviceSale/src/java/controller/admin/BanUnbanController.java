@@ -32,21 +32,21 @@ public class BanUnbanController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDBContext db = new UserDBContext();
-        String raw_idUser = request.getParameter("idUser");
+        String raw_idUser = request.getParameter("idBanUnbanUser");
         if (raw_idUser == null || raw_idUser.length() == 0) {
             raw_idUser = "-1";
         }
         int idU = Integer.parseInt(raw_idUser);
         User u = db.getUserByID(idU);
+        request.setAttribute("user", u);
 
-        if(u.isStatus()){
+        if (u.isStatus() == true) {
             db.banUser(idU);
         }
-        else{
+        if (u.isStatus() == false) {
             db.unbanUser(idU);
         }
-                request.setAttribute("user", u);
-        request.getRequestDispatcher("view/adminModule/userDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("view/adminModule/userList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
