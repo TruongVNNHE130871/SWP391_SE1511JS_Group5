@@ -4,6 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.User"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url value = "/assets" var="url"/>
 <!DOCTYPE html>
 <%
     ArrayList<User> users = (ArrayList<User>) session.getAttribute("users");
@@ -13,7 +14,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../assets/css/stylelistuser.css">
+        <link rel="stylesheet" href="${url}/css/stylelistuser.css">
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -27,6 +28,9 @@
         ></script>
         <title>Document</title>
     </head>
+    <!--Start side bar-menu-->
+    <jsp:include page = "./sideBar.jsp" />
+    <!--End side bar -menu-->
     <header>
         <div class="infor d-flex justify-content-around">
             <div class="text-admin mt-2">ADMIN</div>
@@ -88,8 +92,8 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/ViewUserDetailController?idUser=${user.id}">Xem chi tiết</a>
-                                    </td>
-                                </tr>
+                                </td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -97,7 +101,7 @@
                     <ul class="pagination pagination-lg">
                         <c:forEach begin="1" end="${maxPage}" var="pageIndex">
                             <li class="page-item"><a class="page-link" href="search?pageIndex=${pageIndex}">${pageIndex}</a></li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
                 </nav>
             </div>
