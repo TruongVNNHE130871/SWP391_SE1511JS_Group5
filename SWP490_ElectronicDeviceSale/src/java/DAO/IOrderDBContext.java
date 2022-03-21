@@ -10,7 +10,7 @@ Record of change:
 package DAO;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import model.Order;
 
 /**
@@ -33,4 +33,12 @@ public interface IOrderDBContext {
     public ArrayList<Order> listOrder(int id);
 
     public ArrayList<Order> listOrderPaging(String userId, Date orderDate, Date deliveryDate, int pageIndex, int pageSize);
+    
+    public Order getOrderByID(int orderID);
+    
+    public ArrayList<Order> getOrdersByOrderDetailId(int id);
+    
+    public void updateOrderStatus(int orderID, Date deliveryDate);
+    
+    public void cancelOrder(int orderID);
 }

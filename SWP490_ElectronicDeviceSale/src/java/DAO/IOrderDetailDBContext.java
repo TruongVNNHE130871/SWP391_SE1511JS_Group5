@@ -10,6 +10,7 @@ Record of change:
 package DAO;
 
 import java.util.List;
+import model.Order;
 import model.OrderDetail;
 
 /**
@@ -32,4 +33,7 @@ public interface IOrderDetailDBContext {
      * @return 
      */
     public List<OrderDetail> getAll();
+    
+    public OrderDetail getOrderDetailsByID(int orderID);
+
 }

@@ -61,7 +61,6 @@ public class OrderDetailController extends HttpServlet {
             sumPrice += item.getPrice();
             items.add(item);
         }
-
         Order order = orders.get(0);
 
         request.setAttribute("order", order);

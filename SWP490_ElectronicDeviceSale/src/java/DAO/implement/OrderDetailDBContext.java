@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Order;
 import model.OrderDetail;
 
 /**
@@ -45,8 +46,8 @@ public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBConte
             statement.setString(9, orderDetail.getStatus());
             statement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (statement != null) {
@@ -58,7 +59,7 @@ public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBConte
                 }
                 //close connection
             } catch (SQLException ex) {
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -88,8 +89,8 @@ public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBConte
                 orderDetails.add(orderDetail);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (statement != null) {
@@ -101,11 +102,34 @@ public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBConte
                 }
                 //close connection
             } catch (SQLException ex) {
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         return orderDetails;
+    }
+
+    @Override
+    public OrderDetail getOrderDetailsByID(int orderID) {
+        this.getConnection();
+        PreparedStatement statement = null;
+        OrderDetail orderDetail = new OrderDetail();
+        ResultSet resultSet = null;
+        String sql = "SELECT [ID]\n"
+                + "      ,[Status]\n"
+                + "  FROM [OrderDetail]\n"
+                + "  WHERE [ID] =?";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderID);
+            resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                orderDetail.setId(orderID);
+                orderDetail.setStatus(resultSet.getString("Status"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return orderDetail;
     }
 
 }
