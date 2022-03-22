@@ -28,3 +28,29 @@ function generatePagger(div, pageindex, totalpage, gap) {
     }
 }
 
+function generatePagerSearchController(div, pageindex, totalpage, gap, keyword, filterindex) {
+    var container = document.getElementById(div);
+    if (pageindex - gap > 1) {
+        container.innerHTML += '<a href="SearchController?keyword=' + keyword + '&page=1&filterindex=' + filterindex + '#menu">First</a>';
+    }
+
+    for (var i = pageindex - gap; i < pageindex; i++) {
+        if (i > 0) {
+            container.innerHTML += '<a href="SearchController?keyword=' + keyword + '&page=' + i + '&filterindex=' + filterindex + '#menu">' + i + '</a>';
+        }
+    }
+
+    container.innerHTML += '<a href="#menu" class="target">' + pageindex + '</a>';
+
+    for (var i = pageindex + 1; i < pageindex + gap; i++) {
+        if (i <= totalpage) {
+            container.innerHTML += '<a href="SearchController?keyword=' + keyword + '&page=' + i + '&filterindex=' + filterindex + '#menu">' + i + '</a>';
+        }
+    }
+
+    if (pageindex + gap < totalpage) {
+        container.innerHTML += '<a href="SearchController?keyword=' + keyword + '&page=' + totalpage + '&filterindex=' + filterindex + '#menu">Last</a>';
+    }
+
+}
+

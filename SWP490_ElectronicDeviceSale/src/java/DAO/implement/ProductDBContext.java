@@ -20,7 +20,6 @@ import model.Category;
 import model.Manufacturer;
 import model.ManufacturerGroup;
 import model.Product;
-import model.Shop;
 
 /**
  *
@@ -33,10 +32,10 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created from Product p\n";
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.Size, p.Weight, p.Ram, p.Orginal, p.[Year] from Product p\n";
             statement = connection.prepareStatement(sql);
             if (keyword != null) {
-                sql += "where p.Name like '%'+ ? + '%'";
+                sql += "where p.Name like '%' + ? + '%'";
                 statement = connection.prepareStatement(sql);
                 statement.setString(1, keyword);
             }
@@ -46,11 +45,172 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 p.setId(rs.getInt("ID"));
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
                 p.setVote(rs.getInt("Vote"));
                 p.setPrice(rs.getString("Price"));
                 p.setDiscount(rs.getFloat("Discount"));
                 p.setStatus(rs.getBoolean("Status"));
                 p.setCreated(rs.getDate("Created"));
+                p.setSize(rs.getFloat("Size"));
+                p.setWeight(rs.getFloat("Weight"));
+                p.setRam(rs.getInt("Ram"));
+                p.setOrginal(rs.getString("Orginal"));
+                p.setYear(rs.getString("Year"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return products;
+    }
+
+    // Search Product 2 By paging page
+    public ArrayList<Product> searchProducts2(String filterText, String keyword) {
+        ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                    + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY ?) as rownum, ID, [Name], [Image], \n"
+                    + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                    + "from Product\n"
+                    + "Where Name like '%'+ ? +'%') p\n";
+//                    + "Where p.rownum >= (? - 1)*? + 1 AND p.rownum <= ? * ?\n";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, filterText);
+            statement.setString(2, keyword);
+//            statement.setInt(3, pageindex);
+//            statement.setInt(4, pagesize);
+//            statement.setInt(5, pageindex);
+//            statement.setInt(6, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("ID"));
+                p.setName(rs.getString("Name"));
+                p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
+                p.setVote(rs.getInt("Vote"));
+                p.setPrice(rs.getString("Price"));
+                p.setDiscount(rs.getFloat("Discount"));
+                p.setStatus(rs.getBoolean("Status"));
+                p.setCreated(rs.getDate("Created"));
+                p.setSize(rs.getFloat("Size"));
+                p.setWeight(rs.getFloat("Weight"));
+                p.setRam(rs.getInt("Ram"));
+                p.setOrginal(rs.getString("Orginal"));
+                p.setYear(rs.getString("Year"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return products;
+    }
+
+    // Filter Product By Price
+    public ArrayList<Product> filterProducts(int filterindex, String keyword, int pageindex, int pagesize) {
+        ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "";
+            switch (filterindex) {
+                case 1:
+                    sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, [Name], [Image], \n"
+                            + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                            + "from Product\n"
+                            + "Where [Name] like '%'+ ? +'%') p\n"
+                            + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 2:
+                    sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, [Name], [Image], \n"
+                            + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                            + "from Product\n"
+                            + "Where [Name] like '%'+ ? +'%') p\n"
+                            + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 3:
+                    sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID desc) as rownum, ID, [Name], [Image], \n"
+                            + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                            + "from Product\n"
+                            + "Where [Name] like '%'+ ? +'%') p\n"
+                            + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 4:
+                    sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY Convert(INT, Price) asc) as rownum, ID, [Name], [Image], \n"
+                            + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                            + "from Product\n"
+                            + "Where [Name] like '%'+ ? +'%') p\n"
+                            + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 5:
+                    sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY Convert(INT, Price) desc) as rownum, ID, [Name], [Image], \n"
+                            + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
+                            + "from Product\n"
+                            + "Where [Name] like '%'+ ? +'%') p\n"
+                            + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                default:
+                    break;
+            }
+
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
+            statement.setInt(2, pageindex);
+            statement.setInt(3, pagesize);
+            statement.setInt(4, pageindex);
+            statement.setInt(5, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("ID"));
+                p.setName(rs.getString("Name"));
+                p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
+                p.setVote(rs.getInt("Vote"));
+                p.setPrice(rs.getString("Price"));
+                p.setDiscount(rs.getFloat("Discount"));
+                p.setStatus(rs.getBoolean("Status"));
+                p.setCreated(rs.getDate("Created"));
+                p.setSize(rs.getFloat("Size"));
+                p.setWeight(rs.getFloat("Weight"));
+                p.setRam(rs.getInt("Ram"));
+                p.setOrginal(rs.getString("Orginal"));
+                p.setYear(rs.getString("Year"));
                 products.add(p);
             }
         } catch (SQLException ex) {
@@ -228,6 +388,36 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         try {
             String sql = "select COUNT(*) as Total from Product";
             statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
+    public int getRowCountSearch(String keyword) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT COUNT(*) as Total\n"
+                    + "from Product\n"
+                    + "Where Name like '%'+ ? +'%'";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getInt("Total");

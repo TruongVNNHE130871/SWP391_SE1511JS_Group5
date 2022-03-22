@@ -12,7 +12,7 @@ import java.util.Locale;
  *
  * @author Admin
  */
-public class Product implements Cloneable{
+public class Product {
 
     private int id;
     private Category c;
@@ -32,10 +32,6 @@ public class Product implements Cloneable{
     private String orginal;
     private String year;
 
-    public int getId() {
-        return id;
-    }
-
     public Product() {
     }
 
@@ -51,6 +47,10 @@ public class Product implements Cloneable{
         this.discount = discount;
         this.status = status;
         this.created = created;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
@@ -183,12 +183,6 @@ public class Product implements Cloneable{
 
     public void setYear(String year) {
         this.year = year;
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        // TODO Auto-generated method stub
-        return (Product) super.clone();
     }
 
 }
