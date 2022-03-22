@@ -55,7 +55,6 @@ public class SearchController extends HttpServlet {
         int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
         ArrayList<Product> products = pDB.filterProducts(filterindex, raw_keyword, pageindex, pagesize);
 
-//        ArrayList<Product> products = pDB.searchProducts2(filterText, raw_keyword);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("totalpage", totalpage);
         request.setAttribute("found", totalRows);

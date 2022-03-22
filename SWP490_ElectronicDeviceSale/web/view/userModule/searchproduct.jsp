@@ -147,7 +147,7 @@ Record of change:
         </main>
     </body>
     <script>
-        generatePagerSearchController('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2, '${sessionScope.keyword}', ${sessionScope.filterindex});
+        generatePagerSearchController('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 3, '${sessionScope.keyword}', ${sessionScope.filterindex});
     </script>
     <script>
         var header = document.querySelector(".product-filter");

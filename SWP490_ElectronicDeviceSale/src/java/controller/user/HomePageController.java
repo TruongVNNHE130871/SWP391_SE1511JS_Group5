@@ -45,7 +45,6 @@ public class HomePageController extends HttpServlet {
         int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
         ArrayList<Product> products = db.getProducts(pageindex, pagesize);
 
-        
         request.setAttribute("products", products);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("totalpage", totalpage);
@@ -57,7 +56,7 @@ public class HomePageController extends HttpServlet {
             throws ServletException, IOException {
         String raw_keyword = request.getParameter("keyword");
         ProductDBContext pDB = new ProductDBContext();
-        ArrayList<Product> products = pDB.searchProducts(raw_keyword);
+        ArrayList<Product> products = pDB.filterProducts(2, raw_keyword, 1, 8);
 
         request.setAttribute("keyword", raw_keyword);
         request.setAttribute("found", products.size());

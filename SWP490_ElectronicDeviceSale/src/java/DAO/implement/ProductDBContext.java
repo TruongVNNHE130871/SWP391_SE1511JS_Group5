@@ -75,62 +75,6 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         return products;
     }
 
-    // Search Product 2 By paging page
-    public ArrayList<Product> searchProducts2(String filterText, String keyword) {
-        ArrayList<Product> products = new ArrayList<>();
-        PreparedStatement statement = null;
-        this.getConnection();
-        try {
-            String sql = "select rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
-                    + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year] \n"
-                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY ?) as rownum, ID, [Name], [Image], \n"
-                    + "[Description], Vote, Price, Discount, [Status], Created, Size, [Weight], Ram, Orginal, [Year] \n"
-                    + "from Product\n"
-                    + "Where Name like '%'+ ? +'%') p\n";
-//                    + "Where p.rownum >= (? - 1)*? + 1 AND p.rownum <= ? * ?\n";
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, filterText);
-            statement.setString(2, keyword);
-//            statement.setInt(3, pageindex);
-//            statement.setInt(4, pagesize);
-//            statement.setInt(5, pageindex);
-//            statement.setInt(6, pagesize);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("ID"));
-                p.setName(rs.getString("Name"));
-                p.setImage(rs.getString("Image"));
-                p.setDescription(rs.getString("Description"));
-                p.setVote(rs.getInt("Vote"));
-                p.setPrice(rs.getString("Price"));
-                p.setDiscount(rs.getFloat("Discount"));
-                p.setStatus(rs.getBoolean("Status"));
-                p.setCreated(rs.getDate("Created"));
-                p.setSize(rs.getFloat("Size"));
-                p.setWeight(rs.getFloat("Weight"));
-                p.setRam(rs.getInt("Ram"));
-                p.setOrginal(rs.getString("Orginal"));
-                p.setYear(rs.getString("Year"));
-                products.add(p);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-                //close statement
-                connection.close();
-                //close connection
-            } catch (SQLException ex) {
-                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return products;
-    }
-
     // Filter Product By Price
     public ArrayList<Product> filterProducts(int filterindex, String keyword, int pageindex, int pagesize) {
         ArrayList<Product> products = new ArrayList<>();
@@ -621,31 +565,88 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
     }
 
     //categoryId = -1, manufacturerId = -1
-    public ArrayList<Product> advanceSearch(int categoryId, int manufacturerId, int priceToSearch) {
+    public ArrayList<Product> advanceSearch(int categoryId, int manufacturerId, int priceToSearch, int filterindex, int pageindex, int pagesize) {
         ArrayList<Product> products = new ArrayList<>();
         PreparedStatement statement = null;
         this.getConnection();
 
         try {
-            String sql = "select p.ID, p.Name, p.Image, p.Description, \n"
-                    + "p.Vote, p.Price, p.Discount, p.Status, \n"
-                    + "p.Created, c.ID as CategoryID, c.Name as CategoryName , \n"
-                    + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
-                    + "m.Name as ManufacturerName\n"
-                    + "from Product p inner join Category c \n"
-                    + "on p.CategoryId = c.ID\n"
-                    + "left join ManufacturerGroup mg\n"
-                    + "on mg.pId = p.ID\n"
-                    + "left join Manufacturer m\n"
-                    + "on m.ID = mg.mId\n"
-                    + "where \n"
-                    + "(1=1) ";
+            String sqlTable = "";
+            switch (filterindex) {
+                case 1:
+                    sqlTable = "SELECT ROW_NUMBER() OVER (ORDER BY p.ID asc) as rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], c.ID as CategoryID, c.[Name] as CategoryName , \n"
+                            + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                            + "m.Name as ManufacturerName\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "left join ManufacturerGroup mg\n"
+                            + "on mg.pId = p.ID\n"
+                            + "left join Manufacturer m\n"
+                            + "on m.ID = mg.mId\n"
+                            + "where (1=1)\n";
+                    break;
+                case 2:
+                    sqlTable = "SELECT ROW_NUMBER() OVER (ORDER BY p.ID asc) as rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], c.ID as CategoryID, c.[Name] as CategoryName , \n"
+                            + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                            + "m.Name as ManufacturerName\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "left join ManufacturerGroup mg\n"
+                            + "on mg.pId = p.ID\n"
+                            + "left join Manufacturer m\n"
+                            + "on m.ID = mg.mId\n"
+                            + "where (1=1)\n";
+                    break;
+                case 3:
+                    sqlTable = "SELECT ROW_NUMBER() OVER (ORDER BY p.ID desc) as rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], c.ID as CategoryID, c.[Name] as CategoryName , \n"
+                            + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                            + "m.Name as ManufacturerName\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "left join ManufacturerGroup mg\n"
+                            + "on mg.pId = p.ID\n"
+                            + "left join Manufacturer m\n"
+                            + "on m.ID = mg.mId\n"
+                            + "where (1=1)\n";
+                    break;
+                case 4:
+                    sqlTable = "SELECT ROW_NUMBER() OVER (ORDER BY Convert(INT, p.Price) asc) as rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], c.ID as CategoryID, c.[Name] as CategoryName , \n"
+                            + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                            + "m.Name as ManufacturerName\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "left join ManufacturerGroup mg\n"
+                            + "on mg.pId = p.ID\n"
+                            + "left join Manufacturer m\n"
+                            + "on m.ID = mg.mId\n"
+                            + "where (1=1)\n";
+                    break;
+                case 5:
+                    sqlTable = "SELECT ROW_NUMBER() OVER (ORDER BY Convert(INT, p.Price) desc) as rownum, p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                            + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], c.ID as CategoryID, c.[Name] as CategoryName , \n"
+                            + "c.Description as CategoryDescription, m.ID as ManufacturerId, \n"
+                            + "m.Name as ManufacturerName\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "left join ManufacturerGroup mg\n"
+                            + "on mg.pId = p.ID\n"
+                            + "left join Manufacturer m\n"
+                            + "on m.ID = mg.mId\n"
+                            + "where (1=1)\n";
+                    break;
+                default:
+                    break;
+            }
 
             int paramIndex = 0;
             HashMap<Integer, Object[]> params = new HashMap<>();
 
             if (categoryId != -1) {
-                sql += "AND c.ID = ? ";
+                sqlTable += "AND c.ID = ? \n";
                 paramIndex++;
                 Object[] param = new Object[2];
                 param[0] = Integer.class.getName();
@@ -653,7 +654,7 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 params.put(paramIndex, param);
             }
             if (manufacturerId != -1) {
-                sql += "AND m.ID = ? ";
+                sqlTable += "AND m.ID = ? \n";
                 paramIndex++;
                 Object[] param = new Object[2];
                 param[0] = Integer.class.getName();
@@ -664,32 +665,30 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
             if (priceToSearch != -1) {
                 switch (priceToSearch) {
                     case 1:
-                        sql += "AND p.Price between 0 and 2000000 ";
+                        sqlTable += "AND p.Price between 0 and 2000000";
                         break;
                     case 2:
-                        sql += "AND p.Price between 2000001 and 4000000 ";
+                        sqlTable += "AND p.Price between 2000001 and 4000000";
                         break;
                     case 3:
-                        sql += "AND p.Price between 4000001 and 7000000 ";
+                        sqlTable += "AND p.Price between 4000001 and 7000000";
                         break;
                     case 4:
-                        sql += "AND p.Price between 7000001 and 13000000 ";
+                        sqlTable += "AND p.Price between 7000001 and 13000000";
                         break;
                     case 5:
-                        sql += "AND p.Price > 13000000 ";
+                        sqlTable += "AND p.Price > 13000000";
                         break;
                     default:
                         break;
                 }
             }
-//            if (sort != null) {
-//                sql += "order by p.Price ?";
-//                paramIndex++;
-//                Object[] param = new Object[2];
-//                param[0] = String.class.getName();
-//                param[1] = sort;
-//                params.put(paramIndex, param);
-//            }
+
+            String sql = "select p.ID, p.[Name], p.[Image], p.[Description], p.Vote, p.Price, p.Discount, p.[Status], \n"
+                    + "p.Created, p.Size, p.[Weight], p.Ram, p.Orginal, p.[Year], p.CategoryID, p.CategoryName , \n"
+                    + "p.CategoryDescription, p.ManufacturerId, p.ManufacturerName \n"
+                    + "from (" + sqlTable + ") p\n"
+                    + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n ";
 
             statement = connection.prepareStatement(sql);
 
@@ -703,28 +702,15 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                     statement.setString(index, value[1].toString());
                 }
             }
+            paramIndex++;
+            statement.setInt(paramIndex, pageindex);
+            paramIndex++;
+            statement.setInt(paramIndex, pagesize);
+            paramIndex++;
+            statement.setInt(paramIndex, pageindex);
+            paramIndex++;
+            statement.setInt(paramIndex, pagesize);
 
-//            if (priceToSearch != -1) {
-//                switch (priceToSearch) {
-//                    case 1:
-//                        sql += "AND p.Price between 0 and 2000000";
-//                        break;
-//                    case 2:
-//                        sql += "AND p.Price between 2000001 and 4000000";
-//                        break;
-//                    case 3:
-//                        sql += "AND p.Price between 4000001 and 7000000";
-//                        break;
-//                    case 4:
-//                        sql += "AND p.Price between 7000001 and 13000000";
-//                        break;
-//                    case 5:
-//                        sql += "AND p.Price > 13000000";
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -737,6 +723,11 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 product.setDiscount(rs.getFloat("Discount"));
                 product.setStatus(rs.getBoolean("Status"));
                 product.setCreated(rs.getDate("Created"));
+                product.setSize(rs.getFloat("Size"));
+                product.setWeight(rs.getFloat("Weight"));
+                product.setRam(rs.getInt("Ram"));
+                product.setOrginal(rs.getString("Orginal"));
+                product.setYear(rs.getString("Year"));
                 Category category = new Category();
                 category.setId(rs.getInt("CategoryId"));
                 category.setName(rs.getString("CategoryName"));
@@ -766,4 +757,93 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         }
         return products;
     }
+
+    public int getRowCountAdvanceSearch(int categoryId, int manufacturerId, int priceToSearch) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT COUNT(*) as Total\n"
+                    + "from Product p inner join Category c \n"
+                    + "on p.CategoryId = c.ID\n"
+                    + "left join ManufacturerGroup mg\n"
+                    + "on mg.pId = p.ID\n"
+                    + "left join Manufacturer m\n"
+                    + "on m.ID = mg.mId\n"
+                    + "where (1=1)\n";
+
+            int paramIndex = 0;
+            HashMap<Integer, Object[]> params = new HashMap<>();
+
+            if (categoryId != -1) {
+                sql += "AND c.ID = ? \n";
+                paramIndex++;
+                Object[] param = new Object[2];
+                param[0] = Integer.class.getName();
+                param[1] = categoryId;
+                params.put(paramIndex, param);
+            }
+            if (manufacturerId != -1) {
+                sql += "AND m.ID = ? \n";
+                paramIndex++;
+                Object[] param = new Object[2];
+                param[0] = Integer.class.getName();
+                param[1] = manufacturerId;
+                params.put(paramIndex, param);
+            }
+
+            if (priceToSearch != -1) {
+                switch (priceToSearch) {
+                    case 1:
+                        sql += "AND p.Price between 0 and 2000000 ";
+                        break;
+                    case 2:
+                        sql += "AND p.Price between 2000001 and 4000000 ";
+                        break;
+                    case 3:
+                        sql += "AND p.Price between 4000001 and 7000000 ";
+                        break;
+                    case 4:
+                        sql += "AND p.Price between 7000001 and 13000000 ";
+                        break;
+                    case 5:
+                        sql += "AND p.Price > 13000000 ";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            statement = connection.prepareStatement(sql);
+            for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+                Integer index = entry.getKey();
+                Object[] value = entry.getValue();
+                String type = value[0].toString();
+                if (type.equals(Integer.class.getName())) {
+                    statement.setInt(index, (Integer) value[1]);
+                } else if (type.equals(String.class.getName())) {
+                    statement.setString(index, value[1].toString());
+                }
+            }
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
 }

@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Category;
 import model.Manufacturer;
 import model.Product;
@@ -41,12 +42,12 @@ public class AdvanceSearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDBContext pDB = new ProductDBContext();
+        HttpSession session = request.getSession();
         CategoryDBContext cDB = new CategoryDBContext();
         ManufacturerDBContext mDB = new ManufacturerDBContext();
         int categoryId = -1;
         int manufacturerId = -1;
         int searchByPrice = -1;
-        String sort = "";
         try {
             String[] raw_categoryIds = request.getParameterValues("categoryId");
             categoryId = Integer.parseInt(raw_categoryIds[raw_categoryIds.length - 1]);
@@ -54,19 +55,35 @@ public class AdvanceSearchController extends HttpServlet {
             manufacturerId = Integer.parseInt(raw_manufacturerIds[raw_manufacturerIds.length - 1]);
             String[] raw_prices = request.getParameterValues("searchPrice");
             searchByPrice = Integer.parseInt(raw_prices[raw_prices.length - 1]);
-//            String sortPrice = request.getParameter("sortPrice");
-//            if (sortPrice.equals("Giá thấp")) {
-//                sort = "asc";
-//
-//            } else {
-//                sort = "desc";
-//            }
         } catch (Exception e) {
         }
 
-        ArrayList<Product> products = pDB.advanceSearch(categoryId, manufacturerId, searchByPrice);
+        //Paging
+        int pagesize = 6;
+        String raw_page = request.getParameter("page");
+        if (raw_page == null || raw_page.length() == 0) {
+            raw_page = "1";
+        }
+        int pageindex = Integer.parseInt(raw_page);
+        int totalRows = pDB.getRowCountAdvanceSearch(categoryId, manufacturerId, searchByPrice);
+        int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
+
+        //Filter
+        String raw_filterindex = request.getParameter("filterindex");
+        if (raw_filterindex == null || raw_filterindex.length() == 0) {
+            raw_filterindex = "2";
+        }
+        int filterindex = Integer.parseInt(raw_filterindex);
+        session.setAttribute("filterindex", filterindex);
+
+
+        ArrayList<Product> products = pDB.advanceSearch(categoryId, manufacturerId, searchByPrice, filterindex, pageindex, pagesize);
         ArrayList<Category> categories = cDB.getCategories();
         ArrayList<Manufacturer> manufacturers = mDB.getManufacturers();
+
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
+        request.setAttribute("found", totalRows);
 
         request.setAttribute("searchByPrice", searchByPrice);
         request.setAttribute("manufacturerId", manufacturerId);

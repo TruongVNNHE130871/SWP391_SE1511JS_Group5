@@ -22,6 +22,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
+        <!-- font awesome cdn link  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            />
         <title>Advance Search Page</title>
     </head>
     <!--Start header-menu-->
@@ -106,27 +111,44 @@
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="choose-item-search">
-                            <div class="d-flex justify-content-around">
-                                <div class="my-auto">
-                                    <p class="m-0">Sắp Xếp Theo</p>
-                                </div>
-                                <div class="my-auto"><button class="format-btn">Bán chạy nhất</button></div>
-                                <div class="my-auto"><input type="submit" value="Giá thấp" class="format-btn"/></div>
-                                <div class="my-auto"><input type="submit" value="Giá cao" class="format-btn"/></div>
-                                <div class="my-auto dropdown">
+                        <div class="product-filter">
+                            <span class="product-filter__label">Sắp xếp theo</span>
+                            <a href="${pageContext.request.contextPath}/AdvanceSearchController?categoryId=${requestScope.categoryId}&manufacturerId=${requestScope.manufacturerId}&searchPrice=${requestScope.searchByPrice}&page=${requestScope.pageindex}&filterindex=1#menu" class="product-filter__btn ${filterindex == 1 ? "btn--primary" : ""}">Phổ Biến</a>
+                            <a href="${pageContext.request.contextPath}/AdvanceSearchController?categoryId=${requestScope.categoryId}&manufacturerId=${requestScope.manufacturerId}&searchPrice=${requestScope.searchByPrice}&page=${requestScope.pageindex}&filterindex=2#menu" class="product-filter__btn ${filterindex == 2 ? "btn--primary" : ""}">Mới Nhất</a>
+                            <a href="${pageContext.request.contextPath}/AdvanceSearchController?categoryId=${requestScope.categoryId}&manufacturerId=${requestScope.manufacturerId}&searchPrice=${requestScope.searchByPrice}&page=${requestScope.pageindex}&filterindex=3#menu" class="product-filter__btn ${filterindex == 3 ? "btn--primary" : ""}">Cũ nhất</a>
 
-                                    <a class="format-btn-price dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                        Giá
+                            <div class="select-input">
+                                <c:if test="${filterindex == 1 || filterindex == 2 || filterindex == 3}">
+                                    <span class="select-input__label">Giá</span>
+                                </c:if>
+                                <c:if test="${filterindex == 4}">
+                                    <span class="select-input__label select-input__label--active">Giá: Thấp đến Cao</span>
+                                </c:if>
+                                <c:if test="${filterindex == 5}">
+                                    <span class="select-input__label select-input__label--active">Giá: Cao đến Thấp</span>
+                                </c:if>
+                                <i class="select-input__icon fas fa-angle-down"></i>
+                                <ul class="select-input__list">
+                                    <li class="select-input__item">
+                                        <a href="${pageContext.request.contextPath}/AdvanceSearchController?categoryId=${requestScope.categoryId}&manufacturerId=${requestScope.manufacturerId}&searchPrice=${requestScope.searchByPrice}&page=${requestScope.pageindex}&filterindex=4#menu" class="select-input__item-link">Giá: Thấp đến Cao</a>
+                                    </li>
+                                    <li class="select-input__item">
+                                        <a href="${pageContext.request.contextPath}/AdvanceSearchController?categoryId=${requestScope.categoryId}&manufacturerId=${requestScope.manufacturerId}&searchPrice=${requestScope.searchByPrice}&page=${requestScope.pageindex}&filterindex=5#menu" class="select-input__item-link">Giá: Cao đến Thấp</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="product-filter__page">
+                                <span class="product-filter__page-num">
+                                    <span class="product-filter__page-current">${requestScope.pageindex}</span>/${requestScope.totalpage}
+                                </span>
+                                <div class="product-filter__page-control">
+                                    <a href="${pageContext.request.contextPath}/AdvanceSearchController?page=${requestScope.pageindex - 1}&filterindex=${sessionScope.filterindex}#menu" class="product-filter__page-btn ${requestScope.pageindex == 1 ? "product-filter__page-btn--disabled" : ""}">
+                                        <i class="product-filter__page-icon fas fa-angle-left"></i>
                                     </a>
-
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-
+                                    <a href="${pageContext.request.contextPath}/AdvanceSearchController?page=${requestScope.pageindex + 1}&filterindex=${sessionScope.filterindex}#menu" class="product-filter__page-btn ${requestScope.pageindex == requestScope.totalpage ? "product-filter__page-btn--disabled" : ""}">
+                                        <i class="product-filter__page-icon fas fa-angle-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -148,30 +170,24 @@
                                 </c:forEach>
                             </div>
                         </div>
+                        <div id="paggerbottom" class="pagger"></div>
                     </div>
                 </div>
             </form>
         </div>
     </body>
     <script>
-        /* When the user clicks on the button,
-         toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+        generatePagerAdvanceSearchController('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2, ${sessionScope.filterindex}, ${requestScope.categoryId}, ${requestScope.manufacturerId}, ${requestScope.searchByPrice});
     </script>
+<!--    <script>
+        var header = document.querySelector(".product-filter");
+        var btns = header.getElementsByClassName("product-filter__btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("btn--primary");
+                current[0].className = current[0].className.replace(" btn--primary", "");
+                this.className += " btn--primary";
+            });
+        }
+    </script>-->
 </html>
