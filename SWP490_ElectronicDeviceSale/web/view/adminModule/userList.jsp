@@ -31,26 +31,18 @@
     <!--Start side bar-menu-->
     <jsp:include page = "./sideBar.jsp" />
     <!--End side bar -menu-->
-    <header>
-        <div class="infor d-flex justify-content-around">
-            <div class="text-admin mt-2">ADMIN</div>
-            <div class="image-admin">
-                <img src="https://duytan.thinkingschool.vn/wp-content/uploads/avatars/1/5c2ecfd10c228-bpfull.png" alt="" width="80" height="80" class="rounded-circle">
-            </div>
-        </div>
-    </header>
     <body>
         <div class="container mt-5">
             <div class="list-product">
-                <form method="Post">
+<!--                <form method="Post">
                     <input type="input" placeholder="Tên tài khoản người dùng" class="form-control mb-4" name="search">
                     <button type="submit" class="btn btn-outline-success">Tìm kiếm</button>
-                </form>
-                <p>Danh sách người dùng: </p>
+                </form>-->
+                <p class="fs-5 fw-bold">Danh sách người dùng: </p>
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Mã</th>
+                            <!--<th scope="col">Mã</th>-->
                             <th scope="col">Họ Tên</th>
                             <th scope="col">Tài khoản</th>
                             <th scope="col">Mật khẩu</th>
@@ -58,15 +50,21 @@
                             <th scope="col">Số điện thoại</th>
                             <th scope="col">Email</th>
                             <th scope="col">Trạng thái</th>
-                            <<th scope="col"></th>
+                            <th scope="col">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control p-0" size="10" placeholder="Tên tài khoản">
+                                    <button class="input-group-text px-2" id="inputGroup-sizing-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                          </svg>
+                                    </button>
+                                  </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items = "${users}" var= "user" end = "${users.size()}">
-                            <tr>
-                                <td>
-                                    ${user.id}
-                                </td>
+                            <tr>                           
                                 <td>
                                     ${user.name}
                                 </td>

@@ -152,7 +152,7 @@ Record of change:
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/js/pager.js" type="text/javascript"></script>
     <script>
-                            generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+        generatePagger('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
     </script>
     <!--Start footer-->
     <jsp:include page = "./footer/footer.jsp" />

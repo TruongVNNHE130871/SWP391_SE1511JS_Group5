@@ -60,7 +60,7 @@ Record of change:
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Mã Sản Phẩm</th>
+                            <!--<th scope="col">Mã Sản Phẩm</th>-->
                             <th scope="col">Tên Sản Phẩm</th>
                             <th scope="col">Ảnh</th>
                             <th scope="col">Danh Mục</th>
@@ -68,16 +68,30 @@ Record of change:
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Giảm Giá</th>
                             <th scope="col">Ngày Tạo</th>
-                            <th scope="col"></th>
+                            <th>
+                                <select name="" id="">
+                                    <option value="">Sắp xếp</option>
+                                    <option value="">Giá cao</option>
+                                    <option value="">Giá thấp</option>
+                                </select>
+                            </th>
+                            <th scope="col">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control p-0" size="10" placeholder="Tên sản phẩm">
+                                    <button class="input-group-text px-2" id="inputGroup-sizing-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                          </svg>
+                                    </button>
+                                  </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${requestScope.products}" var="p">
                         <input type="hidden" value="${p.id}" name="productID"/>
                         <tr class="align-middle text-product">
-                            <th scope="row">
-                                ${p.id}
-                            </th>
+                           
                             <td>
                                 ${p.name}
                             </td>
@@ -93,6 +107,9 @@ Record of change:
                             <td>${p.status ? "Available" : "Unavailable"}</td>
                             <td>${p.discount}</td>
                             <td>${p.created}</td>
+                            <td>
+
+                            </td>
                             <td>
                                 <button type="submit" onclick="doUpdate(${p.id});" class="btn btn-outline-success text-up-dlt">Cập nhật</button>
                                 <button type="submit" onclick="doDelete(${p.id});" class="btn btn-outline-danger text-up-dlt">Xóa</button>
