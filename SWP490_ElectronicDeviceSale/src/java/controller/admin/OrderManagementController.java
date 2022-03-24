@@ -67,8 +67,8 @@ public class OrderManagementController extends HttpServlet {
             deliveryDate = (Date) session.getAttribute("deliveryDate");
         }
         username.trim();
-        ArrayList<Order> orders = orderDBContext.listOrderPaging(username, orderDate, deliveryDate, pageIndex, pageSize);
-        session.setAttribute("orders", orders);
+//        ArrayList<Order> orders = orderDBContext.listOrderPaging(username, orderDate, deliveryDate, pageIndex, pageSize);
+//        session.setAttribute("orders", orders);
         request.setAttribute("maxPage", maxPage);
         String path = "../view/adminModule/orderList.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(path);

@@ -22,7 +22,7 @@ public interface IOrderDBContext {
     /**
      * Insert order into Database
      *
-     * @param Order
+     * @param order
      */
     public void insert(Order order);
 
@@ -32,13 +32,6 @@ public interface IOrderDBContext {
 
     public ArrayList<Order> listOrder(int id);
 
-    public ArrayList<Order> listOrderPaging(String userId, Date orderDate, Date deliveryDate, int pageIndex, int pageSize);
-    
-    public Order getOrderByID(int orderID);
-    
     public ArrayList<Order> getOrdersByOrderDetailId(int id);
-    
-    public void updateOrderStatus(int orderID, Date deliveryDate);
-    
-    public void cancelOrder(int orderID);
+
 }

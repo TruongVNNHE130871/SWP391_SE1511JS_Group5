@@ -46,7 +46,7 @@ public class ChangeStatusOrderController extends HttpServlet {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         ProductDBContext pDB = new ProductDBContext();
         Order order = new Order();
-        order = orderDBContext.getOrderByID(orderID);
+//        order = orderDBContext.getOrderByID(orderID);
         ArrayList<Order> orders = orderDBContext.getOrdersByOrderDetailId(orderID);
         ArrayList<Item> items = new ArrayList<Item>();
         int count = 0;
@@ -112,14 +112,14 @@ public class ChangeStatusOrderController extends HttpServlet {
         Calendar cal = Calendar.getInstance();
         java.util.Date date = cal.getTime();
         if (deliveryDate == null){
-            orderDBContext.updateOrderStatus(orderID, deliveryDate);
+//            orderDBContext.updateOrderStatus(orderID, deliveryDate);
             request.setAttribute("successMsg", "cập nhập thành công");
         }
         if(deliveryDate.before(order.getOrderDate()) || deliveryDate.after(date) ){
             request.setAttribute("errorMsg", "ngày giao hàng không thể có trước ngày đặt hàng hay 1 ngày trong tương lai");
         }
         else{
-            orderDBContext.updateOrderStatus(orderID, deliveryDate);
+//            orderDBContext.updateOrderStatus(orderID, deliveryDate);
             request.setAttribute("successMsg", "cập nhập thành công");
         }
         processRequest(request, response);
