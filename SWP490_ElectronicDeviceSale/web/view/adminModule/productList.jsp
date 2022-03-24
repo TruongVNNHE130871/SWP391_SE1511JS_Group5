@@ -4,7 +4,7 @@ EDS.Shop
 Electronic Device Sale Shop
 Record of change:
    DATE         Version       AUTHOR          DESCRIPTION
-2022-01-07        1.0         CuongTV         First Implement
+2022-02-28        1.0         BinhDV         First Implement
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

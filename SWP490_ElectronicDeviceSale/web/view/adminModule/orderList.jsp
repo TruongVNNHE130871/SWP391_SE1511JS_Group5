@@ -1,4 +1,11 @@
-
+<%--
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-02-20     1.0         BinhDV         First Implement
+--%>
 
 <%@page import="java.sql.Date"%>
 <%@page import="model.User"%>
