@@ -63,7 +63,7 @@ and open the template in the editor.
     font-weight: 500;
 }
 .text-comment-image{
-    border: 1px solid rgb(216, 216, 216);
+    border: 1px solid rgb(216, 216, 216) !important;
 }
 .color-check-circle{
     color: rgb(54, 211, 54);
@@ -141,3 +141,4 @@ footer{
 .c{
      text-align: center;
 }
+

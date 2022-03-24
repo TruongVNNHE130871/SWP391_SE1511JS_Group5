@@ -14,6 +14,10 @@ DATE         Version       AUTHOR          DESCRIPTION
 body{
     background-color: #F8F8F8 !important;
 }
+.admin-add-new{
+    border: 1px solid grey;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
 .title-add-new{
     background-color: white;
     padding: 10px 0;

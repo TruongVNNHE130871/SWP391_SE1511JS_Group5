@@ -17,6 +17,7 @@ Record of change:
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${url}/css/productdetails.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="assets/css/productdetails.css" rel="stylesheet" type="text/css"/>-->
         <link href="${url}/css/review.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -47,10 +48,7 @@ Record of change:
                             <img src="${requestScope.product.image}" alt="" width="300" height="300" class="">
                         </div>
                         <div class="col-6">
-                            <p class="fs-3 fw-bold money-text">${requestScope.product.price} <u>đ</u></p>
-                            <div class="col-6">
-                                
-
+                            <p class="fs-3 fw-bold money-text">${requestScope.product.price} <u>đ</u></p>                          
                                 <div class="d-flex flex-row bg-light justify-content-around rounded text-gb">
                                     <div class="bd-highlight">
                                         <div class="form-check form-check-inline ">
@@ -117,7 +115,7 @@ Record of change:
                                     </div>
 
                                 </div>
-                                <div class="text-comment-image rounded p-3">
+                                <div class="text-comment-image rounded p-3 border my-3">
                                     <div>
                                         <p class="fw-bold">Nhận ngay khuyến mại đặc biệt</p>
                                     </div>
