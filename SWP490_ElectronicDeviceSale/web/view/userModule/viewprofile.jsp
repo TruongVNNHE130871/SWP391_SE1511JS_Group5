@@ -36,7 +36,7 @@
                         <div class="">
                             <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="150"
                                  height="150" class="rounded-circle mt-5" />
-                            <p class="text-white my-4 fs-5 fw-bold">Xin Chào, Bạn yêu!</p>
+                            <p class="text-white my-4 fs-5 fw-bold">Xin Chào, ${sessionScope.user.userName}</p>
                         </div>
                         <div class="text-center my-5">
                             <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger">Edit Profile</button></a>       
