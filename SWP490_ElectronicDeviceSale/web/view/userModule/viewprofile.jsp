@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="${url}/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/stylesprofile.css" rel="stylesheet" type="text/css"/>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -28,68 +29,66 @@
         <!-- Header and Menu-->
         <jsp:include page = "./header/header-menu.jsp" />
         <!-- Form View Profile-->
-        <form style="align-items: center;" class="profile border rounded p-4" id="content">
-            <div class="container mb-3">
-                <div class="row py-4">
-                    <div class="col-5">
-                        <table class="ms-auto mt-4">
-                            <tr>
-                                <td class="">
-                                    <label for="username" class="label my-3 ">UserName: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">${sessionScope.user.userName}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="register_name" class="label my-3">Full Name: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">${sessionScope.user.name}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tdLabel">
-                                    <label for="gender" class="label my-3">Gender: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">
-                                        ${sessionScope.user.gender ? "Male" : "Female"}
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="email" class="label my-3">Email: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">${sessionScope.user.email}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tdLabel">
-                                    <label for="phone_number" class="label my-3">Phone Number: </label>
-                                </td>
-                                <td>
-                                    <p class="m-0 ms-4">${sessionScope.user.phone}</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-2 border-end"></div>
+        <form style="align-items: center;" class="profile" id="content">
+            <div class="container">
+                <div class="row">
                     <div class="col-5 text-center form-group">
-                        <div class="mb-4">
-                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="200" height="200" class="rounded-circle mt-4"/>
+                        <div class="">
+                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="150"
+                                 height="150" class="rounded-circle mt-5" />
+                            <p class="text-white my-4 fs-5 fw-bold">Xin Chào, Bạn yêu!</p>
                         </div>
-                        <!-- <button type="button" class="btn btn-outline-primary">Change Avatar</button> -->
-
+                        <div class="text-center my-5">
+                            <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger">Edit Profile</button></a>       
+                        </div>
+                    </div>
+                    <div class="col-7 my-4">
+                        <table class="table" style="width: 90%; margin: auto;">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="fs-4">Thông tin cá nhân</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3">Tài khoản: </td>
+                                    <td></td>
+                                    <td class="py-3">${sessionScope.user.userName}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3">Họ Tên:</td>
+                                    <td></td>
+                                    <td class="py-3">${sessionScope.user.name}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3">Giới tính: </td>
+                                    <td></td>
+                                    <td class="py-3">${sessionScope.user.gender ? "Male" : "Female"}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3">Email: </td>
+                                    <td></td>
+                                    <td class="py-3">${sessionScope.user.email}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3">Số điện thoại: </td>
+                                    <td></td>
+                                    <td class="py-3">${sessionScope.user.phone}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-outline-secondary">Edit Profile</button></a>       
-            </div>
+
         </form>
     </body>
     <!--footer-->
