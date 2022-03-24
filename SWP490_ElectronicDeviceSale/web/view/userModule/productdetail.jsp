@@ -48,49 +48,140 @@ Record of change:
                         </div>
                         <div class="col-6">
                             <p class="fs-3 fw-bold money-text">${requestScope.product.price} <u>đ</u></p>
-                            <div class="product-review mb-4">
-                                <span class="icon-start-rate me-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill color-star" viewBox="0 0 16 16">
-                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                </span>
-                                <span class="border-start me-4"></span>
-                                <a class="link-feedback">
-                                    134 Đánh giá
-                                </a>
-                            </div>
+                            <div class="col-6">
+                                
 
-                            <div class="quantity">
-                                <div class="input-group">
-                                    <span class="fs-6 me-3 my-2">Số lượng</span>
-                                    <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
-                                    <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
-                                    <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
+                                <div class="d-flex flex-row bg-light justify-content-around rounded text-gb">
+                                    <div class="bd-highlight">
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><b>128GB</b></label>
+                                        </div>
+                                        <p class="m-0">33.990.000<u>đ</u></p>
+                                    </div>
+                                    <div class="bd-highlight">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><b>256GB</b></label>
+                                        </div>
+                                        <p class="m-0">33.490.000<u>đ</u></p>
+                                    </div>
+                                    <div class=" bd-highlight">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><b>512GB</b></label>
+                                        </div>
+                                        <p class="m-0">39.490.000<u>đ</u></p>
+                                    </div>
+                                    <div class=" bd-highlight">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"><b>1TGB</b></label>
+                                        </div>
+                                        <p class="m-0">45.990.000<u>đ</u></p>
+                                    </div>
+                                </div>
+                                <div class="image-color my-3 d-flex">
+                                    <div class="text-center">
+                                        <img src="" alt="" width="40" height="40">
+                                        <p class="text-image-color m-0">Vàng</p>
+                                    </div>
+                                    <div class="text-center mx-3">
+                                        <img src="" alt="" width="40" height="40">
+                                        <p class="text-image-color m-0">Xám</p>
+                                    </div>
+                                    <div class="text-center me-3">
+                                        <img src="" alt="" width="40" height="40">
+                                        <p class="text-image-color m-0">Bạc</p>
+                                    </div>
+                                    <div class="text-center me-3">
+                                        <img src="" alt="" width="40" height="40">
+                                        <p class="text-image-color m-0">Xanh</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <img src="" alt="" width="40" height="40">
+                                        <p class="text-image-color m-0">Xanh Lá</p>
+                                    </div>
                                 </div>
 
-                            </div>
-                            <div class="btn-add-buy mt-5">
-                                <a href="${pageContext.request.contextPath}/AddToCartFromProductDetailController?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
-                                    Thêm vào giỏ hàng
-                                </a><br>
-                                <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
-                                    Mua ngay <br>
-                                    <span class="free-ship">Miễn phí giao hàng</span>
-                                </a>
+                                <div class="quantity">
+                                    <div class="input-group">
+                                        <span class="fs-6 me-3 my-2">Số lượng</span>
+                                        <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
+                                        <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
+                                        <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
+                                    </div>
 
+                                </div>
+                                <div class="text-comment-image rounded p-3">
+                                    <div>
+                                        <p class="fw-bold">Nhận ngay khuyến mại đặc biệt</p>
+                                    </div>
+                                    <div>
+                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg> 
+                                            <span class="text-promotion">
+                                                Ưu đãi dành cho khách hàng sinh nhật trong Tháng 3: Tặng bảo hành thêm 1 năm <a href="">Xem chi tiết</a>
+                                            </span>
+                                        </p>
+                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg> 
+                                            <span class="text-promotion">
+                                                Cơ hội trúng Jackpot đến 2 tỷ <a href="">Xem chi tiết</a>
+                                            </span>
+
+                                        </p>
+                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg> 
+                                            <span class="text-promotion">
+                                                Tặng phần mềm học tập online trị giá 300.000đ <a href="">Xem chi tiết</a>
+                                            </span>
+
+                                        </p>
+                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg> 
+                                            <span class="text-promotion">
+                                                Tặng gói iCloud 50GB miễn phí 3 tháng Xem <a href="">Xem chi tiết</a>
+                                            </span>
+
+                                        </p>
+                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg> 
+                                            <span class="text-promotion">
+                                                Thu cũ đổi mới trợ giá 15% <a href="">Xem chi tiết</a>
+                                            </span>
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="btn-add-buy mt-5">
+                                    <a href="${pageContext.request.contextPath}/AddToCartFromProductDetailController?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
+                                        Thêm vào giỏ hàng
+                                    </a><br>
+                                    <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
+                                        Mua ngay <br>
+                                        <span class="free-ship">Miễn phí giao hàng</span>
+                                    </a>
+                                    <p class="my-3">Mua hàng trực tiếp tại 
+                                        <i>Phường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội</i> <br>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
         </article>
         <article>
@@ -100,15 +191,15 @@ Record of change:
                         <div class="col-7 border p-3">
                             <p class="fs-5 fw-bolder">Đặc điểm nổi bật của ${requestScope.product.name}</p><hr>
                             <p class="fw-bold">iPhone 13 Pro Max deserves to be the largest, most powerful and longest-lasting iPhone ever that will give you a great experience, from casual tasks to professional applications.</p>
-                            <div class="img-detail text-center">
-                                <img src="${requestScope.product.image}" alt="">
+                            <div class="img-detail text-center my-4">
+                                <img src="${requestScope.product.image}" alt="" width="400" height="400">
                             </div>
                             <p class="fw-bold">Immerse yourself in the huge screen space</p>
                             <span>Whether it's entertainment when watching movies, playing games or checking emails, reading documents, the iPhone 13 Pro Max 's large 6.7-inch screen always gives the best experience.
 
                                 Not only is it big, it's also the world's top quality smartphone display with a stunning OLED panel, super-sharp Super Retina XDR technology, and unbelievable peak brightness of up to 1200 nits for HDR content. In front of you is a breathtaking entertainment space, an ideal mobile device for quick work with a truly excellent display.</span>
-                            <div class="img-inch">
-                                <img src="${requestScope.product.image}" alt="" width="600" height="350">
+                            <div class="img-inch text-center my-4">
+                                <img src="${requestScope.product.image}" alt="" width="400" height="400">
                             </div>
                             <p class="fw-bold">Leap in battery life</p>   
                             <span>The iPhone Pro Max series has always been loved by users for its super-long battery life, but the iPhone 13 Pro Max does so much more. A larger battery capacity, new screen, and more energy-efficient Apple A15 Bionic processor make the iPhone 13 Pro Max the best iPhone ever.
