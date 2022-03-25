@@ -33,7 +33,7 @@ Record of change:
     <jsp:include page = "./sideBar.jsp" />
     <!--update product admin-->
     <body>
-        <form action="ProductUpdateController" method="POST">
+        <form action="ProductUpdateController" method="POST" class="was-validated">
             <div class="container admin-add-new">
                 <div class="row mb-5">
                     <div class="col-8">
@@ -41,7 +41,15 @@ Record of change:
                         <div class="mb-3 row">
                             <label for="inputName" class="col-sm-2 col-form-label">Tên SP: </label>
                             <div class="col-sm-10">
-                                <input type="text" value="${requestScope.product.name}" name="productName" class="form-control" minlength="3" maxlength="30" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
+                                <input 
+                                    class="form-control is-invalid" 
+                                    id="validationTextarea"
+                                    value="${requestScope.product.name}" 
+                                    name="productName"
+                                    minlength="3" 
+                                    maxlength="30" 
+                                    pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$"
+                                    required>
                             </div>
                         </div>
 
@@ -69,13 +77,31 @@ Record of change:
                         <div class="description">
                             <p>Mô tả: </p>
                             <div class="mb-3"> 
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required>${requestScope.product.description}</textarea>
+                                <textarea 
+                                    class="form-control is-invalid" 
+                                    id="exampleFormControlTextarea1" 
+                                    rows="7" 
+                                    name="productDescription" 
+                                    minlength="2" 
+                                    maxlength="500" 
+                                    pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" 
+                                    required>${requestScope.product.description}</textarea>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPrice" class="col-sm-2 col-form-label">Giá:  </label>
                             <div class="col-sm-4">
-                                <input type="text" value="${requestScope.productPrice}" name="productPrice" class="form-control" id="" placeholder="" minlength="5" maxlength="10" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
+                                <input 
+                                    type="text" 
+                                    value="${requestScope.productPrice}" 
+                                    name="productPrice" 
+                                    class="form-control is-invalid" 
+                                    id="" 
+                                    placeholder="" 
+                                    minlength="5" 
+                                    maxlength="10" 
+                                    pattern="^(?![\s.]+$)[0-9\s.]*$" 
+                                    required>
                             </div>
                             <div class="col-auto">
                                 <label class="col-sm-2 col-form-label">VNĐ</label>
@@ -84,7 +110,17 @@ Record of change:
                         <div class="mb-3 row">
                             <label for="inputDiscount" class="col-sm-2 col-form-label">Giảm giá: </label>
                             <div class="col-sm-4">
-                                <input type="text" value="${requestScope.product.discount}" name="productDiscount" class="form-control" id="" placeholder="" minlength="1" maxlength="4" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
+                                <input 
+                                    type="text" 
+                                    value="${requestScope.product.discount}" 
+                                    name="productDiscount" 
+                                    class="form-control is-invalid" 
+                                    id="" 
+                                    placeholder="" 
+                                    minlength="1" 
+                                    maxlength="4"
+                                    pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" 
+                                    required>
                             </div>
                             <div class="col-auto">
                                 <label class="col-sm-2 col-form-label">%</label>
@@ -95,7 +131,18 @@ Record of change:
                         <div class="mb-3 row">
                             <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
                             <div class="col-sm-4">
-                                <input type="text" value="${requestScope.product.ram}" required name="productRam" class="form-control" id="" placeholder="" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
+                                <input 
+                                    type="text" 
+                                    value="${requestScope.product.ram}" 
+                                    required 
+                                    name="productRam" 
+                                    class="form-control is-invalid" 
+                                    id="" 
+                                    placeholder="" 
+                                    minlength="1"
+                                    maxlength="4"
+                                    pattern="^(?![\s.]+$)[0-9\s.]*$" 
+                                    required>
                             </div>
                             <div class="col-auto">
                                 <label class="col-sm-2 col-form-label">GB</label>

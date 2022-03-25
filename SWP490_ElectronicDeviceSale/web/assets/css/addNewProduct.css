@@ -16,7 +16,8 @@ body{
 }
 .admin-add-new{
     border: 1px solid grey;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+/*    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+    padding: 40px;*/
 }
 .title-add-new{
     background-color: white;
