@@ -60,6 +60,8 @@ Record of change:
             </div>
 
             <!--End banner  -->
+
+            <!-- Start shopping cart form -->
             <div class="container-table">
                 <form action="${pageContext.request.contextPath}/UpdateCartController" method="post">
                     <table style="width:100%">
@@ -116,9 +118,11 @@ Record of change:
                             <td><strong>${sumprice} VNĐ</strong></td>
                         </tr>
                         <tr><td colspan="2"><a href="${pageContext.request.contextPath}/PaymentController" class="update-cart mt-5 text-decoration-none">Thanh Toán</a></td></tr>
+                         <p style="color:red; display:block">${errorMsg}
                     </table>
                 </div>
             </div>
+            <!-- End shopping cart form -->
         </div>
 
 

@@ -11,8 +11,6 @@ package controller.user;
 
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,26 +59,28 @@ public class AddToCartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("username") == null) {
+        if (session.getAttribute("username") == null) { // check login status, if not then redirect to login page
             response.sendRedirect(request.getContextPath() + "/LoginController");
         } else {
-            int n = 0;
-            int qty = 1;
-            String id;
-            if (request.getParameter("idProduct") != null) {
+            int n = 0; //the number of products in the cart
+            int qty = 1; // default quantity of product when adding to cart
+            String id; // product id
+            if (request.getParameter("idProduct") != null) {// check product validity
                 id = request.getParameter("idProduct");
                 Product product = pDB.getProduct(Integer.parseInt(id));;
-                if (product != null) {
-                    if (request.getParameter("qty") != null) {
+                if (product != null) { // check product validity
+                    if (request.getParameter("qty") != null) { // check the qty attribute if it has a value then assign the value to the variable qty
                         qty = Integer.parseInt(request.getParameter("qty"));
                     }
-                    if (session.getAttribute("cart") == null) {
+                    if (session.getAttribute("cart") == null) {// In case the cart is empty
                         Cart cart = new Cart();
                         List<Item> listItems = new ArrayList<Item>();
                         Item item = new Item();
                         item.setQty(qty);
                         item.setProduct(product);
-                        item.setPrice(Float.parseFloat(product.getPrice().replace(",", "")) - Float.parseFloat(product.getPrice().replace(",", "")) * (product.getDiscount() / 100));
+                        item.setPrice(Float.parseFloat(product.getPrice().replace(",", ""))
+                                - Float.parseFloat(product.getPrice().replace(",", ""))
+                                * (product.getDiscount() / 100)); // Calculate product price including discount
                         cart.setSumPrice(0);
                         cart.setSumPrice(cart.getSumPrice() + item.getPrice());
                         listItems.add(item);
@@ -90,12 +90,12 @@ public class AddToCartController extends HttpServlet {
                         session.setAttribute("cart", cart);
                         session.setAttribute("sumprice", cart.getSumPrice());
                         session.setAttribute("sumprice", currentLocale.format(cart.getSumPrice()));
-                    } else {
+                    } else { // case the user has added the product to the cart before
                         Cart cart = (Cart) session.getAttribute("cart");
                         List<Item> listItems = cart.getItems();
                         boolean check = false;
                         for (Item item : listItems) {
-                            if (item.getProduct().getId() == product.getId()) {
+                            if (item.getProduct().getId() == product.getId()) { // add product quantity if product id is same
                                 item.setQty(item.getQty() + qty);
                                 cart.setSumPrice(cart.getSumPrice() + Float.parseFloat(item.getProduct().getPrice().replace(",", ""))
                                         - Float.parseFloat(item.getProduct().getPrice().replace(",", "")) * (item.getProduct().getDiscount() / 100));
@@ -105,7 +105,7 @@ public class AddToCartController extends HttpServlet {
                             } else {
                             }
                         }
-                        if (check == false) {
+                        if (check == false) { // The product in the cart is different from the newly added product
                             Item item = new Item();
                             item.setQty(qty);
                             item.setProduct(product);

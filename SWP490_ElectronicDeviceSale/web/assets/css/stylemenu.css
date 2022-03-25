@@ -1,3 +1,11 @@
+/* 
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0      HUNGVT         First Implement
+*/
 *{
     box-sizing: border-box;
     margin: 0;
@@ -149,28 +157,28 @@
     color: #334d4d;
 }
 .title-sale{
-    font-size: 13px;
-    font-size: 200;
+    font-size: 150%; 
+    margin-bottom: 10px;
 }
 .money-phone{
-    color: #527a7a;
+    color: #cc0033;
     font-weight: 500;
     font-size: 20px;
 }
 .btn-buy-product{
-    background-color: #202020;
+    background-color: #cc0033;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 7px 13px;
+    padding: 7px 47px;
     font-size: 15px;
 }
 .btn-add-cart{
-    background-color: #6d2d2d;
+    background-color: #006633;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
-    padding: 7px 50px;
+    padding: 7px 10px;
     font-size: 15px;
     text-decoration: none;
 }

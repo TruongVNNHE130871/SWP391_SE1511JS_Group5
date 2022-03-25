@@ -1,3 +1,11 @@
+/* 
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0      HUNGVT         First Implement
+*/
 /* reset margin and padding */
 *{
     box-sizing: border-box;

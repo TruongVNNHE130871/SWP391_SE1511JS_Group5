@@ -11,7 +11,6 @@ package controller.user;
 
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;

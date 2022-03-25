@@ -11,7 +11,6 @@ package controller.user;
 
 import DAO.implement.ProductDBContext;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -59,16 +58,16 @@ public class DeleteToCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int n = 0;
-        String id = request.getParameter("id");
+        int n = 0;//the number of products in the cart
+        String id = request.getParameter("id"); // product id
         HttpSession session = request.getSession(true);
         Product product = pDB.getProduct(Integer.parseInt(id));;
         Cart cart = (Cart) session.getAttribute("cart");
         List<Item> listItems = cart.getItems();
         for (Item item : listItems) {
             if (item.getProduct().getId() == product.getId()) {
-                cart.setSumPrice(cart.getSumPrice() - item.getPrice());
-                listItems.remove(item);
+                cart.setSumPrice(cart.getSumPrice() - item.getPrice());//delete product price
+                listItems.remove(item);// delete product
                 break;
             }
         }

@@ -11,7 +11,6 @@ package controller.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,8 +31,8 @@ public class LogOutController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
+        HttpSession session = request.getSession(false); // check session existence and return, otherwise return Null
+        if (session != null) { //session object exists
             session.removeAttribute("username"); //remove session
             session.removeAttribute("order"); //remove session
             session.removeAttribute("sumprice"); //remove session

@@ -10,8 +10,6 @@ Record of change:
 package controller.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -28,8 +26,6 @@ import model.Cart;
  * @author VinhNT
  */
 public class UpdateCartController extends HttpServlet {
-
-//    DecimalFormat df = new DecimalFormat("#.000");
     NumberFormat currentLocale = NumberFormat.getInstance();
 
     /**

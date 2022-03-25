@@ -70,47 +70,44 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
-        User u = userDB.getUserByUserPass(username, password);
+        String username = request.getParameter("username").toLowerCase().replaceAll(" ", "");
+        String password = request.getParameter("password");
+        User u = userDB.getUserByUserPass(username, password); // check valid account
         try {
-            if (u != null && u.getPassWord().equals(password)) {
-                if (u.isStatus() == true) {
+            if (u != null && u.getPassWord().equals(password)) { // correct account 
+                if (u.isStatus() == true) { // Account works normally
                     request.getSession().setAttribute("username", username);
                     request.getSession().setAttribute("user", u);
                     response.sendRedirect("HomePageController");
                 }
-                if (u.isStatus() == false) {
+                if (u.isStatus() == false) { // banned account
                     request.setAttribute("inputUsername", username);
                     request.setAttribute("inputPassword", password);
                     request.setAttribute("errorMsg", "Bạn không thể đăng nhập vào lúc này!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
                 }
             } else {
-                if (username.equals("") && password.equals("")) {
+                if (username.equals("") && password.equals("")) { // username and password is blank
                     request.setAttribute("errorMsg", "Bạn phải nhập tài khoản và mật khẩu!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-                } else if (username.equals("")) {
+                } else if (username.equals("")) { // account is blank
                     request.getSession().setAttribute("inputPassword", password);
                     request.setAttribute("errorMsg", "Bạn phải nhập tài khoản!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-                } else if (password.equals("")) {
+                } else if (password.equals("")) { // password is blank
                     request.getSession().removeAttribute("inputPassword");
                     request.setAttribute("inputUsername", username);
                     request.setAttribute("errorMsg", "Bạn phải nhập mật khẩu!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
-                } else {
+                } else { // username and password incorrect
                     request.setAttribute("inputUsername", username);
                     request.setAttribute("inputPassword", password);
                     request.setAttribute("errorMsg", "Tài khoản hoặc mật khẩu sai!");
                     request.getRequestDispatcher("view/userModule/login.jsp").forward(request, response);
                 }
-
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | ServletException e) {
         }
-
     }
 
     @Override
