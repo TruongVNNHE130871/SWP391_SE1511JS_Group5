@@ -30,6 +30,8 @@ Record of change:
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <script src="${url}/js/detail.js" type="text/javascript" defer></script>
         <script src="${url}/js/review.js" type="text/javascript" defer></script>
@@ -49,137 +51,137 @@ Record of change:
                         </div>
                         <div class="col-6">
                             <p class="fs-3 fw-bold money-text">${requestScope.product.price} <u>đ</u></p>                          
-                                <div class="d-flex flex-row bg-light justify-content-around rounded text-gb">
-                                    <div class="bd-highlight">
-                                        <div class="form-check form-check-inline ">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1"><b>128GB</b></label>
-                                        </div>
-                                        <p class="m-0">33.990.000<u>đ</u></p>
+                            <div class="d-flex flex-row bg-light justify-content-around rounded text-gb">
+                                <div class="bd-highlight">
+                                    <div class="form-check form-check-inline ">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1"><b>128GB</b></label>
                                     </div>
-                                    <div class="bd-highlight">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1"><b>256GB</b></label>
-                                        </div>
-                                        <p class="m-0">33.490.000<u>đ</u></p>
-                                    </div>
-                                    <div class=" bd-highlight">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1"><b>512GB</b></label>
-                                        </div>
-                                        <p class="m-0">39.490.000<u>đ</u></p>
-                                    </div>
-                                    <div class=" bd-highlight">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1"><b>1TGB</b></label>
-                                        </div>
-                                        <p class="m-0">45.990.000<u>đ</u></p>
-                                    </div>
+                                    <p class="m-0">33.990.000<u>đ</u></p>
                                 </div>
-                                <div class="image-color my-3 d-flex">
-                                    <div class="text-center">
-                                        <img src="" alt="" width="40" height="40">
-                                        <p class="text-image-color m-0">Vàng</p>
+                                <div class="bd-highlight">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1"><b>256GB</b></label>
                                     </div>
-                                    <div class="text-center mx-3">
-                                        <img src="" alt="" width="40" height="40">
-                                        <p class="text-image-color m-0">Xám</p>
-                                    </div>
-                                    <div class="text-center me-3">
-                                        <img src="" alt="" width="40" height="40">
-                                        <p class="text-image-color m-0">Bạc</p>
-                                    </div>
-                                    <div class="text-center me-3">
-                                        <img src="" alt="" width="40" height="40">
-                                        <p class="text-image-color m-0">Xanh</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <img src="" alt="" width="40" height="40">
-                                        <p class="text-image-color m-0">Xanh Lá</p>
-                                    </div>
+                                    <p class="m-0">33.490.000<u>đ</u></p>
                                 </div>
-
-                                <div class="quantity">
-                                    <div class="input-group">
-                                        <span class="fs-6 me-3 my-2">Số lượng</span>
-                                        <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
-                                        <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
-                                        <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
+                                <div class=" bd-highlight">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1"><b>512GB</b></label>
                                     </div>
-
+                                    <p class="m-0">39.490.000<u>đ</u></p>
                                 </div>
-                                <div class="text-comment-image rounded p-3 border my-3">
-                                    <div>
-                                        <p class="fw-bold">Nhận ngay khuyến mại đặc biệt</p>
+                                <div class=" bd-highlight">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1"><b>1TGB</b></label>
                                     </div>
-                                    <div>
-                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                            </svg> 
-                                            <span class="text-promotion">
-                                                Ưu đãi dành cho khách hàng sinh nhật trong Tháng 3: Tặng bảo hành thêm 1 năm <a href="">Xem chi tiết</a>
-                                            </span>
-                                        </p>
-                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                            </svg> 
-                                            <span class="text-promotion">
-                                                Cơ hội trúng Jackpot đến 2 tỷ <a href="">Xem chi tiết</a>
-                                            </span>
+                                    <p class="m-0">45.990.000<u>đ</u></p>
+                                </div>
+                            </div>
+                            <div class="image-color my-3 d-flex">
+                                <div class="text-center">
+                                    <img src="" alt="" width="40" height="40">
+                                    <p class="text-image-color m-0">Vàng</p>
+                                </div>
+                                <div class="text-center mx-3">
+                                    <img src="" alt="" width="40" height="40">
+                                    <p class="text-image-color m-0">Xám</p>
+                                </div>
+                                <div class="text-center me-3">
+                                    <img src="" alt="" width="40" height="40">
+                                    <p class="text-image-color m-0">Bạc</p>
+                                </div>
+                                <div class="text-center me-3">
+                                    <img src="" alt="" width="40" height="40">
+                                    <p class="text-image-color m-0">Xanh</p>
+                                </div>
+                                <div class="text-center">
+                                    <img src="" alt="" width="40" height="40">
+                                    <p class="text-image-color m-0">Xanh Lá</p>
+                                </div>
+                            </div>
 
-                                        </p>
-                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                            </svg> 
-                                            <span class="text-promotion">
-                                                Tặng phần mềm học tập online trị giá 300.000đ <a href="">Xem chi tiết</a>
-                                            </span>
-
-                                        </p>
-                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                            </svg> 
-                                            <span class="text-promotion">
-                                                Tặng gói iCloud 50GB miễn phí 3 tháng Xem <a href="">Xem chi tiết</a>
-                                            </span>
-
-                                        </p>
-                                        <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                            </svg> 
-                                            <span class="text-promotion">
-                                                Thu cũ đổi mới trợ giá 15% <a href="">Xem chi tiết</a>
-                                            </span>
-
-                                        </p>
-
-                                    </div>
-
+                            <div class="quantity">
+                                <div class="input-group">
+                                    <span class="fs-6 me-3 my-2">Số lượng</span>
+                                    <button type="button" onclick="decrease()" class="btn-decrease">-</button>                                
+                                    <input type="text" value="1" id="num" class="input-group-text" name="qty">                           
+                                    <button type="button" onclick="increase()" class="btn-increase">+</button>                                                    
                                 </div>
 
-
-                                <div class="btn-add-buy mt-5">
-                                    <a href="${pageContext.request.contextPath}/AddToCartFromProductDetailController?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
-                                        Thêm vào giỏ hàng
-                                    </a><br>
-                                    <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
-                                        Mua ngay <br>
-                                        <span class="free-ship">Miễn phí giao hàng</span>
-                                    </a>
-                                    <p class="my-3">Mua hàng trực tiếp tại 
-                                        <i>Phường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội</i> <br>
+                            </div>
+                            <div class="text-comment-image rounded p-3 border my-3">
+                                <div>
+                                    <p class="fw-bold">Nhận ngay khuyến mại đặc biệt</p>
+                                </div>
+                                <div>
+                                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg> 
+                                        <span class="text-promotion">
+                                            Ưu đãi dành cho khách hàng sinh nhật trong Tháng 3: Tặng bảo hành thêm 1 năm <a href="">Xem chi tiết</a>
+                                        </span>
                                     </p>
+                                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg> 
+                                        <span class="text-promotion">
+                                            Cơ hội trúng Jackpot đến 2 tỷ <a href="">Xem chi tiết</a>
+                                        </span>
+
+                                    </p>
+                                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg> 
+                                        <span class="text-promotion">
+                                            Tặng phần mềm học tập online trị giá 300.000đ <a href="">Xem chi tiết</a>
+                                        </span>
+
+                                    </p>
+                                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg> 
+                                        <span class="text-promotion">
+                                            Tặng gói iCloud 50GB miễn phí 3 tháng Xem <a href="">Xem chi tiết</a>
+                                        </span>
+
+                                    </p>
+                                    <p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill color-check-circle" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                        </svg> 
+                                        <span class="text-promotion">
+                                            Thu cũ đổi mới trợ giá 15% <a href="">Xem chi tiết</a>
+                                        </span>
+
+                                    </p>
+
                                 </div>
+
+                            </div>
+
+
+                            <div class="btn-add-buy mt-5">
+                                <a href="${pageContext.request.contextPath}/AddToCartFromProductDetailController?idProduct=${product.id}" class="btn btn-success py-2 mb-1 text-decoration-none" style="width: 100%;">
+                                    Thêm vào giỏ hàng
+                                </a><br>
+                                <a href="${pageContext.request.contextPath}/ByNowController?idProduct=${product.id}"class="btn btn-danger p-0 text-decoration-none" style="width: 100%;">
+                                    Mua ngay <br>
+                                    <span class="free-ship">Miễn phí giao hàng</span>
+                                </a>
+                                <p class="my-3">Mua hàng trực tiếp tại 
+                                    <i>Phường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội</i> <br>
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
             </section>
         </article>
         <article>
@@ -306,6 +308,8 @@ Record of change:
             <div class="mb-3 text-center">
                 <button class="btn-review" onclick="openTab('Review')">Đánh giá của khách hàng</button>
                 <button class="btn-review" onclick="openTab('AddReview')">Thêm đánh giá</button>
+                <button class="btn-review" onclick="openTab('QandA')">Hỏi và Đáp</button>
+
             </div>
             <!-- Start list review -->
             <div id="Review" class="w3-container tab">
@@ -529,6 +533,63 @@ Record of change:
                 </form>
             </div>
             <!--End review form -->
+            <!--Start Q&A form -->
+            <div id="QandA"class="review-question w3-container tab" style="display:none">
+                <p class="fw-bold fs-5">Hỏi & Đáp về ${requestScope.product.name }</p>
+                <c:forEach items="${reviewbyid}" var="review" >
+                    <div class="row my-4">
+                        <div class="col-2">
+                            <h4 class=""><strong>${review.name}</strong> <br>
+                                <span>${review.created}</span></h4>
+
+                        </div>
+                        <div class="col-10">
+                            <p>Noi dung cau hoi</p>
+
+                            <a class="btn btn-link mb-3 text-decoration-none" href="#" data-toggle="collapse"
+                               data-target="#target1">
+                                Trả lời
+                            </a>
+                            <div style="background: #f1f1f1">
+                                <h4 class=""><strong>${review.name}</strong>  - <span>${review.created}</span></h4>
+                                <p>Noi dung cau tra loi</p>
+                            </div>
+
+                            <div id="target1" class="collapse comment-group">
+                                <textarea class="form-control text-format" aria-label="With textarea" style="height: 100px"
+                                          placeholder="Viết câu trả lời của bạn"></textarea>
+                                <button class="btn btn-danger mt-2 btn-question">Gửi câu hỏi</button>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+
+                <div class="review-comment">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Viết câu hỏi của bạn*"  name="content"rows="5" 
+                              maxlength="255"
+                              required
+                              ></textarea>
+                </div>
+                <div class="input-name-phone row g-2 my-4">
+                    <div class="col-6">
+                        <input type="text" class="form-control" placeholder="Nhập tên của bạn*"  name="name"
+                               minlength="3"
+                               maxlength="50"
+                               required>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" class="form-control" placeholder="Nhập số điện thoại*" required name="phone"
+                               maxlength="10"
+                               pattern="(09|03|07|08|05)+([0-9]{8})$"
+                               title="Example 0912345678"
+                               required>
+                    </div>
+                </div>
+                <div class="text-center my-4">
+                    <button type="submit"class="btn btn-danger">Gửi câu hỏi</button>
+                </div>
+            </div>
+            <!--End Q&A form -->
         </article>
     </body>
     <!--Start footer-->
