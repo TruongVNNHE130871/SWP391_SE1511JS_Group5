@@ -34,25 +34,6 @@ public class ReviewController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-         ReviewDBContext rDB = new ReviewDBContext();
-        String idProduct = req.getParameter("id");
-        int id = Integer.parseInt(idProduct);
-        String name = req.getParameter("name").trim();
-        int phone = Integer.parseInt(req.getParameter("phone").trim());
-        String content = req.getParameter("content").trim();
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
-        int vote = Integer.parseInt(req.getParameter("vote"));
-        Review review = new Review();
-        review.setName(name);
-        review.setProduct_id(id);
-        review.setContent(content);
-        review.setCreated(date);
-        review.setPhone(phone);
-        review.setVote(vote);
-        rDB.insert(review);
-        resp.sendRedirect(req.getContextPath() + "/ProductDetailController?idProduct=" + id);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,7 +62,24 @@ public class ReviewController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-       
+        ReviewDBContext rDB = new ReviewDBContext();
+        String idProduct = req.getParameter("id");
+        int id = Integer.parseInt(idProduct);
+        String name = req.getParameter("name").trim();
+        int phone = Integer.parseInt(req.getParameter("phone").trim());
+        String content = req.getParameter("content").trim();
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        int vote = Integer.parseInt(req.getParameter("vote"));
+        Review review = new Review();
+        review.setName(name);
+        review.setProduct_id(id);
+        review.setContent(content);
+        review.setCreated(date);
+        review.setPhone(phone);
+        review.setVote(vote);
+        rDB.insert(review);
+        resp.sendRedirect(req.getContextPath() + "/ProductDetailController?idProduct=" + id);
     }
 
     /**
