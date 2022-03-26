@@ -18,6 +18,14 @@
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <script>
+            function doBanUnban(id) {
+                var confirmBan = confirm("Bạn có muốn cấm người dùng này?");
+                if (confirmBan) {
+                    window.location.href = "BanUnbanController?idBanUnbanUser=" + id;
+                }
+            }
+        </script>
         <title>JSP Page</title>
     </head>
     <!--side bar-->
@@ -30,7 +38,7 @@
                     <p class="fw-bold fs-3">Chi Tiết Người Dùng</p>
                     <div class="row">
                         <div class="col-5">
-                            <img src="https://www.seekpng.com/png/detail/73-730482_existing-user-default-avatar.png" alt="" width="300" height="300">
+                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="300" height="300">
                         </div>
                         <div class="col-7">
                             <table width="100%" class="fs-5 lh-lg align-middle">
@@ -62,7 +70,7 @@
                                     <td>
                                         <c:if test = "${user.status == true}">Hoạt động</c:if>
                                         <c:if test = "${user.status == false}">Bị cấm</c:if>
-                                    </td>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -148,10 +156,10 @@
 
                     </div>
                     <div class="ban-user text-center my-5">
-                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/BanUnbanController?idBanUnbanUser=${user.id}">
+                        <button type = "submit" onclick="doBanUnban(${user.id});" class="btn btn-outline-success text-up-dlt">
                         <c:if test = "${user.status == true}">Cấm người dùng</c:if>
                         <c:if test = "${user.status == false}">Bỏ cấm</c:if>
-                    </a>
+                    </button>
 
                 </div>
             </div>
