@@ -149,4 +149,6 @@ public interface IUserDBContext {
     public void banUser(int id);
 
     public void unbanUser(int id);
+    
+    public ArrayList<User> listUser();
 }

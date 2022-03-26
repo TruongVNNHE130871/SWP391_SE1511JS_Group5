@@ -29,8 +29,7 @@ Record of change:
     <!--side bar admin-->
     <jsp:include page = "./sideBar.jsp" />
     <body>
-        <form action="ProductInsertController" method="POST">
-
+        <form action="ProductInsertController" method="POST" class="was-validated">
             <div class="admin-add-new">
                 <div class="container">
                     <div class="row mb-5">

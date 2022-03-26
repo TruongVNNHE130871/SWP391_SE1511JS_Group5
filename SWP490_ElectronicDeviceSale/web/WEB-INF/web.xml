@@ -97,10 +97,6 @@
         <servlet-class>controller.user.ViewOrderHistory</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UserSearchResultController</servlet-name>
-        <servlet-class>controller.admin.UserSearchResultController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>OrderManagementController</servlet-name>
         <servlet-class>controller.admin.OrderManagementController</servlet-class>
     </servlet>
@@ -151,6 +147,10 @@
     <servlet>
         <servlet-name>DeleteReviewController</servlet-name>
         <servlet-class>controller.admin.DeleteReviewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserSearchController</servlet-name>
+        <servlet-class>controller.admin.UserSearchController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -249,10 +249,6 @@
         <url-pattern>/ViewOrderHistory</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UserSearchResultController</servlet-name>
-        <url-pattern>/admin/listUser/search</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>OrderManagementController</servlet-name>
         <url-pattern>/admin/listOrder</url-pattern>
     </servlet-mapping>
@@ -303,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>DeleteReviewController</servlet-name>
         <url-pattern>/DeleteReviewController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSearchController</servlet-name>
+        <url-pattern>/UserSearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

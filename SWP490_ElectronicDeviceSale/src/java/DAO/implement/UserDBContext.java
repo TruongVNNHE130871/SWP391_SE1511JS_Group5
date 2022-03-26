@@ -777,4 +777,83 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
         }
     }
 
+    public ArrayList<User> getUsers(int pageindex, int pagesize) {
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
+                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY u.ID asc) as rownum, u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
+                    + "from [User] u) u"
+                    + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, pageindex);
+            statement.setInt(2, pagesize);
+            statement.setInt(3, pageindex);
+            statement.setInt(4, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("ID"));
+                u.setName(rs.getString("Name"));
+                u.setUserName(rs.getString("UserName"));
+                u.setPassWord(rs.getString("PassWord"));
+                u.setStatus(rs.getBoolean("Status"));
+                u.setPhone(rs.getInt("Phone"));
+                u.setEmail(rs.getString("Email"));
+                u.setGender(rs.getBoolean("Gender"));
+                users.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return users;
+    }
+    
+    public int getRowCount() {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select COUNT(*) as Total from [User]";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public ArrayList<User> listUser() {
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+    }
+    
+    
 }

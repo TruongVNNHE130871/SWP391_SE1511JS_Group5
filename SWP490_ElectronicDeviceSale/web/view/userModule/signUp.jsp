@@ -55,7 +55,7 @@ DATE         Version       AUTHOR          DESCRIPTION
                     <div class="form-signup">
                         <p class="title-signup text-center my-4">Đăng ký</p>
                         <div class="form-group">            
-                            <input type="text" class="form-control mb-3" placeholder="Họ tên" name="name" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" tittle="Họ tên chỉ bao gồm ký tự" required>          
+                            <input type="text" class="form-control mb-3" placeholder="Họ tên*" name="name" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" tittle="Họ tên chỉ bao gồm ký tự" required>          
                         </div>
                         <div class="form-group mb-3">
                             <input type="radio" name="gender" value="male" checked>
@@ -68,16 +68,16 @@ DATE         Version       AUTHOR          DESCRIPTION
                             </label>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control mb-3" placeholder="Email" name="email" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$" tittle="Email nhập theo dạng: abc123@gmail.com" required>
+                            <input type="text" class="form-control mb-3" placeholder="Email*" name="email" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$" tittle="Email nhập theo dạng: abc123@gmail.com" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" placeholder="Số điện thoại" name="phonenumber" minlength="10" maxlength="10" pattern="^[0-9]{10}$" title="Số điện thoại bao gồm 10 chữ số" required>
+                            <input type="text" class="form-control" placeholder="Số điện thoại*" name="phonenumber" minlength="10" maxlength="10" pattern="^[0-9]{10}$" title="Số điện thoại bao gồm 10 chữ số" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text"  class="form-control" placeholder="Tên đăng nhập" name="username" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
+                            <input type="text"  class="form-control" placeholder="Tên đăng nhập*" name="username" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="password" class="form-control" placeholder="Mật khẩu" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Mật khẩu bao gồm it nhất 1 ký tự Hoa, 1 ký tự số, 1 ký tự thường" required>
+                            <input type="password" class="form-control" placeholder="Mật khẩu*" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Mật khẩu bao gồm it nhất 1 ký tự Hoa, 1 ký tự số, 1 ký tự thường" required>
                         </div>
                         <div class="form-group mb-3">
                             <input type="password" class="form-control" placeholder="Xác thực mật khẩu" name="confirm">
