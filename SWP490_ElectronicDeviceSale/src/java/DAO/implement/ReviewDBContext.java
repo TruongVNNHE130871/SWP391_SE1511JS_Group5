@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Product;
 
 /**
  *
@@ -71,7 +72,7 @@ public class ReviewDBContext extends BaseDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Review review = new Review();
-                review.setId(rs.getString("id"));
+                review.setId(rs.getInt("id"));
                 review.setName(rs.getString("Name"));
                 review.setProduct_id(rs.getInt("ProductId"));
                 review.setContent(rs.getString("content"));
@@ -85,4 +86,51 @@ public class ReviewDBContext extends BaseDAO {
         }
         return reviews;
     }
+
+    public List<Review> getAllReview() {
+        List<Review> reviews = new ArrayList<>();
+
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
+        try {
+            String sql = "SELECT r.ID, p.[Name] as productName, p.[Image], r.[Name] as userNameReview,r.Phone,r.Content,r.Vote,r.Created\n"
+                    + "FROM [Review] r inner join Product p on p.ID=r.ProductId";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Review review = new Review();
+                review.setId(rs.getInt("ID"));
+                review.setName(rs.getString("userNameReview"));
+                review.setContent(rs.getString("Content"));
+                review.setCreated(rs.getDate("Created"));
+                review.setPhone(rs.getInt("Phone"));
+                review.setVote(rs.getInt("Vote"));
+                Product product = new Product();
+                product.setName(rs.getString("productName"));
+                product.setImage(rs.getString("Image"));
+                review.setProduct(product);
+                reviews.add(review);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+    }
+
+    public void delete(int id) {
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
+        try {
+            String sql = "DELETE FROM Review WHERE ID=?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

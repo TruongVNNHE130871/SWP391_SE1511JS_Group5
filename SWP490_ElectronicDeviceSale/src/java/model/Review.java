@@ -17,18 +17,19 @@ import java.util.Date;
  */
 public class Review {
 
-    private String id;
+    private int id;
     private String name;
     private int product_id;
     private String content;
     private Date created;
     private int phone;
     private int vote;
+    private Product product;
 
     public Review() {
     }
 
-    public Review(String id, String name, int product_id, String content, Date created, int phone, int vote) {
+    public Review(int id, String name, int product_id, String content, Date created, int phone, int vote, Product product) {
         this.id = id;
         this.name = name;
         this.product_id = product_id;
@@ -36,13 +37,14 @@ public class Review {
         this.created = created;
         this.phone = phone;
         this.vote = vote;
+        this.product = product;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -92,6 +94,14 @@ public class Review {
 
     public void setVote(int vote) {
         this.vote = vote;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

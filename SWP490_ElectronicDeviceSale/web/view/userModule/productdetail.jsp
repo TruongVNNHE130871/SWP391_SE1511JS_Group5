@@ -308,7 +308,6 @@ Record of change:
             <div class="mb-3 text-center">
                 <button class="btn-review" onclick="openTab('Review')">Đánh giá của khách hàng</button>
                 <button class="btn-review" onclick="openTab('AddReview')">Thêm đánh giá</button>
-                <button class="btn-review" onclick="openTab('QandA')">Hỏi và Đáp</button>
 
             </div>
             <!-- Start list review -->
@@ -525,7 +524,7 @@ Record of change:
                         </div>
                     </div>
                     <div class="text-center my-4">
-                        <button type="submit"class="btn btn-success">Gửi đánh giá</button>
+                        <button type="submit"class="btn btn-success" >Gửi đánh giá</button>
                     </div>
                     <div class="text-center">
                         <p class="title-star">Cảm ơn quý khách đã đánh giá cho sản phẩm này!</p>
@@ -533,63 +532,6 @@ Record of change:
                 </form>
             </div>
             <!--End review form -->
-            <!--Start Q&A form -->
-            <div id="QandA"class="review-question w3-container tab" style="display:none">
-                <p class="fw-bold fs-5">Hỏi & Đáp về ${requestScope.product.name }</p>
-                <c:forEach items="${reviewbyid}" var="review" >
-                    <div class="row my-4">
-                        <div class="col-2">
-                            <h4 class=""><strong>${review.name}</strong> <br>
-                                <span>${review.created}</span></h4>
-
-                        </div>
-                        <div class="col-10">
-                            <p>Noi dung cau hoi</p>
-
-                            <a class="btn btn-link mb-3 text-decoration-none" href="#" data-toggle="collapse"
-                               data-target="#target1">
-                                Trả lời
-                            </a>
-                            <div style="background: #f1f1f1">
-                                <h4 class=""><strong>${review.name}</strong>  - <span>${review.created}</span></h4>
-                                <p>Noi dung cau tra loi</p>
-                            </div>
-
-                            <div id="target1" class="collapse comment-group">
-                                <textarea class="form-control text-format" aria-label="With textarea" style="height: 100px"
-                                          placeholder="Viết câu trả lời của bạn"></textarea>
-                                <button class="btn btn-danger mt-2 btn-question">Gửi câu hỏi</button>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-
-                <div class="review-comment">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Viết câu hỏi của bạn*"  name="content"rows="5" 
-                              maxlength="255"
-                              required
-                              ></textarea>
-                </div>
-                <div class="input-name-phone row g-2 my-4">
-                    <div class="col-6">
-                        <input type="text" class="form-control" placeholder="Nhập tên của bạn*"  name="name"
-                               minlength="3"
-                               maxlength="50"
-                               required>
-                    </div>
-                    <div class="col-6">
-                        <input type="text" class="form-control" placeholder="Nhập số điện thoại*" required name="phone"
-                               maxlength="10"
-                               pattern="(09|03|07|08|05)+([0-9]{8})$"
-                               title="Example 0912345678"
-                               required>
-                    </div>
-                </div>
-                <div class="text-center my-4">
-                    <button type="submit"class="btn btn-danger">Gửi câu hỏi</button>
-                </div>
-            </div>
-            <!--End Q&A form -->
         </article>
     </body>
     <!--Start footer-->

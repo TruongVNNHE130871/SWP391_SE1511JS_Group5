@@ -49,9 +49,9 @@ DATE         Version       AUTHOR          DESCRIPTION
                                     <i class='bx bx-cart nav_icon'></i>
                                     <span class="nav_name">Danh sách mua hàng</span>
                                 </a>
-                                <a href="#" class="nav_link">
+                                <a href="${pageContext.request.contextPath}/ReviewManagementController" class="nav_link">
                                     <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                                    <span class="nav_name">Trạng thái</span>
+                                    <span class="nav_name">Quản lý đánh giá</span>
                                 </a>
                         </div>
                     </div>

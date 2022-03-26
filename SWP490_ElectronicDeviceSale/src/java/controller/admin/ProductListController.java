@@ -35,7 +35,7 @@ public class ProductListController extends HttpServlet {
         ProductDBContext db = new ProductDBContext();
 
         ArrayList<Product> products = db.listProduct();
-        
+
         request.setAttribute("products", products);
         request.getRequestDispatcher("view/adminModule/productList.jsp").forward(request, response);
     }

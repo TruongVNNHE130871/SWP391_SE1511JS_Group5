@@ -144,6 +144,14 @@
         <servlet-name>AdminHomePageController</servlet-name>
         <servlet-class>controller.admin.AdminHomePageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReviewManagementController</servlet-name>
+        <servlet-class>controller.admin.ReviewManagementController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteReviewController</servlet-name>
+        <servlet-class>controller.admin.DeleteReviewController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -287,6 +295,14 @@
     <servlet-mapping>
         <servlet-name>AdminHomePageController</servlet-name>
         <url-pattern>/AdminHomePageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewManagementController</servlet-name>
+        <url-pattern>/ReviewManagementController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteReviewController</servlet-name>
+        <url-pattern>/DeleteReviewController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

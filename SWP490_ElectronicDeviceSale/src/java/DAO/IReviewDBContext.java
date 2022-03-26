@@ -12,12 +12,12 @@ package DAO;
 import model.Review;
 import java.util.List;
 
-
 /**
  *
  * @author VinhNT
  */
 public interface IReviewDBContext {
+
     /**
      * Insert review into Database
      *
@@ -29,8 +29,13 @@ public interface IReviewDBContext {
      * Get all list review form Database
      *
      *
-     * @return 
+     * @param id
+     * @return
      */
     public List<Review> getReviewById(int id);
+
+    void delete(int id);
+
+    public List<Review> getAllReview();
 
 }
