@@ -850,10 +850,8 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
     @Override
     public ArrayList<User> listUser() {
-        ArrayList<User> users = new ArrayList<>();
-        PreparedStatement statement = null;
-        this.getConnection();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     
 }

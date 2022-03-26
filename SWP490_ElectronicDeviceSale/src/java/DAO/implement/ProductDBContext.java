@@ -20,6 +20,7 @@ import model.Category;
 import model.Manufacturer;
 import model.ManufacturerGroup;
 import model.Product;
+import model.Shop;
 
 /**
  *
@@ -228,10 +229,14 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.Size, p.Weight, p.Ram, p.Orginal, p.Year, c.ID as CategoryID, c.Name as CategoryName, c.Description as CategoryDescription \n"
+            String sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, \n"
+                    + "p.Status, p.Created, p.Size, p.Weight, p.Ram, \n"
+                    + "p.Orginal, p.[Year], c.ID as CategoryID, \n"
+                    + "c.Name as CategoryName, c.Description as CategoryDescription, s.ID as ShopID, s.Name as ShopName, s.Address as ShopAddress, s.AdminName as ShopOwner\n"
                     + "from Product p inner join Category c\n"
-                    + "on p.CategoryId = c.ID\n"
-                    + "where p.ID = ?";
+                    + "on p.CategoryId = c.ID left join Shop s\n"
+                    + "on s.ID = p.ShopId\n"
+                    + "where p.ID = ?\n";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -243,6 +248,12 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
                 c.setName(rs.getString("CategoryName"));
                 c.setDescription(rs.getString("CategoryDescription"));
                 p.setC(c);
+                Shop s = new Shop();
+                s.setId(rs.getInt("ShopID"));
+                s.setName(rs.getString("ShopName"));
+                s.setAddress(rs.getString("ShopAddress"));
+                s.setAdminName(rs.getString("ShopOwner"));
+                p.setS(s);
                 p.setName(rs.getString("Name"));
                 p.setImage(rs.getString("Image"));
                 p.setDescription(rs.getString("Description"));

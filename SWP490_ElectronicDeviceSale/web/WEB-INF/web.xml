@@ -152,6 +152,30 @@
         <servlet-name>UserSearchController</servlet-name>
         <servlet-class>controller.admin.UserSearchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyAgainController</servlet-name>
+        <servlet-class>controller.user.BuyAgainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderCancelController</servlet-name>
+        <servlet-class>controller.user.OrderCancelController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeliverController</servlet-name>
+        <servlet-class>controller.admin.DeliverController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchOrderController</servlet-name>
+        <servlet-class>controller.admin.SearchOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchOrderDetailController</servlet-name>
+        <servlet-class>controller.admin.SearchOrderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompleteDeliverController</servlet-name>
+        <servlet-class>controller.admin.CompleteDeliverController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -303,6 +327,30 @@
     <servlet-mapping>
         <servlet-name>UserSearchController</servlet-name>
         <url-pattern>/UserSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyAgainController</servlet-name>
+        <url-pattern>/BuyAgainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderCancelController</servlet-name>
+        <url-pattern>/OrderCancelController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeliverController</servlet-name>
+        <url-pattern>/DeliverController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrderController</servlet-name>
+        <url-pattern>/SearchOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchOrderDetailController</servlet-name>
+        <url-pattern>/SearchOrderDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompleteDeliverController</servlet-name>
+        <url-pattern>/CompleteDeliverController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

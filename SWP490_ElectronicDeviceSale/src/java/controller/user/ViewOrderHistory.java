@@ -14,6 +14,8 @@ import DAO.implement.OrderDBContext;
 import DAO.implement.ProductDBContext;
 import DAO.implement.UserDBContext;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cart;
 import model.Item;
 import model.Order;
 import model.Product;
@@ -31,7 +34,7 @@ import model.User;
  * @author CuongTV
  */
 public class ViewOrderHistory extends HttpServlet {
-
+    
     IUserDBContext userDBContext = new UserDBContext();
 
     /**
@@ -74,9 +77,10 @@ public class ViewOrderHistory extends HttpServlet {
             orders = oDB.getOrdersByUserId(user.getId(), "Da huy");
             statusText = "Đã huỷ";
             request.setAttribute("statusText", statusText);
-
+            
         }
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String deliveryDate = "";
         HashMap<Integer, ArrayList<Item>> params = new HashMap<>();
         ArrayList<Item> items = new ArrayList<Item>();
         int count = 0;
@@ -93,9 +97,12 @@ public class ViewOrderHistory extends HttpServlet {
                     countOrder++;
                     orderDetailId = orders.get(i).getOrderDetail().getId();
                 }
+                deliveryDate = sdf.format(orders.get(i).getDeliveryDate());
                 Item item = new Item();
                 count++;
                 Product product = pDB.getProduct(orders.get(i).getProductId());
+                item.setOrderDetailId(orderDetailId);
+                item.setDeliveryDate(Date.valueOf(deliveryDate));
                 item.setId(count);
                 item.setProduct(product);
                 item.setQty(orders.get(i).getQuantity());
@@ -106,7 +113,6 @@ public class ViewOrderHistory extends HttpServlet {
                 }
             }
         }
-
         request.setAttribute("params", params);
         request.setAttribute("items", items);
         request.getRequestDispatcher("view/userModule/vieworderhistory.jsp").forward(request, response);
@@ -141,7 +147,7 @@ public class ViewOrderHistory extends HttpServlet {
         String raw_keyword = request.getParameter("keyword");
         ProductDBContext pDB = new ProductDBContext();
         ArrayList<Product> products = pDB.searchProducts(raw_keyword);
-
+        
         request.setAttribute("keyword", raw_keyword);
         request.setAttribute("found", products.size());
         request.setAttribute("products", products);

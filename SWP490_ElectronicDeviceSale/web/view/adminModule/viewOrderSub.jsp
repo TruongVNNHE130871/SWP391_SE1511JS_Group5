@@ -56,11 +56,6 @@ Record of change:
                 line-height: 1.4;
                 color: rgba(0,0,0,.8);
             }
-
-            .box-search-order{
-                width: 30%;
-                margin: auto;
-            }
         </style>
 
         <script>
@@ -78,16 +73,7 @@ Record of change:
             <div class="container-fluid box-view-list">
                 <div class="list-product">
                     <p class="fs-5 fw-bold">Danh sách đặt hàng: </p>
-                    <form action="SearchOrderDetailController">
-                        <div class="input-group input-group-sm box-search-order" style="width: 30%;">
-                            <input type="text" pattern="^(?![\s.]+$)[0-9\s.]*$" minlength="1" maxlength="10000" placeholder="Nhập ID đơn hàng" name="orderDetailId" class="form-control p-0" size="15">
-                            <button type="submit" class="input-group-text px-2" id="inputGroup-sizing-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
+
                     <table class="table text-center">
                         <thead>
                             <tr>
@@ -100,68 +86,79 @@ Record of change:
                                 <th scope="col">Tổng Cộng</th>
                                 <th scope="col">Hình Thức Thanh Toán</th>
                                 <th scope="col">Trạng Thái</th>
-                                <th scope="col"> 
-                                    <select name="statusText" onchange="this.form.submit();">
-                                        <option value="-1">Tất cả</option>
-                                        <option value="1">Xác nhận</option>
-                                        <option value="2">Đang giao hàng</option>
-                                        <option value="3">Hoàn tất</option>
-                                        <option value="4">Đã hủy</option>
-                                    </select>
+                                <th scope="col">
+                                    <form action="SearchOrderDetailController">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" pattern="^(?![\s.]+$)[0-9\s.]*$" minlength="1" maxlength="10000" placeholder="Nhập ID đơn hàng" name="orderDetailId" class="form-control p-0" size="15">
+                                            <button type="submit" class="input-group-text px-2" id="inputGroup-sizing-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${requestScope.orderdetails}" var="od">
+                            <c:if test="${orderdetail != null}">
                                 <tr>
                                     <!--<td scope="row"></td>-->
                                     <td>
-                                        ${od.user_name}
+                                        ${orderdetail.user_name}
                                     </td>
                                     <td>
-                                        ${od.user_phone}
+                                        ${orderdetail.user_phone}
                                     </td>
                                     <td>
-                                        ${od.user_mail}
+                                        ${orderdetail.user_mail}
                                     </td>
                                     <td>
-                                        ${od.address}
+                                        ${orderdetail.address}
                                     </td>
                                     <td>
-                                        ${od.note}
+                                        ${orderdetail.note}
                                     </td>
                                     <td>
-                                        ${od.amount}
+                                        ${orderdetail.amount}
                                     </td>
                                     <td>
-                                        ${od.payment}
+                                        ${orderdetail.payment}
                                     </td>
                                     <td>
-                                        <c:if test="${od.status == 'Hoan tat'}">
+                                        <c:if test="${orderdetail.status == 'Hoan tat'}">
                                             <span style="color: #198754;">Hoàn tất</span>
                                         </c:if>
-                                        <c:if test="${od.status == 'Xac nhan'}">
+                                        <c:if test="${orderdetail.status == 'Xac nhan'}">
                                             <span style="color: #212529;">Xác nhận</span>
                                         </c:if>
-                                        <c:if test="${od.status == 'Da huy'}">
+                                        <c:if test="${orderdetail.status == 'Da huy'}">
                                             <span style="color: #ee2c4a;">Đã huỷ</span>
                                         </c:if>
-                                        <c:if test="${od.status == 'Cho lay hang'}">
+                                        <c:if test="${orderdetail.status == 'Cho lay hang'}">
                                             <span style="color: blue;">Đang giao hàng</span>
                                         </c:if>
                                     </td>
                                     <td>
                                         <div class="detail-deliver">
-                                            <button type="submit" onclick="doDetail(${od.id});" class="btn btn-outline-success text-up-dlt">Chi tiết</button>
-                                            <c:if test="${od.status == 'Xac nhan'}">
+                                            <button type="submit" onclick="doDetail(${orderdetail.id});" class="btn btn-outline-success text-up-dlt">Chi tiết</button>
+                                            <c:if test="${orderdetail.status == 'Xac nhan'}">
 
                                             </c:if>
                                         </div>
                                     </td>
                                 </tr>
-                            </c:forEach>
+                            </c:if>
                         </tbody>
                     </table>
+                    <c:if test="${orderdetail == null}">
+                        <div class="order-empty-container">
+                            <div class="order-empty">
+                                <div class="order-empty-icon"></div>
+                                <div class="order-empty-text">Chưa có đơn hàng</div>
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>

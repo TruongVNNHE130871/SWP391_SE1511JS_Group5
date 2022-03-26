@@ -134,7 +134,6 @@ Record of change:
                                     </div>
                                     <a class="btn-add-cart text-decoration-none" href="${pageContext.request.contextPath}/AddToCart?idProduct=${p.id}">Thêm Vào Giỏ Hàng</a>
                                     <a class="btn-buy-product text-decoration-none" href="${pageContext.request.contextPath}/ByNowController?idProduct=${p.id}">Mua Ngay</a>
-
                                 </div>
                             </c:forEach>
                         </div> 

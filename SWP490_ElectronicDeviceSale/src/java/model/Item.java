@@ -9,20 +9,31 @@ Record of change:
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author VinhNT
  */
 public class Item {
-
+    private int orderDetailId;
     private int id;
     private Product product;
     private int qty;
     private float price;
+    private Date deliveryDate;
 
     public Item() {
     }
 
+    public int getOrderDetailId() {
+        return orderDetailId;
+    }
+
+    public void setOrderDetailId(int orderDetailId) {
+        this.orderDetailId = orderDetailId;
+    }
+    
     public int getId() {
         return id;
     }
@@ -53,6 +64,14 @@ public class Item {
 
     public void setPrice(float string) {
         this.price = string;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
     
     @Override

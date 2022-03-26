@@ -94,6 +94,13 @@ public class Order {
         this.deliveryDate = deliveryDate;
     }
 
-   
+    public OrderDetail getOrderdetail() {
+        return orderdetail;
+    }
 
+    public void setOrderdetail(OrderDetail orderdetail) {
+        this.orderdetail = orderdetail;
+    }
+
+    
 }
