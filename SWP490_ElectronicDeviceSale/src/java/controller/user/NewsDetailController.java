@@ -9,31 +9,35 @@ Record of change:
  */
 package controller.user;
 
-import model.Review;
-import DAO.implement.ReviewDBContext;
+import DAO.implement.NewsDBContext;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.News;
 
 /**
  *
  * @author VinhNT
  */
-public class ReviewController extends HttpServlet {
+public class NewsDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param req
-     * @param resp
+     * @param request servlet request
+     * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -48,38 +52,28 @@ public class ReviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        NewsDBContext nDB = new NewsDBContext();
+        int id = Integer.parseInt(request.getParameter("id"));
+        News news = nDB.get(id);
+        request.setAttribute("news", news);
+        List<News> newsList = nDB.getAll();
+        request.setAttribute("newsList", newsList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/userModule/newsDetail.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param req
-     * @param resp
+     * @param request servlet request
+     * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ReviewDBContext rDB = new ReviewDBContext();
-        String idProduct = req.getParameter("id");
-        int id = Integer.parseInt(idProduct);
-        String name = req.getParameter("name").trim();
-        int phone = Integer.parseInt(req.getParameter("phone").trim());
-        String content = req.getParameter("content").trim();
-        long millis = System.currentTimeMillis();
-        java.sql.Date date = new java.sql.Date(millis);
-        int vote = Integer.parseInt(req.getParameter("vote"));
-        Review review = new Review();
-        review.setName(name);
-        review.setProduct_id(id);
-        review.setContent(content);
-        review.setCreated(date);
-        review.setPhone(phone);
-        review.setVote(vote);
-        rDB.insert(review);
-        resp.sendRedirect(req.getContextPath() + "/ProductDetailController?idProduct=" + id);
+        processRequest(request, response);
     }
 
     /**

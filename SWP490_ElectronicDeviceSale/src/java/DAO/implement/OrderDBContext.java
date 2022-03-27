@@ -15,13 +15,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Order;
 import model.OrderDetail;
-import model.TempObject;
 import model.User;
 
 /**

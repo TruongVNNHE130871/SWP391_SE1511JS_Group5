@@ -176,6 +176,14 @@
         <servlet-name>CompleteDeliverController</servlet-name>
         <servlet-class>controller.admin.CompleteDeliverController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewsListController</servlet-name>
+        <servlet-class>controller.user.NewsListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewsDetailController</servlet-name>
+        <servlet-class>controller.user.NewsDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -351,6 +359,14 @@
     <servlet-mapping>
         <servlet-name>CompleteDeliverController</servlet-name>
         <url-pattern>/CompleteDeliverController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewsListController</servlet-name>
+        <url-pattern>/NewsListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewsDetailController</servlet-name>
+        <url-pattern>/NewsDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

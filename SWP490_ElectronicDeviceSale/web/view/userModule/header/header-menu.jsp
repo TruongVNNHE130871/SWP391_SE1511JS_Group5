@@ -131,8 +131,8 @@ Record of change:
                     </a>
                 </div>
                 <div class="col-2">
-                    <a class="category-link">
-                        KHUYẾN MÃI
+                    <a href="${pageContext.request.contextPath}/NewsListController" class="category-link">
+                        TIN TỨC
                     </a>
                 </div>
                 <div class="col-2">
