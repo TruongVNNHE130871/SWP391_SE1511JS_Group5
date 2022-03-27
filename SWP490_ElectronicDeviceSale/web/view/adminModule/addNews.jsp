@@ -41,8 +41,9 @@ Record of change:
                 <div class="container">
                     <div class="row mb-5">
                         <div class="col-8 mx-auto form-new" >
-                            <h1 class="mb-3">Thêm mới bài viết</h1>
+                            <h1 class="mb-3 text-center">Thêm mới bài viết</h1>
                             <div class="mb-3 row">
+                                <label  class="col-sm-2 col-form-label">Tiều đề: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control"
                                            name="title" 
@@ -53,15 +54,18 @@ Record of change:
                                 </div>
                             </div>
                             <div class="mb-3 row">
+                                 <label  class="col-sm-2 col-form-label">Hình ảnh: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control"
                                            name="image" 
+                                           maxlength="255" 
                                            placeholder="Đường dẫn hình ảnh *"
                                            required >
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
+                                <label  class="col-sm-2 col-form-label">Nội dung: </label>
                                 <div class="col-sm-10"> 
                                     <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="7"
                                               name="content" 
@@ -73,17 +77,17 @@ Record of change:
                             </div>
 
                             <div class="mb-3 row">
-
+ <label  class="col-sm-2 col-form-label">Tác giả: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control" 
                                            name="author" 
                                            placeholder="Nhập tên tác giả *" 
                                            minlength="3"
-                                           maxlength="255" 
+                                           maxlength="50" 
                                            required>
                                 </div>
                             </div>   
-                            <div class="mt-3">
+                            <div class="mt-3 text-center">
                                 <button type="submit" class="btn btn-outline-success">Thêm bài viết</button>
                             </div>
                         </div>

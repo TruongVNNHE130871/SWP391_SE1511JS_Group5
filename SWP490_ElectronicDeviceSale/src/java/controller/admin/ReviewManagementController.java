@@ -49,7 +49,7 @@ public class ReviewManagementController extends HttpServlet {
         }
 
         //Keyword
-        String raw_keyword = request.getParameter("keyword").trim();
+        String raw_keyword = request.getParameter("keyword").replaceAll(" ", "");
         session.setAttribute("keyword", raw_keyword);
 
         //Filter

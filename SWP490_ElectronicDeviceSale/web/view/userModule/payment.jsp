@@ -67,7 +67,7 @@ Record of change:
                             <div class="form-group row mb-3">
                                 <div class="col-6">
                                     <input type="text" class="form-control" placeholder="Email*"  name="payment_email" minlength="4"
-                                           maxlength="255"
+                                           maxlength="50"
                                            required
                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,}$"
                                            title="Example: abc@gmail.com">

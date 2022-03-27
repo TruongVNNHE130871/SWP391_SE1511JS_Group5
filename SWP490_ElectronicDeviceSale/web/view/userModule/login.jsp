@@ -60,7 +60,7 @@ Record of change:
                             </div>
                             <div class="form-group mb-3">
                                 <input id="password"type="password" placeholder="Mật khẩu*" name="password" value="${inputPassword}"class="form-control"
-                                       maxlength="30">
+                                       maxlength="50">
                                 <img onclick="myfunction()" src="${url}/images/eye.png"> Hiện mật khẩu
                             </div>
                             <!-- Error message -->
