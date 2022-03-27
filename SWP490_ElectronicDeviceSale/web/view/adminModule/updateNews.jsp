@@ -42,7 +42,7 @@ Record of change:
                     <div class="row mb-5">
                         <div class="col-8 mx-auto form-new" >
                             <input type="hidden" value="${requestScope.news.id}" name="id"/>
-                            <h1 class="mb-3">Cập nhật bài viết</h1>
+                            <h1 class="mb-3 text-center" >Cập nhật bài viết</h1>
                             <div class="mb-3 row">
                                 <label  class="col-sm-2 col-form-label">Tiều đề: </label>
                                 <div class="col-sm-10">
@@ -55,7 +55,7 @@ Record of change:
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label  class="col-sm-2 col-form-label">Đường dẫn hình ảnh: </label>
+                                <label  class="col-sm-2 col-form-label">Hình ảnh: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control"
                                            name="image" 
@@ -69,15 +69,14 @@ Record of change:
                                 <div class="col-sm-10"> 
                                     <textarea class="form-control" type="text" id="exampleFormControlTextarea1" rows="7"
                                               name="content" 
-                                              value="${requestScope.news.content}" 
                                               minlength="3" 
                                               maxlength="4000" 
-                                              required></textarea>
+                                              required>${requestScope.news.content}</textarea>
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
-                                <label  class="col-sm-2 col-form-label">Tác giả </label>
+                                <label  class="col-sm-2 col-form-label">Tác giả: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control" 
                                            name="author" 
@@ -88,8 +87,8 @@ Record of change:
                                            required>
                                 </div>
                             </div>   
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-outline-success">Cập nhật bài viết</button>
+                            <div class="mt-3 text-center">
+                                <button type="submit" class="btn btn-outline-success ">Cập nhật bài viết</button>
                             </div>
                         </div>
                     </div>
