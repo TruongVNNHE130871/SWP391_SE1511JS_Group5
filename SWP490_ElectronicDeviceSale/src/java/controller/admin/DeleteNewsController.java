@@ -37,7 +37,7 @@ public class DeleteNewsController extends HttpServlet {
         NewsDBContext nDB = new NewsDBContext();
         int newsID = Integer.parseInt(request.getParameter("newsID"));
         nDB.delete(newsID);
-        response.sendRedirect("NewsManagementController");
+        response.sendRedirect("NewsManagementController?keyword=");
     
     }
 

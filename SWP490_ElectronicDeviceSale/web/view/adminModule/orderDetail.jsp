@@ -49,7 +49,7 @@
             function doCancel(orderDetailId) {
                 var confirmDelete = confirm("Do you want to cancel this order?");
                 if (confirmDelete) {
-                    window.location.href = "OrderCancelController?orderDetailId=" + orderDetailId;
+                    window.location.href = "OrderDetailCancelController?orderDetailId=" + orderDetailId;
                 }
             }
         </script>

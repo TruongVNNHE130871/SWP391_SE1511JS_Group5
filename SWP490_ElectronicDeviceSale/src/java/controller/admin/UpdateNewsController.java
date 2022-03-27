@@ -78,7 +78,7 @@ public class UpdateNewsController extends HttpServlet {
         news.setImage(request.getParameter("image"));
         news.setAuthor(request.getParameter("author"));
         nDB.edit(news);
-       response.sendRedirect("NewsManagementController");
+       response.sendRedirect("NewsManagementController?keyword=");
     }
 
     /**

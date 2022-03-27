@@ -82,7 +82,7 @@ public class AddNewsController extends HttpServlet {
         nDB.insert(news);
         String message = "Thêm bài viết mới thành công";
         request.setAttribute("message", message);
-        response.sendRedirect(request.getContextPath() + "/NewsManagementController");
+        response.sendRedirect(request.getContextPath() + "/NewsManagementController?keyword=");
     }
 
     /**

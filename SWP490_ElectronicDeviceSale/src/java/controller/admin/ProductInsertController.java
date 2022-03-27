@@ -118,7 +118,7 @@ public class ProductInsertController extends HttpServlet {
         p.setOrginal(productOrginal.trim());
         p.setYear(productYear.trim());
         pDB.insertProduct(p);
-        response.sendRedirect("ProductListController");
+        response.sendRedirect("ProductListController?keyword=");
 
     }
 

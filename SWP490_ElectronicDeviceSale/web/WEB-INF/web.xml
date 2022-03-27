@@ -200,6 +200,10 @@
         <servlet-name>UserListController</servlet-name>
         <servlet-class>controller.admin.UserListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderDetailCancelController</servlet-name>
+        <servlet-class>controller.admin.OrderDetailCancelController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -399,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>UserListController</servlet-name>
         <url-pattern>/UserListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailCancelController</servlet-name>
+        <url-pattern>/OrderDetailCancelController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

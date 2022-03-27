@@ -1,17 +1,15 @@
 /*
- * TCopyright(C) 2021, Class SE1511-JS of FPT University
-EDS.Shop
-Electronic Device Sale Shop
-Record of change:
-   DATE         Version       AUTHOR          DESCRIPTION
-2022-01-07        1.0         VinhNT         First Implement
-
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controller.admin;
 
-import DAO.implement.ReviewDBContext;
+import DAO.implement.OrderDetailDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author VinhNT
+ * @author CuongTV
  */
-public class DeleteReviewController extends HttpServlet {
+public class OrderDetailCancelController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,11 +32,17 @@ public class DeleteReviewController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ReviewDBContext rDB = new ReviewDBContext();
-        int reivewID = Integer.parseInt(request.getParameter("reviewID"));
-        rDB.delete(reivewID);
-        response.sendRedirect("ReviewManagementController?keyword=");
+        OrderDetailDBContext odDB = new OrderDetailDBContext();
 
+        String textStatusCancel = "Da huy";
+        String raw_orderDetailId = request.getParameter("orderDetailId");
+        if (raw_orderDetailId == null || raw_orderDetailId.length() == 0) {
+            raw_orderDetailId = "-1";
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        odDB.cancelOrder(textStatusCancel, Integer.parseInt(raw_orderDetailId), Date.valueOf(dtf.format(now)));
+        response.sendRedirect("ViewAllOrderController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,7 +71,7 @@ public class DeleteReviewController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

@@ -108,19 +108,19 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
             switch (newsIndex) {
                 case -1:
                     sql = "SELECT ID, Title, content, Image, Author, Created\n"
-                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID desc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
                             + "where [Author] like '%'+ ? +'%') n\n"
                             + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
                     break;
                 case 1:
                     sql = "SELECT ID, Title, content, Image, Author, Created\n"
-                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID desc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
                             + "where [Author] like '%'+ ? +'%') n\n"
                             + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
                     break;
                 case 2:
                     sql = "SELECT ID, Title, content, Image, Author, Created\n"
-                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID desc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
                             + "where [Author] like '%'+ ? +'%') n\n"
                             + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
                     break;

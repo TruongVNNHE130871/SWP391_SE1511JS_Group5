@@ -36,7 +36,7 @@ public class ProductDeleteController extends HttpServlet {
             raw_id = "-1";
         }
         pDB.deleteProduct(Integer.parseInt(raw_id));
-        response.sendRedirect("ProductListController");
+        response.sendRedirect("ProductListController?keyword=");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

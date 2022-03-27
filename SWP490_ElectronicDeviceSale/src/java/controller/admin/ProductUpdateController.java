@@ -100,7 +100,7 @@ public class ProductUpdateController extends HttpServlet {
         product.setDiscount(productDiscount);
         product.setRam(productRam);
         pDB.updateProduct(product);
-        response.sendRedirect("ProductListController");
+        response.sendRedirect("ProductListController?keyword=");
     }
 
     /**
