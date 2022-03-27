@@ -42,31 +42,31 @@ DATE         Version       AUTHOR          DESCRIPTION
                             <!--End link -->
 
                             <!--Start link -->
-                            <a href="${pageContext.request.contextPath}/admin/userList" class="nav_link">
+                            <a href="${pageContext.request.contextPath}/UserListController?keyword=" class="nav_link">
                                 <i class='bx bx-user nav_icon'></i>
                                 <span class="nav_name">Danh sách người dùng</span></a>
                             <!--End link -->
 
                             <!--Start link -->
-                            <a href="${pageContext.request.contextPath}/ProductListController" class="nav_link">
+                            <a href="${pageContext.request.contextPath}/ProductListController?keyword=" class="nav_link">
                                 <i class='bx bxl-product-hunt'></i>
                                 <span class="nav_name">Danh sách sản phẩm</span></a>
                             <!--End link -->
 
                             <!--Start link -->
-                            <a href="${pageContext.request.contextPath}/AdminHomePageController" class="nav_link">
+                            <a href="${pageContext.request.contextPath}/ViewAllOrderController?keyword=" class="nav_link">
                                 <i class='bx bx-cart nav_icon'></i>
                                 <span class="nav_name">Danh sách mua hàng</span></a>
                             <!--End link -->
 
                             <!--Start link -->
-                            <a href="${pageContext.request.contextPath}/ReviewManagementController" class="nav_link">
+                            <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=" class="nav_link">
                                 <i class='bx bx-message-square-detail nav_icon'></i>
                                 <span class="nav_name">Quản lý đánh giá</span></a>
                             <!--End link -->
 
                             <!--Start link -->
-                            <a href="${pageContext.request.contextPath}/NewsManagementController" class="nav_link">
+                            <a href="${pageContext.request.contextPath}/NewsManagementController?keyword=" class="nav_link">
                                 <i class='bx bx-news'></i>
                                 <span class="nav_name">Quản tin tức</span> </a> 
                             <!--End link -->

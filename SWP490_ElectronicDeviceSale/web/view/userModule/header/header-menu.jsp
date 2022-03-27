@@ -28,6 +28,11 @@ Record of change:
             crossorigin="anonymous"
         ></script>
         <script src="../../../assets/js/menu.js" type="text/javascript"></script>
+        <!-- font awesome cdn link  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            />
     </head>
 
     <body>
@@ -68,17 +73,16 @@ Record of change:
                 <!-- End cart -->
                 <!-- Start check login status -->
                 <c:if test="${sessionScope.username != null}">
-                    <div class="col-2 my-4">
+                    <div class="col-2 my-4" style="display: flex;align-items: center;justify-content: center;">
                         <div class="dropdown">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                             </svg>
                             <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
-                            <div id="myDropdown" class="dropdown-content">
+                            <div id="myDropdown" class="dropdown-content overflow-auto">
                                 <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
                                 <a href="${pageContext.request.contextPath}/ViewOrderHistory">Lịch sử đặt hàng</a>
-                                <a href="${pageContext.request.contextPath}/LogOutController">Đăng Xuất</a>
                             </div>
                         </div>
                     </div>
@@ -91,6 +95,11 @@ Record of change:
                         <a href="${pageContext.request.contextPath}/SignUp" class="btn btn-outline-success">
                             Tạo tài khoản
                         </a>
+                    </div>
+                </c:if>
+                <c:if test="${sessionScope.username != null}">
+                    <div class="col-1">
+                        <a href="${pageContext.request.contextPath}/LogOutController" class="btn btn-danger my-3 px-2 text-decoration-none">Đăng Xuất</a>
                     </div>
                 </c:if>
                 <!-- End check login status -->

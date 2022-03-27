@@ -41,7 +41,8 @@ DATE         Version       AUTHOR          DESCRIPTION
                             <p class="text-white my-4 fs-5 fw-bold">Xin Chào, ${sessionScope.user.userName}</p>
                         </div>
                         <div class="text-center my-5">
-                            <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger">Edit Profile</button></a>       
+                            <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger">Sửa Thông Tin</button></a> 
+                            <a href="${pageContext.request.contextPath}/changePassword"><button type="button" class="btn btn-danger">Đổi Mật Khẩu</button></a>       
                         </div>
                     </div>
                     <div class="col-7 my-4">

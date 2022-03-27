@@ -76,18 +76,23 @@ public class ChangePasswordController extends HttpServlet {
             if (oldPassword.compareTo(user.getPassWord()) == 0) {
                 // Compare value of curentPassword textbox with newPassword textbox
                 if (newPassword.isEmpty() || newPassword.length() == 0) {
-                    request.setAttribute("errorMsg", "New password cannot be blank");//Display error message if new password is blank
+                    request.setAttribute("errorMsg", "Mật khẩu không được để trống");//Display error message if new password is blank
                 }
                 if (newPassword.compareTo(confirmPassword) == 0) {
-                    userDBContext.changePassword(id, newPassword.trim());
+                    userDBContext.changePassword(id, newPassword);
                     //Change password in database
-                    request.setAttribute("successMsg", "Change password successfully");//Display message successfully if confirm password equal new password
+                    request.setAttribute("successMsg", "Đổi mật khẩu thành công");//Display message successfully if confirm password equal new password
                 } else {
-                    request.setAttribute("errorMsg", "Confirm password is wrong");// display error message if new password not equal confirm password
+                    request.setAttribute("errorMsg", "Xác nhận mật khẩu không chính xác");// display error message if new password not equal confirm password
                 }
             } else {
-                request.setAttribute("errorMsg", "Current password is wrong");// display error message if current password is wrong
+                request.setAttribute("errorMsg", "Mật khẩu hiện tại không đúng");// display error message if current password is wrong
             }
+            
+            
+            
+            
+            
             String path = "view/userModule/changePassword.jsp";
             RequestDispatcher dispatcher = request.getRequestDispatcher(path);
             dispatcher.forward(request, response);

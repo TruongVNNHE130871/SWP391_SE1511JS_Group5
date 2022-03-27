@@ -55,7 +55,7 @@ Record of change:
         <title>Document</title>
         <style>
             .list-product{
-                height: 800px;
+                height: 880px;
             }
             .order-empty-container{
                 width: 100%;
@@ -218,6 +218,15 @@ Record of change:
                     opacity: 1;
                 }
             }
+            .btn-search{
+                padding: 0 15px;
+                background-color: black;
+                color: #fff;
+                border: none;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+
+            }
         </style>
     </head>
     <jsp:include page = "./sideBar.jsp" />
@@ -227,7 +236,19 @@ Record of change:
                 <div class="list-product">
                     <button class="btn btn-outline-primary mb-4" onclick="doAdd();">Thêm Sản Phẩm</button>
                     <div class="list-product">
-                        <p>Danh sách sản phẩm: </p>
+                        <div class="row">
+                            <h1 class="col">Danh sách sản phẩm </h1>
+                            <form action="ProductListController" method="POST">
+                                <div class="col-5 my-3 d-flex form-search m-0 me-5">
+                                    <input type="text" size="35" name="keyword" value="${sessionScope.keyword}" placeholder="Tìm theo tên sản phẩm"/>
+                                    <button type="submit" class="btn-search">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                         <table class="table text-center">
                             <thead>
                                 <tr>
@@ -264,18 +285,6 @@ Record of change:
                                             </ul>
                                         </div>
                                     </th>
-                                    <th scope="col">
-                                        <form action="ProductListController" method="POST">
-                                            <div class="input-group input-group-sm">
-                                                <input type="text" class="form-control p-0" name="keyword" value="${sessionScope.keyword}" size="10" placeholder="Tên sản phẩm">
-                                                <button type="submit" class="input-group-text px-2" id="inputGroup-sizing-sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -298,9 +307,6 @@ Record of change:
                                     <td>${p.status ? "Available" : "Unavailable"}</td>
                                     <td>${p.discount}</td>
                                     <td>${p.created}</td>
-                                    <td>
-
-                                    </td>
                                     <td>
                                         <button type="submit" onclick="doUpdate(${p.id});" class="btn btn-outline-success text-up-dlt">Cập nhật</button>
                                         <button type="submit" onclick="doDelete(${p.id});" class="btn btn-outline-danger text-up-dlt">Xóa</button>

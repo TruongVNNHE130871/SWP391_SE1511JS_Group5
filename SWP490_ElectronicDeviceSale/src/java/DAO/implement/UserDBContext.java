@@ -290,11 +290,12 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
     @Override
     public void changePassword(int id, String newPassword) {
         PreparedStatement statement = null;
+        this.getConnection();
         //Init statement
         try {
-            String sql = " UPDATE [User]\n"
-                    + "  Set [Password]= ?\n"
-                    + "  WHERE ID = ?";
+            String sql = "UPDATE [dbo].[User]\n"
+                    + "   SET [PassWord] = ?\n"
+                    + " WHERE ID = ?\n";
             //Create sql query
             statement = connection.prepareStatement(sql);
             //Prepare statement 
@@ -302,7 +303,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             //Set value newPassword in query 
             statement.setInt(2, id);
             //Set value ID in query 
-            statement.executeQuery();
+            statement.executeUpdate();
             //execute query
         } catch (SQLException e) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, e);
@@ -777,20 +778,39 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
         }
     }
 
-    public ArrayList<User> getUsers(int pageindex, int pagesize) {
+    public ArrayList<User> getUsers(String keyword, int status, int pageindex, int pagesize) {
         ArrayList<User> users = new ArrayList<>();
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
-                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY u.ID asc) as rownum, u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
-                    + "from [User] u) u"
-                    + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?";
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, pageindex);
-            statement.setInt(2, pagesize);
-            statement.setInt(3, pageindex);
-            statement.setInt(4, pagesize);
+            String sql = "";
+            if (status == -1) {
+                sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
+                        + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Name, UserName, PassWord, Gender, Phone, Email, Status\n"
+                        + "from [User] where [Name] like '%'+ ? +'%') u\n"
+                        + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?\n";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, keyword);
+                statement.setInt(2, pageindex);
+                statement.setInt(3, pagesize);
+                statement.setInt(4, pageindex);
+                statement.setInt(5, pagesize);
+            }
+
+            if (status != -1) {
+                sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
+                        + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Name, UserName, PassWord, Gender, Phone, Email, Status\n"
+                        + "from [User]\n"
+                        + "where [Status] = ? and [Name] like '%'+ ? +'%') u\n"
+                        + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?\n";
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, status);
+                statement.setString(2, keyword);
+                statement.setInt(3, pageindex);
+                statement.setInt(4, pagesize);
+                statement.setInt(5, pageindex);
+                statement.setInt(6, pagesize);
+            }
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 User u = new User();
@@ -821,12 +841,23 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
         return users;
     }
 
-    public int getRowCount() {
+    public int getRowCount(String keyword, int status) {
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "select COUNT(*) as Total from [User]";
-            statement = connection.prepareStatement(sql);
+            String sql = "";
+            if (status == -1) {
+                sql = "select COUNT(*) as Total from [User] \n"
+                        + "where [Name] like '%'+ ? +'%'\n";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, keyword);
+            } else {
+                sql = "select COUNT(*) as Total from [User] \n"
+                        + "where [Status] = ? and [Name] like '%'+ ? +'%'\n";
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, status);
+                statement.setString(2, keyword);
+            }
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getInt("Total");
@@ -885,6 +916,71 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             }
         }
         return users;
+    }
+
+    public ArrayList<User> listUsersInAdminPage() {
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select ID, Name, UserName, Password, Gender, Phone, Email, Status\n"
+                    + "from [User]";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("ID"));
+                u.setName(rs.getString("Name"));
+                u.setUserName(rs.getString("UserName"));
+                u.setPassWord(rs.getString("PassWord"));
+                u.setStatus(rs.getBoolean("Status"));
+                u.setPhone(rs.getInt("Phone"));
+                u.setEmail(rs.getString("Email"));
+                u.setGender(rs.getBoolean("Gender"));
+                users.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return users;
+    }
+
+    public int getRowCountUserSearch(String keyword) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select COUNT(*) as Total from [User]";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
     }
 
 }

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
@@ -33,9 +34,33 @@ public class UserListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDBContext db = new UserDBContext();
+        HttpSession session = request.getSession();
 
-        ArrayList<User> users = db.listUser();
+        int pagesize = 8;
+        String raw_page = request.getParameter("page");
+        if (raw_page == null || raw_page.length() == 0) {
+            raw_page = "1";
+        }
 
+        //Keyword
+        String raw_keyword = request.getParameter("keyword").trim();
+        session.setAttribute("keyword", raw_keyword);
+
+        //Filter
+        String raw_statusIndex = request.getParameter("statusIndex");
+        if (raw_statusIndex == null || raw_statusIndex.length() == 0) {
+            raw_statusIndex = "-1";
+        }
+
+        int statusIndex = Integer.parseInt(raw_statusIndex);
+        session.setAttribute("statusIndex", statusIndex);
+        int pageindex = Integer.parseInt(raw_page);
+        int totalRows = db.getRowCount(raw_keyword, statusIndex);
+        int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
+        ArrayList<User> users = db.getUsers(raw_keyword, statusIndex, pageindex, pagesize);
+
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
         request.setAttribute("users", users);
         request.getRequestDispatcher("view/adminModule/userList.jsp").forward(request, response);
     }

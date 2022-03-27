@@ -199,6 +199,15 @@ Record of change:
                     opacity: 1;
                 }
             }
+            .btn-search{
+                padding: 0 15px;
+                background-color: black;
+                color: #fff;
+                border: none;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+
+            }
         </style>
     </head>
     <jsp:include page = "./sideBar.jsp" />

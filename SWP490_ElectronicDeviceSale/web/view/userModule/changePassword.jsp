@@ -36,7 +36,7 @@ DATE         Version       AUTHOR          DESCRIPTION
         </div>
     </header>
     <body>
-        <div class="container">
+        <div class="container" style="margin-top: 80px;">
             <div class="row">
                 <div class="col-6">
                     <div class="img-logo-left">
@@ -48,26 +48,26 @@ DATE         Version       AUTHOR          DESCRIPTION
                 <div class="col-6">
                     <form style="align-items: center;" class="change-pass" action="changePassword" method="Post">                       
                         <div class="form-change-pass">
-                            <p class="title-change-pass text-center my-4">Change Password</p>
+                            <p class="title-change-pass text-center my-4">Thay Đổi Mật Khẩu</p>
                             <div class="form-group">
-                                <input type="password" placeholder="Current Password" class="form-control mb-3" name="currentPassword">
+                                <input type="password" placeholder="Mật khẩu hiện tại" class="form-control mb-3" name="currentPassword">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="New PassWord" class="form-control" name ="newPassword">
+                                <input type="password" placeholder="Mật khẩu mới" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="3" maxlength="50" required name ="newPassword">
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="Confirm PassWord" class="form-control" name="confirmPassword">
+                                <input type="password" placeholder="Xác nhận mật khẩu" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="3" maxlength="50" required name="confirmPassword">
                             </div>
                             <div class="form-group text-center mb-3">
-                            <button type="submit" class="btn btn-outline-success">Save</button>
-                            <!-- error message -->
-                            <p style="color:red; display:block">
-                                ${errorMsg}                               
-                            </p>
-                            <!-- success message -->
-                            <p style="color:blue; display:block">
-                                ${successMsg}
-                            </p>
+                                <button type="submit" class="btn btn-outline-success">Lưu</button>
+                                <!-- error message -->
+                                <p style="color:red; display:block">
+                                    ${errorMsg}                               
+                                </p>
+                                <!-- success message -->
+                                <p style="color:blue; display:block">
+                                    ${successMsg}
+                                </p>
                             </div>
                             <p class="text-forget-pass text-center">You Forgott Current Password <a href=".././singup/signup.html">Forget PassWord?</a></p>                           
                         </div>
