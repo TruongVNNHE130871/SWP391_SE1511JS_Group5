@@ -820,7 +820,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
         }
         return users;
     }
-    
+
     public int getRowCount() {
         PreparedStatement statement = null;
         this.getConnection();
@@ -850,8 +850,41 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
 
     @Override
     public ArrayList<User> listUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "select ID, Name, UserName, Password, Gender, Phone, Email, Status\n"
+                    + "from [User]";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("ID"));
+                u.setName(rs.getString("Name"));
+                u.setUserName(rs.getString("UserName"));
+                u.setPassWord(rs.getString("PassWord"));
+                u.setStatus(rs.getBoolean("Status"));
+                u.setPhone(rs.getInt("Phone"));
+                u.setEmail(rs.getString("Email"));
+                u.setGender(rs.getBoolean("Gender"));
+                users.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return users;
     }
 
-    
 }

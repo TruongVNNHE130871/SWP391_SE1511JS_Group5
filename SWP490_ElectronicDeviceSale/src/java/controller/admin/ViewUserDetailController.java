@@ -35,7 +35,7 @@ public class ViewUserDetailController extends HttpServlet {
         String raw_idUser = request.getParameter("idUser");
         if (raw_idUser == null || raw_idUser.length() == 0) {
             raw_idUser = "-1";
-        }
+        }   
         int idU = Integer.parseInt(raw_idUser);
         User u = db.getUserByID(idU);
         request.setAttribute("user", u);
