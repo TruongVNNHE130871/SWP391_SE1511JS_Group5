@@ -787,7 +787,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
             if (status == -1) {
                 sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
                         + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Name, UserName, PassWord, Gender, Phone, Email, Status\n"
-                        + "from [User] where [Name] like '%'+ ? +'%') u\n"
+                        + "from [User] where [UserName] like '%'+ ? +'%') u\n"
                         + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?\n";
                 statement = connection.prepareStatement(sql);
                 statement.setString(1, keyword);
@@ -801,7 +801,7 @@ public class UserDBContext extends BaseDAO implements IUserDBContext {
                 sql = "select u.ID, u.Name, u.UserName, u.PassWord, u.Gender, u.Phone, u.Email, u.Status\n"
                         + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Name, UserName, PassWord, Gender, Phone, Email, Status\n"
                         + "from [User]\n"
-                        + "where [Status] = ? and [Name] like '%'+ ? +'%') u\n"
+                        + "where [Status] = ? and [UserName] like '%'+ ? +'%') u\n"
                         + "Where rownum >= (? - 1)*? + 1 AND rownum <= ? * ?\n";
                 statement = connection.prepareStatement(sql);
                 statement.setInt(1, status);

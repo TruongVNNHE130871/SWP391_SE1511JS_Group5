@@ -20,13 +20,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <script>
             function doBanUnban(id) {
-                var confirmBan = confirm("Bạn có muốn thực hiện thao tác này?");
-                if (confirmBan) {
+                var confirmAction = confirm("Bạn có muốn thực hiện thao tác này?");
+                if (confirmAction) {
                     window.location.href = "BanUnbanController?idBanUnbanUser=" + id;
                 }
+                var confirmSuccessfull = confirm("Thao tác thành công");
             }
         </script>
-        <title>JSP Page</title>
+        <title>Chi tiết người dùng</title>
     </head>
     <!--side bar-->
     <jsp:include page = "./sideBar.jsp" />

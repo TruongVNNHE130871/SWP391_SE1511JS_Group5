@@ -29,7 +29,7 @@ DATE         Version       AUTHOR          DESCRIPTION
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
-        <title>Sign Up</title>
+        <title>Đăng ký</title>
     </head>
     <!--Start logo header left-->
     <header>
@@ -55,7 +55,7 @@ DATE         Version       AUTHOR          DESCRIPTION
                     <div class="form-signup">
                         <p class="title-signup text-center my-4">Đăng ký</p>
                         <div class="form-group">            
-                            <input type="text" class="form-control mb-3" placeholder="Họ tên*" name="name" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" tittle="Họ tên chỉ bao gồm ký tự" required>          
+                            <input type="text" class="form-control mb-3" placeholder="Họ tên*" name="name" minlength="3" maxlength="50" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" tittle="Họ tên chỉ bao gồm ký tự" required>          
                         </div>
                         <div class="form-group mb-3">
                             <input type="radio" name="gender" value="male" checked>
@@ -74,13 +74,13 @@ DATE         Version       AUTHOR          DESCRIPTION
                             <input type="text" class="form-control" placeholder="Số điện thoại*" name="phonenumber" minlength="10" maxlength="10" pattern="^[0-9]{10}$" title="Số điện thoại bao gồm 10 chữ số" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text"  class="form-control" placeholder="Tên đăng nhập*" name="username" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
+                            <input type="text"  class="form-control" placeholder="Tên đăng nhập*" name="username" minlength="3" maxlength="50" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="password" class="form-control" placeholder="Mật khẩu*" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Mật khẩu bao gồm it nhất 1 ký tự Hoa, 1 ký tự số, 1 ký tự thường" required>
+                            <input type="password" class="form-control" placeholder="Mật khẩu*" name="password" minlength="3" maxlength="50" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Mật khẩu bao gồm it nhất 1 ký tự Hoa, 1 ký tự số, 1 ký tự thường" required>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="password" class="form-control" placeholder="Xác thực mật khẩu" name="confirm">
+                            <input type="password" class="form-control" placeholder="Xác thực mật khẩu*" name="confirm">
                         </div>
                         <!-- Error message -->
                         <p style="color:red; display:block">${errorMsg}

@@ -38,7 +38,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputName" class="col-sm-2 col-form-label">Tên SP: </label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="productName" class="form-control" minlength="3" maxlength="30" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
+                                    <input type="text" name="productName" class="form-control" minlength="3" maxlength="50" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$" required>
                                 </div>
                             </div>
 
@@ -66,7 +66,7 @@ Record of change:
                             <div class="description">
                                 <p>Mô tả: </p>
                                 <div class="mb-3"> 
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="2" maxlength="500" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="productDescription" minlength="3" maxlength="255" pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*[.,?]?[a-zA-Z0-9\s.]$" required></textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -99,7 +99,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputWeight" class="col-sm-2 col-form-label">Trọng lượng: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="" minlength="1" maxlength="4" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
+                                    <input type="text" required name="productWeight" class="form-control" id="" placeholder="" minlength="1" maxlength="5" pattern="^(?![\s.]+$)[0-9\s.]*[.]?[0-9\s.]$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">gram</label>
@@ -108,7 +108,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputRam" class="col-sm-2 col-form-label">Ram: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
+                                    <input type="text" required name="productRam" class="form-control" id="" placeholder="" minlength="0" maxlength="3" pattern="^(?![\s.]+$)[0-9\s.]*$" required>
                                 </div>
                                 <div class="col-auto">
                                     <label class="col-sm-2 col-form-label">GB</label>

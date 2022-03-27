@@ -46,7 +46,7 @@ public class BanUnbanController extends HttpServlet {
         if (u.isStatus() == false) {
             db.unbanUser(idU);
         }
-        response.sendRedirect("UserListController");
+        response.sendRedirect("UserListController?keyword=");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
