@@ -43,16 +43,20 @@ DATE         Version       AUTHOR          DESCRIPTION
                                     <span class="nav_name">Danh sách người dùng</span>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/ProductListController" class="nav_link">
-                                    <i class='bx bx-message-square-detail nav_icon'></i>
+                                    <i class='bx bxl-product-hunt'></i>
                                     <span class="nav_name">Danh sách sản phẩm</span>
                                 </a> <a href="" class="nav_link">
                                     <i class='bx bx-cart nav_icon'></i>
                                     <span class="nav_name">Danh sách mua hàng</span>
                                 </a>
                                 <a href="${pageContext.request.contextPath}/ReviewManagementController" class="nav_link">
-                                    <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                                    <i class='bx bx-message-square-detail nav_icon'></i>
                                     <span class="nav_name">Quản lý đánh giá</span>
                                 </a>
+                                <a href="${pageContext.request.contextPath}/NewsManagementController" class="nav_link">
+                                    <i class='bx bx-news'></i>
+                                    <span class="nav_name">Quản tin tức</span>
+                                </a> 
                         </div>
                     </div>
                 </nav>

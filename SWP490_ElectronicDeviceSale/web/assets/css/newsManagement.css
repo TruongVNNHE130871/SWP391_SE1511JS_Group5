@@ -1,0 +1,38 @@
+/* 
+Copyright(C) 2021, Class SE1511-JS of FPT University
+EDS.Shop
+Electronic Device Sale Shop
+Record of change:
+DATE         Version       AUTHOR          DESCRIPTION
+2022-01-07        1.0         VinhNT         First Implement
+*/*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.text-admin{
+    font-weight: 600;
+    font-size: 40px;
+    color: rgb(82, 54, 54);
+}
+.infor{
+    background-color: #F8F8F8;
+}
+.text-up-dlt{
+    font-size: 10px !important;
+}
+th{
+    font-size: 12px;
+}
+td{
+    font-size: 12px;
+}
+.btn-search{
+    padding: 0 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}

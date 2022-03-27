@@ -19,18 +19,18 @@ public class News {
     private String title;
     private String content;
     private String image;
-    private String Author;
+    private String author;
     private String created;
 
     public News() {
     }
 
-    public News(int id, String title, String content, String image, String Author, String created) {
+    public News(int id, String title, String content, String image, String author, String created) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.image = image;
-        this.Author = Author;
+        this.author = author;
         this.created = created;
     }
 
@@ -67,11 +67,11 @@ public class News {
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
-    public void setAuthor(String Author) {
-        this.Author = Author;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getCreated() {
@@ -81,5 +81,7 @@ public class News {
     public void setCreated(String created) {
         this.created = created;
     }
+
+    
 
 }

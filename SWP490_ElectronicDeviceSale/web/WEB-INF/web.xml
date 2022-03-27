@@ -184,6 +184,14 @@
         <servlet-name>NewsDetailController</servlet-name>
         <servlet-class>controller.user.NewsDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewsManagementController</servlet-name>
+        <servlet-class>controller.admin.NewsManagementController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteNewsController</servlet-name>
+        <servlet-class>controller.admin.DeleteNewsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -367,6 +375,14 @@
     <servlet-mapping>
         <servlet-name>NewsDetailController</servlet-name>
         <url-pattern>/NewsDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewsManagementController</servlet-name>
+        <url-pattern>/NewsManagementController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNewsController</servlet-name>
+        <url-pattern>/DeleteNewsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

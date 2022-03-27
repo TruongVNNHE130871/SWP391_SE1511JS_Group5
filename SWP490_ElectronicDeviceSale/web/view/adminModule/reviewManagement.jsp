@@ -28,17 +28,6 @@ Record of change:
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
-        <script>
-            function doDelete(id) {
-                var confirmDelete = confirm("Xác nhận xóa đánh giá!");
-                if (confirmDelete) {
-                    window.location.href = "DeleteReviewController?reviewID=" + id;
-                    window.alert("Xóa thành công");
-                }
-
-            }
-
-        </script>
         <title>Document</title>
     </head>
     <jsp:include page = "./sideBar.jsp" />
@@ -112,12 +101,21 @@ Record of change:
                         </c:forEach>
                         </tbody>
                     </table>
-
                 </div>
             </div>
 
         </div>
 
-
     </body>
 </html>
+<script>
+    function doDelete(id) {
+        var confirmDelete = confirm("Xác nhận xóa đánh giá!");
+        if (confirmDelete) {
+            window.location.href = "DeleteReviewController?reviewID=" + id;
+            window.alert("Xóa thành công");
+        }
+
+    }
+
+</script>
