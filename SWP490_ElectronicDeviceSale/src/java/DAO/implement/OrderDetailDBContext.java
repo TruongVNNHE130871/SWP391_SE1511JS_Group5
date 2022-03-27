@@ -108,6 +108,109 @@ public class OrderDetailDBContext extends BaseDAO implements IOrderDetailDBConte
         return orderDetails;
     }
 
+    public List<OrderDetail> getAllOrderDetails(String status, int pageindex, int pagesize) {
+        List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
+        PreparedStatement statement = null;
+        //Init statement
+        this.getConnection();
+        try {
+            String sql = "";
+            if (status.equals("All")) {
+                sql = "SELECT ID, UserSesstion, [Name], Phone, Email, [Address], Note, Amount, Payment, [Status] \n"
+                        + "FROM (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, UserSesstion, [Name], Phone, Email, [Address], Note, Amount, Payment, [Status] \n"
+                        + "FROM [OrderDetail]) od\n"
+                        + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, pageindex);
+                statement.setInt(2, pagesize);
+                statement.setInt(3, pageindex);
+                statement.setInt(4, pagesize);
+            }
+
+            if (!status.equals("All")) {
+                sql = "SELECT ID, UserSesstion, [Name], Phone, Email, [Address], Note, Amount, Payment, [Status] \n"
+                        + "FROM (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, UserSesstion, [Name], Phone, Email, [Address], Note, Amount, Payment, [Status] \n"
+                        + "FROM [OrderDetail]\n"
+                        + "where [Status] = ?) od\n"
+                        + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, status);
+                statement.setInt(2, pageindex);
+                statement.setInt(3, pagesize);
+                statement.setInt(4, pageindex);
+                statement.setInt(5, pagesize);
+            }
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setId(rs.getInt("ID"));
+                orderDetail.setUser_session(rs.getString("UserSesstion"));
+                orderDetail.setUser_name(rs.getString("Name"));
+                orderDetail.setUser_phone(rs.getInt("Phone"));
+                orderDetail.setUser_mail(rs.getString("Email"));
+                orderDetail.setAddress(rs.getString("Address"));
+                orderDetail.setNote(rs.getString("Note"));
+                orderDetail.setAmount(rs.getString("Amount"));
+                orderDetail.setPayment(rs.getString("Payment"));
+                orderDetail.setStatus(rs.getString("Status"));
+                orderDetails.add(orderDetail);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                if (connection != null) {
+                    connection.close();
+                }
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return orderDetails;
+    }
+
+    public int getRowCountOrderDetail(String status) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "";
+            if (status.equals("All")) {
+                sql = "SELECT COUNT(*) as Total FROM [OrderDetail]";
+                statement = connection.prepareStatement(sql);
+            } else {
+                sql = "SELECT COUNT(*) as Total FROM [OrderDetail]\n"
+                        + "where [Status] = ?\n";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, status);
+            }
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
     @Override
     public OrderDetail getOrderDetailsByID(int orderID) {
         this.getConnection();

@@ -99,6 +99,164 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
         return news;
     }
 
+    public ArrayList<News> listAllNews(String keyword, int newsIndex, int pageindex, int pagesize) {
+        ArrayList<News> news = new ArrayList<News>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "";
+            switch (newsIndex) {
+                case -1:
+                    sql = "SELECT ID, Title, content, Image, Author, Created\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "where [Author] like '%'+ ? +'%') n\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 1:
+                    sql = "SELECT ID, Title, content, Image, Author, Created\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "where [Author] like '%'+ ? +'%') n\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 2:
+                    sql = "SELECT ID, Title, content, Image, Author, Created\n"
+                            + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID desc) as rownum, ID, Title, content, Image, Author, Created FROM News\n"
+                            + "where [Author] like '%'+ ? +'%') n\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+            }
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
+            statement.setInt(2, pageindex);
+            statement.setInt(3, pagesize);
+            statement.setInt(4, pageindex);
+            statement.setInt(5, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                News itemNews = new News();
+                itemNews.setId(rs.getInt("ID"));
+                itemNews.setTitle(rs.getString("Title"));
+                itemNews.setContent(rs.getString("Content"));
+                itemNews.setImage(rs.getString("Image"));
+                itemNews.setAuthor(rs.getString("Author"));
+                itemNews.setCreated(rs.getDate("Created"));
+                news.add(itemNews);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return news;
+    }
+
+    public int getRowCountNews(String keyword) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM News\n"
+                    + "where [Author] like '%'+ ? + '%'\n";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
+    public ArrayList<News> listNews(int pageindex, int pagesize) {
+        ArrayList<News> news = new ArrayList<News>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT ID, Title, content, Image, Author, Created\n"
+                    + "from (SELECT ROW_NUMBER() OVER (ORDER BY ID asc) as rownum, ID, Title, content, Image, Author, Created FROM News) n\n"
+                    + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, pageindex);
+            statement.setInt(2, pagesize);
+            statement.setInt(3, pageindex);
+            statement.setInt(4, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                News itemNews = new News();
+                itemNews.setId(rs.getInt("ID"));
+                itemNews.setTitle(rs.getString("Title"));
+                itemNews.setContent(rs.getString("Content"));
+                itemNews.setImage(rs.getString("Image"));
+                itemNews.setAuthor(rs.getString("Author"));
+                itemNews.setCreated(rs.getDate("Created"));
+                news.add(itemNews);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return news;
+    }
+
+    public int getTotalRowNews() {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM News\n";
+            statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
     @Override
     public void insert(News news) {
         PreparedStatement statement = null;

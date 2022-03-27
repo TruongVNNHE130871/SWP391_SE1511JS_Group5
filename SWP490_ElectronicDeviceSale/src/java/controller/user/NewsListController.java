@@ -11,12 +11,14 @@ package controller.user;
 
 import DAO.implement.NewsDBContext;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.News;
 
 /**
@@ -36,9 +38,24 @@ public class NewsListController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          NewsDBContext nDB = new NewsDBContext();
-        List<News> newsList = nDB.getAll();
-        request.setAttribute("newsList", newsList);
+        NewsDBContext nDB = new NewsDBContext();
+
+        //Paging
+        int pagesize = 6;
+        String raw_page = request.getParameter("page");
+        if (raw_page == null || raw_page.length() == 0) {
+            raw_page = "1";
+        }
+
+
+        int pageindex = Integer.parseInt(raw_page);
+        int totalRows = nDB.getTotalRowNews();
+        int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
+        ArrayList<News> news = nDB.listNews(pageindex, pagesize);
+        
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
+        request.setAttribute("news", news);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/view/userModule/newsList.jsp");
         dispatcher.forward(request, response);
     }

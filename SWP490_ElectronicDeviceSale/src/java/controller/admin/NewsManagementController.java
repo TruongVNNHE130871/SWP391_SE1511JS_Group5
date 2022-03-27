@@ -11,12 +11,14 @@ package controller.admin;
 
 import DAO.implement.NewsDBContext;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.News;
 
 /**
@@ -37,8 +39,35 @@ public class NewsManagementController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         NewsDBContext nDB = new NewsDBContext();
-        List<News> newsList = nDB.getAll();
-        request.setAttribute("newsList", newsList);
+        HttpSession session = request.getSession();
+
+        //Paging
+        int pagesize = 8;
+        String raw_page = request.getParameter("page");
+        if (raw_page == null || raw_page.length() == 0) {
+            raw_page = "1";
+        }
+
+        //Keyword
+        String raw_keyword = request.getParameter("keyword").trim();
+        session.setAttribute("keyword", raw_keyword);
+
+        //Filter
+        String raw_newsIndex = request.getParameter("newsIndex");
+        if (raw_newsIndex == null || raw_newsIndex.length() == 0) {
+            raw_newsIndex = "-1";
+        }
+
+        int newsIndex = Integer.parseInt(raw_newsIndex);
+        session.setAttribute("newsIndex", newsIndex);
+        int pageindex = Integer.parseInt(raw_page);
+        int totalRows = nDB.getRowCountNews(raw_keyword);
+        int totalpage = (totalRows % pagesize == 0) ? totalRows / pagesize : (totalRows / pagesize) + 1;
+        ArrayList<News> news = nDB.listAllNews(raw_keyword, newsIndex, pageindex, pagesize);
+        
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("totalpage", totalpage);
+        request.setAttribute("news", news);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/view/adminModule/newsManagement.jsp");
         dispatcher.forward(request, response);
     }

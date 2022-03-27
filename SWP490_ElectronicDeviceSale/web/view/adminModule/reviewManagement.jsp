@@ -28,7 +28,189 @@ Record of change:
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+        <script>
+            function doDelete(id) {
+                var confirmDelete = confirm("Xác nhận xóa đánh giá!");
+                if (confirmDelete) {
+                    window.location.href = "DeleteReviewController?reviewID=" + id;
+                    window.alert("Xóa thành công");
+                }
+
+            }
+
+        </script>
+        <!-- font awesome cdn link  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            />
         <title>Document</title>
+        <style>
+            .list-product{
+                height: 800px;
+            }
+            .order-empty-container{
+                width: 100%;
+                height: 600px;
+                text-align: center;
+            }
+
+            .order-empty{
+                box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+                border-radius: 0.125rem;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+
+            .order-empty-icon{
+                background-position: 50%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                width: 100px;
+                height: 100px;
+                background-image: url(https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/5fafbb923393b712b96488590b8f781f.png);
+            }
+
+            .order-empty-text{
+                margin: 20px 0 0;
+                font-size: 18px;
+                line-height: 1.4;
+                color: rgba(0,0,0,.8);
+            }
+
+            .box-search-order{
+                width: 30%;
+                margin: auto;
+            }
+            .product-filter__page {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            .product-filter__page-num {
+                font-size: 0.9375rem;
+                color: #333;
+                margin-right: 22px;
+            }
+
+            .product-filter__page-current {
+                color:  #ee4d2d;
+            }
+
+            .product-filter__page-control {
+                border-radius: 0.5rem;
+                overflow: hidden;
+                display: flex;
+                width: 72px;
+                height: 36px;
+                border: 1px solid;
+            }
+
+            .product-filter__page-btn {
+                flex: 1;
+                background-color: #fff;
+                display: flex;
+                text-decoration: none;
+            }
+
+            .product-filter__page-btn:first-child {
+                border-right: 1px solid black;
+            }
+
+            .product-filter__page-btn--disabled {
+                background-color: #f9f9f9;
+                cursor: default;
+                pointer-events: none;
+            }
+
+            .product-filter__page-btn--disabled .product-filter__page-icon {
+                color: #ccc;
+                pointer-events: none;
+            }
+
+            .product-filter__page-icon {
+                margin: auto;
+                font-size: 0.875rem;
+                color: #555;
+            }
+
+            .select-input {
+                position: relative;
+                min-width: 100px;
+                padding: 0 12px;
+                background-color: #fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 0.5rem;
+                z-index: 1;
+                border: 1px solid;
+            }
+
+            .select-input:hover .select-input__list {
+                display: block;
+                animation: fadeIn ease-out 0.4s;
+            }
+
+            .select-input__label {
+                font-size: 0.875rem;
+            }
+
+            .select-input__label--active{
+                color:  #ff7800;
+            }
+
+            .select-input__icon {
+                font-size: 1.25rem;
+                color: #616060;
+                position: relative;
+            }
+
+            .select-input__list {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: calc(100% + 1px);
+                border-radius: 2px;
+                background-color: #fff;
+                padding: 9px 16px;
+                display: none;
+                margin: 0;
+                box-shadow: 0 1px 2rem 0 rgba(0, 0, 0, 0.2);
+            }
+
+            .select-input__item {
+                list-style: none;
+            }
+
+            .select-input__item-link {
+                text-decoration: none;
+                display: block;
+                padding: 9px 0;
+                font-size: 0.9375rem;
+                color: #000;
+                border-radius: 2px;
+            }
+
+            .select-input__item-link:hover {
+                color:  #ff7800;
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
     </head>
     <jsp:include page = "./sideBar.jsp" />
     <body>
@@ -37,14 +219,16 @@ Record of change:
                 <div class="list-product">
                     <div class="row">
                         <h1 class="col">Danh sách đánh giá sản phẩm </h1>
-                        <div class="col-5 my-3 d-flex form-search m-0 me-5">
-                            <input type="text" size="35" name="keyword" value=""placeholder="Tìm theo tên sản phẩm">
-                            <button type="submit" class="btn-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                            </button>
-                        </div>
+                        <form action="ReviewManagementController" method="POST">
+                            <div class="col-5 my-3 d-flex form-search m-0 me-5">
+                                <input type="text" size="35" name="keyword" value="${sessionScope.keyword}" placeholder="Tìm theo tên sản phẩm"/>
+                                <button type="submit" class="btn-search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
                     <table class="table text-center">
@@ -59,10 +243,29 @@ Record of change:
                                 <th scope="col">Số sao</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th>
-                                    <select name="" id="">
-                                        <option value="">Số Sao Tăng Dần</option>
-                                        <option value="">Số Sao Giảm Dần</option>
-                                    </select>
+                                    <div class="select-input">
+                                        <c:if test="${starIndex == -1}">
+                                            <span class="select-input__label">Sắp Xếp</span>
+                                        </c:if>
+                                        <c:if test="${starIndex == 1}">
+                                            <span class="select-input__label select-input__label--active">Số Sao Tăng Dần</span>
+                                        </c:if>
+                                        <c:if test="${starIndex == 2}">
+                                            <span class="select-input__label select-input__label--active">Số Sao Giảm Dần</span>
+                                        </c:if>
+                                        <i class="select-input__icon fas fa-angle-down"></i>
+                                        <ul class="select-input__list">
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=${sessionScope.keyword}&starIndex=-1#menu" class="select-input__item-link">Tất Cả</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=${sessionScope.keyword}&starIndex=1#menu" class="select-input__item-link">Số Sao Tăng Dần</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=${sessionScope.keyword}&starIndex=2#menu" class="select-input__item-link">Số Sao Giàm Dần</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </th>
                             </tr>
                         </thead>
@@ -101,21 +304,25 @@ Record of change:
                         </c:forEach>
                         </tbody>
                     </table>
+
+                </div>
+                <div class="product-filter__page">
+                    <span class="product-filter__page-num">
+                        <span class="product-filter__page-current">${requestScope.pageindex}</span>/${requestScope.totalpage}
+                    </span>
+                    <div class="product-filter__page-control">
+                        <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=${sessionScope.keyword}&starIndex=${starIndex}&page=${requestScope.pageindex - 1}#menu" class="product-filter__page-btn ${requestScope.pageindex == 1 ? "product-filter__page-btn--disabled" : ""}">
+                            <i class="product-filter__page-icon fas fa-angle-left"></i>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/ReviewManagementController?keyword=${sessionScope.keyword}&starIndex=${starIndex}&page=${requestScope.pageindex + 1}#menu" class="product-filter__page-btn ${requestScope.pageindex == requestScope.totalpage ? "product-filter__page-btn--disabled" : ""}">
+                            <i class="product-filter__page-icon fas fa-angle-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
         </div>
 
+
     </body>
 </html>
-<script>
-    function doDelete(id) {
-        var confirmDelete = confirm("Xác nhận xóa đánh giá!");
-        if (confirmDelete) {
-            window.location.href = "DeleteReviewController?reviewID=" + id;
-            window.alert("Xóa thành công");
-        }
-
-    }
-
-</script>

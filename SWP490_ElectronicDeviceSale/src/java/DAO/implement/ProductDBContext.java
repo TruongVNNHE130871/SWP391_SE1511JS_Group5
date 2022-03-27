@@ -440,6 +440,109 @@ public class ProductDBContext extends BaseDAO implements IProductDBContext {
         return products;
     }
 
+    public ArrayList<Product> listAllProducts(String keyword, int priceIndex, int pageindex, int pagesize) {
+        ArrayList<Product> products = new ArrayList<>();
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "";
+            switch (priceIndex) {
+                case -1:
+                    sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.CategoryID, p.CategoryName , p.CategoryDescription\n"
+                            + "from (select ROW_NUMBER() OVER (ORDER BY p.ID asc) as rownum, p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName , c.Description as CategoryDescription\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "where p.[Name] like '%'+ ? +'%') p\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 1:
+                    sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.CategoryID, p.CategoryName , p.CategoryDescription\n"
+                            + "from (select ROW_NUMBER() OVER (ORDER BY Convert(INT, p.Price) asc) as rownum, p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName , c.Description as CategoryDescription\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "where p.[Name] like '%'+ ? +'%') p\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+                case 2:
+                    sql = "select p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, p.CategoryID, p.CategoryName , p.CategoryDescription\n"
+                            + "from (select ROW_NUMBER() OVER (ORDER BY Convert(INT, p.Price) desc) as rownum, p.ID, p.Name, p.Image, p.Description, p.Vote, p.Price, p.Discount, p.Status, p.Created, c.ID as CategoryID, c.Name as CategoryName , c.Description as CategoryDescription\n"
+                            + "from Product p inner join Category c \n"
+                            + "on p.CategoryId = c.ID\n"
+                            + "where p.[Name] like '%'+ ? +'%') p\n"
+                            + "where rownum >= (? - 1)*? + 1 AND rownum <= ? * ? \n";
+                    break;
+            }
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
+            statement.setInt(2, pageindex);
+            statement.setInt(3, pagesize);
+            statement.setInt(4, pageindex);
+            statement.setInt(5, pagesize);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("ID"));
+                Category c = new Category();
+                c.setId(rs.getInt("CategoryID"));
+                c.setName(rs.getString("CategoryName"));
+                c.setDescription(rs.getString("CategoryDescription"));
+                p.setC(c);
+                p.setName(rs.getString("Name"));
+                p.setImage(rs.getString("Image"));
+                p.setDescription(rs.getString("Description"));
+                p.setVote(rs.getInt("Vote"));
+                p.setPrice(rs.getString("Price"));
+                p.setDiscount(rs.getFloat("Discount"));
+                p.setStatus(rs.getBoolean("Status"));
+                p.setCreated(rs.getDate("Created"));
+                products.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return products;
+    }
+
+    public int getRowCountProducts(String keyword) {
+        PreparedStatement statement = null;
+        this.getConnection();
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM [Product] p inner join [Category] c on p.CategoryId = c.ID\n"
+                    + "where p.[Name] like '%'+ ? + '%'\n";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, keyword);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                //close statement
+                connection.close();
+                //close connection
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
     @Override
     public void insertProduct(Product p) {
         PreparedStatement statement = null;

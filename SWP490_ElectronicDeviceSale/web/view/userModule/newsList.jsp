@@ -51,12 +51,12 @@ Record of change:
         <section>
             <br>
             <div class="container">
-                <div class="row">
+                <div class="row" style="height: 830px;">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <c:forEach items="${newsList}" var="newsList">
+                                    <c:forEach items="${news}" var="newsList">
                                         <div class="col-md-4 col-sm-4">
                                             <article>                        
                                                 <h4>
@@ -78,6 +78,7 @@ Record of change:
                         </div>
                     </div>
                 </div>
+                <div id="paggerbottom" class="pagger"></div>
             </div>
         </section>
 
@@ -87,4 +88,8 @@ Record of change:
     <!--Start footer-->
     <jsp:include page = "./footer/footer.jsp" />
     <!--End footer-->
+    <script src="assets/js/pager.js" type="text/javascript"></script>
+    <script>
+        generatePaggerNews('paggerbottom', ${requestScope.pageindex}, ${requestScope.totalpage}, 2);
+    </script>
 </html>

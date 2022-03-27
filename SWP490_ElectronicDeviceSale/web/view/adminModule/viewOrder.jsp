@@ -20,8 +20,16 @@ Record of change:
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <!-- font awesome cdn link  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            />
         <title>JSP Page</title>
         <style>
+            .list-product{
+                height: 600px;
+            }
             .order-empty-container{
                 width: 100%;
                 height: 600px;
@@ -60,6 +68,128 @@ Record of change:
             .box-search-order{
                 width: 30%;
                 margin: auto;
+            }
+            .product-filter__page {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            .product-filter__page-num {
+                font-size: 0.9375rem;
+                color: #333;
+                margin-right: 22px;
+            }
+
+            .product-filter__page-current {
+                color:  #ee4d2d;
+            }
+
+            .product-filter__page-control {
+                border-radius: 0.5rem;
+                overflow: hidden;
+                display: flex;
+                width: 72px;
+                height: 36px;
+                border: 1px solid;
+            }
+
+            .product-filter__page-btn {
+                flex: 1;
+                background-color: #fff;
+                display: flex;
+                text-decoration: none;
+            }
+
+            .product-filter__page-btn:first-child {
+                border-right: 1px solid black;
+            }
+
+            .product-filter__page-btn--disabled {
+                background-color: #f9f9f9;
+                cursor: default;
+                pointer-events: none;
+            }
+
+            .product-filter__page-btn--disabled .product-filter__page-icon {
+                color: #ccc;
+                pointer-events: none;
+            }
+
+            .product-filter__page-icon {
+                margin: auto;
+                font-size: 0.875rem;
+                color: #555;
+            }
+
+            .select-input {
+                position: relative;
+                min-width: 100px;
+                padding: 0 12px;
+                background-color: #fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 0.5rem;
+                z-index: 1;
+                border: 1px solid;
+            }
+
+            .select-input:hover .select-input__list {
+                display: block;
+                animation: fadeIn ease-out 0.4s;
+            }
+
+            .select-input__label {
+                font-size: 0.875rem;
+            }
+
+            .select-input__label--active{
+                color:  #ff7800;
+            }
+
+            .select-input__icon {
+                font-size: 1.25rem;
+                color: #616060;
+                position: relative;
+            }
+
+            .select-input__list {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: calc(100% + 1px);
+                border-radius: 2px;
+                background-color: #fff;
+                padding: 9px 16px;
+                display: none;
+                margin: 0;
+                box-shadow: 0 1px 2rem 0 rgba(0, 0, 0, 0.2);
+            }
+
+            .select-input__item {
+                list-style: none;
+            }
+
+            .select-input__item-link {
+                text-decoration: none;
+                display: block;
+                padding: 9px 0;
+                font-size: 0.9375rem;
+                color: #000;
+                border-radius: 2px;
+            }
+
+            .select-input__item-link:hover {
+                color:  #ff7800;
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
             }
         </style>
 
@@ -101,13 +231,41 @@ Record of change:
                                 <th scope="col">Hình Thức Thanh Toán</th>
                                 <th scope="col">Trạng Thái</th>
                                 <th scope="col"> 
-                                    <select name="statusText" onchange="this.form.submit();">
-                                        <option value="-1">Tất cả</option>
-                                        <option value="1">Xác nhận</option>
-                                        <option value="2">Đang giao hàng</option>
-                                        <option value="3">Hoàn tất</option>
-                                        <option value="4">Đã hủy</option>
-                                    </select>
+                                    <div class="select-input">
+                                        <c:if test="${statusIndex == -1}">
+                                            <span class="select-input__label">Tất cả</span>
+                                        </c:if>
+                                        <c:if test="${statusIndex == 1}">
+                                            <span class="select-input__label select-input__label--active">Xác nhận</span>
+                                        </c:if>
+                                        <c:if test="${statusIndex == 2}">
+                                            <span class="select-input__label select-input__label--active">Chờ lấy hàng</span>
+                                        </c:if>
+                                        <c:if test="${statusIndex == 3}">
+                                            <span class="select-input__label select-input__label--active">Hoàn tất</span>
+                                        </c:if>
+                                        <c:if test="${statusIndex == 4}">
+                                            <span class="select-input__label select-input__label--active">Đã huỷ</span>
+                                        </c:if>
+                                        <i class="select-input__icon fas fa-angle-down"></i>
+                                        <ul class="select-input__list">
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=-1#menu" class="select-input__item-link">Tất cả</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=1#menu" class="select-input__item-link">Xác nhận</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=2#menu" class="select-input__item-link">Chờ lấy hàng</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=3#menu" class="select-input__item-link">Hoàn tất</a>
+                                            </li>
+                                            <li class="select-input__item">
+                                                <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=4#menu" class="select-input__item-link">Đã huỷ</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </th>
                             </tr>
                         </thead>
@@ -162,6 +320,19 @@ Record of change:
                             </c:forEach>
                         </tbody>
                     </table>
+                </div>
+                <div class="product-filter__page">
+                    <span class="product-filter__page-num">
+                        <span class="product-filter__page-current">${requestScope.pageindex}</span>/${requestScope.totalpage}
+                    </span>
+                    <div class="product-filter__page-control">
+                        <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=${statusIndex}&page=${requestScope.pageindex - 1}#menu" class="product-filter__page-btn ${requestScope.pageindex == 1 ? "product-filter__page-btn--disabled" : ""}">
+                            <i class="product-filter__page-icon fas fa-angle-left"></i>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/ViewAllOrderController?statusIndex=${statusIndex}&page=${requestScope.pageindex + 1}#menu" class="product-filter__page-btn ${requestScope.pageindex == requestScope.totalpage ? "product-filter__page-btn--disabled" : ""}">
+                            <i class="product-filter__page-icon fas fa-angle-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
