@@ -30,44 +30,53 @@ DATE         Version       AUTHOR          DESCRIPTION
             <div class="l-navbar" id="nav-bar">
                 <nav class="nav">
                     <div>
-                        <a href="#" class="nav_logo">
+                        <a class="nav_logo">
                             <i class='bx bx-layer nav_logo-icon'></i>
-                            <span class="nav_logo-name">ADMIN</span>
-                        </a>
+                            <span class="nav_logo-name">ADMIN</span></a>
+
                         <div class="nav_list">
-                            <a <a href="${pageContext.request.contextPath}/AdminHomePageController" class="nav_link active">
-                                    <i class='bx bx-grid-alt nav_icon'></i>
-                                    <span class="nav_name">Trang Chủ</span>
-                                </a> <a href="${pageContext.request.contextPath}/admin/userList" class="nav_link">
-                                    <i class='bx bx-user nav_icon'></i>
-                                    <span class="nav_name">Danh sách người dùng</span>
-                                </a>
-                                <a href="${pageContext.request.contextPath}/ProductListController" class="nav_link">
-                                    <i class='bx bxl-product-hunt'></i>
-                                    <span class="nav_name">Danh sách sản phẩm</span>
-                                </a> <a href="" class="nav_link">
-                                    <i class='bx bx-cart nav_icon'></i>
-                                    <span class="nav_name">Danh sách mua hàng</span>
-                                </a>
-                                <a href="${pageContext.request.contextPath}/ReviewManagementController" class="nav_link">
-                                    <i class='bx bx-message-square-detail nav_icon'></i>
-                                    <span class="nav_name">Quản lý đánh giá</span>
-                                </a>
-                                <a href="${pageContext.request.contextPath}/NewsManagementController" class="nav_link">
-                                    <i class='bx bx-news'></i>
-                                    <span class="nav_name">Quản tin tức</span>
-                                </a> 
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/AdminHomePageController" class="nav_link active">
+                                <i class='bx bx-grid-alt nav_icon'></i>
+                                <span class="nav_name">Trang Chủ</span></a> 
+                            <!--End link -->
+
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/admin/userList" class="nav_link">
+                                <i class='bx bx-user nav_icon'></i>
+                                <span class="nav_name">Danh sách người dùng</span></a>
+                            <!--End link -->
+
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/ProductListController" class="nav_link">
+                                <i class='bx bxl-product-hunt'></i>
+                                <span class="nav_name">Danh sách sản phẩm</span></a>
+                            <!--End link -->
+
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/AdminHomePageController" class="nav_link">
+                                <i class='bx bx-cart nav_icon'></i>
+                                <span class="nav_name">Danh sách mua hàng</span></a>
+                            <!--End link -->
+
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/ReviewManagementController" class="nav_link">
+                                <i class='bx bx-message-square-detail nav_icon'></i>
+                                <span class="nav_name">Quản lý đánh giá</span></a>
+                            <!--End link -->
+
+                            <!--Start link -->
+                            <a href="${pageContext.request.contextPath}/NewsManagementController" class="nav_link">
+                                <i class='bx bx-news'></i>
+                                <span class="nav_name">Quản tin tức</span> </a> 
+                            <!--End link -->
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
+                                <div class="height-15">
 
-
-        <!--Container Main start-->
-        <div class="height-15">
-
-        </div>
-
+                                </div> 
     </body>
 </html>

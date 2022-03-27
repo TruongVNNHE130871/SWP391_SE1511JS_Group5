@@ -46,7 +46,7 @@ Record of change:
             function doAdd() {
                 window.location.href = "ProductInsertController";
             }
-        </script>
+                   </script>
         <title>Document</title>
     </head>
     <jsp:include page = "./sideBar.jsp" />

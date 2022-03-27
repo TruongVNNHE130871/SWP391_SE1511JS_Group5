@@ -41,7 +41,7 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
                 news.setContent(rs.getString("content"));
                 news.setImage(rs.getString("Image"));
                 news.setAuthor(rs.getString("Author"));
-                news.setCreated(rs.getString("Created"));
+                news.setCreated(rs.getDate("Created"));
                 return news;
             }
         } catch (SQLException e) {
@@ -77,7 +77,7 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
                 itemNews.setContent(rs.getString("Content"));
                 itemNews.setImage(rs.getString("Image"));
                 itemNews.setAuthor(rs.getString("Author"));
-                itemNews.setCreated(rs.getString("Created"));
+                itemNews.setCreated(rs.getDate("Created"));
                 news.add(itemNews);
             }
 
@@ -110,7 +110,7 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
             statement.setString(2, news.getContent());
             statement.setString(3, news.getImage());
             statement.setString(4, news.getAuthor());
-            statement.setString(5, news.getCreated());
+            statement.setDate(5, news.getCreated());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -158,14 +158,13 @@ public class NewsDBContext extends BaseDAO implements INewsDBContext {
         PreparedStatement statement = null;
         this.getConnection();
         try {
-            String sql = "UPDATE News SET Title=?,Content=?,Image=?,Author=?,Created=? WHERE ID=?";
+            String sql = "UPDATE News SET Title=?,Content=?,Image=?,Author=? WHERE ID=?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, news.getTitle());
             statement.setString(2, news.getContent());
             statement.setString(3, news.getImage());
             statement.setString(4, news.getAuthor());
-            statement.setString(5, news.getCreated());
-            statement.setInt(6, news.getId());
+            statement.setInt(5, news.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -33,7 +33,7 @@ Record of change:
         <div class="height-100">
             <div class="container-fluid box-view-list">
                 <div class="list-product">
-                    <button class="btn btn-outline-primary mb-4">Thêm bài viết</button>
+                    <button class="btn btn-outline-primary mb-4" onclick="doAdd();">Thêm bài viết</button>
                     <div class="row">
                         <h1 class="col">Danh sách bài viết </h1>
                         <div class="col-5 my-3 d-flex form-search m-0 me-5">
@@ -103,5 +103,14 @@ Record of change:
             window.alert("Xóa thành công");
         }
 
+    }
+    function doUpdate(id) {
+        var confirmDelete = confirm("Xác nhận cập nhật?");
+        if (confirmDelete) {
+            window.location.href = "UpdateNewsController?newsID=" + id;
+        }
+    }
+    function doAdd() {
+        window.location.href = "AddNewsController";
     }
 </script>

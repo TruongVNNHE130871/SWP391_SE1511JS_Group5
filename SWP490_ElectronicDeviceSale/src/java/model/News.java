@@ -9,6 +9,8 @@ Record of change:
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author VinhNT
@@ -20,12 +22,12 @@ public class News {
     private String content;
     private String image;
     private String author;
-    private String created;
+    private Date created;
 
     public News() {
     }
 
-    public News(int id, String title, String content, String image, String author, String created) {
+    public News(int id, String title, String content, String image, String author, Date created) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -74,14 +76,15 @@ public class News {
         this.author = author;
     }
 
-    public String getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
+   
     
 
 }

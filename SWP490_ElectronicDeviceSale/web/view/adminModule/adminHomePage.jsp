@@ -16,6 +16,6 @@
     <jsp:include page = "./sideBar.jsp" />
     <!--End side bar -menu-->
     <body>
-        <h1>Home Page ADmin</h1>
+        <h1>Home Page Admin</h1>
     </body>
 </html>
