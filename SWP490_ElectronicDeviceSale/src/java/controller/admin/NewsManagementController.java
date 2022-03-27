@@ -49,7 +49,7 @@ public class NewsManagementController extends HttpServlet {
         }
 
         //Keyword
-        String raw_keyword = request.getParameter("keyword").replaceAll(" ", "");
+        String raw_keyword = request.getParameter("keyword").replaceAll(" ", "").trim();
         session.setAttribute("keyword", raw_keyword);
 
         //Filter

@@ -73,10 +73,10 @@ public class UpdateNewsController extends HttpServlet {
         NewsDBContext nDB = new NewsDBContext();
         News news = new News();
         news.setId(Integer.parseInt(request.getParameter("id")));
-        news.setTitle(request.getParameter("title"));
-        news.setContent(request.getParameter("content"));
-        news.setImage(request.getParameter("image"));
-        news.setAuthor(request.getParameter("author"));
+        news.setTitle(request.getParameter("title").replaceAll("\\s+", " ").trim());
+        news.setContent(request.getParameter("content").replaceAll("\\s+", " ").trim());
+        news.setImage(request.getParameter("image").replaceAll("\\s+", " ").trim());
+        news.setAuthor(request.getParameter("author").replaceAll("\\s+", " ").trim());
         nDB.edit(news);
        response.sendRedirect("NewsManagementController?keyword=");
     }

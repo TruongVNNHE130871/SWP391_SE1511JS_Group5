@@ -54,10 +54,11 @@ Record of change:
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                 <label  class="col-sm-2 col-form-label">Hình ảnh: </label>
+                                <label  class="col-sm-2 col-form-label">Hình ảnh: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control"
                                            name="image" 
+                                           minlength="5"
                                            maxlength="255" 
                                            placeholder="Đường dẫn hình ảnh *"
                                            required >
@@ -77,7 +78,7 @@ Record of change:
                             </div>
 
                             <div class="mb-3 row">
- <label  class="col-sm-2 col-form-label">Tác giả: </label>
+                                <label  class="col-sm-2 col-form-label">Tác giả: </label>
                                 <div class="col-sm-10">
                                     <input type="text"class="form-control" 
                                            name="author" 

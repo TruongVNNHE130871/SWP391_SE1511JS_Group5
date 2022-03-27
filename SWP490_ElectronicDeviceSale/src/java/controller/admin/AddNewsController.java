@@ -66,10 +66,10 @@ public class AddNewsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String new_title = request.getParameter("title").replaceAll(" ", "");
-        String new_content = request.getParameter("content").replaceAll(" ", "");
-        String new_image_link = request.getParameter("image").replaceAll(" ", "");
-        String new_author = request.getParameter("author").replaceAll(" ", "");
+        String new_title = request.getParameter("title").replaceAll("\\s+", " ").trim();
+        String new_content = request.getParameter("content").replaceAll("\\s+", " ").trim();
+        String new_image_link = request.getParameter("image").replaceAll("\\s+", " ").trim();
+        String new_author = request.getParameter("author").replaceAll("\\s+", " ").trim();
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         NewsDBContext nDB = new NewsDBContext();
