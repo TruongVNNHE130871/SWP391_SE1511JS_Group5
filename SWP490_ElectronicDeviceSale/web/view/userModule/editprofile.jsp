@@ -35,12 +35,9 @@ DATE         Version       AUTHOR          DESCRIPTION
             <div class="container">
                 <div class="row">
                     <div class="col-5 text-center form-group">
-                        <div class="">
-                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="150"
-                                 height="150" class="rounded-circle mt-5" />
+                        <div class="" style="margin-top: 160px">
                             <p class="text-white my-4 fs-5 fw-bold">Xin Chào, ${sessionScope.user.userName}</p>
-                        </div>
-                        <div class="text-center my-5">
+                      
                             <input type="submit" class="btn btn-danger" value="Lưu thông tin"/> 
                         </div>  
                     </div>
@@ -74,7 +71,7 @@ DATE         Version       AUTHOR          DESCRIPTION
                                             value="${requestScope.user.name}"
                                             placeholder="${requestScope.user.name}"
                                             minlength="1"
-                                            maxlength="30"
+                                            maxlength="50"
                                             pattern="^(?![\s.]+$)[a-zA-Z0-9\s.]*$"  
                                             required />
                                     </td>
@@ -107,7 +104,7 @@ DATE         Version       AUTHOR          DESCRIPTION
                                             placeholder="${requestScope.user.email}"
                                             value="${requestScope.user.email}"
                                             minlength="4"
-                                            maxlength="40" 
+                                            maxlength="50" 
                                             title="The domain portion of the email address is invalid (the portion after the @)." 
                                             pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
                                             required>

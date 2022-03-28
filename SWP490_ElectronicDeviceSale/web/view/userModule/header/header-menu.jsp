@@ -33,8 +33,9 @@ Record of change:
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
             />
+        
     </head>
-
+    
     <body>
         <!-- Start header-menu -->
         <nav class="container-fluid" id="header">
@@ -81,8 +82,8 @@ Record of change:
                             </svg>
                             <button onclick="myFunction()" class="dropbtn dropdown-toggle">${username}</button>
                             <div id="myDropdown" class="dropdown-content overflow-auto">
-                                <a href="${pageContext.request.contextPath}/ViewProfileController">Thông tin cá nhân</a>
-                                <a href="${pageContext.request.contextPath}/ViewOrderHistory">Lịch sử đặt hàng</a>
+                                <a href="${pageContext.request.contextPath}/ViewProfileController" class="link-danger" style="background: #E8E8E8;">Thông tin cá nhân</a>
+                                <a href="${pageContext.request.contextPath}/ViewOrderHistory" class="link-danger" style="background: #E8E8E8">Lịch sử đặt hàng</a>
                             </div>
                         </div>
                     </div>

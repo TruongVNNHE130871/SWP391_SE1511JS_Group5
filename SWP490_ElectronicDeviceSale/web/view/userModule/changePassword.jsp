@@ -46,11 +46,11 @@ DATE         Version       AUTHOR          DESCRIPTION
                     </div>
                 </div>
                 <div class="col-6">
-                    <form style="align-items: center;" class="change-pass" action="changePassword" method="Post">                       
+                    <form style="align-items: center;" class="change-pass was-validated" action="changePassword" method="Post">                       
                         <div class="form-change-pass">
                             <p class="title-change-pass text-center my-4">Thay Đổi Mật Khẩu</p>
                             <div class="form-group">
-                                <input type="password" placeholder="Mật khẩu hiện tại" class="form-control mb-3" name="currentPassword">
+                                <input type="password" placeholder="Mật khẩu hiện tại" class="form-control mb-3" name="currentPassword" required="">
                             </div>
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="Mật khẩu mới" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" minlength="3" maxlength="50" required name ="newPassword">

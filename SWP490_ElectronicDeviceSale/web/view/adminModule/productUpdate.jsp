@@ -34,7 +34,7 @@ Record of change:
     <!--update product admin-->
     <body>
         <form action="ProductUpdateController" method="POST" class="was-validated">
-            <div class="container admin-add-new">
+            <div class="container admin-add-new border-0">
                 <div class="row mb-5">
                     <div class="col-8">
                         <input type="hidden" value="${requestScope.product.id}" name="productID"/>

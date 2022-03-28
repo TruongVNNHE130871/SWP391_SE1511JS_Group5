@@ -237,8 +237,8 @@ Record of change:
                     <button class="btn btn-outline-primary mb-4" onclick="doAdd();">Thêm Sản Phẩm</button>
                     <div class="list-product">
                         <div class="row">
-                            <h1 class="col">Danh sách sản phẩm </h1>
-                            <form action="ProductListController" method="POST">
+                            <h3 class="col">Danh sách sản phẩm </h3>
+                            <form action="ProductListController" method="POST" >
                                 <div class="col-5 my-3 d-flex form-search m-0 me-5">
                                     <input type="text" size="35" name="keyword" value="${sessionScope.keyword}" placeholder="Tìm theo tên sản phẩm"/>
                                     <button type="submit" class="btn-search">
@@ -316,6 +316,7 @@ Record of change:
                             </tbody>
                         </table>
                     </div>
+                          
                 </div>
                 <div class="product-filter__page">
                     <span class="product-filter__page-num">

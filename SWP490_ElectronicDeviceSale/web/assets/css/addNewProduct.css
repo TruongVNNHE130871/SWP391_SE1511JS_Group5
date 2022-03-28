@@ -15,8 +15,17 @@ body{
     background-color: #F8F8F8 !important;
 }
 .admin-add-new{
+<<<<<<< Updated upstream
    margin: auto;
    
+=======
+<<<<<<< HEAD
+
+=======
+   margin: auto;
+   
+>>>>>>> d780ec88a81c6ec60bd1cdebaeb2e2876e05d6b2
+>>>>>>> Stashed changes
 }
 
 .title-add-new{

@@ -34,15 +34,13 @@ DATE         Version       AUTHOR          DESCRIPTION
         <form style="align-items: center;" class="profile" id="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-5 text-center form-group">
-                        <div class="">
-                            <img src="https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg" alt="" width="150"
-                                 height="150" class="rounded-circle mt-5" />
+                    <div class="col-5 text-center form-group" >
+                        <div class="" style="margin-top: 110px">                         
                             <p class="text-white my-4 fs-5 fw-bold">Xin Chào, ${sessionScope.user.userName}</p>
                         </div>
                         <div class="text-center my-5">
-                            <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger">Sửa Thông Tin</button></a> 
-                            <a href="${pageContext.request.contextPath}/changePassword"><button type="button" class="btn btn-danger">Đổi Mật Khẩu</button></a>       
+                            <a href="${pageContext.request.contextPath}/EditProfileController"><button type="button" class="btn btn-danger mb-4">Sửa Thông Tin</button></a> <br>
+                            <a href="${pageContext.request.contextPath}/changePassword"><button type="button" class="btn btn-danger"> Đổi Mật Khẩu </button></a>       
                         </div>
                     </div>
                     <div class="col-7 my-4">

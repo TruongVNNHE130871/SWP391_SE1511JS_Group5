@@ -19,8 +19,8 @@ Record of change:
     </head>
     <body>
         <!-- Start footer -->
-        <footer>
-            <div class="container d-flex justify-content-around">
+        <footer style="background: #E8E8E8">
+            <div class="container d-flex justify-content-around" style="background: #E8E8E8">
                 <!-- Start footer left-->
                 <div class="content-footer">
                     <a href="" class="link-footer">Giới thiệu về công ty</a><br>

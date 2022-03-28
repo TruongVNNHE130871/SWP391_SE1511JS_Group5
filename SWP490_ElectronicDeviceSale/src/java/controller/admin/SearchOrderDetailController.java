@@ -32,7 +32,7 @@ public class SearchOrderDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         OrderDetailDBContext odDB = new OrderDetailDBContext();
-        String raw_orderDetailId = request.getParameter("orderDetailId");
+        String raw_orderDetailId = request.getParameter("orderDetailId").trim();
         if (raw_orderDetailId == null || raw_orderDetailId.length() == 0) {
             raw_orderDetailId = "-1";
         }
