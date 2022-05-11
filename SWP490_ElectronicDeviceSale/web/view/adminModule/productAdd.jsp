@@ -117,7 +117,7 @@ Record of change:
                             <div class="mb-3 row">
                                 <label for="inputOrginal" class="col-sm-2 col-form-label">Xuất sứ: </label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="productOrginal" class="form-control" id="" placeholder="" minlength="3" maxlength="50" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" required>
+                                    <input type="text" name="productOrginal" class="form-control" id="" placeholder="" minlength="3" maxlength="20" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" required>
                                 </div>
                             </div>
                             <div class="mb-3 row">
